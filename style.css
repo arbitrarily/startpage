@@ -37,7 +37,7 @@ body {
 
 @media screen and (min-width: 105em) {
     body {
-        font-size: 2.8rem;
+        font-size: 2.75rem;
     }
 }
 
@@ -82,6 +82,7 @@ a:focus {
 a:hover img,
 a:focus img {
     filter: grayscale(0) brightness(105%);
+    opacity: 1;
 }
 
 .container {
@@ -113,6 +114,11 @@ li {
     position: absolute;
     top: 20%;
     left: 103%;
+    opacity: 0;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 .container__list--title {
