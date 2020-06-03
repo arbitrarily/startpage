@@ -79,6 +79,11 @@ a:focus {
     color: var(--yellow);
 }
 
+a:hover img,
+a:focus img {
+    filter: grayscale(0) brightness(105%);
+}
+
 .container {
     padding: var(--padding);
 }
@@ -98,14 +103,16 @@ li {
 }
 
 .container__list {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    position: relative;
 }
 
 .container__list img {
-    margin-right: 10px;
     filter: grayscale(100%) brightness(125%);
     width: 16px;
+    position: absolute;
+    top: 20%;
+    left: 103%;
 }
 
 .container__list--title {
