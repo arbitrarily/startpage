@@ -1,0 +1,118 @@
+/* Variables */
+:root {
+    /* Margins */
+    --padding: 20px;
+    --large-padding: 10vh;
+    --foundation: 0.625rem;
+
+    /* Fonts */
+    --font-family: "Lora", sans-serif;
+    --font-titles: "Open Sans", sans-serif;
+    --normal: 400;
+    --bold: 700;
+
+    /* Colors */
+    --white: #fff;
+    --black: #11110e;
+    --grey: #5e604d;
+    --yellow: #C1AF4B;
+
+    /* Animation */
+    --animation: all 0.3s ease-in-out;
+
+    /* Gradients */
+    --title-gradient: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 120%);
+}
+
+body {
+    background: var(--black);
+    font-size: 24px;
+}
+
+@media screen and (min-width: 40em) and (max-width: 104.9999999em) {
+    body {
+        font-size: 2.6vw;
+    }
+}
+
+@media screen and (min-width: 105em) {
+    body {
+        font-size: 3rem;
+    }
+}
+
+.grid-container {
+    max-width: 90rem;
+}
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--bold);
+}
+
+p {
+    font-weight: var(--normal);
+    color: var(--white);
+}
+
+a {
+    color: var(--white);
+}
+
+a:hover,
+a:focus {
+    color: var(--yellow);
+}
+
+.container {
+    padding: var(--padding);
+}
+
+.container,
+.container__inner {
+    min-height: 100vh;
+}
+
+ul {
+    margin: 0 0 var(--padding);
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.container__list {
+    display: flex;
+    align-items: center;
+}
+
+.container__list img {
+    margin-right: 10px;
+    filter: grayscale(100%) brightness(125%);
+    width: 16px;
+}
+
+.container__list--title {
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 1rem;
+    font-weight: var(--bold);
+    color: var(--grey);
+}
