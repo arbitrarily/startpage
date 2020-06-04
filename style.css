@@ -184,4 +184,5 @@ li {
     border: none;
     outline: none;
     opacity: 1;
+    color: var(--yellow);
 }
