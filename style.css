@@ -29,20 +29,20 @@ body {
     font-size: 24px;
 }
 
-input {
+.container input {
     font-size: 24px;
 }
 
 @media screen and (min-width: 40em) and (max-width: 104.9999999em) {
     body,
-    input {
+    .container input {
         font-size: 2.5vw;
     }
 }
 
 @media screen and (min-width: 105em) {
     body,
-    input {
+    .container input {
         font-size: 2.6rem;
     }
 }
@@ -148,10 +148,17 @@ li {
 }
 
 .container img.search {
-    width: 35px;
-    padding-right: 10px;
+    width: 100%;
+    min-width: 32px;
+    padding-right: 5px;
     height: 3rem;
-    margin-right: var(--padding);
+}
+
+.container label {
+    width: 32px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .container input {
@@ -162,7 +169,6 @@ li {
     margin: 0;
     height: auto;
     line-height: 3rem;
-    font-size: 24px;
     color: var(--white);
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
@@ -170,12 +176,6 @@ li {
     transition: var(--animation);
     outline: none;
     opacity: 0.5;
-}
-
-@media screen and (min-width: 40em) {
-    .container input {
-        font-size: 2rem;
-    }
 }
 
 .container input:focus {
