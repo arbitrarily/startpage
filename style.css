@@ -29,15 +29,21 @@ body {
     font-size: 24px;
 }
 
+input {
+    font-size: 24px;
+}
+
 @media screen and (min-width: 40em) and (max-width: 104.9999999em) {
-    body {
-        font-size: 2.6vw;
+    body,
+    input {
+        font-size: 2.5vw;
     }
 }
 
 @media screen and (min-width: 105em) {
-    body {
-        font-size: 2.75rem;
+    body,
+    input {
+        font-size: 2.6rem;
     }
 }
 
@@ -128,4 +134,54 @@ li {
     font-size: 1rem;
     font-weight: var(--bold);
     color: var(--grey);
+}
+
+.container form {
+    display: flex;
+    max-width: 500px;
+}
+
+@media screen and (max-width: 40em) {
+    .container form {
+        margin-bottom: var(--padding);
+    }
+}
+
+.container img.search {
+    width: 35px;
+    padding-right: 10px;
+    height: 3rem;
+    margin-right: var(--padding);
+}
+
+.container input {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    line-height: 3rem;
+    font-size: 24px;
+    color: var(--white);
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+    outline: none;
+    opacity: 0.5;
+}
+
+@media screen and (min-width: 40em) {
+    .container input {
+        font-size: 2rem;
+    }
+}
+
+.container input:focus {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    opacity: 1;
 }
