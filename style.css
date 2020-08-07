@@ -36,14 +36,14 @@ body {
 @media screen and (min-width: 40em) and (max-width: 104.9999999em) {
     body,
     .container input {
-        font-size: 2.5vw;
+        font-size: 2.15vw;
     }
 }
 
 @media screen and (min-width: 105em) {
     body,
     .container input {
-        font-size: 2.6rem;
+        font-size: 2.15rem;
     }
 }
 
@@ -130,8 +130,8 @@ li {
 .container__list--title {
     font-family: var(--font-titles);
     text-transform: uppercase;
-    letter-spacing: 5px;
-    font-size: 1rem;
+    letter-spacing: 6px;
+    font-size: 0.9rem;
     font-weight: var(--bold);
     color: var(--grey);
 }
