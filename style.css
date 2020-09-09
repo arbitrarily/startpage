@@ -43,7 +43,7 @@ body {
 @media screen and (min-width: 105em) {
     body,
     .container input {
-        font-size: 2.15rem;
+        font-size: 2rem;
     }
 }
 
@@ -107,6 +107,7 @@ ul {
 
 li {
     list-style: none;
+    line-height: 1.5;
 }
 
 .container__list {
