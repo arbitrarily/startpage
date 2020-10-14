@@ -1,3 +1,3 @@
-![image](https://user-images.githubusercontent.com/899183/83702078-971d7d80-a5d9-11ea-8c12-2f313977c462.png)
+![firefox-start-page](https://user-images.githubusercontent.com/899183/96049878-ad203200-0e46-11eb-908d-de643f0970f6.jpg)
 
 [Startpage & New Tab Page](https://psychedelic-station.surge.sh/)
