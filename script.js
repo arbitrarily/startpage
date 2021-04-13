@@ -46,7 +46,6 @@ jQuery( function( $ ) {
     });
 
     function _map_it(song) {
-      console.log(song);
       return {
         id: song.mbid,
         name: song.name,
