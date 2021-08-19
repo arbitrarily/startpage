@@ -199,7 +199,8 @@ li {
     font-size: 0.9rem;
     line-height: 1;
     font-weight: var(--bold);
-    color: var(--white);
+    font-family: var(--font-titles);
+    color: var(--grey);
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
     -o-transition: var(--animation);
