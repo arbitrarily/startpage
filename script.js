@@ -26,6 +26,11 @@ jQuery( function( $ ) {
         logo = 'twitter.svg',
         text = 'Search Twitter',
         name = 'q';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://twitter.com/search' ) {
+      var action = 'https://news.google.com/search',
+        logo = 'googlenews.svg',
+        text = 'Search Google News',
+        name = 'q';
     } else {
       var action = 'https://google.com/search',
         logo = 'google.svg',
