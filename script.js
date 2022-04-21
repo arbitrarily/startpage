@@ -58,7 +58,6 @@ jQuery( function( $ ) {
     }
   } );
 
-
   var lasty = setInterval( lastfm, 1000 * 60 * 3 );
   lastfm();
 

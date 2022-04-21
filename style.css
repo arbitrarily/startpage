@@ -7,7 +7,6 @@
 
     /* Fonts */
     --font-family: "Hack", sans-serif;
-    --font-titles: "Hack", sans-serif;
     --normal: 400;
     --bold: 700;
 
@@ -15,7 +14,6 @@
     --white: #fff;
     --black: #11110e;
     --grey: #3b3b3b;
-    --yellow: #C1AF4B;
 
     /* Animation */
     --animation: all 0.3s ease-in-out;
@@ -64,7 +62,7 @@ a {
 
 a:hover,
 a:focus {
-    color: var(--yellow);
+    color: var(--white);
     opacity: 1;
 }
 
@@ -111,7 +109,7 @@ li {
 }
 
 .container__list--title {
-    font-family: var(--font-titles);
+    font-family: var(--font-family);
     text-transform: uppercase;
     letter-spacing: 6px;
     font-size: 0.9rem;
@@ -165,7 +163,7 @@ li {
     opacity: 0.5;
     line-height: 3.25rem;
     color: var(--white);
-    font-family: var(--font-titles);
+    font-family: var(--font-family);
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
     -o-transition: var(--animation);
@@ -178,7 +176,7 @@ li {
     box-shadow: none;
     border: none;
     outline: none;
-    /*color: var(--yellow);*/
+    /*color: var(--white);*/
     border-radius: 8px;
     padding: 0 14px;
     opacity: 1;
@@ -192,7 +190,7 @@ li {
     font-size: 0.9rem;
     line-height: 1;
     font-weight: var(--bold);
-    font-family: var(--font-titles);
+    font-family: var(--font-family);
     color: var(--grey);
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
