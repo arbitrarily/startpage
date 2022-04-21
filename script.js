@@ -3,16 +3,39 @@ jQuery( function( $ ) {
   $( ".search" ).on( "click", function() {
     if ( $( "#searchform" ).attr( 'action' ) === 'https://google.com/search' ) {
       var action = 'https://duckduckgo.com',
-        logo = 'duckduckgo.svg';
+        logo = 'duckduckgo.svg',
+        text = 'Search DuckDuckGo',
+        name = 'q';
     } else if ( $( "#searchform" ).attr( 'action' ) === 'https://duckduckgo.com' ) {
-      var action = 'https://youtube.com/results?search_query=',
-        logo = 'youtube.svg';
+      var action = 'https://youtube.com/results',
+        logo = 'youtube.svg',
+        text = 'Search YouTube',
+        name = 'search_query';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://youtube.com/results' ) {
+      var action = 'https://beta.music.apple.com/us/search',
+        logo = 'applemusic.svg',
+        text = 'Search Apple Music',
+        name = 'term';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://beta.music.apple.com/us/search' ) {
+      var action = 'https://www.last.fm/search',
+        logo = 'lastfm.svg',
+        text = 'Search LastFM',
+        name = 'q';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://www.last.fm/search' ) {
+      var action = 'https://twitter.com/search',
+        logo = 'twitter.svg',
+        text = 'Search Twitter',
+        name = 'q';
     } else {
       var action = 'https://google.com/search',
-        logo = 'google.svg';
+        logo = 'google.svg',
+        text = 'Search Google',
+        name = 'q';
     }
     $( "#searchform" ).attr( 'action', action );
     $( ".search" ).attr( 'src', logo );
+    $( "#search" ).attr( 'name', name );
+    $( "#search" ).attr( 'placeholder', text );
   } );
 
   $( "#search" ).focus( function() {
