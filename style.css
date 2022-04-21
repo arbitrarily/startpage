@@ -92,8 +92,7 @@ li {
 
 .container__list {
     display: inline-block;
-    padding: 7px;
-    line-height: 1.3;
+    padding: 4px 0;
     position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 1;
