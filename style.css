@@ -27,6 +27,12 @@ body {
     font-size: 20px;
 }
 
+@media screen and (max-width: 40em) {
+    body {
+        font-size: 18px;
+    }
+}
+
 .container input {
     font-size: 24px;
 }
@@ -92,7 +98,7 @@ li {
 
 .container__list {
     display: inline-block;
-    padding: 4px 0;
+    padding: 4px 4px 4px 0;
     position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -186,8 +192,8 @@ li {
     align-items: center;
     justify-content: flex-end;
     opacity: 0;
-    font-size: 0.9rem;
-    line-height: 1;
+    font-size: 1rem;
+    line-height: 0.9;
     font-weight: var(--bold);
     font-family: var(--font-family);
     color: var(--grey);
@@ -207,10 +213,23 @@ li {
     height: 52px;
     margin-left: var(--padding);
     border-radius: 8px;
+    filter: grayscale(0.75);
+    -webkit-filter: grayscale(0.75);
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 .lastfm__song {
-    line-height: 1.3;
+    line-height: 1.1;
+}
+
+@media screen and (max-width: 40em) {
+    .lastfm__url {
+        text-align: left;
+        justify-content: space-between;
+    }
 }
 
 .lastfm__album,

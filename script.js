@@ -74,6 +74,9 @@ jQuery( function( $ ) {
         $( ".lastfm__artist" ).text( s.artist );
         $( ".lastfm__song" ).text( s.name );
         $( ".lastfm__album" ).text( s.album );
+        $( ".lastfm__artist" ).attr( 'title', "Artist: " + s.artist );
+        $( ".lastfm__song" ).attr( 'title', "Song: " + s.name );
+        $( ".lastfm__album" ).attr( 'title', "Album: " + s.album );
         if ( s.image != "" ) {
           $( ".lastfm__image" ).attr( "src", s.image ).show();
         } else {
