@@ -43,11 +43,11 @@ jQuery( function( $ ) {
     $( "#search" ).attr( 'placeholder', text );
   } );
 
-  $( "#search" ).focus( function() {
+  $( "#search" ).on( 'focus', function() {
     $( "form" ).addClass( "focus" );
   } );
 
-  $( "#search" ).focusout( function() {
+  $( "#search" ).on( 'focusout', function() {
     $( "form" ).removeClass( "focus" );
   } );
 
@@ -57,6 +57,8 @@ jQuery( function( $ ) {
       $( "form" ).addClass( "focus" );
     }
   } );
+
+  $( "#search" ).focus();
 
   var lasty = setInterval( lastfm, 1000 * 60 * 3 );
   lastfm();
