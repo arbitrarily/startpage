@@ -37,7 +37,7 @@ jQuery( function( $ ) {
         text = 'Search Github',
         name = 'q';
     } else if ( $( "#searchform" ).attr( 'action' ) === 'https://github.com/search' ) {
-      var action = 'https://www.midjourney.com/app/users/383432442448576517/?sort=new&search=',
+      var action = 'https://www.midjourney.com/app/users/383432442448576517',
         logo = 'midjourney.svg',
         text = 'Search MidJourney',
         name = 'search';
