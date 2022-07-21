@@ -31,6 +31,16 @@ jQuery( function( $ ) {
         logo = 'googlenews.svg',
         text = 'Search Google News',
         name = 'q';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://news.google.com/search' ) {
+      var action = 'https://github.com/search',
+        logo = 'github.svg',
+        text = 'Search Github',
+        name = 'q';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://github.com/search' ) {
+      var action = 'https://www.midjourney.com/app/users/383432442448576517/?sort=new&search=',
+        logo = 'midjourney.svg',
+        text = 'Search MidJourney',
+        name = 'search';
     } else {
       var action = 'https://google.com/search',
         logo = 'google.svg',

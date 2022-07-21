@@ -98,12 +98,18 @@ li {
 
 .container__list {
     display: inline-block;
-    padding: 4px 4px 4px 0;
+    padding: 5px 5px 5px 0;
     position: relative;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+@media screen and (max-width: 64em) {
+    .container__list {
+        padding: 10px 10px 10px 0;
+    }
 }
 
 .container__list img {
