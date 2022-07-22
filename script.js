@@ -92,7 +92,10 @@ jQuery( function( $ ) {
         } else {
           $( ".lastfm__image" ).hide();
         }
+        $( ".lastfm__container" ).show();
         $( ".lastfm__url" ).attr( "href", s.link ).addClass( "shown" );
+      } ).catch( error => {
+        $( ".lastfm__container" ).hide();
       } );
 
     function _map_it( song ) {

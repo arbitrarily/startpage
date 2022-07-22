@@ -38,7 +38,7 @@ body {
 }
 
 .grid-container {
-    max-width: 90rem;
+    max-width: 80rem;
 }
 
 body,
@@ -97,13 +97,9 @@ li {
 }
 
 .container__list {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     padding: 5px 5px 5px 0;
-    position: relative;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 @media screen and (max-width: 64em) {
@@ -112,8 +108,30 @@ li {
     }
 }
 
+@media screen and (max-width: 30em) {
+    .container__list span {
+        font-size: 0.9725rem;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .container form {
+        margin-bottom: var(--padding);
+    }
+}
+
+.container__list span {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .container__list img {
-    width: 23px;
+    width: 100%;
+    margin-right: 0.5rem;
+    max-width: 23px;
+    max-height: 23px;
     border-radius: 5px;
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
@@ -131,7 +149,6 @@ li {
 .container form {
     display: flex;
     width: 100%;
-    margin: 0;
     opacity: 0.5;
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
@@ -141,12 +158,6 @@ li {
 
 .container form.focus {
     opacity: 1;
-}
-
-@media screen and (max-width: 40em) {
-    .container form {
-        margin-bottom: var(--padding);
-    }
 }
 
 .container img.search {
@@ -164,6 +175,7 @@ li {
 }
 
 .container input {
+    position: relative;
     background: transparent;
     box-shadow: none;
     border: none;
@@ -172,6 +184,7 @@ li {
     height: auto;
     width: calc(100% - 32px);
     opacity: 0.5;
+    border-radius: 10px;
     line-height: 3.25rem;
     color: var(--white);
     font-family: var(--font-family);
@@ -183,7 +196,7 @@ li {
 }
 
 .container input:focus {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.025);
     box-shadow: none;
     border: none;
     outline: none;
