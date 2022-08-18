@@ -41,6 +41,11 @@ jQuery( function( $ ) {
         logo = 'midjourney.svg',
         text = 'Search MidJourney',
         name = 'search';
+    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://www.midjourney.com/app/users/383432442448576517' ) {
+      var action = 'https://www.poewiki.net/index.php',
+        logo = 'poe.svg',
+        text = 'Search PoE Wiki',
+        name = 'search';
     } else {
       var action = 'https://google.com/search',
         logo = 'google.svg',
