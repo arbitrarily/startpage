@@ -13,17 +13,18 @@
     /* Colors */
     --white: #fff;
     --black: #11110e;
-    --grey: #3b3b3b;
+    --gray: #0d0d0d;
+    --grey: #353535;
 
     /* Animation */
     --animation: all 0.3s ease-in-out;
 
     /* Gradients */
-    --title-gradient: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 120%);
+    --bg-gradient: radial-gradient(ellipse at 12% 138%, var(--black) 0%, var(--gray) 90%);
 }
 
 body {
-    background: var(--black);
+    background: var(--bg-gradient);
     font-size: 20px;
 }
 
@@ -38,10 +39,18 @@ body {
 }
 
 .grid-container {
-    max-width: 80rem;
+    max-width: 90rem;
+}
+
+* {
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 body,
+a,
 p,
 h1,
 h2,
@@ -59,11 +68,7 @@ p {
 
 a {
     color: var(--white);
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
-    opacity: 0.33;
+    opacity: 0.25;
 }
 
 a:hover,
@@ -94,6 +99,22 @@ ul {
 
 li {
     list-style: none;
+}
+
+.container__list--item {
+
+}
+
+.container__list--item:hover {
+    background: rgba(255, 255, 255, 0.025);
+    box-shadow: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    border-radius: 8px;
+    padding: 0 10px;
+    opacity: 1;
+    letter-spacing: -0.0225rem;
 }
 
 .container__list {
@@ -150,10 +171,6 @@ li {
     display: flex;
     width: 100%;
     opacity: 0.5;
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
 }
 
 .container form.focus {
@@ -174,6 +191,10 @@ li {
     align-items: center;
 }
 
+.container label {
+    cursor: context-menu;
+}
+
 .container input {
     position: relative;
     background: transparent;
@@ -188,11 +209,8 @@ li {
     line-height: 3.25rem;
     color: var(--white);
     font-family: var(--font-family);
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
     outline: none;
+    cursor: zoom-in;
 }
 
 .container input:focus {
@@ -216,10 +234,6 @@ li {
     font-weight: var(--bold);
     font-family: var(--font-family);
     color: var(--grey);
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
     text-align: right;
 }
 
@@ -234,10 +248,6 @@ li {
     border-radius: 8px;
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
 }
 
 .lastfm__song {
