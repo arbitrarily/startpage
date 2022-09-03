@@ -179,16 +179,16 @@ li {
 
 .container img.search {
     width: 100%;
-    min-width: 32px;
+    min-width: 36px;
     padding-right: 5px;
-    height: 3rem;
 }
 
 .container label {
-    width: 32px;
+    width: 36px;
     margin-right: 10px;
     display: flex;
     align-items: center;
+    /*filter: grayscale(100%) brightness(25%);*/
 }
 
 .container label {
@@ -203,7 +203,7 @@ li {
     padding: 0;
     margin: 0;
     height: auto;
-    width: calc(100% - 32px);
+    width: calc(100% - 36px);
     opacity: 0.5;
     border-radius: 10px;
     line-height: 3.25rem;

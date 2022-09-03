@@ -47,7 +47,7 @@ jQuery( function( $ ) {
     }
   }
 
-  $( ".search" ).on( "click", function() {
+  $( "#searchform label" ).on( "click", function() {
     if ( $( "#searchform" ).attr( 'action' ) === 'https://google.com/search' ) {
       var action = 'https://duckduckgo.com',
         logo = 'duckduckgo.svg',
@@ -90,7 +90,7 @@ jQuery( function( $ ) {
         name = 'search';
     } else if ( $( "#searchform" ).attr( 'action' ) === 'https://www.midjourney.com/app/users/383432442448576517' ) {
       var action = 'https://www.poewiki.net/index.php',
-        logo = 'poe.svg',
+        logo = 'poe.png',
         text = 'Search PoE Wiki',
         name = 'search';
     } else {
@@ -120,7 +120,7 @@ jQuery( function( $ ) {
   } ).keyup( function( e ) {
     if ( down[ 37 ] && down[ 38 ] ) {
       var action = 'https://www.poewiki.net/index.php',
-        logo = 'poe.svg',
+        logo = 'poe.png',
         text = 'Search PoE Wiki',
         name = 'search';
       switcher( action, logo, text, name );
