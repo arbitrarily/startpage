@@ -10,6 +10,10 @@ jQuery( function( $ ) {
     $( "#search" ).attr( 'name', name );
   }
 
+  function numb( min, max ) {
+    return Math.floor( Math.random() * ( max - min + 1 ) + min );
+  }
+
   function lastfm() {
     var url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=desmosthenes&api_key=df46fd3a07f78050c087696ec675130c&format=json&limit=1';
 
@@ -113,6 +117,10 @@ jQuery( function( $ ) {
     }
   } );
 
+  $( "body" ).css( {
+    "background": "radial-gradient(ellipse at " + numb(1, 50) + "% " + numb(90, 120) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
+  } );
+
   $( "#search" ).focus();
 
   $( document ).keydown( function( e ) {
@@ -144,11 +152,11 @@ jQuery( function( $ ) {
 
   lastfm();
 
-  console.log("Built By");
+  console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log("Build Version: 1.0.27");
+  console.log( "Build Version: 1.0.27" );
 
 } );

@@ -18,13 +18,10 @@
 
     /* Animation */
     --animation: all 0.3s ease-in-out;
-
-    /* Gradients */
-    --bg-gradient: radial-gradient(ellipse at 12% 138%, var(--black) 0%, var(--gray) 90%);
 }
 
 body {
-    background: var(--bg-gradient);
+    background-color: var(--black);
     font-size: 20px;
 }
 
