@@ -22,6 +22,7 @@ jQuery( function( $ ) {
       .then( res => res[ 'recenttracks' ][ 'track' ] )
       .then( song => {
         var s = song.map( _map_it )[ 0 ];
+
         $( ".lastfm__artist" ).text( s.artist );
         $( ".lastfm__song" ).text( s.name );
         $( ".lastfm__album" ).text( s.album );
@@ -118,7 +119,7 @@ jQuery( function( $ ) {
   } );
 
   $( "body" ).css( {
-    "background": "radial-gradient(ellipse at " + numb(1, 50) + "% " + numb(90, 120) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
+    "background": "radial-gradient(ellipse at " + numb( 1, 50 ) + "% " + numb( 90, 120 ) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
   } );
 
   $( "#search" ).focus();
@@ -157,6 +158,6 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.0.27" );
+  console.log( "Build Version: 1.0.28" );
 
 } );

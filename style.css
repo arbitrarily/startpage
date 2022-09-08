@@ -239,6 +239,7 @@ li {
 }
 
 .lastfm__image {
+    background-color:  var(--gray);
     width: 52px;
     height: 52px;
     margin-left: var(--padding);
