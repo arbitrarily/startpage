@@ -158,6 +158,6 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.0.28" );
+  console.log( "Build Version: 1.0.29" );
 
 } );
