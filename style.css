@@ -18,11 +18,12 @@
 
     /* Animation */
     --animation: all 0.3s ease-in-out;
+    --animation-long: all 0.6s ease-in-out;
 }
 
 body {
     background-color: var(--black);
-    font-size: 20px;
+    font-size: 18px;
 }
 
 @media screen and (max-width: 40em) {
@@ -37,6 +38,13 @@ body {
 
 .grid-container {
     max-width: 90rem;
+}
+
+.instapaper-replace {
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
 }
 
 * {
@@ -65,7 +73,7 @@ p {
 
 a {
     color: var(--white);
-    opacity: 0.25;
+    opacity: 0.5;
 }
 
 a:hover,
@@ -98,8 +106,12 @@ li {
     list-style: none;
 }
 
-.container__list--item {
+.instapaper-links .container__list--item {
+    letter-spacing: -0.0225rem;
+}
 
+.instapaper-links .container__list--item:hover {
+    letter-spacing: -0.05rem;
 }
 
 .container__list--item:hover {

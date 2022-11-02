@@ -16,7 +16,7 @@ jQuery( function( $ ) {
   }
 
   function lastfm() {
-    $.getJSON( './config.json', function( d ) {
+    $.getJSON( "./config.json", function( d ) {
       fetch( d.lastFMURL )
         .then( res => res.json() )
         .then( res => res[ 'recenttracks' ][ 'track' ] )
@@ -47,6 +47,28 @@ jQuery( function( $ ) {
           link: song.url
         }
       }
+    } );
+  }
+
+  function instapaper() {
+    $.getJSON( "./config.json", function( d ) {
+      fetch( d.instapaperURL )
+        .then( function( response ) {
+          $( ".instapaper-replace" ).css('opacity', 0);
+          return response.text()
+        } )
+        .then( function( html ) {
+          if (html) {
+            setTimeout(function() {
+              var parser = new DOMParser();
+              // var doc = parser.parseFromString( html, "text/html" );
+              $( ".instapaper-replace" ).replaceWith( html ).css('opacity', 1);
+            }, 800);
+          }
+        } )
+        .catch( function( err ) {
+          console.log( 'Failed to fetch page: ', err );
+        } );
     } );
   }
 
