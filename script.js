@@ -3,11 +3,12 @@ jQuery( function( $ ) {
   var lasty = setInterval( lastfm, 1000 * 60 * 3 ),
     down = {};
 
-  function switcher( action, logo, text, name ) {
+  function switcher( action, logo, text, name, type ) {
     $( "#searchform" ).attr( 'action', action );
     $( ".search" ).attr( 'src', logo );
-    $( "#search" ).attr( 'placeholder', text );
-    $( "#search" ).attr( 'name', name );
+    $( "#search" ).attr( 'placeholder', text )
+      .attr( 'name', name )
+      .attr( 'data-type', type );
   }
 
   function numb( min, max ) {
@@ -15,96 +16,110 @@ jQuery( function( $ ) {
   }
 
   function lastfm() {
-    var url = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=desmosthenes&api_key=df46fd3a07f78050c087696ec675130c&format=json&limit=1';
+    $.getJSON( './config.json', function( d ) {
+      fetch( d.lastFMURL )
+        .then( res => res.json() )
+        .then( res => res[ 'recenttracks' ][ 'track' ] )
+        .then( song => {
+          var s = song.map( _map_it )[ 0 ];
 
-    fetch( url )
-      .then( res => res.json() )
-      .then( res => res[ 'recenttracks' ][ 'track' ] )
-      .then( song => {
-        var s = song.map( _map_it )[ 0 ];
+          $( ".lastfm__artist" ).text( s.artist ).attr( 'title', "Artist: " + s.artist );
+          $( ".lastfm__song" ).text( s.name ).attr( 'title', "Song: " + s.name );
+          $( ".lastfm__album" ).text( s.album ).attr( 'title', "Album: " + s.album );
+          if ( s.image != "" ) {
+            $( ".lastfm__image" ).attr( "src", s.image ).show();
+          } else {
+            $( ".lastfm__image" ).hide();
+          }
+          $( ".lastfm__container" ).show();
+          $( ".lastfm__url" ).attr( "href", s.link ).addClass( "shown" );
+        } ).catch( error => {
+          $( ".lastfm__container" ).hide();
+        } );
 
-        $( ".lastfm__artist" ).text( s.artist );
-        $( ".lastfm__song" ).text( s.name );
-        $( ".lastfm__album" ).text( s.album );
-        $( ".lastfm__artist" ).attr( 'title', "Artist: " + s.artist );
-        $( ".lastfm__song" ).attr( 'title', "Song: " + s.name );
-        $( ".lastfm__album" ).attr( 'title', "Album: " + s.album );
-        if ( s.image != "" ) {
-          $( ".lastfm__image" ).attr( "src", s.image ).show();
-        } else {
-          $( ".lastfm__image" ).hide();
+      function _map_it( song ) {
+        return {
+          id: song.mbid,
+          name: song.name,
+          album: song.album[ "#text" ],
+          artist: song.artist[ "#text" ],
+          image: song.image[ 3 ][ "#text" ],
+          link: song.url
         }
-        $( ".lastfm__container" ).show();
-        $( ".lastfm__url" ).attr( "href", s.link ).addClass( "shown" );
-      } ).catch( error => {
-        $( ".lastfm__container" ).hide();
-      } );
-
-    function _map_it( song ) {
-      return {
-        id: song.mbid,
-        name: song.name,
-        album: song.album[ "#text" ],
-        artist: song.artist[ "#text" ],
-        image: song.image[ 3 ][ "#text" ],
-        link: song.url
       }
-    }
+    } );
   }
 
   $( "#searchform label" ).on( "click", function() {
-    if ( $( "#searchform" ).attr( 'action' ) === 'https://google.com/search' ) {
+    var s = $( "#search" );
+    if ( s.attr( 'data-type' ) === 'google' ) {
       var action = 'https://duckduckgo.com',
-        logo = 'duckduckgo.svg',
+        logo = 'icon__duckduckgo.svg',
         text = 'Search DuckDuckGo',
-        name = 'q';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://duckduckgo.com' ) {
+        name = 'q',
+        type = 'duckduckgo';
+    } else if ( s.attr( 'data-type' ) === 'duckduckgo' ) {
+      var action = 'https://translate.google.com/',
+        logo = 'icon__translate.svg',
+        text = 'Translate',
+        name = 'hl=en&tab=TT&sl=en&tl=es&op=translate&text=',
+        type = 'translate';
+    } else if ( s.attr( 'data-type' ) === 'translate' ) {
       var action = 'https://youtube.com/results',
-        logo = 'youtube.svg',
+        logo = 'icon__youtube.svg',
         text = 'Search YouTube',
-        name = 'search_query';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://youtube.com/results' ) {
+        name = 'search_query',
+        type = 'youtube';
+    } else if ( s.attr( 'data-type' ) === 'youtube' ) {
       var action = 'https://beta.music.apple.com/us/search',
-        logo = 'applemusic.svg',
+        logo = 'icon__applemusic.svg',
         text = 'Search Apple Music',
-        name = 'term';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://beta.music.apple.com/us/search' ) {
+        name = 'term',
+        type = 'applemusic';
+    } else if ( s.attr( 'data-type' ) === 'applemusic' ) {
       var action = 'https://www.last.fm/search',
-        logo = 'lastfm.svg',
+        logo = 'icon__lastfm.svg',
         text = 'Search LastFM',
-        name = 'q';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://www.last.fm/search' ) {
+        name = 'q',
+        type = 'lastfm';
+    } else if ( s.attr( 'data-type' ) === 'lastfm' ) {
       var action = 'https://twitter.com/search',
-        logo = 'twitter.svg',
+        logo = 'icon__twitter.svg',
         text = 'Search Twitter',
-        name = 'q';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://twitter.com/search' ) {
+        name = 'q',
+        type = 'twitter';
+    } else if ( s.attr( 'data-type' ) === 'twitter' ) {
       var action = 'https://news.google.com/search',
-        logo = 'googlenews.svg',
+        logo = 'icon__googlenews.svg',
         text = 'Search Google News',
-        name = 'q';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://news.google.com/search' ) {
+        name = 'q',
+        type = 'googlenews';
+    } else if ( s.attr( 'data-type' ) === 'googlenews' ) {
       var action = 'https://github.com/search',
-        logo = 'github.svg',
+        logo = 'icon__github.svg',
         text = 'Search Github',
-        name = 'q';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://github.com/search' ) {
+        name = 'q',
+        type = 'github';
+    } else if ( s.attr( 'data-type' ) === 'github' ) {
       var action = 'https://www.midjourney.com/app/users/383432442448576517',
-        logo = 'midjourney.svg',
+        logo = 'icon__midjourney.svg',
         text = 'Search MidJourney',
-        name = 'search';
-    } else if ( $( "#searchform" ).attr( 'action' ) === 'https://www.midjourney.com/app/users/383432442448576517' ) {
+        name = 'search',
+        type = 'midjourney';
+    } else if ( s.attr( 'data-type' ) === 'midjourney' ) {
       var action = 'https://www.poewiki.net/index.php',
         logo = 'poe.png',
         text = 'Search PoE Wiki',
-        name = 'search';
+        name = 'poewiki',
+        type = 'poewiki';
     } else {
       var action = 'https://google.com/search',
-        logo = 'google.svg',
+        logo = 'icon__google.svg',
         text = 'Search Google',
-        name = 'q';
+        name = 'q',
+        type = 'google';
     }
-    switcher( action, logo, text, name );
+    switcher( action, logo, text, name, type );
   } );
 
   $( "#search" ).on( 'focus focusout', function() {
@@ -129,35 +144,47 @@ jQuery( function( $ ) {
   } ).keyup( function( e ) {
     if ( down[ 37 ] && down[ 38 ] ) {
       var action = 'https://www.poewiki.net/index.php',
-        logo = 'poe.png',
+        logo = 'icon__poe.png',
         text = 'Search PoE Wiki',
-        name = 'search';
-      switcher( action, logo, text, name );
+        name = 'search',
+        type = 'poewiki';
+      switcher( action, logo, text, name, type );
     }
     if ( down[ 38 ] && down[ 39 ] ) {
       var action = 'https://youtube.com/results',
-        logo = 'youtube.svg',
+        logo = 'icon__youtube.svg',
         text = 'Search YouTube',
-        name = 'search_query';
-      switcher( action, logo, text, name );
+        name = 'search_query',
+        type = 'youtube';
+      switcher( action, logo, text, name, type );
     }
-    if ( down[ 37 ] && down[ 39 ] && down[ 40 ] ) {
+    if ( down[ 39 ] && down[ 40 ] ) {
       var action = 'https://google.com/search',
-        logo = 'google.svg',
+        logo = 'icon__google.svg',
         text = 'Search Google',
-        name = 'q';
-      switcher( action, logo, text, name );
+        name = 'q',
+        type = 'google';
+      switcher( action, logo, text, name, type );
+    }
+    if ( down[ 37 ] && down[ 40 ] ) {
+      var action = 'https://translate.google.com/',
+        logo = 'icon__translate.svg',
+        text = 'Translate',
+        name = 'hl=en&tab=TT&sl=en&tl=es&op=translate&text=',
+        type = 'translate';
+      switcher( action, logo, text, name, type );
     }
     down[ e.keyCode ] = false;
   } );
 
   lastfm();
+  instapaper();
 
   console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.0.29" );
+  console.log( "Build Version: 1.1.0" );
 
 } );
