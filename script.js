@@ -9,6 +9,7 @@ jQuery( function( $ ) {
     $( "#search" ).attr( 'placeholder', text )
       .attr( 'name', name )
       .attr( 'data-type', type );
+    $( "form" ).removeClass( "focus" );
   }
 
   function numb( min, max ) {
@@ -63,7 +64,6 @@ jQuery( function( $ ) {
           if (html) {
             setTimeout(function() {
               var parser = new DOMParser();
-              // var doc = parser.parseFromString( html, "text/html" );
               $( ".instapaper-replace" ).replaceWith( html ).css('opacity', 1);
             }, 800);
           }
@@ -86,7 +86,7 @@ jQuery( function( $ ) {
       var action = 'https://translate.google.com/',
         logo = 'icon__translate.svg',
         text = 'Translate',
-        name = 'hl=en&tab=TT&sl=en&tl=es&op=translate&text=',
+        name = 'hl=en&sl=en&tl=es&text=',
         type = 'translate';
     } else if ( s.attr( 'data-type' ) === 'translate' ) {
       var action = 'https://youtube.com/results',
