@@ -52,7 +52,9 @@ jQuery( function( $ ) {
 
   function instapaper() {
     $.getJSON( "./config.json", function( d ) {
-      fetch( d.instapaperURL )
+      var dt = new Date();
+      console.log(d.instapaperURL + '?t=' + (dt.getMinutes() * 60) + dt.getSeconds());
+      fetch( d.instapaperURL + '?t=' + dt.getSeconds() )
         .then( function( response ) {
           $( ".instapaper-replace" ).css('opacity', 0);
           return response.text()
