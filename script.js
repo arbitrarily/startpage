@@ -1,5 +1,6 @@
 jQuery( function( $ ) {
 
+  // Variables
   var lasty = setInterval( lastfm, 1000 * 60 * 3 ),
     down = {};
 
@@ -54,18 +55,18 @@ jQuery( function( $ ) {
   function instapaper() {
     $.getJSON( "./config.json", function( d ) {
       var dt = new Date();
-      console.log(d.instapaperURL + '?t=' + (dt.getMinutes() * 60) + dt.getSeconds());
+      console.log( d.instapaperURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() );
       fetch( d.instapaperURL + '?t=' + dt.getSeconds() )
         .then( function( response ) {
-          $( ".instapaper-replace" ).css('opacity', 0);
+          $( ".instapaper-replace" ).css( 'opacity', 0 );
           return response.text()
         } )
         .then( function( html ) {
-          if (html) {
-            setTimeout(function() {
+          if ( html ) {
+            setTimeout( function() {
               var parser = new DOMParser();
-              $( ".instapaper-replace" ).replaceWith( html ).css('opacity', 1);
-            }, 800);
+              $( ".instapaper-replace" ).replaceWith( html ).css( 'opacity', 1 );
+            }, 800 );
           }
         } )
         .catch( function( err ) {
@@ -74,6 +75,7 @@ jQuery( function( $ ) {
     } );
   }
 
+  // Click Search to Toggle Targeting
   $( "#searchform label" ).on( "click", function() {
     var s = $( "#search" );
     if ( s.attr( 'data-type' ) === 'google' ) {
@@ -146,10 +148,12 @@ jQuery( function( $ ) {
     switcher( action, logo, text, name, type );
   } );
 
+  // Focus Styling for Search
   $( "#search" ).on( 'focus focusout', function() {
     $( "form" ).removeClass( "focus" );
   } );
 
+  // Click Anywhere to Focus Search
   $( document ).on( "click", function( e ) {
     if ( e.target.tagName !== "A" || e.target.tagName !== "INPUT" ) {
       $( "#search" ).focus();
@@ -157,12 +161,15 @@ jQuery( function( $ ) {
     }
   } );
 
+  // Randomize Background Gradient
   $( "body" ).css( {
     "background": "radial-gradient(ellipse at " + numb( 1, 50 ) + "% " + numb( 90, 120 ) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
   } );
 
+  // Focus Search
   $( "#search" ).focus();
 
+  // Change Search Target with Arrow Keys
   $( document ).keydown( function( e ) {
     down[ e.keyCode ] = true;
   } ).keyup( function( e ) {
@@ -201,14 +208,18 @@ jQuery( function( $ ) {
     down[ e.keyCode ] = false;
   } );
 
+  // Get Last FM Now Playing
   lastfm();
+
+  // Get Latest Instapaper Articles
   instapaper();
 
+  // Console Log Attribution
   console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.1.0" );
+  console.log( "Build Version: 1.1.2" );
 
 } );

@@ -23,7 +23,7 @@
 
 body {
     background-color: var(--black);
-    font-size: 18px;
+    font-size: 17px;
 }
 
 @media screen and (max-width: 40em) {
@@ -251,7 +251,7 @@ li {
 }
 
 .lastfm__image {
-    background-color:  var(--gray);
+    background-color: var(--gray);
     width: 52px;
     height: 52px;
     margin-left: var(--padding);
