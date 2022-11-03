@@ -55,8 +55,7 @@ jQuery( function( $ ) {
   function instapaper() {
     $.getJSON( "./config.json", function( d ) {
       var dt = new Date();
-      console.log( d.instapaperURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() );
-      fetch( d.instapaperURL + '?t=' + dt.getSeconds() )
+      fetch( d.instapaperURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() )
         .then( function( response ) {
           $( ".instapaper-replace" ).css( 'opacity', 0 );
           return response.text()
@@ -70,7 +69,7 @@ jQuery( function( $ ) {
           }
         } )
         .catch( function( err ) {
-          console.log( 'Failed to fetch page: ', err );
+          console.log( 'Failed to fetch: ', err );
         } );
     } );
   }
@@ -134,7 +133,7 @@ jQuery( function( $ ) {
         type = 'midjourney';
     } else if ( s.attr( 'data-type' ) === 'midjourney' ) {
       var action = 'https://www.poewiki.net/index.php',
-        logo = 'poe.png',
+        logo = 'icon__poe.png',
         text = 'Search PoE Wiki',
         name = 'poewiki',
         type = 'poewiki';
