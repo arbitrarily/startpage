@@ -33,7 +33,7 @@ body {
 }
 
 .container input {
-    font-size: 24px;
+    font-size: 26px;
 }
 
 .grid-container {
@@ -90,6 +90,12 @@ a:focus img {
 
 .container {
     padding: var(--padding);
+}
+
+@media screen and (max-width: 40em) {
+    .container {
+        padding: calc(var(--padding) * 3) var(--padding);
+    }
 }
 
 .container,
@@ -268,6 +274,12 @@ li {
     .lastfm__url {
         text-align: left;
         justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .lastfm__container {
+        padding-left: var(--padding);
     }
 }
 
