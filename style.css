@@ -6,9 +6,9 @@
     --foundation: 0.625rem;
 
     /* Fonts */
-    --font-family: "Hack", sans-serif;
-    --normal: 400;
-    --bold: 700;
+    --font-family: "Inter", sans-serif;
+    --normal: 500;
+    --bold: 900;
 
     /* Colors */
     --white: #fff;
@@ -176,10 +176,17 @@ li {
 .container__list--title {
     font-family: var(--font-family);
     text-transform: uppercase;
-    letter-spacing: 6px;
+    letter-spacing: 10px;
     font-size: 0.9rem;
     font-weight: var(--bold);
     color: var(--grey);
+    padding: 10px 10px 10px 0;
+}
+
+@media screen and (min-width: 40em) {
+    .container__list--title {
+        padding: 5px 5px 10px 0;
+    }
 }
 
 .container form {
@@ -224,6 +231,7 @@ li {
     line-height: 3.25rem;
     color: var(--white);
     font-family: var(--font-family);
+    font-weight: var(--bold);
     outline: none;
     cursor: zoom-in;
 }
