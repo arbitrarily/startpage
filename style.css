@@ -112,6 +112,18 @@ li {
     list-style: none;
 }
 
+.instapaper-list {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 409px;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+    scrollbar-width: thin;
+}
+
+.instapaper-links ul:first-child {
+    margin: 0;
+}
+
 .instapaper-links .container__list--item {
     letter-spacing: -0.0225rem;
 }

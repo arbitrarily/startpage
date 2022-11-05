@@ -64,14 +64,23 @@ jQuery( function( $ ) {
           if ( html ) {
             setTimeout( function() {
               var parser = new DOMParser();
-              $( ".instapaper-replace" ).replaceWith( html ).css( 'opacity', 1 );
+              $( ".instapaper-replace" ).replaceWith( html );
+              instapaper_resize();
+              $( ".instapaper-replace" ).css( 'opacity', 1 );
             }, 800 );
           }
         } )
         .catch( function( err ) {
-          console.log( 'Failed to fetch: ', err );
+          $( ".instapaper-replace" ).removeClass( 'large-4' ).addClass('large-auto');
         } );
     } );
+  }
+
+  // Size Overflow Container for Instapaper Feed
+  function instapaper_resize() {
+    if ( $( ".instapaper-links" ).length ) {
+      $( ".instapaper-links" ).css( 'max-height', $( '.size-compare' ).height() );
+    }
   }
 
   // Click Search to Toggle Targeting
@@ -213,12 +222,19 @@ jQuery( function( $ ) {
   // Get Latest Instapaper Articles
   instapaper();
 
+  // Instapaper Sizing
+  instapaper_resize();
+
+  $( window ).on( 'resize', function() {
+    instapaper_resize();
+  } );
+
   // Console Log Attribution
   console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.1.2" );
+  console.log( "Build Version: 1.1.4" );
 
 } );
