@@ -120,6 +120,12 @@ li {
     scrollbar-width: thin;
 }
 
+@media screen and (max-width: 40em) {
+    .instapaper-list {
+        max-height: 292px;
+    }
+}
+
 .instapaper-links ul:first-child {
     margin: 0;
 }

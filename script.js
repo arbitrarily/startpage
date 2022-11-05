@@ -76,13 +76,6 @@ jQuery( function( $ ) {
     } );
   }
 
-  // Size Overflow Container for Instapaper Feed
-  function instapaper_resize() {
-    if ( $( ".instapaper-links" ).length ) {
-      $( ".instapaper-links" ).css( 'max-height', $( '.size-compare' ).height() );
-    }
-  }
-
   // Click Search to Toggle Targeting
   $( "#searchform label" ).on( "click", function() {
     var s = $( "#search" );
@@ -221,13 +214,6 @@ jQuery( function( $ ) {
 
   // Get Latest Instapaper Articles
   instapaper();
-
-  // Instapaper Sizing
-  instapaper_resize();
-
-  $( window ).on( 'resize', function() {
-    instapaper_resize();
-  } );
 
   // Console Log Attribution
   console.log( "Built By" );
