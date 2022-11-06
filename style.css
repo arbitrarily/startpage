@@ -136,6 +136,11 @@ li {
     margin: 0;
 }
 
+.instapaper-links .container__list--title {
+    display: flex;
+    justify-content: space-between
+}
+
 .instapaper-links .container__list--item {
     letter-spacing: -0.0225rem;
 }
