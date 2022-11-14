@@ -114,7 +114,7 @@ jQuery( function( $ ) {
           var balance = ( response[ 'ETH' ]['totalIn'] ).toString();
           var balance_formatted = ( response[ 'ETH' ]['totalIn'] ).toFixed( 3 );
           var balance_diff = response[ 'ETH' ][ 'price' ]['diff'];
-          var formatted = ( balance_diff > 0  ? " (+" + balance_diff + "%)" : " (-" + balance_diff + "%)" );
+          var formatted = ( balance_diff > 0  ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)" );
           if ( balance ) {
             setTimeout( function() {
               $( ".wallet-replace" ).text( ( balance_formatted + formatted ).toString() );
