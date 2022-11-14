@@ -326,30 +326,51 @@ li {
     font-size: 0.8rem;
 }
 
-.counter {
+.stats {
     display: flex;
     align-items: center;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    padding: 10px;
+    padding: var(--foundation);
     line-height: 1;
     color: var(--white);
     font-size: 0.5rem;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     font-weight: var(--bold);
-    opacity: 0;
     cursor: help;
 }
 
-.counter img  {
+@media screen and (min-width: 40em) {
+    .stats {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.counter,
+.wallet {
+    opacity: 0;
+}
+
+.counter.shown,
+.wallet.shown {
+    opacity: 0.25;
+}
+
+.wallet {
+    margin-left: var(--padding);
+}
+
+.counter img,
+.wallet img  {
     width: 12px;
     height: auto;
     margin-right: 6px;
 }
 
 .counter:hover,
-.counter:focus {
-    opacity: 1 !important;
+.counter:focus,
+.wallet:hover,
+.wallet:focus {
+    opacity: 1;
 }

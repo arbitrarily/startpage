@@ -4,6 +4,7 @@ jQuery( function( $ ) {
   var lasty = setInterval( lastfm, 1000 * 60 * 3 ),
     down = {};
 
+  // Search Switcher
   function switcher( action, logo, text, name, type ) {
     $( "#searchform" ).attr( 'action', action );
     $( ".search" ).attr( 'src', logo );
@@ -13,10 +14,12 @@ jQuery( function( $ ) {
     $( "form" ).removeClass( "focus" );
   }
 
+  // Random Number in a Range
   function numb( min, max ) {
     return Math.floor( Math.random() * ( max - min + 1 ) + min );
   }
 
+  // LastFM Song
   function lastfm() {
     $.getJSON( "./config.json", function( d ) {
       fetch( d.lastFMURL )
@@ -52,6 +55,7 @@ jQuery( function( $ ) {
     } );
   }
 
+  // Instapaper Home Feed
   function instapaper() {
     $.getJSON( "./config.json", function( d ) {
       var dt = new Date();
@@ -70,29 +74,61 @@ jQuery( function( $ ) {
           }
         } )
         .catch( function( err ) {
-          $( ".instapaper-replace" ).removeClass( 'large-4' ).addClass('large-auto');
+          $( ".instapaper-replace" ).removeClass( 'large-4' ).addClass( 'large-auto' );
         } );
     } );
   }
 
+  // Page View Counter
   function counter() {
     $.getJSON( "./config.json", function( d ) {
       var dt = new Date();
       fetch( d.counterURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() )
         .then( function( response ) {
-          $( ".counter" ).css( 'opacity', 0 );
           return response.text()
         } )
         .then( function( number ) {
           if ( number ) {
             setTimeout( function() {
               $( ".counter-replace" ).text( ( number ).toString() );
-              $( ".counter" ).css( 'opacity', 0.25 );
+              $( ".counter" ).addClass( 'shown' );
             }, 800 );
           }
         } )
         .catch( function( err ) {
           $( ".counter" ).remove();
+        } );
+    } );
+  }
+
+  // Primary Wallet Status
+  function wallet() {
+    $.getJSON( "./config.json", function( d ) {
+      var dt = new Date(),
+          balance = false;
+      fetch( d.ethplorerURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() )
+        .then( function( response ) {
+          return response.json()
+        } )
+        .then( function( response ) {
+          var balance = ( response[ 'ETH' ]['totalIn'] ).toString();
+          var balance_formatted = ( response[ 'ETH' ]['totalIn'] ).toFixed( 3 );
+          var balance_diff = response[ 'ETH' ][ 'price' ]['diff'];
+          var formatted = ( balance_diff > 0  ? " (+" + balance_diff + "%)" : " (-" + balance_diff + "%)" );
+          if ( balance ) {
+            setTimeout( function() {
+              $( ".wallet-replace" ).text( ( balance_formatted + formatted ).toString() );
+              $( ".wallet" ).addClass( 'shown' );
+              $( ".wallet" ).attr( 'title', 'Ξ ' + balance + formatted );
+              // Counter
+              counter();
+            }, 800 );
+          }
+        } )
+        .catch( function( err ) {
+          $( ".wallet" ).remove();
+          // Counter
+          counter();
         } );
     } );
   }
@@ -242,9 +278,9 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.2.1" );
+  console.log( "Build Version: 1.3.1" );
 
-  // Counter
-  counter();
+  // Wallet Value
+  wallet();
 
 } );
