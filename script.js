@@ -236,15 +236,15 @@ jQuery( function( $ ) {
   // Get Latest Instapaper Articles
   instapaper();
 
-  // Counter
-  counter();
-
   // Console Log Attribution
   console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.2.0" );
+  console.log( "Build Version: 1.2.1" );
+
+  // Counter
+  counter();
 
 } );

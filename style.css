@@ -339,7 +339,7 @@ li {
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     font-weight: var(--bold);
-    opacity: 0.25;
+    opacity: 0;
     cursor: help;
 }
 
