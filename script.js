@@ -65,13 +65,34 @@ jQuery( function( $ ) {
             setTimeout( function() {
               var parser = new DOMParser();
               $( ".instapaper-replace" ).replaceWith( html );
-              instapaper_resize();
               $( ".instapaper-replace" ).css( 'opacity', 1 );
             }, 800 );
           }
         } )
         .catch( function( err ) {
           $( ".instapaper-replace" ).removeClass( 'large-4' ).addClass('large-auto');
+        } );
+    } );
+  }
+
+  function counter() {
+    $.getJSON( "./config.json", function( d ) {
+      var dt = new Date();
+      fetch( d.counterURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() )
+        .then( function( response ) {
+          $( ".counter" ).css( 'opacity', 0 );
+          return response.text()
+        } )
+        .then( function( number ) {
+          if ( number ) {
+            setTimeout( function() {
+              $( ".counter-replace" ).text( ( number ).toString() );
+              $( ".counter" ).css( 'opacity', 0.25 );
+            }, 800 );
+          }
+        } )
+        .catch( function( err ) {
+          $( ".counter" ).remove();
         } );
     } );
   }
@@ -215,12 +236,15 @@ jQuery( function( $ ) {
   // Get Latest Instapaper Articles
   instapaper();
 
+  // Counter
+  counter();
+
   // Console Log Attribution
   console.log( "Built By" );
   console.log(
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.1.4" );
+  console.log( "Build Version: 1.2.0" );
 
 } );

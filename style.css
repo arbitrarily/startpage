@@ -325,3 +325,31 @@ li {
     font-weight: var(--normal);
     font-size: 0.8rem;
 }
+
+.counter {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    line-height: 1;
+    color: var(--white);
+    font-size: 0.5rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    font-weight: var(--bold);
+    opacity: 0.25;
+    cursor: help;
+}
+
+.counter img  {
+    width: 12px;
+    height: auto;
+    margin-right: 6px;
+}
+
+.counter:hover,
+.counter:focus {
+    opacity: 1 !important;
+}
