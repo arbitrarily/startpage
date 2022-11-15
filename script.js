@@ -340,7 +340,7 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.3.3" );
+  console.log( "Build Version: 1.3.4" );
 
   // Wallet Value
   wallet();
