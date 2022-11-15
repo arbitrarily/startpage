@@ -22,6 +22,7 @@
 }
 
 body {
+    cursor: url('icon__cursor.png'), auto;
     background-color: var(--black);
     font-size: 17px;
 }
@@ -38,13 +39,6 @@ body {
 
 .grid-container {
     max-width: 90rem;
-}
-
-.instapaper-replace {
-    -webkit-transition: var(--animation-long);
-    -moz-transition: var(--animation-long);
-    -o-transition: var(--animation-long);
-    transition: var(--animation-long);
 }
 
 * {
@@ -78,6 +72,7 @@ a {
 
 a:hover,
 a:focus {
+    cursor: url('icon__cursor--hover.png'), auto;
     color: var(--white);
     opacity: 1;
 }
@@ -115,20 +110,20 @@ li {
 .instapaper-list {
     overflow: hidden;
     overflow-y: scroll;
-    max-height: 409px;
+    max-height: 446.4px;
     scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
     scrollbar-width: thin;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (min-width:40em) and (max-width: 64em) {
     .instapaper-list {
-        max-height: 292px;
+        max-height: 472px;
     }
 }
 
-@media screen and (max-width: 30em) {
+@media screen and (max-width: 40em) {
     .instapaper-list {
-        max-height: 269px;
+        max-height: 390.4px;
     }
 }
 
@@ -243,7 +238,7 @@ li {
 }
 
 .container label {
-    cursor: context-menu;
+    cursor: url('icon__cursor--hover.png'), auto;
 }
 
 .container input {
@@ -262,7 +257,7 @@ li {
     font-family: var(--font-family);
     font-weight: var(--bold);
     outline: none;
-    cursor: zoom-in;
+    cursor: url('icon__cursor--hover.png'), auto;
 }
 
 .container input:focus {
@@ -327,6 +322,7 @@ li {
 }
 
 .stats {
+    cursor: url('icon__cursor--hover.png'), auto;
     display: flex;
     align-items: center;
     padding: var(--foundation);
@@ -336,7 +332,6 @@ li {
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     font-weight: var(--bold);
-    cursor: help;
 }
 
 @media screen and (min-width: 40em) {
@@ -362,7 +357,7 @@ li {
 }
 
 .counter img,
-.wallet img  {
+.wallet img {
     width: 12px;
     height: auto;
     margin-right: 6px;
@@ -373,4 +368,12 @@ li {
 .wallet:hover,
 .wallet:focus {
     opacity: 1;
+    cursor: default;
+}
+
+.instapaper-replace {
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
 }

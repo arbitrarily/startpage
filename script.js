@@ -68,8 +68,7 @@ jQuery( function( $ ) {
           if ( html ) {
             setTimeout( function() {
               var parser = new DOMParser();
-              $( ".instapaper-replace" ).replaceWith( html );
-              $( ".instapaper-replace" ).css( 'opacity', 1 );
+              $( ".instapaper-replace" ).replaceWith( html ).css( 'opacity', 1 );
             }, 800 );
           }
         } )
@@ -91,7 +90,7 @@ jQuery( function( $ ) {
           if ( number ) {
             setTimeout( function() {
               $( ".counter-replace" ).text( ( number ).toString() );
-              $( ".counter" ).addClass( 'shown' );
+              $( ".counter" ).addClass( 'shown' ).attr( 'title', 'Views: ' + number );
             }, 800 );
           }
         } )
@@ -105,21 +104,20 @@ jQuery( function( $ ) {
   function wallet() {
     $.getJSON( "./config.json", function( d ) {
       var dt = new Date(),
-          balance = false;
+        balance = false;
       fetch( d.ethplorerURL + '?t=' + ( dt.getMinutes() * 60 ) + dt.getSeconds() )
         .then( function( response ) {
           return response.json()
         } )
         .then( function( response ) {
-          var balance = ( response[ 'ETH' ]['totalIn'] ).toString();
-          var balance_formatted = ( response[ 'ETH' ]['totalIn'] ).toFixed( 3 );
-          var balance_diff = response[ 'ETH' ][ 'price' ]['diff'];
-          var formatted = ( balance_diff > 0  ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)" );
+          var balance = ( response[ 'ETH' ][ 'totalIn' ] ).toString();
+          var balance_formatted = ( response[ 'ETH' ][ 'totalIn' ] ).toFixed( 3 );
+          var balance_diff = response[ 'ETH' ][ 'price' ][ 'diff' ];
+          var formatted = ( balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)" );
           if ( balance ) {
             setTimeout( function() {
               $( ".wallet-replace" ).text( ( balance_formatted + formatted ).toString() );
-              $( ".wallet" ).addClass( 'shown' );
-              $( ".wallet" ).attr( 'title', 'Ξ ' + balance + formatted );
+              $( ".wallet" ).addClass( 'shown' ).attr( 'title', 'Ξ ' + balance + formatted );
               // Counter
               counter();
             }, 800 );
@@ -230,14 +228,17 @@ jQuery( function( $ ) {
   // Change Search Target with Arrow Keys
   $( document ).keydown( function( e ) {
     down[ e.keyCode ] = true;
+    if ( down[ 18 ] ) {
+      e.preventDefault();
+    }
   } ).keyup( function( e ) {
+    // Arrow Modifiers
     if ( down[ 37 ] && down[ 38 ] ) {
       var action = 'https://www.poewiki.net/index.php',
         logo = 'icon__poe.png',
         text = 'Search PoE Wiki',
         name = 'search',
         type = 'poewiki';
-      switcher( action, logo, text, name, type );
     }
     if ( down[ 38 ] && down[ 39 ] ) {
       var action = 'https://youtube.com/results',
@@ -245,7 +246,6 @@ jQuery( function( $ ) {
         text = 'Search YouTube',
         name = 'search_query',
         type = 'youtube';
-      switcher( action, logo, text, name, type );
     }
     if ( down[ 39 ] && down[ 40 ] ) {
       var action = 'https://google.com/search',
@@ -253,16 +253,78 @@ jQuery( function( $ ) {
         text = 'Search Google',
         name = 'q',
         type = 'google';
-      switcher( action, logo, text, name, type );
     }
-    if ( down[ 37 ] && down[ 40 ] ) {
+    // Alt Modifiers
+    if ( down[ 18 ] && down[ 49 ] ) { // alt + 1
+      var action = 'https://duckduckgo.com',
+        logo = 'icon__duckduckgo.svg',
+        text = 'Search DuckDuckGo',
+        name = 'q',
+        type = 'duckduckgo';
+    } else if ( down[ 18 ] && down[ 50 ] ) { // alt + 2
       var action = 'https://translate.google.com/',
         logo = 'icon__translate.svg',
         text = 'Translate',
-        name = 'hl=en&tab=TT&sl=en&tl=es&op=translate&text=',
+        name = 'hl=en&sl=en&tl=es&text=',
         type = 'translate';
-      switcher( action, logo, text, name, type );
+    } else if ( down[ 18 ] && down[ 51 ] ) { // alt + 3
+      var action = 'https://youtube.com/results',
+        logo = 'icon__youtube.svg',
+        text = 'Search YouTube',
+        name = 'search_query',
+        type = 'youtube';
+    } else if ( down[ 18 ] && down[ 52 ] ) { // alt + 4
+      var action = 'https://beta.music.apple.com/us/search',
+        logo = 'icon__applemusic.svg',
+        text = 'Search Apple Music',
+        name = 'term',
+        type = 'applemusic';
+    } else if ( down[ 18 ] && down[ 53 ] ) { // alt + 5
+      var action = 'https://www.last.fm/search',
+        logo = 'icon__lastfm.svg',
+        text = 'Search LastFM',
+        name = 'q',
+        type = 'lastfm';
+    } else if ( down[ 18 ] && down[ 54 ] ) { // alt + 6
+      var action = 'https://twitter.com/search',
+        logo = 'icon__twitter.svg',
+        text = 'Search Twitter',
+        name = 'q',
+        type = 'twitter';
+    } else if ( down[ 18 ] && down[ 55 ] ) { // alt + 7
+      var action = 'https://news.google.com/search',
+        logo = 'icon__googlenews.svg',
+        text = 'Search Google News',
+        name = 'q',
+        type = 'googlenews';
+    } else if ( down[ 18 ] && down[ 56 ] ) { // alt + 8
+      var action = 'https://github.com/search',
+        logo = 'icon__github.svg',
+        text = 'Search Github',
+        name = 'q',
+        type = 'github';
+    } else if ( down[ 18 ] && down[ 57 ] ) { // alt + 9
+      var action = 'https://www.midjourney.com/app/users/383432442448576517',
+        logo = 'icon__midjourney.svg',
+        text = 'Search MidJourney',
+        name = 'search',
+        type = 'midjourney';
+    } else if ( down[ 18 ] && down[ 173 ] ) { // alt + -
+      var action = 'https://www.poewiki.net/index.php',
+        logo = 'icon__poe.png',
+        text = 'Search PoE Wiki',
+        name = 'poewiki',
+        type = 'poewiki';
+    } else if ( down[ 18 ] && down[ 48 ] ) { // alt + 0
+      var action = 'https://google.com/search',
+        logo = 'icon__google.svg',
+        text = 'Search Google',
+        name = 'q',
+        type = 'google';
     }
+    // Switch Search
+    switcher( action, logo, text, name, type );
+    // Reset Key
     down[ e.keyCode ] = false;
   } );
 
@@ -278,7 +340,7 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.3.1" );
+  console.log( "Build Version: 1.3.2" );
 
   // Wallet Value
   wallet();
