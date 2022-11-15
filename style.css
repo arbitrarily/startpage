@@ -113,6 +113,7 @@ li {
     max-height: 392px;
     scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
     scrollbar-width: thin;
+    mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
 @media screen and (min-width:40em) and (max-width: 64em) {
