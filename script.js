@@ -10,7 +10,8 @@ jQuery( function( $ ) {
     $( ".search" ).attr( 'src', logo );
     $( "#search" ).attr( 'placeholder', text )
       .attr( 'name', name )
-      .attr( 'data-type', type );
+      .attr( 'data-type', type )
+      .focus();
     $( "form" ).removeClass( "focus" );
   }
 
@@ -340,7 +341,7 @@ jQuery( function( $ ) {
     "%cMarko Bajlovic",
     "background-color:#fff;color:#0b0b0b;padding:0.5em 1em;font-weight:900;line-height:1.5em;font-size:2em;"
   );
-  console.log( "Build Version: 1.3.4" );
+  console.log( "Build Version: 1.3.5" );
 
   // Wallet Value
   wallet();
