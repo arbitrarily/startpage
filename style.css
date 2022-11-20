@@ -19,6 +19,9 @@
     /* Animation */
     --animation: all 0.3s ease-in-out;
     --animation-long: all 0.6s ease-in-out;
+
+    --cursor: url('icons/icon__cursor.png'), auto;
+    --cursor__hover: url('icons/icon__cursor--hover.png'), auto;
 }
 
 body {
@@ -27,7 +30,7 @@ body {
 }
 
 body.vaal {
-    cursor: url('icon__cursor.png'), auto;
+    cursor: var(--cursor);
 }
 
 @media screen and (max-width: 40em) {
@@ -81,7 +84,7 @@ a:focus {
 
 .vaal a:hover,
 .vaal a:focus {
-    cursor: url('icon__cursor--hover.png'), auto;
+    cursor: var(--cursor__hover);
 }
 
 a:hover img,
@@ -151,6 +154,13 @@ li {
 
 .instapaper-links .container__list--item:hover {
     letter-spacing: -0.05rem;
+}
+
+.instapaper-replace {
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
 }
 
 .container__list--item:hover {
@@ -247,7 +257,7 @@ li {
 }
 
 .vaal .container label {
-    cursor: url('icon__cursor--hover.png'), auto;
+    cursor: var(--cursor__hover);
 }
 
 .container input {
@@ -330,7 +340,7 @@ li {
 }
 
 .vaal .stats {
-    cursor: url('icon__cursor--hover.png'), auto;
+    cursor: var(--cursor__hover);
 }
 
 .stats {
@@ -380,11 +390,4 @@ li {
 .wallet:focus {
     opacity: 1;
     cursor: default;
-}
-
-.instapaper-replace {
-    -webkit-transition: var(--animation-long);
-    -moz-transition: var(--animation-long);
-    -o-transition: var(--animation-long);
-    transition: var(--animation-long);
 }
