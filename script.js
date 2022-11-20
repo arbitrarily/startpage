@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: '1.4.5',
+    version: '1.4.6',
 
     // Touch Events
     touch: "ontouchstart" in document.documentElement ? "touchstart" : "click",
@@ -50,10 +50,7 @@
     },
 
     // Timestamp for Breaking Cached URLs
-    timestamp: function() {
-      var dt = new Date();
-      return ( dt.getMinutes() * 60 ) + dt.getSeconds();
-    },
+    timestamp: ~~( new Date().getTime() / 1000 ),
 
     // Random Number in a Range
     numb: function( min, max ) {
@@ -120,7 +117,7 @@
     // Instapaper Home Feed
     instapaper: function() {
       $.getJSON( "./config.json", function( d ) {
-        fetch( d.instapaperURL + '?t=' + this.timestamp )
+        fetch( d.instapaperURL + '?t=' + start.timestamp )
           .then( function( response ) {
             $( ".instapaper-replace" ).css( 'opacity', 0 );
             return response.text();
@@ -143,7 +140,7 @@
     // Page View Counter
     counter: function() {
       $.getJSON( "./config.json", function( d ) {
-        fetch( d.counterURL + '?t=' + this.timestamp )
+        fetch( d.counterURL + '?t=' + start.timestamp )
           .then( function( response ) {
             return response.text();
           } )
@@ -164,7 +161,7 @@
     // Primary Wallet Status
     wallet: function() {
       $.getJSON( "./config.json", function( d ) {
-        fetch( d.ethplorerURL + '?t=' + this.timestamp )
+        fetch( d.ethplorerURL + '?t=' + start.timestamp )
           .then( function( response ) {
             return response.json();
           } )
