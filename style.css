@@ -22,9 +22,12 @@
 }
 
 body {
-    cursor: url('icon__cursor.png'), auto;
     background-color: var(--black);
     font-size: 17px;
+}
+
+body.vaal {
+    cursor: url('icon__cursor.png'), auto;
 }
 
 @media screen and (max-width: 40em) {
@@ -72,9 +75,13 @@ a {
 
 a:hover,
 a:focus {
-    cursor: url('icon__cursor--hover.png'), auto;
     color: var(--white);
     opacity: 1;
+}
+
+.vaal a:hover,
+.vaal a:focus {
+    cursor: url('icon__cursor--hover.png'), auto;
 }
 
 a:hover img,
@@ -108,6 +115,7 @@ li {
 }
 
 .instapaper-list {
+    opacity:  0;
     overflow: hidden;
     overflow-y: scroll;
     max-height: 392px;
@@ -238,7 +246,7 @@ li {
     /*filter: grayscale(100%) brightness(25%);*/
 }
 
-.container label {
+.vaal .container label {
     cursor: url('icon__cursor--hover.png'), auto;
 }
 
@@ -258,7 +266,6 @@ li {
     font-family: var(--font-family);
     font-weight: var(--bold);
     outline: none;
-    cursor: url('icon__cursor--hover.png'), auto;
 }
 
 .container input:focus {
@@ -322,8 +329,11 @@ li {
     font-size: 0.8rem;
 }
 
-.stats {
+.vaal .stats {
     cursor: url('icon__cursor--hover.png'), auto;
+}
+
+.stats {
     display: flex;
     align-items: center;
     padding: var(--foundation);
