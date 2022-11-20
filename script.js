@@ -200,67 +200,67 @@
         var s = $( "#search" );
         if ( s.attr( 'data-type' ) === 'google' ) {
           var action = 'https://duckduckgo.com',
-            logo = 'icon__duckduckgo.svg',
+            logo = 'icons/icon__duckduckgo.svg',
             text = 'Search DuckDuckGo',
             name = 'q',
             type = 'duckduckgo';
         } else if ( s.attr( 'data-type' ) === 'duckduckgo' ) {
           var action = 'https://translate.google.com/',
-            logo = 'icon__translate.svg',
+            logo = 'icons/icon__translate.svg',
             text = 'Translate',
             name = 'hl=en&sl=en&tl=es&text=',
             type = 'translate';
         } else if ( s.attr( 'data-type' ) === 'translate' ) {
           var action = 'https://youtube.com/results',
-            logo = 'icon__youtube.svg',
+            logo = 'icons/icon__youtube.svg',
             text = 'Search YouTube',
             name = 'search_query',
             type = 'youtube';
         } else if ( s.attr( 'data-type' ) === 'youtube' ) {
           var action = 'https://beta.music.apple.com/us/search',
-            logo = 'icon__applemusic.svg',
+            logo = 'icons/icon__applemusic.svg',
             text = 'Search Apple Music',
             name = 'term',
             type = 'applemusic';
         } else if ( s.attr( 'data-type' ) === 'applemusic' ) {
           var action = 'https://www.last.fm/search',
-            logo = 'icon__lastfm.svg',
+            logo = 'icons/icon__lastfm.svg',
             text = 'Search LastFM',
             name = 'q',
             type = 'lastfm';
         } else if ( s.attr( 'data-type' ) === 'lastfm' ) {
           var action = 'https://twitter.com/search',
-            logo = 'icon__twitter.svg',
+            logo = 'icons/icon__twitter.svg',
             text = 'Search Twitter',
             name = 'q',
             type = 'twitter';
         } else if ( s.attr( 'data-type' ) === 'twitter' ) {
           var action = 'https://news.google.com/search',
-            logo = 'icon__googlenews.svg',
+            logo = 'icons/icon__googlenews.svg',
             text = 'Search Google News',
             name = 'q',
             type = 'googlenews';
         } else if ( s.attr( 'data-type' ) === 'googlenews' ) {
           var action = 'https://github.com/search',
-            logo = 'icon__github.svg',
+            logo = 'icons/icon__github.svg',
             text = 'Search Github',
             name = 'q',
             type = 'github';
         } else if ( s.attr( 'data-type' ) === 'github' ) {
           var action = 'https://www.midjourney.com/app/users/383432442448576517',
-            logo = 'icon__midjourney.svg',
+            logo = 'icons/icon__midjourney.svg',
             text = 'Search MidJourney',
             name = 'search',
             type = 'midjourney';
         } else if ( s.attr( 'data-type' ) === 'midjourney' ) {
           var action = 'https://www.poewiki.net/index.php',
-            logo = 'icon__poe.png',
+            logo = 'icons/icon__poe.png',
             text = 'Search PoE Wiki',
             name = 'poewiki',
             type = 'poewiki';
         } else {
           var action = 'https://google.com/search',
-            logo = 'icon__google.svg',
+            logo = 'icons/icon__google.svg',
             text = 'Search Google',
             name = 'q',
             type = 'google';
@@ -282,21 +282,21 @@
         // Arrow Modifiers
         if ( start.down[ 37 ] && start.down[ 38 ] ) {
           var action = 'https://www.poewiki.net/index.php',
-            logo = 'icon__poe.png',
+            logo = 'icons/icon__poe.png',
             text = 'Search PoE Wiki',
             name = 'search',
             type = 'poewiki';
         }
         if ( start.down[ 38 ] && start.down[ 39 ] ) {
           var action = 'https://youtube.com/results',
-            logo = 'icon__youtube.svg',
+            logo = 'icons/icon__youtube.svg',
             text = 'Search YouTube',
             name = 'search_query',
             type = 'youtube';
         }
         if ( start.down[ 39 ] && start.down[ 40 ] ) {
           var action = 'https://google.com/search',
-            logo = 'icon__google.svg',
+            logo = 'icons/icon__google.svg',
             text = 'Search Google',
             name = 'q',
             type = 'google';
@@ -304,67 +304,67 @@
         // Alt Modifiers
         if ( start.down[ 18 ] && start.down[ 49 ] ) { // alt + 1
           var action = 'https://duckduckgo.com',
-            logo = 'icon__duckduckgo.svg',
+            logo = 'icons/icon__duckduckgo.svg',
             text = 'Search DuckDuckGo',
             name = 'q',
             type = 'duckduckgo';
         } else if ( start.down[ 18 ] && start.down[ 50 ] ) { // alt + 2
           var action = 'https://translate.google.com/',
-            logo = 'icon__translate.svg',
+            logo = 'icons/icon__translate.svg',
             text = 'Translate',
             name = 'hl=en&sl=en&tl=es&text=',
             type = 'translate';
         } else if ( start.down[ 18 ] && start.down[ 51 ] ) { // alt + 3
           var action = 'https://youtube.com/results',
-            logo = 'icon__youtube.svg',
+            logo = 'icons/icon__youtube.svg',
             text = 'Search YouTube',
             name = 'search_query',
             type = 'youtube';
         } else if ( start.down[ 18 ] && start.down[ 52 ] ) { // alt + 4
           var action = 'https://beta.music.apple.com/us/search',
-            logo = 'icon__applemusic.svg',
+            logo = 'icons/icon__applemusic.svg',
             text = 'Search Apple Music',
             name = 'term',
             type = 'applemusic';
         } else if ( start.down[ 18 ] && start.down[ 53 ] ) { // alt + 5
           var action = 'https://www.last.fm/search',
-            logo = 'icon__lastfm.svg',
+            logo = 'icons/icon__lastfm.svg',
             text = 'Search LastFM',
             name = 'q',
             type = 'lastfm';
         } else if ( start.down[ 18 ] && start.down[ 54 ] ) { // alt + 6
           var action = 'https://twitter.com/search',
-            logo = 'icon__twitter.svg',
+            logo = 'icons/icon__twitter.svg',
             text = 'Search Twitter',
             name = 'q',
             type = 'twitter';
         } else if ( start.down[ 18 ] && start.down[ 55 ] ) { // alt + 7
           var action = 'https://news.google.com/search',
-            logo = 'icon__googlenews.svg',
+            logo = 'icons/icon__googlenews.svg',
             text = 'Search Google News',
             name = 'q',
             type = 'googlenews';
         } else if ( start.down[ 18 ] && start.down[ 56 ] ) { // alt + 8
           var action = 'https://github.com/search',
-            logo = 'icon__github.svg',
+            logo = 'icons/icon__github.svg',
             text = 'Search Github',
             name = 'q',
             type = 'github';
         } else if ( start.down[ 18 ] && start.down[ 57 ] ) { // alt + 9
           var action = 'https://www.midjourney.com/app/users/383432442448576517',
-            logo = 'icon__midjourney.svg',
+            logo = 'icons/icon__midjourney.svg',
             text = 'Search MidJourney',
             name = 'search',
             type = 'midjourney';
         } else if ( start.down[ 18 ] && start.down[ 173 ] ) { // alt + -
           var action = 'https://www.poewiki.net/index.php',
-            logo = 'icon__poe.png',
+            logo = 'icons/icon__poe.png',
             text = 'Search PoE Wiki',
             name = 'poewiki',
             type = 'poewiki';
         } else if ( start.down[ 18 ] && start.down[ 48 ] ) { // alt + 0
           var action = 'https://google.com/search',
-            logo = 'icon__google.svg',
+            logo = 'icons/icon__google.svg',
             text = 'Search Google',
             name = 'q',
             type = 'google';
