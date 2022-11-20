@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: '1.4.3',
+    version: '1.4.4',
 
     // Touch Events
     touch: "ontouchstart" in document.documentElement ? "touchstart" : "click",
@@ -181,7 +181,7 @@
               }, 500 );
               // Console Log Details
               console.log( '\n' );
-              console.log( 'Balance     : ' + 'Ξ ' + ( start.balance + formatted ).toString() );
+              console.log( 'Balance     : ' + 'Ξ ' + start.balance.toString() );
               console.log( '1 Day Diff  : ' + response[ 'ETH' ][ 'price' ][ 'diff' ].toString() );
               console.log( '7 Day Diff  : ' + response[ 'ETH' ][ 'price' ][ 'diff7d' ].toString() );
               console.log( '30 Day Diff : ' + response[ 'ETH' ][ 'price' ][ 'diff30d' ].toString() );
