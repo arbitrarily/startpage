@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: '1.4.2',
+    version: '1.4.3',
 
     // Touch Events
     touch: "ontouchstart" in document.documentElement ? "touchstart" : "click",
@@ -150,7 +150,7 @@
           .then( function( number ) {
             if ( number ) {
               setTimeout( function() {
-                $( ".counter-replace" ).text( ( number ).toString() );
+                $( ".counter-replace" ).text( number.toString() );
                 $( ".counter" ).addClass( 'shown' ).attr( 'title', 'Views: ' + number );
               }, 1000 );
             }
@@ -169,7 +169,7 @@
             return response.json();
           } )
           .then( function( response ) {
-            start.balance = ( response[ 'ETH' ][ 'totalIn' ] ).toString();
+            start.balance = response[ 'ETH' ][ 'totalIn' ].toString();
             var balance_formatted = ( response[ 'ETH' ][ 'totalIn' ] ).toFixed( 3 );
             var balance_diff = response[ 'ETH' ][ 'price' ][ 'diff' ];
             var formatted = ( balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)" );
@@ -177,8 +177,14 @@
               // Show After Delay
               setTimeout( function() {
                 $( ".wallet-replace" ).text( ( balance_formatted + formatted ).toString() );
-                $( ".wallet" ).addClass( 'shown' ).attr( 'title', 'Ξ ' + this.balance + formatted );
+                $( ".wallet" ).addClass( 'shown' ).attr( 'title', 'Ξ ' + start.balance + formatted );
               }, 500 );
+              // Console Log Details
+              console.log( '\n' );
+              console.log( 'Balance     : ' + 'Ξ ' + ( start.balance + formatted ).toString() );
+              console.log( '1 Day Diff  : ' + response[ 'ETH' ][ 'price' ][ 'diff' ].toString() );
+              console.log( '7 Day Diff  : ' + response[ 'ETH' ][ 'price' ][ 'diff7d' ].toString() );
+              console.log( '30 Day Diff : ' + response[ 'ETH' ][ 'price' ][ 'diff30d' ].toString() );
             }
           } )
           .catch( function( err ) {
