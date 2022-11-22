@@ -118,7 +118,6 @@ li {
 }
 
 .instapaper-list {
-    opacity:  0;
     overflow: hidden;
     overflow-y: scroll;
     max-height: 392px;
@@ -139,6 +138,14 @@ li {
     }
 }
 
+.instapaper-links {
+    opacity: 0;
+}
+
+.instapaper-links.shown {
+    opacity: 1;
+}
+
 .instapaper-links ul:first-child {
     margin: 0;
 }
@@ -154,13 +161,6 @@ li {
 
 .instapaper-links .container__list--item:hover {
     letter-spacing: -0.05rem;
-}
-
-.instapaper-replace {
-    -webkit-transition: var(--animation-long);
-    -moz-transition: var(--animation-long);
-    -o-transition: var(--animation-long);
-    transition: var(--animation-long);
 }
 
 .container__list--item:hover {
