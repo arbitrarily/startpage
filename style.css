@@ -17,8 +17,8 @@
     --grey: #353535;
 
     /* Animation */
-    --animation: all 0.3s ease-in-out;
-    --animation-long: all 0.6s ease-in-out;
+    --animation: all 0.366s ease-in-out;
+    --animation-long: all 0.666s ease-in-out;
 
     --cursor: url('icons/icon__cursor.png'), auto;
     --cursor__hover: url('icons/icon__cursor--hover.png'), auto;
@@ -149,6 +149,10 @@ ul {
 
 li {
     list-style: none;
+}
+
+.instapaper-container {
+    mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
 .instapaper-list {

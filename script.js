@@ -4,10 +4,10 @@
   var start = {
 
     // Version Number
-    version: "1.4.9",
+    version: "1.4.11",
 
     // Touch Events
-    touch: "ontouchstart" in document.documentElement ? "touchstart" : "click",
+    touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
 
     // Keyboard Variable
     down: {},
@@ -47,6 +47,9 @@
 
       // Allow for Cursor Reset
       this.reset_cursor();
+
+      // Animation on Leave
+      this.bye_bye();
     },
 
     // Timestamp for Breaking Cached URLs
@@ -151,8 +154,11 @@
           .then( function( number ) {
             if ( number ) {
               setTimeout( function() {
-                $( ".counter-replace" ).text( number.toString() );
-                $( ".counter" ).addClass( "shown" ).attr( "title", "Views: " + number );
+                var number_string = number.trim().toString();
+                $( ".counter-replace" ).text( number_string );
+                $( ".counter" ).addClass( "shown" ).attr( "title", "Views: " + number_string );
+                console.log( "---" );
+                console.log( "Page Views: " + number_string );
               }, 1000 );
             }
           } )
@@ -414,6 +420,13 @@
       } ).keyup( function( e ) {
         // Reset Key
         start.down[ e.keyCode ] = false;
+      } );
+    },
+
+    // Animation on Leave
+    bye_bye: function() {
+      $( window ).on( "beforeunload", function() {
+        $( "body" ).css( "opacity", 0 );
       } );
     },
 
