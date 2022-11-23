@@ -158,7 +158,7 @@
                 $( ".counter-replace" ).text( number_string );
                 $( ".counter" ).addClass( "shown" ).attr( "title", "Views: " + number_string );
                 console.log( "---" );
-                console.log( "Page Views: " + number_string );
+                console.log( "Page Views  : " + number_string );
               }, 1000 );
             }
           } )
