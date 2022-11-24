@@ -244,6 +244,10 @@ li {
     overflow: hidden;
 }
 
+.container__list span.container__list--full-item {
+    -webkit-line-clamp: 4;
+}
+
 .container__list img {
     width: 100%;
     margin-right: 0.5rem;

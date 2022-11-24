@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.4.11",
+    version: "1.5.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -34,6 +34,9 @@
 
       // Get Latest Instapaper Articles
       this.instapaper();
+
+      // Techmeme Articles
+      this.techmeme();
 
       // Set Background Gradient
       this.background_gradient();
@@ -141,6 +144,39 @@
           .catch( function( err ) {
             $( ".instapaper-replace" ).removeClass( "large-4" ).addClass( "large-auto" );
           } )
+      } );
+    },
+
+    // Techmeme Home Feed
+    techmeme: function() {
+      $( document ).keydown( function( e ) {
+        start.down[ e.keyCode ] = true;
+        // Prevent Option Command
+        if ( start.down[ 18 ] ) {
+          e.preventDefault();
+          if ( start.down[ 84 ] ) { // alt + t
+            $.getJSON( "./config.json", function( d ) {
+              fetch( d.techmemeURL + '?t=' + start.timestamp )
+                .then( function( response ) {
+                  $( ".instapaper-links" ).removeClass('shown');
+                  return response.text();
+                } )
+                .then( function( html ) {
+                  if ( html ) {
+                    setTimeout( function() {
+                      $( ".instapaper-links" ).replaceWith( html );
+                    }, 600 );
+                    setTimeout( function() {
+                      $( ".instapaper-links" ).addClass("shown");
+                    }, 1000 );
+                  }
+                } )
+                .catch( function( err ) {
+                  $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
+                } );
+            } );
+          }
+        }
       } );
     },
 
