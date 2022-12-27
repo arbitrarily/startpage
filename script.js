@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.5.1",
+    version: "1.5.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -63,6 +63,11 @@
       return Math.floor( Math.random() * ( max - min + 1 ) + min );
     },
 
+    // Prettify Numbers
+    format_numb: function(numb) {
+      return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+
     // Focus Search
     focus_search: function() {
       $( "#search" ).focus();
@@ -85,10 +90,19 @@
       $.getJSON( "./config.json", function( d ) {
         fetch( d.lastFMURL )
           .then( res => res.json() )
-          .then( res => res[ "recenttracks" ][ "track" ] )
+          .then( res => res )
           .then( song => {
+            var count = song["recenttracks"]["@attr"]["total"];
+            if ( count ) {
+              setTimeout( function() {
+                var number_string = start.format_numb(count).trim().toString();
+                $( ".songs-replace" ).text( number_string );
+                $( ".songs" ).addClass( "shown" ).attr( "title", "Songs Scrobbled: " + number_string );
+                console.log( "Scrobbles   : " + number_string );
+              }, 1000 );
+            }
             // Remap Data
-            var s = song.map( _map_it )[ 0 ];
+            var s = song[ "recenttracks" ][ "track" ].map( _map_it )[ 0 ];
             // Assign Data to Placeholders
             $( ".lastfm__artist" ).text( s.artist ).attr( "title", "Artist: " + s.artist );
             $( ".lastfm__song" ).text( s.name ).attr( "title", "Song: " + s.name );

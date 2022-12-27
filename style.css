@@ -406,21 +406,25 @@ li {
 }
 
 .counter,
-.wallet {
+.wallet,
+.songs {
     opacity: 0;
 }
 
 .counter.shown,
-.wallet.shown {
+.wallet.shown,
+.songs.shown {
     opacity: 0.25;
 }
 
-.wallet {
+.wallet,
+.counter {
     margin-left: var(--padding);
 }
 
 .counter img,
-.wallet img {
+.wallet img,
+.songs img {
     width: 12px;
     height: auto;
     margin-right: 6px;
@@ -429,7 +433,9 @@ li {
 .counter:hover,
 .counter:focus,
 .wallet:hover,
-.wallet:focus {
+.wallet:focus,
+.songs:hover,
+.songs:focus {
     opacity: 1;
     cursor: default;
 }
