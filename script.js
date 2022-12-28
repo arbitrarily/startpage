@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.5.2",
+    version: "1.5.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -133,7 +133,7 @@
         }
 
         // Rerun LastFM Script Every 3 Minutes
-        setInterval( this.lastfm, 1000 * 60 * 3 )
+        setInterval( start.lastfm, 1000 * 60 * 3 )
       } );
     },
 
