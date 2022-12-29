@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.5.3",
+    version: "1.5.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -31,6 +31,9 @@
 
       // Get Last FM Now Playing
       this.lastfm();
+
+      // Rerun LastFM Script Every 3 Minutes
+      setInterval( start.lastfm, 1000 * 60 * 3 )
 
       // Get Latest Instapaper Articles
       this.instapaper();
@@ -131,9 +134,6 @@
             link: song.url
           }
         }
-
-        // Rerun LastFM Script Every 3 Minutes
-        setInterval( start.lastfm, 1000 * 60 * 3 )
       } );
     },
 
