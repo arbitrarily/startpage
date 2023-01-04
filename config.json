@@ -1,8 +1,0 @@
-{
-  "ethplorerURL": "https://api.ethplorer.io/getAddressInfo/0xbe04A78E17256972B0C1182199A4473090AA41F4?apiKey=EK-vz6sC-S7k3hyC-1UbS5&showETHTotals=true",
-  "etherscanURL": "https://api.etherscan.io/api?module=account&action=balance&address=0xbe04a78e17256972b0c1182199a4473090aa41f4&tag=latest&apikey=QM9X7QMTHDPXZK9SYVSUSET83GWUTB8K6J",
-  "techmemeURL": "https://t.marko.tech",
-  "instapaperURL": "https://i.marko.tech",
-  "counterURL": "https://c.marko.tech",
-  "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=desmosthenes&api_key=df46fd3a07f78050c087696ec675130c&format=json&limit=1"
-}

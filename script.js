@@ -90,7 +90,7 @@
 
     // LastFM Song
     lastfm: function() {
-      $.getJSON( "./config.json", function( d ) {
+      $.getJSON( "./conf.json", function( d ) {
         fetch( d.lastFMURL )
           .then( res => res.json() )
           .then( res => res )
@@ -139,7 +139,7 @@
 
     // Instapaper Home Feed
     instapaper: function() {
-      $.getJSON( "./config.json", function( d ) {
+      $.getJSON( "./conf.json", function( d ) {
         fetch( d.instapaperURL + '?t=' + start.timestamp )
           .then( function( response ) {
             $( ".instapaper-replace" ).css( "opacity", 0 );
@@ -169,7 +169,7 @@
         if ( start.down[ 18 ] ) {
           e.preventDefault();
           if ( start.down[ 84 ] ) { // alt + t
-            $.getJSON( "./config.json", function( d ) {
+            $.getJSON( "./conf.json", function( d ) {
               fetch( d.techmemeURL + '?t=' + start.timestamp )
                 .then( function( response ) {
                   $( ".instapaper-links" ).removeClass('shown');
@@ -196,7 +196,7 @@
 
     // Page View Counter
     counter: function() {
-      $.getJSON( "./config.json", function( d ) {
+      $.getJSON( "./conf.json", function( d ) {
         fetch( d.counterURL + '?t=' + start.timestamp )
           .then( function( response ) {
             return response.text();
@@ -220,7 +220,7 @@
 
     // Primary Wallet Status
     wallet: function() {
-      $.getJSON( "./config.json", function( d ) {
+      $.getJSON( "./conf.json", function( d ) {
         fetch( d.ethplorerURL + '?t=' + start.timestamp )
           .then( function( response ) {
             return response.json();
