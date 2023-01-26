@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.5.5",
+    version: "1.6.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -40,6 +40,9 @@
 
       // Techmeme Articles
       this.techmeme();
+
+      // NYT Articles
+      this.nyt();
 
       // Set Background Gradient
       this.background_gradient();
@@ -171,6 +174,39 @@
           if ( start.down[ 84 ] ) { // alt + t
             $.getJSON( "./conf.json", function( d ) {
               fetch( d.techmemeURL + '?t=' + start.timestamp )
+                .then( function( response ) {
+                  $( ".instapaper-links" ).removeClass('shown');
+                  return response.text();
+                } )
+                .then( function( html ) {
+                  if ( html ) {
+                    setTimeout( function() {
+                      $( ".instapaper-links" ).replaceWith( html );
+                    }, 600 );
+                    setTimeout( function() {
+                      $( ".instapaper-links" ).addClass("shown");
+                    }, 1000 );
+                  }
+                } )
+                .catch( function( err ) {
+                  $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
+                } );
+            } );
+          }
+        }
+      } );
+    },
+
+    // NYT Home Feed
+    nyt: function() {
+      $( document ).keydown( function( e ) {
+        start.down[ e.keyCode ] = true;
+        // Prevent Option Command
+        if ( start.down[ 18 ] ) {
+          e.preventDefault();
+          if ( start.down[ 89 ] ) { // alt + y
+            $.getJSON( "./conf.json", function( d ) {
+              fetch( d.nytURL + '?t=' + start.timestamp )
                 .then( function( response ) {
                   $( ".instapaper-links" ).removeClass('shown');
                   return response.text();
