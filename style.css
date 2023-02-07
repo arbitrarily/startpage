@@ -166,8 +166,8 @@ li {
 
 .instapaper-links.large-6 img {
     max-height: 100% !important;
-    max-width: 44% !important;
-    min-width: 44%;
+    max-width: 36% !important;
+    min-width: 36%;
     aspect-ratio: 3/1.2 !important;
 }
 
