@@ -21,3 +21,9 @@ It should look like this:
   "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=X&api_key=X&format=json&limit=1"
 }
 ```
+
+Publishing to Surge
+
+```
+surge . abstracted-war.surge.sh
+```
