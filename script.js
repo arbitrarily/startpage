@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.8",
+    version: "1.7.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -27,7 +27,7 @@
         "action": "https://www.poewiki.net/index.php",
         "logo": "icons/icon__poe.png",
         "text": "Search PoE Wiki",
-        "name": "poewiki",
+        "name": "search",
         "type": "poewiki"
       },
       {
