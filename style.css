@@ -20,37 +20,41 @@
     --animation: all 0.366s ease-in-out;
     --animation-long: all 0.666s ease-in-out;
 
+    /* Opacity */
+    --opacity-start: 0.666;
+    --opacity-end: 1;
+
     --cursor: url('icons/icon__cursor.png'), auto;
     --cursor__hover: url('icons/icon__cursor--hover.png'), auto;
 }
 
 @keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to   { opacity: var(--opacity-end); }
 }
 
 /* Firefox < 16 */
 @-moz-keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to   { opacity: var(--opacity-end); }
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to   { opacity: var(--opacity-end); }
 }
 
 /* Internet Explorer */
 @-ms-keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to   { opacity: var(--opacity-end); }
 }
 
 /* Opera < 12.1 */
 @-o-keyframes fadein {
     from { opacity: 0; }
-    to   { opacity: 1; }
+    to   { opacity: var(--opacity-end); }
 }
 
 body {
@@ -107,13 +111,18 @@ p {
 
 a {
     color: var(--white);
-    opacity: 0.5;
+    opacity: var(--opacity-start);
 }
 
 a:hover,
 a:focus {
     color: var(--white);
-    opacity: 1;
+    opacity: var(--opacity-end);
+}
+
+a:active {
+    transform: translate(0, 2px);
+    opacity: var(--opacity-start);
 }
 
 .vaal a:hover,
@@ -181,7 +190,7 @@ li {
 }
 
 .instapaper-links.shown {
-    opacity: 1;
+    opacity: var(--opacity-end);
 }
 
 .instapaper-links ul:first-child {
@@ -209,7 +218,7 @@ li {
     color: var(--white);
     border-radius: 8px;
     padding: 0 10px;
-    opacity: 1;
+    opacity: var(--opacity-end);
     letter-spacing: -0.0225rem;
 }
 
@@ -256,6 +265,7 @@ li {
     border-radius: 5px;
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
+    aspect-ratio: 1/1;
 }
 
 .container__list--title {
@@ -277,11 +287,11 @@ li {
 .container form {
     display: flex;
     width: 100%;
-    opacity: 0.5;
+    opacity: var(--opacity-start);
 }
 
 .container form.focus {
-    opacity: 1;
+    opacity: var(--opacity-end);
 }
 
 .container img.search {
@@ -311,7 +321,7 @@ li {
     margin: 0;
     height: auto;
     width: calc(100% - 36px);
-    opacity: 0.5;
+    opacity: var(--opacity-start);
     border-radius: 10px;
     line-height: 3.25rem;
     color: var(--white);
@@ -328,7 +338,7 @@ li {
     /*color: var(--white);*/
     border-radius: 8px;
     padding: 0 14px;
-    opacity: 1;
+    opacity: var(--opacity-end);
 }
 
 .lastfm__url {
@@ -345,7 +355,7 @@ li {
 }
 
 .lastfm__url.shown {
-    opacity: 1;
+    opacity: var(--opacity-end);
 }
 
 .lastfm__image {
@@ -391,7 +401,7 @@ li {
     padding: var(--foundation);
     line-height: 1;
     color: var(--white);
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     font-weight: var(--bold);
@@ -436,6 +446,6 @@ li {
 .wallet:focus,
 .songs:hover,
 .songs:focus {
-    opacity: 1;
+    opacity: var(--opacity-end);
     cursor: default;
 }

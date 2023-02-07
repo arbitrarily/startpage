@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.6.1",
+    version: "1.7.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -26,9 +26,6 @@
       // Search Change on Click
       this.change_search();
 
-      // Search Change on Keyboard Command
-      this.change_search_keyboard();
-
       // Get Last FM Now Playing
       this.lastfm();
 
@@ -38,11 +35,8 @@
       // Get Latest Instapaper Articles
       this.instapaper();
 
-      // Techmeme Articles
-      this.techmeme();
-
-      // NYT Articles
-      this.nyt();
+      // Key Listeners
+      this.key_listener();
 
       // Set Background Gradient
       this.background_gradient();
@@ -53,9 +47,6 @@
       // Focus Search
       this.focus_search();
       this.click_focus_search();
-
-      // Allow for Cursor Reset
-      this.reset_cursor();
 
       // Animation on Leave
       this.bye_bye();
@@ -91,6 +82,126 @@
       $( "form" ).removeClass( "focus" );
     },
 
+    // Function Triggers by Keyboard Combos
+    key_listener: function( e ) {
+      $(document).keydown(function (e) {
+        // Key Down
+        start.down[e.keyCode] = true;
+        // Left Shift
+        if (start.down[16]) {
+          e.preventDefault();
+          // Instapaper
+          if (start.down[49]) { // shift + 1
+            start.instapaper();
+          }
+          // Techmeme
+          if (start.down[50]) { // shift + 2
+            start.techmeme();
+          }
+          // New York Times
+          if (start.down[51]) { // shift + 3
+            start.nyt();
+          }
+          // Reddit
+          if (start.down[52]) { // shift + 4
+            start.reddit();
+          }
+        }
+        // Alt/Option
+        if (start.down[18]) {
+          e.preventDefault();
+          // Alt Modifiers
+          action = false;
+          if (start.down[49]) { // alt + 1
+            var action = "https://duckduckgo.com",
+              logo = "icons/icon__duckduckgo.svg",
+              text = "Search DuckDuckGo",
+              name = "q",
+              type = "duckduckgo";
+          } else if (start.down[50]) { // alt + 2
+            var action = "https://translate.google.com/",
+              logo = "icons/icon__translate.svg",
+              text = "Translate",
+              name = "hl=en&sl=en&tl=es&text=",
+              type = "translate";
+          } else if (start.down[51]) { // alt + 3
+            var action = "https://youtube.com/results",
+              logo = "icons/icon__youtube.svg",
+              text = "Search YouTube",
+              name = "search_query",
+              type = "youtube";
+          } else if (start.down[52]) { // alt + 4
+            var action = "https://beta.music.apple.com/us/search",
+              logo = "icons/icon__applemusic.svg",
+              text = "Search Apple Music",
+              name = "term",
+              type = "applemusic";
+          } else if (start.down[53]) { // alt + 5
+            var action = "https://www.last.fm/search",
+              logo = "icons/icon__lastfm.svg",
+              text = "Search LastFM",
+              name = "q",
+              type = "lastfm";
+          } else if (start.down[54]) { // alt + 6
+            var action = "https://twitter.com/search",
+              logo = "icons/icon__twitter.svg",
+              text = "Search Twitter",
+              name = "q",
+              type = "twitter";
+          } else if (start.down[55]) { // alt + 7
+            var action = "https://news.google.com/search",
+              logo = "icons/icon__googlenews.svg",
+              text = "Search Google News",
+              name = "q",
+              type = "googlenews";
+          } else if (start.down[56]) { // alt + 8
+            var action = "https://github.com/search",
+              logo = "icons/icon__github.svg",
+              text = "Search Github",
+              name = "q",
+              type = "github";
+          } else if (start.down[57]) { // alt + 9
+            var action = "https://www.midjourney.com/app/users/383432442448576517",
+              logo = "icons/icon__midjourney.svg",
+              text = "Search MidJourney",
+              name = "search",
+              type = "midjourney";
+          } else if (start.down[173]) { // alt + -
+            var action = "https://www.poewiki.net/index.php",
+              logo = "icons/icon__poe.png",
+              text = "Search PoE Wiki",
+              name = "poewiki",
+              type = "poewiki";
+          } else if (start.down[48]) { // alt + 0
+            var action = "https://google.com/search",
+              logo = "icons/icon__google.svg",
+              text = "Search Google",
+              name = "q",
+              type = "google";
+          }
+          if (action) {
+            // Switch Search
+            start.switcher(action, logo, text, name, type);
+          }
+          // Backspace
+          if (start.down[8]) {
+            e.preventDefault();
+            // Toggle Cursor
+            start.toggle_cursor();
+          }
+          // Backslash
+          if (start.down[220]) {
+            e.preventDefault();
+            // Update LastFM
+            start.lastfm();
+          }
+        }
+      }).keyup(function(e) {
+        // Reset Key on Key Up
+        start.down[e.keyCode] = false;
+      });
+    },
+
     // LastFM Song
     lastfm: function() {
       $.getJSON( "./conf.json", function( d ) {
@@ -104,7 +215,7 @@
                 var number_string = start.format_numb(count).trim().toString();
                 $( ".songs-replace" ).text( number_string );
                 $( ".songs" ).addClass( "shown" ).attr( "title", "Songs Scrobbled: " + number_string );
-                console.log( "Scrobbles   : " + number_string );
+                console.log( "Scrobbles     : " + number_string );
               }, 1000 );
             }
             // Remap Data
@@ -143,15 +254,16 @@
     // Instapaper Home Feed
     instapaper: function() {
       $.getJSON( "./conf.json", function( d ) {
+        let target = ($(".instapaper-links").length) ? $(".instapaper-links") : $(".instapaper-replace");
         fetch( d.instapaperURL + '?t=' + start.timestamp )
           .then( function( response ) {
-            $( ".instapaper-replace" ).css( "opacity", 0 );
+            target.css( "opacity", 0 );
             return response.text();
           } )
           .then( function( html ) {
             if ( html ) {
               setTimeout( function() {
-                $( ".instapaper-replace" ).replaceWith( html );
+                target.replaceWith( html );
               }, 600 );
               setTimeout( function() {
                 $( ".instapaper-links" ).addClass("shown");
@@ -159,75 +271,81 @@
             }
           } )
           .catch( function( err ) {
-            $( ".instapaper-replace" ).removeClass( "large-4" ).addClass( "large-auto" );
+            target.removeClass( "large-4" ).addClass( "large-auto" );
           } )
       } );
     },
 
     // Techmeme Home Feed
     techmeme: function() {
-      $( document ).keydown( function( e ) {
-        start.down[ e.keyCode ] = true;
-        // Prevent Option Command
-        if ( start.down[ 18 ] ) {
-          e.preventDefault();
-          if ( start.down[ 84 ] ) { // alt + t
-            $.getJSON( "./conf.json", function( d ) {
-              fetch( d.techmemeURL + '?t=' + start.timestamp )
-                .then( function( response ) {
-                  $( ".instapaper-links" ).removeClass('shown');
-                  return response.text();
-                } )
-                .then( function( html ) {
-                  if ( html ) {
-                    setTimeout( function() {
-                      $( ".instapaper-links" ).replaceWith( html );
-                    }, 600 );
-                    setTimeout( function() {
-                      $( ".instapaper-links" ).addClass("shown");
-                    }, 1000 );
-                  }
-                } )
-                .catch( function( err ) {
-                  $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
-                } );
-            } );
-          }
-        }
+      $.getJSON( "./conf.json", function( d ) {
+        fetch( d.techmemeURL + '?t=' + start.timestamp )
+          .then( function( response ) {
+            $( ".instapaper-links" ).removeClass('shown');
+            return response.text();
+          } )
+          .then( function( html ) {
+            if ( html ) {
+              setTimeout( function() {
+                $( ".instapaper-links" ).replaceWith( html );
+              }, 600 );
+              setTimeout( function() {
+                $( ".instapaper-links" ).addClass("shown");
+              }, 1000 );
+            }
+          } )
+          .catch( function( err ) {
+            $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
+          } );
       } );
     },
 
     // NYT Home Feed
     nyt: function() {
-      $( document ).keydown( function( e ) {
-        start.down[ e.keyCode ] = true;
-        // Prevent Option Command
-        if ( start.down[ 18 ] ) {
-          e.preventDefault();
-          if ( start.down[ 89 ] ) { // alt + y
-            $.getJSON( "./conf.json", function( d ) {
-              fetch( d.nytURL + '?t=' + start.timestamp )
-                .then( function( response ) {
-                  $( ".instapaper-links" ).removeClass('shown');
-                  return response.text();
-                } )
-                .then( function( html ) {
-                  if ( html ) {
-                    setTimeout( function() {
-                      $( ".instapaper-links" ).replaceWith( html );
-                    }, 600 );
-                    setTimeout( function() {
-                      $( ".instapaper-links" ).addClass("shown");
-                    }, 1000 );
-                  }
-                } )
-                .catch( function( err ) {
-                  $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
-                } );
-            } );
-          }
-        }
+      $.getJSON( "./conf.json", function( d ) {
+        fetch( d.nytURL + '?t=' + start.timestamp )
+          .then( function( response ) {
+            $( ".instapaper-links" ).removeClass('shown');
+            return response.text();
+          } )
+          .then( function( html ) {
+            if ( html ) {
+              setTimeout( function() {
+                $( ".instapaper-links" ).replaceWith( html );
+              }, 600 );
+              setTimeout( function() {
+                $( ".instapaper-links" ).addClass("shown");
+              }, 1000 );
+            }
+          } )
+          .catch( function( err ) {
+            $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
+          } );
       } );
+    },
+
+    // Reddit Home Feed
+    reddit: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.redditURL + '?t=' + start.timestamp)
+          .then(function (response) {
+            $(".instapaper-links").removeClass('shown');
+            return response.text();
+          })
+          .then(function (html) {
+            if (html) {
+              setTimeout(function () {
+                $(".instapaper-links").replaceWith(html);
+              }, 600);
+              setTimeout(function () {
+                $(".instapaper-links").addClass("shown");
+              }, 1000);
+            }
+          })
+          .catch(function (err) {
+            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
+          });
+      });
     },
 
     // Page View Counter
@@ -244,7 +362,7 @@
                 $( ".counter-replace" ).text( number_string );
                 $( ".counter" ).addClass( "shown" ).attr( "title", "Views: " + number_string );
                 console.log( "---" );
-                console.log( "Page Views  : " + number_string );
+                console.log( "Page Views    : " + number_string );
               }, 1000 );
             }
           } )
@@ -274,10 +392,10 @@
               }, 500 );
               // Console Log Details
               console.log( "---" );
-              console.log( "Balance     : " + "Ξ " + start.balance.toString() );
-              console.log( "1 Day Diff  : " + response[ "ETH" ][ "price" ][ "diff" ].toString() );
-              console.log( "7 Day Diff  : " + response[ "ETH" ][ "price" ][ "diff7d" ].toString() );
-              console.log( "30 Day Diff : " + response[ "ETH" ][ "price" ][ "diff30d" ].toString() );
+              console.log( "Balance       : " + "Ξ " + start.balance.toString() );
+              console.log( "1 Day Diff    : " + response[ "ETH" ][ "price" ][ "diff" ].toString() + "%" );
+              console.log( "7 Day Diff    : " + response[ "ETH" ][ "price" ][ "diff7d" ].toString() + "%" );
+              console.log( "30 Day Diff   : " + response[ "ETH" ][ "price" ][ "diff30d" ].toString() + "%" );
             }
           } )
           .catch( function( err ) {
@@ -363,112 +481,6 @@
       } );
     },
 
-    // Change Search on Keyboard Command
-    change_search_keyboard: function() {
-      // Change Search Target with Arrow Keys
-      $( document ).keydown( function( e ) {
-        start.down[ e.keyCode ] = true;
-        // Prevent Option Command
-        if ( start.down[ 18 ] ) {
-          e.preventDefault();
-        }
-        // Arrow Modifiers
-        if ( start.down[ 37 ] && start.down[ 38 ] ) {
-          var action = "https://www.poewiki.net/index.php",
-            logo = "icons/icon__poe.png",
-            text = "Search PoE Wiki",
-            name = "search",
-            type = "poewiki";
-        }
-        if ( start.down[ 38 ] && start.down[ 39 ] ) {
-          var action = "https://youtube.com/results",
-            logo = "icons/icon__youtube.svg",
-            text = "Search YouTube",
-            name = "search_query",
-            type = "youtube";
-        }
-        if ( start.down[ 39 ] && start.down[ 40 ] ) {
-          var action = "https://google.com/search",
-            logo = "icons/icon__google.svg",
-            text = "Search Google",
-            name = "q",
-            type = "google";
-        }
-        // Alt Modifiers
-        if ( start.down[ 18 ] && start.down[ 49 ] ) { // alt + 1
-          var action = "https://duckduckgo.com",
-            logo = "icons/icon__duckduckgo.svg",
-            text = "Search DuckDuckGo",
-            name = "q",
-            type = "duckduckgo";
-        } else if ( start.down[ 18 ] && start.down[ 50 ] ) { // alt + 2
-          var action = "https://translate.google.com/",
-            logo = "icons/icon__translate.svg",
-            text = "Translate",
-            name = "hl=en&sl=en&tl=es&text=",
-            type = "translate";
-        } else if ( start.down[ 18 ] && start.down[ 51 ] ) { // alt + 3
-          var action = "https://youtube.com/results",
-            logo = "icons/icon__youtube.svg",
-            text = "Search YouTube",
-            name = "search_query",
-            type = "youtube";
-        } else if ( start.down[ 18 ] && start.down[ 52 ] ) { // alt + 4
-          var action = "https://beta.music.apple.com/us/search",
-            logo = "icons/icon__applemusic.svg",
-            text = "Search Apple Music",
-            name = "term",
-            type = "applemusic";
-        } else if ( start.down[ 18 ] && start.down[ 53 ] ) { // alt + 5
-          var action = "https://www.last.fm/search",
-            logo = "icons/icon__lastfm.svg",
-            text = "Search LastFM",
-            name = "q",
-            type = "lastfm";
-        } else if ( start.down[ 18 ] && start.down[ 54 ] ) { // alt + 6
-          var action = "https://twitter.com/search",
-            logo = "icons/icon__twitter.svg",
-            text = "Search Twitter",
-            name = "q",
-            type = "twitter";
-        } else if ( start.down[ 18 ] && start.down[ 55 ] ) { // alt + 7
-          var action = "https://news.google.com/search",
-            logo = "icons/icon__googlenews.svg",
-            text = "Search Google News",
-            name = "q",
-            type = "googlenews";
-        } else if ( start.down[ 18 ] && start.down[ 56 ] ) { // alt + 8
-          var action = "https://github.com/search",
-            logo = "icons/icon__github.svg",
-            text = "Search Github",
-            name = "q",
-            type = "github";
-        } else if ( start.down[ 18 ] && start.down[ 57 ] ) { // alt + 9
-          var action = "https://www.midjourney.com/app/users/383432442448576517",
-            logo = "icons/icon__midjourney.svg",
-            text = "Search MidJourney",
-            name = "search",
-            type = "midjourney";
-        } else if ( start.down[ 18 ] && start.down[ 173 ] ) { // alt + -
-          var action = "https://www.poewiki.net/index.php",
-            logo = "icons/icon__poe.png",
-            text = "Search PoE Wiki",
-            name = "poewiki",
-            type = "poewiki";
-        } else if ( start.down[ 18 ] && start.down[ 48 ] ) { // alt + 0
-          var action = "https://google.com/search",
-            logo = "icons/icon__google.svg",
-            text = "Search Google",
-            name = "q",
-            type = "google";
-        }
-        // Switch Search
-        start.switcher( action, logo, text, name, type );
-        // Reset Key
-        start.down[ e.keyCode ] = false;
-      } );
-    },
-
     // Focus/DeFocus Search
     click_focus_search: function() {
       // Focus Search if Clicking Anytning Not a Link or Input
@@ -487,26 +499,13 @@
     background_gradient: function() {
       // Randomize Background Gradient
       $( "body" ).css( {
-        "background": "radial-gradient(ellipse at " + this.numb( 1, 50 ) + "% " + this.numb( 90, 120 ) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
+        "background": "radial-gradient(ellipse at " + this.numb( 1, 75 ) + "% " + this.numb( 90, 150 ) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
       } );
     },
 
     // Reset Mouse Cursor
-    reset_cursor: function() {
-      // Change Search Target with Arrow Keys
-      $( document ).keydown( function( e ) {
-        start.down[ e.keyCode ] = true;
-        // Prevent Option Command
-        if ( start.down[ 18 ] ) {
-          e.preventDefault();
-          if ( start.down[ 8 ] ) {
-            $( "body" ).toggleClass( "vaal" );
-          }
-        }
-      } ).keyup( function( e ) {
-        // Reset Key
-        start.down[ e.keyCode ] = false;
-      } );
+    toggle_cursor: function() {
+      $( "body" ).toggleClass( "vaal" );
     },
 
     // Animation on Leave
@@ -523,7 +522,7 @@
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
       );
-      console.log( "Build Version: " + this.version );
+      console.log( "Build Version : " + this.version );
     }
 
   };
