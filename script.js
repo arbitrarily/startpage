@@ -1,4 +1,4 @@
-( function( root, $ ) {
+(function (root, $) {
   "use strict";
 
   var start = {
@@ -100,7 +100,7 @@
     ],
 
     // Init
-    init: function() {
+    init: function () {
       // Pageview Counter
       this.counter();
 
@@ -114,7 +114,7 @@
       this.lastfm();
 
       // Rerun LastFM Script Every 3 Minutes
-      setInterval( start.lastfm, 1000 * 60 * 3 )
+      setInterval(start.lastfm, 1000 * 60 * 3)
 
       // Get Latest Instapaper Articles
       this.instapaper();
@@ -137,42 +137,42 @@
     },
 
     // Timestamp for Breaking Cached URLs
-    timestamp: ~~( new Date().getTime() / 1000 ),
+    timestamp: ~~(new Date().getTime() / 1000),
 
     // Random Number in a Range
-    numb: function( min, max ) {
-      return Math.floor( Math.random() * ( max - min + 1 ) + min );
+    numb: function (min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
     // Prettify Numbers
-    format_numb: function(numb) {
+    format_numb: function (numb) {
       return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
 
     // Focus Search
-    focus_search: function() {
-      $( "#search" ).focus();
-      $( "form" ).addClass( "focus" );
+    focus_search: function () {
+      $("#search").focus();
+      $("form").addClass("focus");
     },
 
     // Search Switcher
-    switcher: function( search ) {
+    switcher: function (search) {
       const action = search['action'],
-            logo = search['logo'],
-            text = search['text'],
-            name = search['name'],
-            type = search['type'];
-      $( "#searchform" ).attr( "action", action );
-      $( ".search" ).attr( "src", logo );
-      $( "#search" ).attr( "placeholder", text )
-        .attr( "name", name )
-        .attr( "data-type", type )
+        logo = search['logo'],
+        text = search['text'],
+        name = search['name'],
+        type = search['type'];
+      $("#searchform").attr("action", action);
+      $(".search").attr("src", logo);
+      $("#search").attr("placeholder", text)
+        .attr("name", name)
+        .attr("data-type", type)
         .focus();
-      $( "form" ).removeClass( "focus" );
+      $("form").removeClass("focus");
     },
 
     // Function Triggers by Keyboard Combos
-    key_listener: function( e ) {
+    key_listener: function (e) {
       $(document).keydown(function (e) {
         // Key Down
         start.down[e.keyCode] = true;
@@ -258,132 +258,132 @@
             start.resize_news();
           }
         }
-      }).keyup(function(e) {
+      }).keyup(function (e) {
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
       });
     },
 
     // LastFM Song
-    lastfm: function() {
-      $.getJSON( "./conf.json", function( d ) {
-        fetch( d.lastFMURL )
-          .then( res => res.json() )
-          .then( res => res )
-          .then( song => {
+    lastfm: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.lastFMURL)
+          .then(res => res.json())
+          .then(res => res)
+          .then(song => {
             var count = song["recenttracks"]["@attr"]["total"];
-            if ( count ) {
-              setTimeout( function() {
+            if (count) {
+              setTimeout(function () {
                 var number_string = start.format_numb(count).trim().toString();
-                $( ".songs-replace" ).text( number_string );
-                $( ".songs" ).addClass( "shown" ).attr( "title", "Songs Scrobbled: " + number_string );
-                console.log( "Scrobbles     : " + number_string );
-              }, 1000 );
+                $(".songs-replace").text(number_string);
+                $(".songs").addClass("shown").attr("title", "Songs Scrobbled: " + number_string);
+                console.log("Scrobbles     : " + number_string);
+              }, 1000);
             }
             // Remap Data
-            var s = song[ "recenttracks" ][ "track" ].map( _map_it )[ 0 ];
+            var s = song["recenttracks"]["track"].map(_map_it)[0];
             // Assign Data to Placeholders
-            $( ".lastfm__artist" ).text( s.artist ).attr( "title", "Artist: " + s.artist );
-            $( ".lastfm__song" ).text( s.name ).attr( "title", "Song: " + s.name );
-            $( ".lastfm__album" ).text( s.album ).attr( "title", "Album: " + s.album );
+            $(".lastfm__artist").text(s.artist).attr("title", "Artist: " + s.artist);
+            $(".lastfm__song").text(s.name).attr("title", "Song: " + s.name);
+            $(".lastfm__album").text(s.album).attr("title", "Album: " + s.album);
             // Album Image
-            if ( s.image != "" ) {
-              $( ".lastfm__image" ).attr( "src", s.image ).show();
+            if (s.image != "") {
+              $(".lastfm__image").attr("src", s.image).show();
             } else {
-              $( ".lastfm__image" ).hide();
+              $(".lastfm__image").hide();
             }
             // Show Now Playing
-            $( ".lastfm__container" ).show();
-            $( ".lastfm__url" ).attr( "href", s.link ).addClass( "shown" );
-          } ).catch( error => {
-            $( ".lastfm__container" ).hide();
-          } );
+            $(".lastfm__container").show();
+            $(".lastfm__url").attr("href", s.link).addClass("shown");
+          }).catch(error => {
+            $(".lastfm__container").hide();
+          });
 
         // Format Output
-        function _map_it( song ) {
+        function _map_it(song) {
           return {
             id: song.mbid,
             name: song.name,
-            album: song.album[ "#text" ],
-            artist: song.artist[ "#text" ],
-            image: song.image[ 3 ][ "#text" ],
+            album: song.album["#text"],
+            artist: song.artist["#text"],
+            image: song.image[3]["#text"],
             link: song.url
           }
         }
-      } );
+      });
     },
 
     // Instapaper Home Feed
-    instapaper: function() {
-      $.getJSON( "./conf.json", function( d ) {
+    instapaper: function () {
+      $.getJSON("./conf.json", function (d) {
         let target = ($(".instapaper-links").length) ? $(".instapaper-links") : $(".instapaper-replace");
-        fetch( d.instapaperURL + '?t=' + start.timestamp )
-          .then( function( response ) {
-            target.css( "opacity", 0 );
+        fetch(d.instapaperURL + '?t=' + start.timestamp)
+          .then(function (response) {
+            target.css("opacity", 0);
             return response.text();
-          } )
-          .then( function( html ) {
-            if ( html ) {
-              setTimeout( function() {
-                target.replaceWith( html );
-              }, 600 );
-              setTimeout( function() {
-                $( ".instapaper-links" ).addClass("shown");
-              }, 1000 );
+          })
+          .then(function (html) {
+            if (html) {
+              setTimeout(function () {
+                target.replaceWith(html);
+              }, 600);
+              setTimeout(function () {
+                $(".instapaper-links").addClass("shown");
+              }, 1000);
             }
-          } )
-          .catch( function( err ) {
-            target.removeClass( "large-4" ).addClass( "large-auto" );
-          } )
-      } );
+          })
+          .catch(function (err) {
+            target.removeClass("large-4").addClass("large-auto");
+          })
+      });
     },
 
     // Techmeme Home Feed
-    techmeme: function() {
-      $.getJSON( "./conf.json", function( d ) {
-        fetch( d.techmemeURL + '?t=' + start.timestamp )
-          .then( function( response ) {
-            $( ".instapaper-links" ).removeClass('shown');
+    techmeme: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.techmemeURL + '?t=' + start.timestamp)
+          .then(function (response) {
+            $(".instapaper-links").removeClass('shown');
             return response.text();
-          } )
-          .then( function( html ) {
-            if ( html ) {
-              setTimeout( function() {
-                $( ".instapaper-links" ).replaceWith( html );
-              }, 600 );
-              setTimeout( function() {
-                $( ".instapaper-links" ).addClass("shown");
-              }, 1000 );
+          })
+          .then(function (html) {
+            if (html) {
+              setTimeout(function () {
+                $(".instapaper-links").replaceWith(html);
+              }, 600);
+              setTimeout(function () {
+                $(".instapaper-links").addClass("shown");
+              }, 1000);
             }
-          } )
-          .catch( function( err ) {
-            $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
-          } );
-      } );
+          })
+          .catch(function (err) {
+            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
+          });
+      });
     },
 
     // NYT Home Feed
-    nyt: function() {
-      $.getJSON( "./conf.json", function( d ) {
-        fetch( d.nytURL + '?t=' + start.timestamp )
-          .then( function( response ) {
-            $( ".instapaper-links" ).removeClass('shown');
+    nyt: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.nytURL + '?t=' + start.timestamp)
+          .then(function (response) {
+            $(".instapaper-links").removeClass('shown');
             return response.text();
-          } )
-          .then( function( html ) {
-            if ( html ) {
-              setTimeout( function() {
-                $( ".instapaper-links" ).replaceWith( html );
-              }, 600 );
-              setTimeout( function() {
-                $( ".instapaper-links" ).addClass("shown");
-              }, 1000 );
+          })
+          .then(function (html) {
+            if (html) {
+              setTimeout(function () {
+                $(".instapaper-links").replaceWith(html);
+              }, 600);
+              setTimeout(function () {
+                $(".instapaper-links").addClass("shown");
+              }, 1000);
             }
-          } )
-          .catch( function( err ) {
-            $( ".instapaper-links" ).removeClass( "large-4" ).addClass( "large-auto" );
-          } );
-      } );
+          })
+          .catch(function (err) {
+            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
+          });
+      });
     },
 
     // Reddit Home Feed
@@ -411,66 +411,66 @@
     },
 
     // Page View Counter
-    counter: function() {
-      $.getJSON( "./conf.json", function( d ) {
-        fetch( d.counterURL + '?t=' + start.timestamp )
-          .then( function( response ) {
+    counter: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.counterURL + '?t=' + start.timestamp)
+          .then(function (response) {
             return response.text();
-          } )
-          .then( function( number ) {
-            if ( number ) {
-              setTimeout( function() {
+          })
+          .then(function (number) {
+            if (number) {
+              setTimeout(function () {
                 var number_string = number.trim().toString();
-                $( ".counter-replace" ).text( number_string );
-                $( ".counter" ).addClass( "shown" ).attr( "title", "Views: " + number_string );
-                console.log( "---" );
-                console.log( "Page Views    : " + number_string );
-              }, 1000 );
+                $(".counter-replace").text(number_string);
+                $(".counter").addClass("shown").attr("title", "Views: " + number_string);
+                console.log("---");
+                console.log("Page Views    : " + number_string);
+              }, 1000);
             }
-          } )
-          .catch( function( err ) {
-            $( ".counter" ).remove();
-          } );
-      } );
+          })
+          .catch(function (err) {
+            $(".counter").remove();
+          });
+      });
     },
 
     // Primary Wallet Status
-    wallet: function() {
-      $.getJSON( "./conf.json", function( d ) {
-        fetch( d.ethplorerURL + '?t=' + start.timestamp )
-          .then( function( response ) {
+    wallet: function () {
+      $.getJSON("./conf.json", function (d) {
+        fetch(d.ethplorerURL + '?t=' + start.timestamp)
+          .then(function (response) {
             return response.json();
-          } )
-          .then( function( response ) {
-            start.balance = response[ "ETH" ][ "totalIn" ].toString();
-            var balance_formatted = ( response[ "ETH" ][ "totalIn" ] ).toFixed( 3 );
-            var balance_diff = response[ "ETH" ][ "price" ][ "diff" ];
-            var formatted = ( balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)" );
-            if ( start.balance ) {
+          })
+          .then(function (response) {
+            start.balance = response["ETH"]["totalIn"].toString();
+            var balance_formatted = (response["ETH"]["totalIn"]).toFixed(3);
+            var balance_diff = response["ETH"]["price"]["diff"];
+            var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
+            if (start.balance) {
               // Show After Delay
-              setTimeout( function() {
-                $( ".wallet-replace" ).text( ( balance_formatted + formatted ).toString() );
-                $( ".wallet" ).addClass( "shown" ).attr( "title", "Ξ " + start.balance + formatted );
-              }, 500 );
+              setTimeout(function () {
+                $(".wallet-replace").text((balance_formatted + formatted).toString());
+                $(".wallet").addClass("shown").attr("title", "Ξ " + start.balance + formatted);
+              }, 500);
               // Console Log Details
-              console.log( "---" );
-              console.log( "Balance       : " + "Ξ " + start.balance.toString() );
-              console.log( "1 Day Diff    : " + response[ "ETH" ][ "price" ][ "diff" ].toString() + "%" );
-              console.log( "7 Day Diff    : " + response[ "ETH" ][ "price" ][ "diff7d" ].toString() + "%" );
-              console.log( "30 Day Diff   : " + response[ "ETH" ][ "price" ][ "diff30d" ].toString() + "%" );
+              console.log("---");
+              console.log("Balance       : " + "Ξ " + start.balance.toString());
+              console.log("1 Day Diff    : " + response["ETH"]["price"]["diff"].toString() + "%");
+              console.log("7 Day Diff    : " + response["ETH"]["price"]["diff7d"].toString() + "%");
+              console.log("30 Day Diff   : " + response["ETH"]["price"]["diff30d"].toString() + "%");
             }
-          } )
-          .catch( function( err ) {
-            $( ".wallet" ).remove();
-          } );
-      } );
+          })
+          .catch(function (err) {
+            $(".wallet").remove();
+          });
+      });
     },
 
     // Change Search on Click
-    change_search: function() {
+    change_search: function () {
       // Click Search to Toggle Targeting
-      $( "#searchform label" ).on( this.touch, function() {
-        var s = $( "#search" );
+      $("#searchform label").on(this.touch, function () {
+        var s = $("#search");
         if (start.count < start.searches.length - 1) {
           start.count++;
         } else {
@@ -478,57 +478,57 @@
         }
         // Switch Search
         start.switcher(start.searches[start.count]);
-      } );
+      });
     },
 
     // Focus/DeFocus Search
-    click_focus_search: function() {
+    click_focus_search: function () {
       // Focus Search if Clicking Anytning Not a Link or Input
-      $( document ).on( this.touch, function( e ) {
-        if ( e.target.tagName !== "A" || e.target.tagName !== "INPUT" ) {
+      $(document).on(this.touch, function (e) {
+        if (e.target.tagName !== "A" || e.target.tagName !== "INPUT") {
           start.focus_search();
         }
-      } );
+      });
       // Focus Out Remove Styling for Search
-      $( "#search" ).on( "focusout", function() {
-        $( "form" ).removeClass( "focus" );
-      } );
+      $("#search").on("focusout", function () {
+        $("form").removeClass("focus");
+      });
     },
 
     // Randomize Background Gradient
-    background_gradient: function() {
+    background_gradient: function () {
       // Randomize Background Gradient
-      $( "body" ).css( {
-        "background": "radial-gradient(ellipse at " + this.numb( 1, 75 ) + "% " + this.numb( 90, 150 ) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
-      } );
+      $("body").css({
+        "background": "radial-gradient(ellipse at " + this.numb(1, 75) + "% " + this.numb(90, 150) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
+      });
     },
 
     // Reset Mouse Cursor
-    toggle_cursor: function() {
-      $( "body" ).toggleClass( "vaal" );
+    toggle_cursor: function () {
+      $("body").toggleClass("vaal");
     },
 
     // Resize
-    resize_news: function() {
+    resize_news: function () {
       // Keep Both Large Classes for Smoothness
-      $( ".cell.small-12.large-4.instapaper-links.shown" ).toggleClass( "large-6" );
+      $(".cell.small-12.large-4.instapaper-links.shown").toggleClass("large-6");
     },
 
     // Animation on Leave
-    bye_bye: function() {
-      $( window ).on( "beforeunload", function() {
-        $( "body" ).css( "opacity", 0 );
-      } );
+    bye_bye: function () {
+      $(window).on("beforeunload", function () {
+        $("body").css("opacity", 0);
+      });
     },
 
-    console_log: function() {
+    console_log: function () {
       // Console Log Attribution
-      console.log( "Built By" );
+      console.log("Built By");
       console.log(
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
       );
-      console.log( "Build Version : " + this.version );
+      console.log("Build Version : " + this.version);
     }
 
   };
@@ -536,4 +536,4 @@
   // Init
   start.init();
 
-} )( this, jQuery );
+})(this, jQuery);
