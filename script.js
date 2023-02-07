@@ -4,13 +4,16 @@
   var start = {
 
     // Version Number
-    version: "1.7.4",
+    version: "1.7.6",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
 
     // Keyboard Variable
     down: {},
+
+    // Count for Arrays
+    count: 0,
 
     // Wallet Balance
     balance: false,
@@ -52,6 +55,87 @@
       this.bye_bye();
     },
 
+    // Search Inputs
+    searches: [
+      {
+        "action": "https://www.poewiki.net/index.php",
+        "logo": "icons/icon__poe.png",
+        "text": "Search PoE Wiki",
+        "name": "poewiki",
+        "type": "poewiki"
+      },
+      {
+        "action": "https://duckduckgo.com",
+        "logo": "icons/icon__duckduckgo.svg",
+        "text": "Search DuckDuckGo",
+        "name": "q",
+        "type": "duckduckgo"
+      },
+      {
+        "action": "https://translate.google.com/",
+        "logo": "icons/icon__translate.svg",
+        "text": "Translate",
+        "name": "hl=en&sl=en&tl=es&text=",
+        "type": "translate"
+      },
+      {
+        "action": "https://youtube.com/results",
+        "logo": "icons/icon__youtube.svg",
+        "text": "Search YouTube",
+        "name": "search_query",
+        "type": "youtube"
+      },
+      {
+        "action": "https://beta.music.apple.com/us/search",
+        "logo": "icons/icon__applemusic.svg",
+        "text": "Search Apple Music",
+        "name": "term",
+        "type": "applemusic"
+      },
+      {
+        "action": "https://www.last.fm/search",
+        "logo": "icons/icon__lastfm.svg",
+        "text": "Search LastFM",
+        "name": "q",
+        "type": "lastfm"
+      },
+      {
+        "action": "https://twitter.com/search",
+        "logo": "icons/icon__twitter.svg",
+        "text": "Search Twitter",
+        "name": "q",
+        "type": "twitter"
+      },
+      {
+        "action": "https://news.google.com/search",
+        "logo": "icons/icon__googlenews.svg",
+        "text": "Search Google News",
+        "name": "q",
+        "type": "googlenews"
+      },
+      {
+        "action": "https://github.com/search",
+        "logo": "icons/icon__github.svg",
+        "text": "Search Github",
+        "name": "q",
+        "type": "github"
+      },
+      {
+        "action": "https://www.midjourney.com/app/users/383432442448576517",
+        "logo": "icons/icon__midjourney.svg",
+        "text": "Search MidJourney",
+        "name": "search",
+        "type": "midjourney"
+      },
+      {
+        "action": "https://google.com/search",
+        "logo": "icons/icon__google.svg",
+        "text": "Search Google",
+        "name": "q",
+        "type": "google"
+      }
+    ],
+
     // Timestamp for Breaking Cached URLs
     timestamp: ~~( new Date().getTime() / 1000 ),
 
@@ -72,12 +156,18 @@
     },
 
     // Search Switcher
-    switcher: function( action, logo, text, name, type ) {
+    switcher: function( search ) {
+      const action = search['action'],
+            logo = search['logo'],
+            text = search['text'],
+            name = search['name'],
+            type = search['type'];
       $( "#searchform" ).attr( "action", action );
       $( ".search" ).attr( "src", logo );
       $( "#search" ).attr( "placeholder", text )
         .attr( "name", name )
         .attr( "data-type", type )
+        .attr( "data-count ", start.count )
         .focus();
       $( "form" ).removeClass( "focus" );
     },
@@ -110,78 +200,45 @@
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
+          let search = false;
           // Alt Modifiers
-          action = false;
           if (start.down[49]) { // alt + 1
-            var action = "https://duckduckgo.com",
-              logo = "icons/icon__duckduckgo.svg",
-              text = "Search DuckDuckGo",
-              name = "q",
-              type = "duckduckgo";
+            search = start.searches[0];
+            start.count = 0;
           } else if (start.down[50]) { // alt + 2
-            var action = "https://translate.google.com/",
-              logo = "icons/icon__translate.svg",
-              text = "Translate",
-              name = "hl=en&sl=en&tl=es&text=",
-              type = "translate";
+            search = start.searches[1];
+            start.count = 1;
           } else if (start.down[51]) { // alt + 3
-            var action = "https://youtube.com/results",
-              logo = "icons/icon__youtube.svg",
-              text = "Search YouTube",
-              name = "search_query",
-              type = "youtube";
+            search = start.searches[2];
+            start.count = 2;
           } else if (start.down[52]) { // alt + 4
-            var action = "https://beta.music.apple.com/us/search",
-              logo = "icons/icon__applemusic.svg",
-              text = "Search Apple Music",
-              name = "term",
-              type = "applemusic";
+            search = start.searches[3];
+            start.count = 3;
           } else if (start.down[53]) { // alt + 5
-            var action = "https://www.last.fm/search",
-              logo = "icons/icon__lastfm.svg",
-              text = "Search LastFM",
-              name = "q",
-              type = "lastfm";
+            search = start.searches[4];
+            start.count = 4;
           } else if (start.down[54]) { // alt + 6
-            var action = "https://twitter.com/search",
-              logo = "icons/icon__twitter.svg",
-              text = "Search Twitter",
-              name = "q",
-              type = "twitter";
+            search = start.searches[5];
+            start.count = 5;
           } else if (start.down[55]) { // alt + 7
-            var action = "https://news.google.com/search",
-              logo = "icons/icon__googlenews.svg",
-              text = "Search Google News",
-              name = "q",
-              type = "googlenews";
+            search = start.searches[6];
+            start.count = 6;
           } else if (start.down[56]) { // alt + 8
-            var action = "https://github.com/search",
-              logo = "icons/icon__github.svg",
-              text = "Search Github",
-              name = "q",
-              type = "github";
+            search = start.searches[7];
+            start.count = 7;
           } else if (start.down[57]) { // alt + 9
-            var action = "https://www.midjourney.com/app/users/383432442448576517",
-              logo = "icons/icon__midjourney.svg",
-              text = "Search MidJourney",
-              name = "search",
-              type = "midjourney";
+            search = start.searches[8];
+            start.count = 8;
           } else if (start.down[173]) { // alt + -
-            var action = "https://www.poewiki.net/index.php",
-              logo = "icons/icon__poe.png",
-              text = "Search PoE Wiki",
-              name = "poewiki",
-              type = "poewiki";
+            search = start.searches[9];
+            start.count = 9;
           } else if (start.down[48]) { // alt + 0
-            var action = "https://google.com/search",
-              logo = "icons/icon__google.svg",
-              text = "Search Google",
-              name = "q",
-              type = "google";
+            search = start.searches[10];
+            start.count = 10;
           }
-          if (action) {
-            // Switch Search
-            start.switcher(action, logo, text, name, type);
+          // Switch Search
+          if (search) {
+            start.switcher(search);
           }
           // Backspace
           if (start.down[8]) {
@@ -415,75 +472,13 @@
       // Click Search to Toggle Targeting
       $( "#searchform label" ).on( this.touch, function() {
         var s = $( "#search" );
-        if ( s.attr( "data-type" ) === "google" ) {
-          var action = "https://duckduckgo.com",
-            logo = "icons/icon__duckduckgo.svg",
-            text = "Search DuckDuckGo",
-            name = "q",
-            type = "duckduckgo";
-        } else if ( s.attr( "data-type" ) === "duckduckgo" ) {
-          var action = "https://translate.google.com/",
-            logo = "icons/icon__translate.svg",
-            text = "Translate",
-            name = "hl=en&sl=en&tl=es&text=",
-            type = "translate";
-        } else if ( s.attr( "data-type" ) === "translate" ) {
-          var action = "https://youtube.com/results",
-            logo = "icons/icon__youtube.svg",
-            text = "Search YouTube",
-            name = "search_query",
-            type = "youtube";
-        } else if ( s.attr( "data-type" ) === "youtube" ) {
-          var action = "https://beta.music.apple.com/us/search",
-            logo = "icons/icon__applemusic.svg",
-            text = "Search Apple Music",
-            name = "term",
-            type = "applemusic";
-        } else if ( s.attr( "data-type" ) === "applemusic" ) {
-          var action = "https://www.last.fm/search",
-            logo = "icons/icon__lastfm.svg",
-            text = "Search LastFM",
-            name = "q",
-            type = "lastfm";
-        } else if ( s.attr( "data-type" ) === "lastfm" ) {
-          var action = "https://twitter.com/search",
-            logo = "icons/icon__twitter.svg",
-            text = "Search Twitter",
-            name = "q",
-            type = "twitter";
-        } else if ( s.attr( "data-type" ) === "twitter" ) {
-          var action = "https://news.google.com/search",
-            logo = "icons/icon__googlenews.svg",
-            text = "Search Google News",
-            name = "q",
-            type = "googlenews";
-        } else if ( s.attr( "data-type" ) === "googlenews" ) {
-          var action = "https://github.com/search",
-            logo = "icons/icon__github.svg",
-            text = "Search Github",
-            name = "q",
-            type = "github";
-        } else if ( s.attr( "data-type" ) === "github" ) {
-          var action = "https://www.midjourney.com/app/users/383432442448576517",
-            logo = "icons/icon__midjourney.svg",
-            text = "Search MidJourney",
-            name = "search",
-            type = "midjourney";
-        } else if ( s.attr( "data-type" ) === "midjourney" ) {
-          var action = "https://www.poewiki.net/index.php",
-            logo = "icons/icon__poe.png",
-            text = "Search PoE Wiki",
-            name = "poewiki",
-            type = "poewiki";
+        if (start.count < start.searches.length - 1) {
+          start.count++;
         } else {
-          var action = "https://google.com/search",
-            logo = "icons/icon__google.svg",
-            text = "Search Google",
-            name = "q",
-            type = "google";
+          start.count = 0;
         }
         // Switch Search
-        start.switcher( action, logo, text, name, type );
+        start.switcher(start.searches[start.count]);
       } );
     },
 
