@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.7",
+    version: "1.7.8",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -17,6 +17,9 @@
 
     // Wallet Balance
     balance: false,
+
+    // Config
+    conf: false,
 
     // Search Inputs
     searches: [
@@ -134,6 +137,20 @@
 
       // Animation on Leave
       this.bye_bye();
+    },
+
+    // Load Config, then Init
+    load_config: function () {
+      $.getJSON("./conf.json", function (d) {
+        // Store Config
+        start.conf = d;
+        // Init
+        $.when(start.conf).then(function () {
+          start.init();
+        });
+      }).fail(function () {
+        $(".instapaper-links").addClass("shown");
+      });
     },
 
     // Timestamp for Breaking Cached URLs
@@ -266,8 +283,8 @@
 
     // LastFM Song
     lastfm: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.lastFMURL)
+      $.when(start.conf).then(function () {
+        fetch(start.conf.lastFMURL)
           .then(res => res.json())
           .then(res => res)
           .then(song => {
@@ -313,107 +330,60 @@
       });
     },
 
+    // Replace News
+    fetch_news: function (url) {
+      fetch(url + '?t=' + start.timestamp)
+        .then(function (response) {
+          $(".instapaper-links").removeClass('shown');
+          return response.text();
+        })
+        .then(function (html) {
+          if (html) {
+            setTimeout(function () {
+              $(".instapaper-links").replaceWith(html);
+            }, 600);
+            setTimeout(function () {
+              $(".instapaper-links").addClass("shown");
+            }, 1000);
+          }
+        })
+        .catch(function (err) {
+          $(".instapaper-links").removeClass("large-4").addClass("large-auto");
+        });
+    },
+
     // Instapaper Home Feed
     instapaper: function () {
-      $.getJSON("./conf.json", function (d) {
-        let target = ($(".instapaper-links").length) ? $(".instapaper-links") : $(".instapaper-replace");
-        fetch(d.instapaperURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            target.css("opacity", 0);
-            return response.text();
-          })
-          .then(function (html) {
-            if (html) {
-              setTimeout(function () {
-                target.replaceWith(html);
-              }, 600);
-              setTimeout(function () {
-                $(".instapaper-links").addClass("shown");
-              }, 1000);
-            }
-          })
-          .catch(function (err) {
-            target.removeClass("large-4").addClass("large-auto");
-          })
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.instapaperURL);
       });
     },
 
     // Techmeme Home Feed
     techmeme: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.techmemeURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            $(".instapaper-links").removeClass('shown');
-            return response.text();
-          })
-          .then(function (html) {
-            if (html) {
-              setTimeout(function () {
-                $(".instapaper-links").replaceWith(html);
-              }, 600);
-              setTimeout(function () {
-                $(".instapaper-links").addClass("shown");
-              }, 1000);
-            }
-          })
-          .catch(function (err) {
-            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
-          });
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.techmemeURL);
       });
     },
 
     // NYT Home Feed
     nyt: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.nytURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            $(".instapaper-links").removeClass('shown');
-            return response.text();
-          })
-          .then(function (html) {
-            if (html) {
-              setTimeout(function () {
-                $(".instapaper-links").replaceWith(html);
-              }, 600);
-              setTimeout(function () {
-                $(".instapaper-links").addClass("shown");
-              }, 1000);
-            }
-          })
-          .catch(function (err) {
-            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
-          });
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.nytURL);
       });
     },
 
     // Reddit Home Feed
     reddit: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.redditURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            $(".instapaper-links").removeClass('shown');
-            return response.text();
-          })
-          .then(function (html) {
-            if (html) {
-              setTimeout(function () {
-                $(".instapaper-links").replaceWith(html);
-              }, 600);
-              setTimeout(function () {
-                $(".instapaper-links").addClass("shown");
-              }, 1000);
-            }
-          })
-          .catch(function (err) {
-            $(".instapaper-links").removeClass("large-4").addClass("large-auto");
-          });
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.redditURL);
       });
     },
 
     // Page View Counter
     counter: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.counterURL + '?t=' + start.timestamp)
+      $.when(start.conf).then(function () {
+        fetch(start.conf.counterURL + '?t=' + start.timestamp)
           .then(function (response) {
             return response.text();
           })
@@ -436,8 +406,8 @@
 
     // Primary Wallet Status
     wallet: function () {
-      $.getJSON("./conf.json", function (d) {
-        fetch(d.ethplorerURL + '?t=' + start.timestamp)
+      $.when(start.conf).then(function () {
+        fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
           .then(function (response) {
             return response.json();
           })
@@ -534,6 +504,6 @@
   };
 
   // Init
-  start.init();
+  start.load_config();
 
 })(this, jQuery);
