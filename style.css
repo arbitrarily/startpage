@@ -165,9 +165,10 @@ li {
 }
 
 .instapaper-links.large-6 img {
-    max-width: 150px !important;
     max-height: 100% !important;
-    aspect-ratio: 4/3 !important;
+    max-width: 44% !important;
+    min-width: 44%;
+    aspect-ratio: 3/1.2 !important;
 }
 
 .instapaper-list {

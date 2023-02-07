@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.3",
+    version: "1.7.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -516,6 +516,7 @@
 
     // Resize
     resize_news: function() {
+      // Keep Both Large Classes for Smoothness
       $( ".cell.small-12.large-4.instapaper-links.shown" ).toggleClass( "large-6" );
     },
 
