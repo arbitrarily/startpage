@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.9",
+    version: "1.7.11",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -212,6 +212,10 @@
           if (start.down[52]) { // shift + 4
             start.reddit();
           }
+          // NFTs
+          if (start.down[53]) { // shift + 5
+            start.nfts();
+          }
         }
         // Alt/Option
         if (start.down[18]) {
@@ -377,6 +381,13 @@
     reddit: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.redditURL);
+      });
+    },
+
+    // NFTs Home Feed
+    nfts: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.alchemyURL);
       });
     },
 
