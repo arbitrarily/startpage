@@ -18,6 +18,43 @@
     // Wallet Balance
     balance: false,
 
+    // Init
+    init: function() {
+      // Pageview Counter
+      this.counter();
+
+      // Wallet Value
+      this.wallet();
+
+      // Search Change on Click
+      this.change_search();
+
+      // Get Last FM Now Playing
+      this.lastfm();
+
+      // Rerun LastFM Script Every 3 Minutes
+      setInterval( start.lastfm, 1000 * 60 * 3 )
+
+      // Get Latest Instapaper Articles
+      this.instapaper();
+
+      // Key Listeners
+      this.key_listener();
+
+      // Set Background Gradient
+      this.background_gradient();
+
+      // Output into Console
+      this.console_log();
+
+      // Focus Search
+      this.focus_search();
+      this.click_focus_search();
+
+      // Animation on Leave
+      this.bye_bye();
+    },
+
     // Search Inputs
     searches: [
       {
@@ -99,43 +136,6 @@
       }
     ],
 
-    // Init
-    init: function() {
-      // Pageview Counter
-      this.counter();
-
-      // Wallet Value
-      this.wallet();
-
-      // Search Change on Click
-      this.change_search();
-
-      // Get Last FM Now Playing
-      this.lastfm();
-
-      // Rerun LastFM Script Every 3 Minutes
-      setInterval( start.lastfm, 1000 * 60 * 3 )
-
-      // Get Latest Instapaper Articles
-      this.instapaper();
-
-      // Key Listeners
-      this.key_listener();
-
-      // Set Background Gradient
-      this.background_gradient();
-
-      // Output into Console
-      this.console_log();
-
-      // Focus Search
-      this.focus_search();
-      this.click_focus_search();
-
-      // Animation on Leave
-      this.bye_bye();
-    },
-
     // Timestamp for Breaking Cached URLs
     timestamp: ~~( new Date().getTime() / 1000 ),
 
@@ -167,7 +167,6 @@
       $( "#search" ).attr( "placeholder", text )
         .attr( "name", name )
         .attr( "data-type", type )
-        .attr( "data-count ", start.count )
         .focus();
       $( "form" ).removeClass( "focus" );
     },
