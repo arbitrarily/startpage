@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.2",
+    version: "1.7.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -194,6 +194,12 @@
             e.preventDefault();
             // Update LastFM
             start.lastfm();
+          }
+          // Right Bracket
+          if (start.down[221]) {
+            e.preventDefault();
+            // Resize News
+            start.resize_news();
           }
         }
       }).keyup(function(e) {
@@ -506,6 +512,11 @@
     // Reset Mouse Cursor
     toggle_cursor: function() {
       $( "body" ).toggleClass( "vaal" );
+    },
+
+    // Resize
+    resize_news: function() {
+      $( ".cell.small-12.large-4.instapaper-links.shown" ).toggleClass( "large-6" );
     },
 
     // Animation on Leave

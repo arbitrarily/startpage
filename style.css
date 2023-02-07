@@ -164,6 +164,12 @@ li {
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
+.instapaper-links.large-6 img {
+    max-width: 150px !important;
+    max-height: 100% !important;
+    aspect-ratio: 4/3 !important;
+}
+
 .instapaper-list {
     overflow: hidden;
     overflow-y: scroll;
@@ -266,6 +272,7 @@ li {
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
     aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .container__list--title {
