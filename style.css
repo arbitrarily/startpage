@@ -6,9 +6,9 @@
     --foundation: 0.625rem;
 
     /* Fonts */
-    --font-family: "Inter", sans-serif;
+    --font-family: "DM Sans", sans-serif;
     --normal: 500;
-    --bold: 900;
+    --bold: 700;
 
     /* Colors */
     --white: #fff;
@@ -262,6 +262,7 @@ li {
 
 .container__list span.container__list--full-item {
     -webkit-line-clamp: 4;
+    line-height: 1.3;
 }
 
 .container__list img {
