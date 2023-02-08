@@ -13,8 +13,8 @@
     /* Colors */
     --white: #fff;
     --black: #11110e;
-    --gray: #0d0d0d;
-    --grey: #353535;
+    --gray: rgba(255, 255, 255, 0.4);
+    --grey: rgba(255, 255, 255, 0.2);
 
     /* Animation */
     --animation: all 0.366s ease-in-out;
@@ -98,12 +98,6 @@ body.vaal {
 .background.hidden {
     display: none;
     visibility: hidden;
-}
-
-.background.hidden {
-    -webkit-animation-play-state: paused;
-    -moz-animation-play-state: paused;
-    animation-play-state: paused;
 }
 
 .container input {
