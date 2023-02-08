@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.4",
+    version: "1.8.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -304,11 +304,12 @@
 
     // Toggle Animated Desktop - Don't Render on Super Large Screens
     toggle_background_large_screens: function () {
-      $(window).bind('resize load', function () {
+      $(window).bind("resize load", function () {
+        const bg = $(".background");
         if (window.matchMedia("(min-width: 1440px)").matches) {
-          $(".background").addClass("hidden").html("")
+          if (!bg.hasClass("hidden")) bg.addClass("hidden").html("");
         } else {
-          $(".background").removeClass("hidden").html(start.background_html)
+          if (bg.hasClass("hidden")) bg.removeClass("hidden").html(start.background_html);
         }
       });
     },
