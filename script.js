@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.3",
+    version: "1.8.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -106,6 +106,9 @@
     init: function () {
       // Pageview Counter
       this.counter();
+
+      // Background Resize
+      this.toggle_background_large_screens();
 
       // Wallet Value
       this.wallet();
@@ -297,6 +300,17 @@
     // Toggle Animated Background
     toggle_background: function () {
       ($(".background").hasClass("hidden")) ? $(".background").toggleClass("hidden").html(start.background_html) : $(".background").toggleClass("hidden").html("");
+    },
+
+    // Toggle Animated Desktop - Don't Render on Super Large Screens
+    toggle_background_large_screens: function () {
+      $(window).bind('resize load', function () {
+        if (window.matchMedia("(min-width: 1440px)").matches) {
+          $(".background").addClass("hidden").html("")
+        } else {
+          $(".background").removeClass("hidden").html(start.background_html)
+        }
+      });
     },
 
     // LastFM Song
