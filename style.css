@@ -21,7 +21,7 @@
     --animation-long: all 0.666s ease-in-out;
 
     /* Opacity */
-    --opacity-start: 0.666;
+    --opacity-start: 0.5;
     --opacity-end: 1;
 
     --cursor: url('icons/icon__cursor.png'), auto;
@@ -75,6 +75,35 @@ body.vaal {
     body {
         font-size: 18px;
     }
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.background svg {
+    -webkit-animation: fadein 1.33s;
+    -moz-animation: fadein 1.33s;
+    -ms-animation: fadein 1.33s;
+    -o-animation: fadein 1.33s;
+    animation: fadein 1.33s;
+}
+
+.background.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.background.hidden {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 .container input {

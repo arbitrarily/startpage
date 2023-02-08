@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.7.13",
+    version: "1.8.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -156,6 +156,9 @@
     // Timestamp for Breaking Cached URLs
     timestamp: ~~(new Date().getTime() / 1000),
 
+    // Background HTML
+    background_html: $(".background").html(),
+
     // Random Number in a Range
     numb: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
@@ -278,11 +281,22 @@
             // Resize News
             start.resize_news();
           }
+          // Left Bracket
+          if (start.down[219]) {
+            e.preventDefault();
+            // Hide Animated Background
+            start.toggle_background();
+          }
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
       });
+    },
+
+    // Toggle Animated Background
+    toggle_background: function () {
+      ($(".background").hasClass("hidden")) ? $(".background").toggleClass("hidden").html(start.background_html) : $(".background").toggleClass("hidden").html("");
     },
 
     // LastFM Song
