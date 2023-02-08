@@ -94,6 +94,7 @@ body.vaal {
     -o-animation: fadein 1.33s;
     animation: fadein 1.33s;
     height: 100%;
+    width: 100%;
 }
 
 .background.hidden {
