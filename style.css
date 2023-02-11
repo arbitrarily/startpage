@@ -6,9 +6,10 @@
     --foundation: 0.625rem;
 
     /* Fonts */
-    --font-family: "DM Sans", sans-serif;
+    --font-family: "Man Rope", sans-serif;
     --normal: 500;
-    --bold: 700;
+    --bold: 900;
+    --body-size: 18px;
 
     /* Colors */
     --white: #fff;
@@ -24,6 +25,7 @@
     --opacity-start: 0.5;
     --opacity-end: 1;
 
+    /* Cursor */
     --cursor: url('icons/icon__cursor.png'), auto;
     --cursor__hover: url('icons/icon__cursor--hover.png'), auto;
 }
@@ -64,50 +66,20 @@ body {
     -ms-animation: fadein 1.33s; /* Internet Explorer */
     -o-animation: fadein 1.33s; /* Opera < 12.1 */
     animation: fadein 1.33s;
-    font-size: 17px;
+    font-size: var(--body-size);
 }
 
 body.vaal {
     cursor: var(--cursor);
 }
 
-@media screen and (max-width: 40em) {
-    body {
-        font-size: 18px;
-    }
+body.invert {
+    background: var(--white) !important;
+    filter: invert(100%);
 }
 
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.1;
-    z-index: -1;
-}
-
-.background svg {
-    -webkit-animation: fadein 1.33s;
-    -moz-animation: fadein 1.33s;
-    -ms-animation: fadein 1.33s;
-    -o-animation: fadein 1.33s;
-    animation: fadein 1.33s;
-    height: 100%;
-    width: 100%;
-}
-
-.background.hidden {
-    display: none;
-    visibility: hidden;
-}
-
-.container input {
-    font-size: 26px;
-}
-
-.grid-container {
-    max-width: 90rem;
+body.invert img:not(.search) {
+    filter: invert(100%);
 }
 
 * {
@@ -161,6 +133,39 @@ a:focus img {
     -webkit-filter: grayscale(0);
 }
 
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.background svg {
+    -webkit-animation: fadein 1.33s;
+    -moz-animation: fadein 1.33s;
+    -ms-animation: fadein 1.33s;
+    -o-animation: fadein 1.33s;
+    animation: fadein 1.33s;
+    height: 100%;
+    width: 100%;
+}
+
+.background.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.container input {
+    font-size: 26px;
+}
+
+.grid-container {
+    max-width: 90rem;
+}
+
 .container {
     padding: var(--padding);
 }
@@ -177,7 +182,7 @@ a:focus img {
 }
 
 ul {
-    margin: 0 0 var(--padding);
+    margin: 0 0 calc(var(--padding) * 1.5);
     padding: 0;
 }
 
@@ -224,8 +229,7 @@ li {
 .instapaper-links.shown {
     opacity: var(--opacity-end);
 }
-
-.instapaper-links ul:first-child {
+.instapaper-links ul:not(.instapaper-list) {
     margin: 0;
 }
 
@@ -234,16 +238,8 @@ li {
     justify-content: space-between
 }
 
-.instapaper-links .container__list--item {
-    letter-spacing: -0.0225rem;
-}
-
-.instapaper-links .container__list--item:hover {
-    letter-spacing: -0.05rem;
-}
-
 .container__list--item:hover {
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.033);
     box-shadow: none;
     border: none;
     outline: none;
@@ -251,7 +247,7 @@ li {
     border-radius: 8px;
     padding: 0 10px;
     opacity: var(--opacity-end);
-    letter-spacing: -0.0225rem;
+    /* letter-spacing: -0.0225rem; */
 }
 
 .container__list {
@@ -339,7 +335,6 @@ li {
     margin-right: 10px;
     display: flex;
     align-items: center;
-    /*filter: grayscale(100%) brightness(25%);*/
 }
 
 .vaal .container label {
@@ -369,7 +364,6 @@ li {
     box-shadow: none;
     border: none;
     outline: none;
-    /*color: var(--white);*/
     border-radius: 8px;
     padding: 0 14px;
     opacity: var(--opacity-end);
@@ -423,10 +417,7 @@ li {
 .lastfm__artist {
     font-weight: var(--normal);
     font-size: 0.8rem;
-}
-
-.vaal .stats {
-    cursor: var(--cursor__hover);
+    opacity: var(--opacity-start);
 }
 
 .stats {
@@ -449,37 +440,26 @@ li {
     }
 }
 
-.counter,
-.wallet,
-.songs {
+.stats div {
     opacity: 0;
 }
 
-.counter.shown,
-.wallet.shown,
-.songs.shown {
+.stats div.shown {
     opacity: 0.25;
 }
 
-.wallet,
-.counter {
-    margin-left: var(--padding);
-}
-
-.counter img,
-.wallet img,
-.songs img {
-    width: 12px;
+.stats img {
+    width: 13px;
     height: auto;
     margin-right: 6px;
 }
 
-.counter:hover,
-.counter:focus,
-.wallet:hover,
-.wallet:focus,
-.songs:hover,
-.songs:focus {
+.stats div {
+    margin-left: var(--padding);
+}
+
+.stats div:hover,
+.stats div:focus {
     opacity: var(--opacity-end);
     cursor: default;
 }

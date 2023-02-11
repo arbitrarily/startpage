@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.8",
+    version: "1.8.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -14,6 +14,12 @@
 
     // Count for Arrays
     count: 0,
+
+    // Animation Time
+    animation_time: 333,
+
+    // Pageviews
+    pageviews: false,
 
     // Wallet Balance
     balance: false,
@@ -128,9 +134,6 @@
       // Key Listeners
       this.key_listener();
 
-      // Set Background Gradient
-      this.background_gradient();
-
       // Output into Console
       this.console_log();
 
@@ -140,6 +143,9 @@
 
       // Animation on Leave
       this.bye_bye();
+
+      // Console Log Font Family
+      this.font_family();
     },
 
     // Load Config, then Init
@@ -266,28 +272,24 @@
           if (search) {
             start.switcher(search);
           }
-          // Backspace
+          // Toggle Cursor - Backspace
           if (start.down[8]) {
-            e.preventDefault();
-            // Toggle Cursor
             start.toggle_cursor();
           }
-          // Backslash
+          // Update LastFM - Backslash
           if (start.down[220]) {
-            e.preventDefault();
-            // Update LastFM
             start.lastfm();
           }
-          // Right Bracket
+          // Resize News - Right Bracket
           if (start.down[221]) {
-            e.preventDefault();
-            // Resize News
             start.resize_news();
           }
-          // Left Bracket
+          // Invert Colors - ' Key
+          if (start.down[222]) {
+            start.invert();
+          }
+          // Hide Animated Background - Left Bracket
           if (start.down[219]) {
-            e.preventDefault();
-            // Hide Animated Background
             start.toggle_background();
           }
         }
@@ -295,6 +297,11 @@
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
       });
+    },
+
+    // Invert Colors
+    invert: function () {
+      $("body").toggleClass("invert");
     },
 
     // Toggle Animated Background
@@ -323,19 +330,21 @@
           .then(song => {
             var count = song["recenttracks"]["@attr"]["total"];
             if (count) {
-              setTimeout(function () {
-                var number_string = start.format_numb(count).trim().toString();
-                $(".songs-replace").text(number_string);
-                $(".songs").addClass("shown").attr("title", "Songs Scrobbled: " + number_string);
-                console.log("Scrobbles     : " + number_string);
-              }, 1000);
+              $.when(start.pageviews).then(function () {
+                setTimeout(function () {
+                  var number_string = start.format_numb(count).trim().toString();
+                  $(".songs-replace").text(number_string);
+                  $(".songs").addClass("shown").attr("title", "Songs Scrobbled: " + number_string);
+                  console.log("Scrobbles     : " + number_string);
+                }, start.animation_time * 3);
+              });
             }
             // Remap Data
             var s = song["recenttracks"]["track"].map(_map_it)[0];
             // Assign Data to Placeholders
             $(".lastfm__artist").text(s.artist).attr("title", "Artist: " + s.artist);
             $(".lastfm__song").text(s.name).attr("title", "Song: " + s.name);
-            $(".lastfm__album").text(s.album).attr("title", "Album: " + s.album);
+            $(".lastfm__album").text(" - " + s.album).attr("title", "Album: " + s.album);
             // Album Image
             if (s.image != "") {
               $(".lastfm__image").attr("src", s.image).show();
@@ -430,16 +439,17 @@
           .then(function (number) {
             if (number) {
               setTimeout(function () {
-                var number_string = number.trim().toString();
-                $(".counter-replace").text(number_string);
-                $(".counter").addClass("shown").attr("title", "Views: " + number_string);
+                start.pageviews = number.trim().toString();
+                $(".counter-replace").text(start.pageviews);
+                $(".counter").addClass("shown").attr("title", "Views: " + start.pageviews);
                 console.log("---");
-                console.log("Page Views    : " + number_string);
-              }, 1000);
+                console.log("Page Views    : " + start.pageviews);
+              }, start.animation_time * 2);
             }
           })
           .catch(function (err) {
             $(".counter").remove();
+            start.pageviews = true;
           });
       });
     },
@@ -461,7 +471,7 @@
               setTimeout(function () {
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
                 $(".wallet").addClass("shown").attr("title", "Ξ " + start.balance + formatted);
-              }, 500);
+              }, start.animation_time);
               // Console Log Details
               console.log("---");
               console.log("Balance       : " + "Ξ " + start.balance.toString());
@@ -505,14 +515,6 @@
       });
     },
 
-    // Randomize Background Gradient
-    background_gradient: function () {
-      // Randomize Background Gradient
-      $("body").css({
-        "background": "radial-gradient(ellipse at " + this.numb(1, 75) + "% " + this.numb(90, 150) + "%, rgb(27, 27, 24) 0%, #0d0d0d 90%)"
-      });
-    },
-
     // Reset Mouse Cursor
     toggle_cursor: function () {
       $("body").toggleClass("vaal");
@@ -531,14 +533,22 @@
       });
     },
 
+    // Console Log Attribution
     console_log: function () {
-      // Console Log Attribution
       console.log("Built By");
       console.log(
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
       );
       console.log("Build Version : " + this.version);
+    },
+
+    // Font Family
+    font_family: function () {
+      $.when(start.conf).then(function () {
+        console.log("---");
+        console.log("Font Family   : " + $("body").css("font-family"));
+      });
     }
 
   };
