@@ -19,7 +19,7 @@
 
     /* Animation */
     --animation: all 0.366s ease-in-out;
-    --animation-long: all 0.666s ease-in-out;
+    --animation-long: all 0.999s ease-in-out;
 
     /* Opacity */
     --opacity-start: 0.5;
@@ -141,6 +141,32 @@ a:focus img {
     bottom: 0;
     opacity: 0.1;
     z-index: -1;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    opacity: 0.75;
+    object-fit: cover;
+    filter: blur(60px);
+}
+
+.background-image.deblur {
+    filter: blur(0);
+}
+
+.background-image.hidden {
+    opacity: 0;
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
 }
 
 .background svg {

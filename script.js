@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.9",
+    version: "1.8.10",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -112,6 +112,9 @@
     init: function () {
       // Pageview Counter
       this.counter();
+
+      // Background Image
+      this.background();
 
       // Background Resize
       this.toggle_background_large_screens();
@@ -288,6 +291,10 @@
           if (start.down[222]) {
             start.invert();
           }
+          // Invert Colors - / Key
+          if (start.down[191]) {
+            start.toggle_blur();
+          }
           // Hide Animated Background - Left Bracket
           if (start.down[219]) {
             start.toggle_background();
@@ -302,6 +309,25 @@
     // Invert Colors
     invert: function () {
       $("body").toggleClass("invert");
+    },
+
+    // Load Background Image
+    background: function () {
+      const num = start.numb(1, 291).toString().padStart(4, "0").toString();
+      $(".background-image").attr("src", "https://marko.tech/media/art/" + num + ".png");
+      $(".background-image").one("load", function () {
+          $(".background-image").removeClass("hidden")
+      }).each(function () {
+        if (this.complete) {
+          // $(this).load(); // For jQuery < 3.0
+          $(this).trigger('load'); // For jQuery >= 3.0
+        }
+      });
+    },
+
+    // Toggle Blur on Background Image
+    toggle_blur: function () {
+      $(".background-image").toggleClass("deblur");
     },
 
     // Toggle Animated Background
