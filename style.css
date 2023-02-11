@@ -82,6 +82,14 @@ body.invert img:not(.search) {
     filter: invert(100%);
 }
 
+body.invert img.background-image {
+    filter: invert(100%) blur(60px);
+}
+
+body.invert img.background-image.deblur {
+    filter: invert(100%) blur(0);
+}
+
 * {
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
