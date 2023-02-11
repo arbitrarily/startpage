@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.12",
+    version: "1.8.13",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -316,7 +316,7 @@
       const num = start.numb(1, 291).toString().padStart(4, "0").toString();
       $(".background-image").attr("src", "https://marko.tech/media/art/" + num + ".png");
       $(".background-image").one("load", function () {
-          $(".background-image").removeClass("hidden")
+        $(".background-image").removeClass("hidden");
       }).each(function () {
         if (this.complete) {
           // $(this).load(); // For jQuery < 3.0
