@@ -9,7 +9,12 @@
     --font-family: "Man Rope", sans-serif;
     --normal: 500;
     --bold: 900;
-    --body-size: 18px;
+    --body-size: 17px;
+
+    /* Media Queries */
+    --small: max-width: 40em;
+    --medium: min-width: 40em;
+    --large: min-width: 64em;
 
     /* Colors */
     --white: #fff;
@@ -22,7 +27,7 @@
     --animation-long: all 0.999s ease-in-out;
 
     /* Opacity */
-    --opacity-start: 0.5;
+    --opacity-start: 0.666;
     --opacity-end: 1;
 
     /* Cursor */
@@ -161,7 +166,7 @@ a:focus img {
     z-index: -2;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.44;
     object-fit: cover;
     filter: blur(75px);
 }
@@ -199,14 +204,14 @@ a:focus img {
 }
 
 .grid-container {
-    max-width: 90rem;
+    max-width: 96rem;
 }
 
 .container {
     padding: var(--padding);
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (var(--small)) {
     .container {
         padding: calc(var(--padding) * 3) var(--padding);
     }
@@ -241,18 +246,18 @@ li {
     overflow: hidden;
     overflow-y: scroll;
     max-height: 392px;
-    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+    scrollbar-color: var(--grey) transparent;
     scrollbar-width: thin;
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
-@media screen and (min-width:40em) and (max-width: 64em) {
+@media screen and (var(--small)) and (var(--med)) {
     .instapaper-list {
         max-height: 472px;
     }
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (var(--small)) {
     .instapaper-list {
         max-height: 390.4px;
     }
@@ -304,7 +309,7 @@ li {
     }
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (var(--medium)) {
     .container form {
         margin-bottom: var(--padding);
     }
@@ -344,7 +349,7 @@ li {
     padding: 10px 0;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (var(--medium)) {
     .container__list--title {
         padding: 5px 0 10px 0;
     }
@@ -436,14 +441,14 @@ li {
     line-height: 1.1;
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (var(--small)) {
     .lastfm__url {
         text-align: left;
         justify-content: space-between;
     }
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (var(--medium)) {
     .lastfm__container {
         padding-left: var(--padding);
     }
@@ -456,10 +461,11 @@ li {
     opacity: var(--opacity-start);
 }
 
-.stats {
-    display: flex;
+.stats,
+.ip {
+    display: inherit;
     align-items: center;
-    padding: var(--foundation);
+    padding: calc(var(--foundation) / 2) var(--foundation);
     line-height: 1;
     color: var(--white);
     font-size: 0.55rem;
@@ -470,32 +476,53 @@ li {
 
 @media screen and (min-width: 40em) {
     .stats {
+        display: flex;
         position: fixed;
         bottom: 0;
         right: 0;
+        padding: var(--foundation);
+    }
+
+    .stats div {
+        padding: 0 !important;
+        margin-left: var(--padding);
+    }
+
+    .ip {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: var(--foundation);
     }
 }
 
 .stats div {
+    padding: calc(var(--padding) / 2) 0;
+}
+
+.ip div,
+.stats div {
     opacity: 0;
 }
 
+
+.ip div.shown,
 .stats div.shown {
     opacity: 0.25;
 }
 
+.ip img,
 .stats img {
     width: 13px;
     height: auto;
     margin-right: 6px;
 }
 
-.stats div {
-    margin-left: var(--padding);
-}
-
-.stats div:hover,
-.stats div:focus {
+.ip div.shown:hover,
+.ip div.shown:focus,
+.stats div.shown:hover,
+.stats div.shown:focus {
     opacity: var(--opacity-end);
     cursor: default;
 }

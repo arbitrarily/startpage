@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.13",
+    version: "1.8.14",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -149,6 +149,9 @@
 
       // Console Log Font Family
       this.font_family();
+
+      // IP
+      this.ip();
     },
 
     // Load Config, then Init
@@ -287,12 +290,12 @@
           if (start.down[221]) {
             start.resize_news();
           }
-          // Invert Colors - ' Key
-          if (start.down[222]) {
+          // Invert Colors - i Key
+          if (start.down[73]) {
             start.invert();
           }
-          // Invert Colors - / Key
-          if (start.down[191]) {
+          // Blur - b Key
+          if (start.down[66]) {
             start.toggle_blur();
           }
           // Hide Animated Background - Left Bracket
@@ -347,6 +350,22 @@
       });
     },
 
+    // IP
+    ip: function () {
+      fetch('https://ipinfo.io/json')
+        .then(res => res.json())
+        .then(res => res)
+        .then(ip => {
+          const msg = ip.ip + " - " + ip.city + ", " + ip.country;
+          $(".ip-replace").text(msg);
+          $(".ip div").addClass("shown");
+          console.log("---");
+          console.log("IPv4          : " + msg);
+        }).catch(error => {
+          $(".ip").hide();
+        });
+    },
+
     // LastFM Song
     lastfm: function () {
       $.when(start.conf).then(function () {
@@ -360,7 +379,7 @@
                 setTimeout(function () {
                   var number_string = start.format_numb(count).trim().toString();
                   $(".songs-replace").text(number_string);
-                  $(".songs").addClass("shown").attr("title", "Songs Scrobbled: " + number_string);
+                  $(".songs").addClass("shown");
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
@@ -467,7 +486,7 @@
               setTimeout(function () {
                 start.pageviews = number.trim().toString();
                 $(".counter-replace").text(start.pageviews);
-                $(".counter").addClass("shown").attr("title", "Views: " + start.pageviews);
+                $(".counter").addClass("shown");
                 console.log("---");
                 console.log("Page Views    : " + start.pageviews);
               }, start.animation_time * 2);
@@ -496,7 +515,7 @@
               // Show After Delay
               setTimeout(function () {
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
-                $(".wallet").addClass("shown").attr("title", "Ξ " + start.balance + formatted);
+                $(".wallet").addClass("shown");
               }, start.animation_time);
               // Console Log Details
               console.log("---");
