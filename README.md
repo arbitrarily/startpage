@@ -1,18 +1,24 @@
 ![image](https://user-images.githubusercontent.com/899183/218524120-80c1a1bf-27ac-4459-953a-f8abb433fa57.png)
 
+### Live Preview
+
 [Preview: Startpage & New Tab Page](https://abstracted-war.surge.sh/)
 
-*** Note
+This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
-There's a file JSON file named `conf.json` in the root of the project. The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL` are websites where I render the html/rss into an HTML column.
+---
 
-`counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
+### Notes
+
+There's a file JSON file named `conf.json` in the root of the project. 
 
 It should look like this:
 
 ```
 {
-  "ethplorerURL": "https://api.ethplorer.io/getAddressInfo/X?apiKey=Y&showETHTotals=true",
+  "ethplorerURL": "https://api.ethplorer.io/getAddressInfo/X?apiKey=X&showETHTotals=true",
+  "etherscanURL": "https://api.etherscan.io/api?module=account&action=balance&address=X&tag=latest&apikey=X",
+  "alchemyURL": "X",
   "techmemeURL": "X",
   "nytURL": "X",
   "redditURL": "X",
@@ -23,7 +29,15 @@ It should look like this:
 }
 ```
 
+The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL` are websites where I render the html/rss into an HTML column.
+
+`counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
+
 The background images are randomly chosen from a series of images I serve on my own website.
+
+---
+
+### Publishing
 
 Publishing to Surge
 
