@@ -41,7 +41,7 @@ The background images are randomly chosen from a series of images I serve on my 
 
 There's some 'hidden' power user features in here in the form of keyboard commands:
 
-*<kbd>Left Option</kbd> (KeyCode 18) - Settings (reset on page refresh)
+*<kbd>Left Option</kbd>* (KeyCode 18) - Settings (reset on page refresh)
 - Use <kbd>loption</kbd> + <kbd>i</kbd> to toggle `light / dark mode`.
 - Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle `background blur` to better view the background image.
 - Use <kbd>loption</kbd> + <kbd>[</kbd> to toggle CSS/SVG based `background animation`.
