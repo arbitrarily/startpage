@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.18",
+    version: "1.9.0",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -54,7 +54,7 @@
         "action": "https://translate.google.com/",
         "logo": "icons/icon__translate.svg",
         "text": "Translate",
-        "name": "hl=en&sl=en&tl=es&text=",
+        "name": "hl=en&sl=en&tl=es&text",
         "type": "translate"
       },
       {
@@ -141,7 +141,6 @@
       this.console_log();
 
       // Focus Search
-      this.focus_search();
       this.click_focus_search();
 
       // Animation on Leave
@@ -193,17 +192,18 @@
     // Search Switcher
     switcher: function (search) {
       const action = search['action'],
-        logo = search['logo'],
-        text = search['text'],
-        name = search['name'],
-        type = search['type'];
+            logo = search['logo'],
+            text = search['text'],
+            name = search['name'],
+            type = search['type'];
       $("#searchform").attr("action", action);
       $(".search").attr("src", logo);
       $("#search").attr("placeholder", text)
         .attr("name", name)
         .attr("data-type", type)
         .focus();
-      $("form").removeClass("focus");
+      // Notification
+      start.notifications("<span>Search Switched to </span> " + search['type']);
     },
 
     // Function Triggers by Keyboard Combos
@@ -217,6 +217,8 @@
           // Instapaper
           if (start.down[49]) { // shift + 1
             start.instapaper();
+            // Notification
+            start.notifications("<span>Feed Switched to</span> Instapaper");
           }
           // Techmeme
           if (start.down[50]) { // shift + 2
@@ -282,24 +284,32 @@
           if (start.down[8]) {
             start.toggle_cursor();
           }
-          // Update LastFM - Backslash
-          if (start.down[220]) {
-            start.lastfm();
-          }
           // Resize News - Right Bracket
           if (start.down[221]) {
             start.resize_news();
           }
-          // Invert Colors - i Key
+          // Update LastFM - "x" Key
+          if (start.down[88]) {
+            start.lastfm();
+            // Notification
+            start.notifications("Fetched <span>Last.fm</span>");
+          }
+          // Invert Colors - "i" Key
           if (start.down[73]) {
             start.invert();
           }
-          // Blur - b Key
+          // Blur - "b" Key
           if (start.down[66]) {
             start.toggle_blur();
           }
-          // Hide Animated Background - Left Bracket
-          if (start.down[219]) {
+          // Refresh Background Image - "v" Key
+          if (start.down[86]) {
+            start.background();
+            // Notification
+            start.notifications("<span>New</span> Background Image <span>Loaded</span>");
+          }
+          // Hide Animated Background - "c" Key
+          if (start.down[67]) {
             start.toggle_background();
           }
         }
@@ -309,33 +319,52 @@
       });
     },
 
+    // Notifications
+    notifications: function (text) {
+      const noti = $(".notifications");
+      noti.removeClass("hidden").html(text);
+      setTimeout(function () {
+        noti.addClass("hidden");
+      }, start.animation_time * 4);
+    },
+
     // Invert Colors
     invert: function () {
       $("body").toggleClass("invert");
+      // Notification
+      const status = ($("body").hasClass("invert")) ? " Light" : " Dark";
+      start.notifications("<span>Toggled</span> " + status + " <span>Mode</span>");
     },
 
     // Load Background Image
     background: function () {
+      const bg = $(".background-image");
       const num = start.numb(1, 291).toString().padStart(4, "0").toString();
-      $(".background-image").attr("src", "https://marko.tech/media/art/" + num + ".png");
-      $(".background-image").one("load", function () {
-        $(".background-image").removeClass("hidden");
-      }).each(function () {
-        if (this.complete) {
-          // $(this).load(); // For jQuery < 3.0
-          $(this).trigger('load'); // For jQuery >= 3.0
-        }
-      });
+      bg.addClass("hidden");
+      setTimeout(function () {
+        bg.attr("src", "https://marko.tech/media/art/" + num + ".png");
+        bg.one("load", function () {
+          bg.removeClass("hidden");
+        }).each(function () {
+          if (this.complete) $(this).trigger('load');
+        });
+      }, start.animation_time * 2);
     },
 
     // Toggle Blur on Background Image
     toggle_blur: function () {
       $(".background-image").toggleClass("deblur");
+      // Notification
+      const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
+      start.notifications("<span>Blur on Background</span>" + status);
     },
 
     // Toggle Animated Background
     toggle_background: function () {
       ($(".background").hasClass("hidden")) ? $(".background").toggleClass("hidden").html(start.background_html) : $(".background").toggleClass("hidden").html("");
+      // Notification
+      const status = ($(".background").hasClass("hidden")) ? " Off" : " On";
+      start.notifications("<span>Background Animation</span>" + status);
     },
 
     // Toggle Animated Desktop - Don't Render on Super Large Screens
@@ -346,6 +375,8 @@
           if (!bg.hasClass("hidden")) bg.addClass("hidden").html("");
         } else {
           if (bg.hasClass("hidden")) bg.removeClass("hidden").html(start.background_html);
+          // Notification
+          start.notifications("Toggled <span>Animated Background</span>");
         }
       });
     },
@@ -451,6 +482,8 @@
     techmeme: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.techmemeURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> Techmeme");
       });
     },
 
@@ -458,6 +491,8 @@
     nyt: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.nytURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> New York Times");
       });
     },
 
@@ -465,6 +500,8 @@
     reddit: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.redditURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> Reddit");
       });
     },
 
@@ -472,6 +509,8 @@
     nfts: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.alchemyURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> NFTs");
       });
     },
 
@@ -549,9 +588,9 @@
 
     // Focus/DeFocus Search
     click_focus_search: function () {
-      // Focus Search if Clicking Anytning Not a Link or Input
+      // Focus Search if Clicking Anything Not a Link or Input
       $(document).on(this.touch, function (e) {
-        if (e.target.tagName !== "A" || e.target.tagName !== "INPUT") {
+        if (e.target.tagName !== "A" && e.target.tagName !== "INPUT") {
           start.focus_search();
         }
       });
@@ -564,12 +603,18 @@
     // Reset Mouse Cursor
     toggle_cursor: function () {
       $("body").toggleClass("vaal");
+      // Notification
+      const status = ($("body").hasClass("vaal")) ? " On" : " Off";
+      start.notifications("<span>Cursor Toggled</span>" + status);
     },
 
     // Resize
     resize_news: function () {
       // Keep Both Large Classes for Smoothness
       $(".cell.small-12.large-4.instapaper-links.shown").toggleClass("large-6");
+      // Notification
+      const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
+      start.notifications("<span>News Resized</span>" + status);
     },
 
     // Animation on Leave
@@ -601,5 +646,10 @@
 
   // Init
   start.load_config();
+
+  // Focus on Load
+  $(window).on("load", function () {
+    start.focus_search();
+  });
 
 })(this, jQuery);

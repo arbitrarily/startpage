@@ -32,7 +32,6 @@
 
     /* Cursor */
     --cursor: url('icons/icon__cursor.png'), auto;
-    --cursor__hover: url('icons/icon__cursor--hover.png'), auto;
 }
 
 @keyframes fadein {
@@ -74,7 +73,10 @@ body {
     font-size: var(--body-size);
 }
 
-body.vaal {
+body.vaal,
+.vaal a:hover,
+.vaal a:focus,
+.vaal .container label {
     cursor: var(--cursor);
 }
 
@@ -136,39 +138,41 @@ a:active {
     opacity: var(--opacity-start);
 }
 
-.vaal a:hover,
-.vaal a:focus {
-    cursor: var(--cursor__hover);
-}
-
 a:hover img,
 a:focus img {
     filter: grayscale(0);
     -webkit-filter: grayscale(0);
 }
 
-.background {
+.everywhere {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background {
     opacity: 0.1;
     z-index: -1;
 }
 
+.background.hidden {
+    display: none;
+    visibility: hidden;
+}
+
 .background-image {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     z-index: -2;
-    width: 100%;
-    height: 100%;
     opacity: 0.44;
     object-fit: cover;
     filter: blur(75px);
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
 }
 
 .background-image.deblur {
@@ -178,10 +182,6 @@ a:focus img {
 
 .background-image.hidden {
     opacity: 0;
-    -webkit-transition: var(--animation-long);
-    -moz-transition: var(--animation-long);
-    -o-transition: var(--animation-long);
-    transition: var(--animation-long);
 }
 
 .background svg {
@@ -194,13 +194,12 @@ a:focus img {
     width: 100%;
 }
 
-.background.hidden {
-    display: none;
-    visibility: hidden;
-}
-
 .container input {
     font-size: 26px;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 .grid-container {
@@ -359,6 +358,10 @@ li {
     display: flex;
     width: 100%;
     opacity: var(--opacity-start);
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 .container form.focus {
@@ -376,10 +379,6 @@ li {
     margin-right: 10px;
     display: flex;
     align-items: center;
-}
-
-.vaal .container label {
-    cursor: var(--cursor__hover);
 }
 
 .container input {
@@ -525,4 +524,34 @@ li {
 .stats div.shown:focus {
     opacity: var(--opacity-end);
     cursor: default;
+}
+
+.notifications {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: var(--white);
+    pointer-events: none;
+    opacity: 1;
+    display: inherit;
+    align-items: center;
+    padding: var(--padding);
+    border-radius: 8px;
+    line-height: 1;
+    font-size: 0.55rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    font-weight: var(--bold);
+    -webkit-transition: var(--animation-long);
+    -moz-transition: var(--animation-long);
+    -o-transition: var(--animation-long);
+    transition: var(--animation-long);
+}
+
+.notifications span {
+    color: var(--gray);
+}
+
+.notifications.hidden {
+    opacity: 0;
 }

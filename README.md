@@ -10,7 +10,7 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 
 ### Notes
 
-There's a file JSON file named `conf.json` in the root of the project. 
+There's a file JSON file named `conf.json` in the root of the project.
 
 It should look like this:
 
@@ -42,12 +42,13 @@ The background images are randomly chosen from a series of images I serve on my 
 There's some 'hidden' power user features in here in the form of keyboard commands:
 
 *<kbd>Left Option</kbd>* (KeyCode 18) - Settings (reset on page refresh)
-- Use <kbd>loption</kbd> + <kbd>i</kbd> to toggle `light / dark mode`.
-- Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle `background blur` to better view the background image.
-- Use <kbd>loption</kbd> + <kbd>[</kbd> to toggle CSS/SVG based `background animation`.
+- Use <kbd>loption</kbd> + <kbd>i</kbd> to toggle ("I"-nvert) `light / dark mode`.
+- Use <kbd>loption</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song.
+- Use <kbd>loption</kbd> + <kbd>c</kbd> to toggle ("C"-olors) CSS/SVG based `background animation`.
+- Use <kbd>loption</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
+- Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
 - Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
-- Use <kbd>loption</kbd> + <kbd>\\</kbd> to get the `latest Now Playing` song.
 
 *<kbd>Left Option</kbd>* (KeyCode 18) - Search Toggles
 - Use <kbd>loption</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
