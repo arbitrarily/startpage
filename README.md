@@ -37,6 +37,37 @@ The background images are randomly chosen from a series of images I serve on my 
 
 ---
 
+### Keyboard Commands
+
+There's some 'hidden' power user features in here in the form of keyboard commands:
+
+*<kbd>Left Option</kbd> (KeyCode 18) - Settings (reset on page refresh)
+- Use <kbd>loption</kbd> + <kbd>i</kbd> to toggle `light / dark mode`.
+- Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle `background blur` to better view the background image.
+- Use <kbd>loption</kbd> + <kbd>[</kbd> to toggle CSS/SVG based `background animation`.
+- Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
+- Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
+- Use <kbd>loption</kbd> + <kbd>\</kbd> to get the `latest Now Playing` song.
+
+*<kbd>Left Option</kbd>* (KeyCode 18) - Search Toggles
+- Use <kbd>loption</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
+- Use <kbd>loption</kbd> + <kbd>2</kbd> to toggle search bar to `YouTube`.
+- Use <kbd>loption</kbd> + <kbd>3</kbd> to toggle search bar to `DuckDuckGo`.
+- Use <kbd>loption</kbd> + <kbd>4</kbd> to toggle search bar to `Google Translate` (imperfect at the moment).
+- Use <kbd>loption</kbd> + <kbd>5</kbd> to toggle search bar to `Apple Music`.
+- Use <kbd>loption</kbd> + <kbd>6</kbd> to toggle search bar to `LastFM`.
+- Use <kbd>loption</kbd> + <kbd>7</kbd> to toggle search bar to `Twitter`.
+- Use <kbd>loption</kbd> + <kbd>8</kbd> to toggle search bar to `Google News`.
+- Use <kbd>loption</kbd> + <kbd>9</kbd> to toggle search bar to `Github`.
+- Use <kbd>loption</kbd> + <kbd>0</kbd> to toggle search bar to `Google`.
+- Use <kbd>loption</kbd> + <kbd>-</kbd> to toggle search bar to `MidJourney`.
+
+*<kbd>Left Shift</kbd>* (KeyCode 16) - News Feed
+- Use <kbd>lshift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
+- Use <kbd>lshift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
+- Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
+- Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
+
 ### Publishing
 
 Publishing to Surge
