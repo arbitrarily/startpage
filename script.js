@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.8.15",
+    version: "1.8.16",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -352,11 +352,12 @@
 
     // IP
     ip: function () {
-      fetch('https://ipinfo.io/json')
+      fetch('https://ipinfo.io/json?token=' + start.conf.ipKey)
         .then(res => res.json())
         .then(res => res)
         .then(ip => {
-          const msg = ip.ip + " - " + ip.city + ", " + ip.country;
+          const region = (ip.region.length === 2) ? ip.region : ip.country;
+          const msg = ip.ip + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
           $(".ip div").addClass("shown");
           console.log("---");
