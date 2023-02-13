@@ -66,6 +66,7 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
 - Use <kbd>lshift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
 - Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
+- Use <kbd>lshift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
 - Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
 ### Publishing
