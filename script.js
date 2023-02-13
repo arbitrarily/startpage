@@ -356,7 +356,7 @@
         .then(res => res.json())
         .then(res => res)
         .then(ip => {
-          const region = (ip.region.length === 2) ? ip.region : ip.country;
+          const region = (ip.country === "US") ? ip.region : ip.country;
           const msg = ip.ip + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
           $(".ip div").addClass("shown");
