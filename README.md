@@ -47,7 +47,7 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>loption</kbd> + <kbd>[</kbd> to toggle CSS/SVG based `background animation`.
 - Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
-- Use <kbd>loption</kbd> + <kbd>\</kbd> to get the `latest Now Playing` song.
+- Use <kbd>loption</kbd> + <kbd>\\</kbd> to get the `latest Now Playing` song.
 
 *<kbd>Left Option</kbd>* (KeyCode 18) - Search Toggles
 - Use <kbd>loption</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
