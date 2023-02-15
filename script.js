@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.9.0",
+    version: "1.9.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -235,6 +235,10 @@
           // NFTs
           if (start.down[53]) { // shift + 5
             start.nfts();
+          }
+          // Lexichronic
+          if (start.down[54]) { // shift + 6
+            start.lexichronic();
           }
         }
         // Alt/Option
@@ -511,6 +515,15 @@
         start.fetch_news(start.conf.alchemyURL);
         // Notification
         start.notifications("<span>Feed Switched to</span> NFTs");
+      });
+    },
+
+    // Lexichronic Home Feed
+    lexichronic: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.lexiURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> Lexichronic");
       });
     },
 
