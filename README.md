@@ -24,13 +24,14 @@ It should look like this:
   "redditURL": "X",
   "instapaperURL": "X",
   "lexiURL": "X",
+  "poeURL": "X",
   "counterURL": "X",
   "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=X&api_key=X&format=json&limit=1",
   "ipKey" : "X"
 }
 ```
 
-The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL` are websites where I render the html/rss into an HTML column.
+The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL` are websites where I render the html/rss into an HTML column.
 
 `counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
 
@@ -70,7 +71,8 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
 - Use <kbd>lshift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
 - Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
-- Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Lexichronic` feed.
+- Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
 
 ### Publishing
 

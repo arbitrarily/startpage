@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.9.1",
+    version: "1.9.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -239,6 +239,10 @@
           // Lexichronic
           if (start.down[54]) { // shift + 6
             start.lexichronic();
+          }
+          // Path of Exile Characters
+          if (start.down[55]) { // shift + 7
+            start.poe();
           }
         }
         // Alt/Option
@@ -524,6 +528,15 @@
         start.fetch_news(start.conf.lexiURL);
         // Notification
         start.notifications("<span>Feed Switched to</span> Lexichronic");
+      });
+    },
+
+    // Lexichronic Home Feed
+    poe: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.poeURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> Path of Exile");
       });
     },
 
