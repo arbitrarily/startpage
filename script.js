@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.9.2",
+    version: "1.9.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -379,7 +379,7 @@
     toggle_background_large_screens: function () {
       $(window).bind("resize load", function () {
         const bg = $(".background");
-        if (window.matchMedia("(min-width: 1440px)").matches) {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
           if (!bg.hasClass("hidden")) bg.addClass("hidden").html("");
         } else {
           if (bg.hasClass("hidden")) bg.removeClass("hidden").html(start.background_html);
