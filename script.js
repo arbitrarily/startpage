@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.9.4",
+    version: "1.10.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -23,6 +23,9 @@
 
     // Wallet Balance
     balance: false,
+
+    // Audio
+    audio: new Audio(),
 
     // Config
     conf: false,
@@ -244,6 +247,10 @@
           if (start.down[55]) { // shift + 7
             start.poe();
           }
+          // Podcasts
+          if (start.down[56]) { // shift + 8
+            start.podcasts();
+          }
         }
         // Alt/Option
         if (start.down[18]) {
@@ -296,29 +303,31 @@
           if (start.down[221]) {
             start.resize_news();
           }
+          // Play/Pause Podcasts - "z" Key
+          if (start.down[90]) {
+            start.podcast_toggle();
+          }
           // Update LastFM - "x" Key
           if (start.down[88]) {
             start.lastfm();
             // Notification
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Invert Colors - "i" Key
-          if (start.down[73]) {
-            start.invert();
+          // Hide Animated Background - "c" Key
+          if (start.down[67]) {
+            start.toggle_background();
+          }
+          // Refresh Background Image - "v" Key
+          if (start.down[86]) {
+            start.background();
           }
           // Blur - "b" Key
           if (start.down[66]) {
             start.toggle_blur();
           }
-          // Refresh Background Image - "v" Key
-          if (start.down[86]) {
-            start.background();
-            // Notification
-            start.notifications("<span>New</span> Background Image <span>Loaded</span>");
-          }
-          // Hide Animated Background - "c" Key
-          if (start.down[67]) {
-            start.toggle_background();
+          // Invert Colors - "n" Key
+          if (start.down[78]) {
+            start.invert();
           }
         }
       }).keyup(function (e) {
@@ -357,6 +366,8 @@
           if (this.complete) $(this).trigger('load');
         });
       }, start.animation_time * 2);
+      // Notification
+      start.notifications("<span>New</span> Background #" + num + " <span>Loaded</span>");
     },
 
     // Toggle Blur on Background Image
@@ -531,13 +542,77 @@
       });
     },
 
-    // Lexichronic Home Feed
+    // Path of Exile Home Feed
     poe: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.poeURL);
         // Notification
         start.notifications("<span>Feed Switched to</span> Path of Exile");
       });
+    },
+
+    // Podcasts Home Feed
+    podcasts: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.podURL);
+        // Notification
+        start.notifications("<span>Feed Switched to</span> Podcasts");
+        // Play Podcasts
+        start.play_podcast();
+      });
+    },
+
+    // Play Podcast
+    play_podcast: function () {
+      $(document).on("click", ".podcast-links li a", function (e) {
+        e.preventDefault();
+        $(".podcasts").addClass("shown");
+        if ($(this).attr("href").indexOf(".mp3") > -1) {
+          start.audio.src = $(this).attr("href");
+          // Play the Podcasts Slightly Faster
+          start.audio.playbackRate = 1.2;
+          // Stop Other Audio
+          if (start.audio.playing) {
+            start.audio.pause();
+          }
+          start.audio.play();
+          // Timer
+          start.podcast_time();
+        }
+        // Notification
+        start.notifications("<span>Now Playing</span> " + $(this).text().trim().slice(0, 60) + "...");
+      });
+      // Pause on Click of Timer
+      $(document).on("click", ".podcasts", function (e) {
+        start.podcast_toggle();
+      });
+    },
+
+    // Podcast Timer
+    podcast_time: function () {
+      setInterval(function () {
+        const time_remaining = start.audio.duration - start.audio.currentTime;
+        const minutes = Math.floor(time_remaining / 60);
+        const seconds = Math.floor(time_remaining % 60);
+        const padded_time = seconds < 10 ? '0' + seconds : seconds;
+        // Update Time
+        $(".podcasts-replace").text(minutes + ':' + padded_time);
+      }, 500);
+    },
+
+    // Pause Podcast
+    podcast_toggle: function () {
+      if (start.audio.paused) {
+        start.audio.play();
+        // Timer
+        start.podcast_time();
+        // Notification
+        start.notifications("<span>Podcast</span> Playing");
+      } else {
+        start.audio.pause();
+        // Notification
+        start.notifications("<span>Podcast</span> Paused");
+      }
     },
 
     // Page View Counter

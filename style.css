@@ -89,6 +89,15 @@ body.invert img:not(.search) {
     filter: invert(100%);
 }
 
+body.invert .ip img,
+body.invert .stats img {
+    filter: invert(0);
+}
+
+body.invert .container__list--full-item.container__list--current::before {
+    filter: invert(100%) grayscale(0);
+}
+
 body.invert img.background-image {
     filter: invert(100%) blur(75px);
 }
@@ -321,6 +330,17 @@ li {
 .container__list span {
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.podcast-links .container__list {
+    align-items: flex-start;
+}
+
+.podcast-links .container__list span {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

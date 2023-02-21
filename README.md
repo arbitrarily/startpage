@@ -25,13 +25,14 @@ It should look like this:
   "instapaperURL": "X",
   "lexiURL": "X",
   "poeURL": "X",
+  "podURL": "X",
   "counterURL": "X",
   "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=X&api_key=X&format=json&limit=1",
   "ipKey" : "X"
 }
 ```
 
-The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL` are websites where I render the html/rss into an HTML column.
+The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL`, `podURL` are websites where I render the html/rss into an HTML column.
 
 `counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
 
@@ -44,11 +45,12 @@ The background images are randomly chosen from a series of images I serve on my 
 There's some 'hidden' power user features in here in the form of keyboard commands:
 
 *<kbd>Left Option</kbd>* (KeyCode 18) - Settings (reset on page refresh)
-- Use <kbd>loption</kbd> + <kbd>i</kbd> to toggle ("I"-nvert) `light / dark mode`.
+- Use <kbd>loption</kbd> + <kbd>z</kbd> to `play/pause` a podcast (pau"Z"e lol).
 - Use <kbd>loption</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song.
 - Use <kbd>loption</kbd> + <kbd>c</kbd> to toggle ("C"-olors) CSS/SVG based `background animation`.
 - Use <kbd>loption</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
 - Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
+- Use <kbd>loption</kbd> + <kbd>n</kbd> to toggle (i"N"vert) `light / dark mode`.
 - Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
 
@@ -73,6 +75,7 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 - Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Lexichronic` news feed.
 - Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
+- Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `Podcasts` character feed.
 
 ### Publishing
 
