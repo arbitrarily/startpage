@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.2",
+    version: "1.10.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -564,7 +564,7 @@
 
     // Play Podcast
     play_podcast: function () {
-      $(document).on("click", ".podcast-links li a", function (e) {
+      $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
         $(".podcasts").addClass("shown");
         if ($(this).attr("href").indexOf(".mp3") > -1) {
