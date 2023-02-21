@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.5",
+    version: "1.10.6",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -613,7 +613,7 @@
 
     // Podcast Fast Forward
     podcast_fast_forward: function () {
-      start.audio.currentTime += 10;
+      start.audio.currentTime += 15;
       // Notification
       start.notifications("<span>Podcast Fast Forward</span> + 10s");
     },

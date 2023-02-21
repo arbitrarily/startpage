@@ -77,6 +77,12 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
 - Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `Podcasts` character feed.
 
+*<kbd>Left Shift</kbd>* (KeyCode 16) - Audio Controls
+- Use <kbd>loption</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
+- Use <kbd>loption</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
+- Use <kbd>loption</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
+- Use <kbd>loption</kbd> + <kbd>Left</kbd> to `rewind` Podcast playback 5 seconds.
+
 ### Publishing
 
 Publishing to Surge
