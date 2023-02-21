@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.6",
+    version: "1.10.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -608,14 +608,14 @@
     podcast_rewind: function () {
       start.audio.currentTime -= 5;
       // Notification
-      start.notifications("<span>Podcast Fast Forward</span> - 5s");
+      start.notifications("<span>Podcast Fast Forward</span> -5 seconds");
     },
 
     // Podcast Fast Forward
     podcast_fast_forward: function () {
       start.audio.currentTime += 15;
       // Notification
-      start.notifications("<span>Podcast Fast Forward</span> + 10s");
+      start.notifications("<span>Podcast Fast Forward</span> +10 seconds");
     },
 
     // Podcast Faster Playback
@@ -644,10 +644,8 @@
           $(".podcasts-replace").text(minutes + ':' + padded_time);
         } else {
           $(".podcasts-replace").text('0:00');
-        }
-        start.audio.addEventListener("ended", function() {
           $(".podcasts").removeClass("shown");
-        });
+        }
       }, 500);
     },
 
