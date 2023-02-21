@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.8",
+    version: "1.10.10",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -132,7 +132,9 @@
       this.lastfm();
 
       // Rerun LastFM Script Every 3 Minutes
-      setInterval(start.lastfm, 1000 * 60 * 3)
+      if (!start.audio.playing) {
+        setInterval(start.lastfm, 1000 * 60 * 3)
+      }
 
       // Get Latest Instapaper Articles
       this.instapaper();
@@ -453,19 +455,16 @@
             }
             // Remap Data
             var s = song["recenttracks"]["track"].map(_map_it)[0];
-            // Assign Data to Placeholders
-            $(".lastfm__artist").text(s.artist).attr("title", "Artist: " + s.artist);
-            $(".lastfm__song").text(s.name).attr("title", "Song: " + s.name);
-            $(".lastfm__album").text(" - " + s.album).attr("title", "Album: " + s.album);
-            // Album Image
-            if (s.image != "") {
-              $(".lastfm__image").attr("src", s.image).show();
-            } else {
-              $(".lastfm__image").hide();
+            // Change Artwork
+            const pod_data = {
+              id: s.id,
+              name: s.name,
+              album: s.album,
+              artist: s.artist,
+              image: s.image,
+              link: s.link
             }
-            // Show Now Playing
-            $(".lastfm__container").show();
-            $(".lastfm__url").attr("href", s.link).addClass("shown");
+            start.change_lastfm_artwork(pod_data);
           }).catch(error => {
             $(".lastfm__container").hide();
           });
@@ -482,6 +481,27 @@
           }
         }
       });
+    },
+
+    // Change LastFM Artwork
+    change_lastfm_artwork: function (data) {
+      // Assign Data to Placeholders
+      $(".lastfm__artist").text(data['artist']).attr("title", "Artist: " + data['artist']);
+      $(".lastfm__song").text(data['name']).attr("title", "Song: " + data['name']);
+      if (data['album'] != "") {
+        $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']);
+      } else {
+        $(".lastfm__album").text("");
+      }
+      // Album Image
+      if (data['image'] != "") {
+        $(".lastfm__image").attr("src", data['image']).show();
+      } else {
+        $(".lastfm__image").hide();
+      }
+      // Show Now Playing
+      $(".lastfm__container").show();
+      $(".lastfm__url").attr("href", data['link']).addClass("shown");
     },
 
     // Replace News
@@ -582,8 +602,9 @@
     play_podcast: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
+        const podcast = $(this);
         $(".podcasts").addClass("shown");
-        if ($(this).attr("href").indexOf(".mp3") > -1) {
+        if (podcast.attr("href").indexOf(".mp3") > -1) {
           start.audio.src = $(this).attr("href");
           // Play the Podcasts Slightly Faster
           start.audio.playbackRate = 1.25;
@@ -597,6 +618,16 @@
         }
         // Notification
         start.notifications("<span>Now Playing</span> " + $(this).text().trim().slice(0, 60) + "...");
+        // Change Artwork
+        const pod_data = {
+          id: '',
+          name: podcast.data('title'),
+          album:'',
+          artist: podcast.data('feed'),
+          image: podcast.find("img").attr('src'),
+          link: podcast.data('link')
+        }
+        start.change_lastfm_artwork(pod_data);
       });
       // Pause on Click of Timer
       $(document).on("click", ".podcasts", function (e) {
