@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.11",
+    version: "1.10.12",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -130,6 +130,9 @@
 
       // Get Last FM Now Playing
       this.lastfm();
+
+      // Rerun LastFM Script Every 3 Minutes
+      setInterval(start.lastfm, 1000 * 60 * 3)
 
       // Get Latest Instapaper Articles
       this.instapaper();
@@ -442,10 +445,8 @@
               $.when(start.pageviews).then(function () {
                 setTimeout(function () {
                   var number_string = start.format_numb(count).trim().toString();
-                  if (!start.audio.playing) {
-                    $(".songs-replace").text(number_string);
-                    $(".songs").addClass("shown");
-                  }
+                  $(".songs-replace").text(number_string);
+                  $(".songs").addClass("shown");
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
@@ -453,15 +454,17 @@
             // Remap Data
             var s = song["recenttracks"]["track"].map(_map_it)[0];
             // Change Artwork
-            const pod_data = {
-              id: s.id,
-              name: s.name,
-              album: s.album,
-              artist: s.artist,
-              image: s.image,
-              link: s.link
+            if (start.audio.paused || !start.audio.currentTime) {
+              const pod_data = {
+                id: s.id,
+                name: s.name,
+                album: s.album,
+                artist: s.artist,
+                image: s.image,
+                link: s.link
+              }
+              start.change_lastfm_artwork(pod_data);
             }
-            start.change_lastfm_artwork(pod_data);
           }).catch(error => {
             $(".lastfm__container").hide();
           });
