@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.7",
+    version: "1.10.8",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -642,10 +642,12 @@
         // Update Time
         if (seconds) {
           $(".podcasts-replace").text(minutes + ':' + padded_time);
-        } else {
+        }
+        // When Podcast Ends
+        start.audio.addEventListener("ended", function () {
           $(".podcasts-replace").text('0:00');
           $(".podcasts").removeClass("shown");
-        }
+        });
       }, 500);
     },
 
