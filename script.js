@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.3",
+    version: "1.10.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -250,6 +250,22 @@
           // Podcasts
           if (start.down[56]) { // shift + 8
             start.podcasts();
+          }
+          // Fast Podcast Forward
+          if (start.down[39]) { // shift + ➡
+            start.podcast_fast_forward();
+          }
+          // Fast Podcast Forward
+          if (start.down[37]) { // shift + ⬅
+            start.podcast_rewind();
+          }
+          // Faster Podcast Playback
+          if (start.down[38]) { // shift + ⬆
+            start.podcast_more_speed();
+          }
+          // Slower Podcast Playback
+          if (start.down[40]) { // shift + ⬇
+            start.podcast_less_speed();
           }
         }
         // Alt/Option
@@ -570,7 +586,7 @@
         if ($(this).attr("href").indexOf(".mp3") > -1) {
           start.audio.src = $(this).attr("href");
           // Play the Podcasts Slightly Faster
-          start.audio.playbackRate = 1.2;
+          start.audio.playbackRate = 1.25;
           // Stop Other Audio
           if (start.audio.playing) {
             start.audio.pause();
@@ -588,6 +604,34 @@
       });
     },
 
+    // Podcast Fast Forward
+    podcast_rewind: function () {
+      start.audio.currentTime -= 5;
+      // Notification
+      start.notifications("<span>Podcast Fast Forward</span> - 5s");
+    },
+
+    // Podcast Fast Forward
+    podcast_fast_forward: function () {
+      start.audio.currentTime += 10;
+      // Notification
+      start.notifications("<span>Podcast Fast Forward</span> + 10s");
+    },
+
+    // Podcast Faster Playback
+    podcast_more_speed: function () {
+      start.audio.playbackRate += 0.25;
+      // Notification
+      start.notifications("<span>Podcast Playback Rate</span> " + start.audio.playbackRate + "x");
+    },
+
+    // Podcast Slower Playback
+    podcast_less_speed: function () {
+      start.audio.playbackRate -= 0.25;
+      // Notification
+      start.notifications("<span>Podcast Playback Rate</span> " + start.audio.playbackRate + "x");
+    },
+
     // Podcast Timer
     podcast_time: function () {
       setInterval(function () {
@@ -596,7 +640,14 @@
         const seconds = Math.floor(time_remaining % 60);
         const padded_time = seconds < 10 ? '0' + seconds : seconds;
         // Update Time
-        $(".podcasts-replace").text(minutes + ':' + padded_time);
+        if (seconds) {
+          $(".podcasts-replace").text(minutes + ':' + padded_time);
+        } else {
+          $(".podcasts-replace").text('0:00');
+        }
+        start.audio.addEventListener("ended", function() {
+          $(".podcasts").removeClass("shown");
+        });
       }, 500);
     },
 
