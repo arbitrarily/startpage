@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.10",
+    version: "1.10.11",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -130,11 +130,6 @@
 
       // Get Last FM Now Playing
       this.lastfm();
-
-      // Rerun LastFM Script Every 3 Minutes
-      if (!start.audio.playing) {
-        setInterval(start.lastfm, 1000 * 60 * 3)
-      }
 
       // Get Latest Instapaper Articles
       this.instapaper();
@@ -447,8 +442,10 @@
               $.when(start.pageviews).then(function () {
                 setTimeout(function () {
                   var number_string = start.format_numb(count).trim().toString();
-                  $(".songs-replace").text(number_string);
-                  $(".songs").addClass("shown");
+                  if (!start.audio.playing) {
+                    $(".songs-replace").text(number_string);
+                    $(".songs").addClass("shown");
+                  }
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
