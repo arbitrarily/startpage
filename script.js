@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.20",
+    version: "1.10.21",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -663,28 +663,28 @@
     podcast_rewind: function () {
       start.audio.currentTime -= 5;
       // Notification
-      start.notifications("<span>Podcast</span> Rewind <span>-5 seconds</span>");
+      start.notifications("<span>Audio</span> Rewind <span>-5 seconds</span>");
     },
 
     // Podcast Fast Forward
     podcast_fast_forward: function () {
       start.audio.currentTime += 15;
       // Notification
-      start.notifications("<span>Podcast</span> Fast Forward <span>+15 seconds</span>");
+      start.notifications("<span>Audio</span> Fast Forward <span>+15 seconds</span>");
     },
 
     // Podcast Faster Playback
     podcast_more_speed: function () {
       start.audio.playbackRate += 0.25;
       // Notification
-      start.notifications("<span>Podcast</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
+      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Slower Playback
     podcast_less_speed: function () {
       start.audio.playbackRate -= 0.25;
       // Notification
-      start.notifications("<span>Podcast</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
+      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Timer
