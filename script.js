@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.16",
+    version: "1.10.17",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -448,7 +448,6 @@
                   var number_string = start.format_numb(count).trim().toString();
                   $(".songs-replace").text(number_string);
                   $(".songs").addClass("shown");
-                  console.log("\n");
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
@@ -607,7 +606,7 @@
         const podcast = $(this);
         $(".podcasts").addClass("shown");
         if (podcast.attr("href").indexOf(".mp3") > -1) {
-          start.audio.src = $(this).attr("href");
+          start.audio.src = podcast.attr("href");
           // Play the Podcasts Slightly Faster
           start.audio.playbackRate = 1.25;
           // Stop Other Audio
@@ -619,7 +618,7 @@
           start.podcast_time();
         }
         // Notification
-        start.notifications("<span>Now Playing</span> " + $(this).text().trim().slice(0, 75) + "...");
+        start.notifications("<span>Now Playing</span> " + podcast.text().trim().slice(0, 75) + "...");
         // Change Artwork
         const pod_data = {
           id: '',
@@ -642,28 +641,28 @@
     podcast_rewind: function () {
       start.audio.currentTime -= 5;
       // Notification
-      start.notifications("<span>Podcast</span> Rewind -5 seconds");
+      start.notifications("<span>Podcast</span> Rewind <span>-5 seconds</span>");
     },
 
     // Podcast Fast Forward
     podcast_fast_forward: function () {
       start.audio.currentTime += 15;
       // Notification
-      start.notifications("<span>Podcast</span> Fast Forward +10 seconds");
+      start.notifications("<span>Podcast</span> Fast Forward <span>+15 seconds</span>");
     },
 
     // Podcast Faster Playback
     podcast_more_speed: function () {
       start.audio.playbackRate += 0.25;
       // Notification
-      start.notifications("<span>Podcast</span> Playback Rate " + start.audio.playbackRate + "x");
+      start.notifications("<span>Podcast</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Slower Playback
     podcast_less_speed: function () {
       start.audio.playbackRate -= 0.25;
       // Notification
-      start.notifications("<span>Podcast</span> Playback Rate " + start.audio.playbackRate + "x");
+      start.notifications("<span>Podcast</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Timer
@@ -740,6 +739,7 @@
                 $(".counter").addClass("shown");
                 console.log("\n");
                 console.log("Page Views    : " + start.pageviews);
+                console.log("\n");
               }, start.animation_time * 2);
             }
           })
