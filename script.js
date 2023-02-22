@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.21",
+    version: "1.10.22",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -345,6 +345,10 @@
           if (start.down[78]) {
             start.invert();
           }
+          // Color Doge - "m" Key
+          if (start.down[77]) {
+            start.color_dodge();
+          }
           // Invert Colors - "f12" Key
           if (start.down[123]) {
             start.play_x();
@@ -486,6 +490,14 @@
           }
         }
       });
+    },
+
+    // Color Dodge Effect
+    color_dodge: function () {
+      $(".container").toggleClass("colordodge");
+      const toggled = ($(".container").hasClass("colordodge")) ? " On" : " Off";
+      // Notification
+      start.notifications("<span>Color Dodge</span>" + toggled);
     },
 
     // Change LastFM Artwork
