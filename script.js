@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.18",
+    version: "1.10.19",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -223,9 +223,9 @@
             // Notification
             start.notifications("<span>Feed Switched to</span> Instapaper");
           }
-          // Techmeme
+          // News
           if (start.down[50]) { // shift + 2
-            start.techmeme();
+            start.news();
           }
           // New York Times
           if (start.down[51]) { // shift + 3
@@ -534,12 +534,12 @@
       });
     },
 
-    // Techmeme Home Feed
-    techmeme: function () {
+    // News Home Feed
+    news: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.techmemeURL);
         // Notification
-        start.notifications("<span>Feed Switched to</span> Techmeme");
+        start.notifications("<span>Feed Switched to</span> All News");
       });
     },
 
