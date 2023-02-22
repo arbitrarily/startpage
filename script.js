@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.12",
+    version: "1.10.13",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -354,11 +354,12 @@
 
     // Notifications
     notifications: function (text) {
+      // prevent stacking notifications
       const noti = $(".notifications");
       noti.removeClass("hidden").html(text);
       setTimeout(function () {
         noti.addClass("hidden");
-      }, start.animation_time * 4);
+      }, start.animation_time * 6);
     },
 
     // Invert Colors
@@ -426,7 +427,7 @@
           const msg = ip.ip + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
           $(".ip div").addClass("shown");
-          console.log("---");
+          console.log("\n");
           console.log("IPv4          : " + msg);
         }).catch(error => {
           $(".ip").hide();
@@ -447,6 +448,7 @@
                   var number_string = start.format_numb(count).trim().toString();
                   $(".songs-replace").text(number_string);
                   $(".songs").addClass("shown");
+                  console.log("\n");
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
@@ -617,7 +619,7 @@
           start.podcast_time();
         }
         // Notification
-        start.notifications("<span>Now Playing</span> " + $(this).text().trim().slice(0, 60) + "...");
+        start.notifications("<span>Now Playing</span> " + $(this).text().trim().slice(0, 75) + "...");
         // Change Artwork
         const pod_data = {
           id: '',
@@ -630,7 +632,8 @@
         start.change_lastfm_artwork(pod_data);
       });
       // Pause on Click of Timer
-      $(document).on("click", ".podcasts", function (e) {
+      $(document).on(start.touch, ".podcasts", function (e) {
+        e.preventDefault();
         start.podcast_toggle();
       });
     },
@@ -678,23 +681,48 @@
         start.audio.addEventListener("ended", function () {
           $(".podcasts-replace").text('0:00');
           $(".podcasts").removeClass("shown");
+          // Notification
+          start.notifications("<span>Podcast</span> Finished");
         });
       }, 500);
     },
 
     // Pause Podcast
     podcast_toggle: function () {
-      if (start.audio.paused) {
-        start.audio.play();
-        // Timer
-        start.podcast_time();
-        // Notification
-        start.notifications("<span>Podcast</span> Playing");
-      } else {
-        start.audio.pause();
+      let current_vol = start.audio.volume;
+      // Determine Step Size For Fading In / Out
+      let stepSize = 0.05;
+      if (!start.audio.paused) {
+        stepSize *= -1;
         // Notification
         start.notifications("<span>Podcast</span> Paused");
+      } else {
+        // Rewind 2 seconds
+        start.audio.currentTime = start.audio.currentTime - 2;
+        // Notification
+        start.notifications("<span>Podcast</span> Playing");
       }
+      // Fader
+      let fader = setInterval(function () {
+        // Calculate New Volume Based On Step Size
+        current_vol += stepSize;
+        // No weird numbers
+        current_vol = Math.max(0, Math.min(1, current_vol));
+        // Update Volume
+        start.audio.volume = current_vol;
+        // Pause
+        if (current_vol <= 0) {
+          start.audio.pause();
+        }
+        // Play
+        if (current_vol >= 1) {
+          start.audio.play();
+        }
+        // Stop Fader
+        if (current_vol <= 0 || current_vol >= 1) {
+          clearInterval(fader);
+        }
+      }, 1000 / 25);
     },
 
     // Page View Counter
@@ -710,7 +738,7 @@
                 start.pageviews = number.trim().toString();
                 $(".counter-replace").text(start.pageviews);
                 $(".counter").addClass("shown");
-                console.log("---");
+                console.log("\n");
                 console.log("Page Views    : " + start.pageviews);
               }, start.animation_time * 2);
             }
@@ -741,7 +769,7 @@
                 $(".wallet").addClass("shown");
               }, start.animation_time);
               // Console Log Details
-              console.log("---");
+              console.log("\n");
               console.log("Balance       : " + "Ξ " + start.balance.toString());
               console.log("1 Day Diff    : " + response["ETH"]["price"]["diff"].toString() + "%");
               console.log("7 Day Diff    : " + response["ETH"]["price"]["diff7d"].toString() + "%");
@@ -820,7 +848,7 @@
     // Font Family
     font_family: function () {
       $.when(start.conf).then(function () {
-        console.log("---");
+        console.log("\n");
         console.log("Font Family   : " + $("body").css("font-family"));
       });
     }
