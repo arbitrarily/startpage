@@ -338,7 +338,8 @@ li {
     align-items: flex-start;
 }
 
-.podcast-links .container__list span {
+.podcast-links .container__list span,
+.techmeme-links .container__list span {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
