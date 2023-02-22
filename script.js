@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.19",
+    version: "1.10.20",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -345,6 +345,10 @@
           if (start.down[78]) {
             start.invert();
           }
+          // Invert Colors - "f12" Key
+          if (start.down[123]) {
+            start.play_x();
+          }
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
@@ -599,6 +603,24 @@
       });
     },
 
+    // Play X
+    play_x: function () {
+      const x = Math.floor(Math.random() * 5) + 1;
+      start.audio.src = start.conf.xURL + x + ".mp3";
+      // Stop Other Audio
+      if (start.audio.playing) {
+        start.audio.pause();
+      }
+      start.audio.playbackRate = 1;
+      start.audio.play();
+      // Timer
+      // when the audio is playing, update the timer
+      $(".podcasts").addClass("shown");
+      start.podcast_time();
+      // Notification
+      start.notifications("<span>Secret</span> Song");
+    },
+
     // Play Podcast
     play_podcast: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
@@ -694,12 +716,12 @@
       if (!start.audio.paused) {
         stepSize *= -1;
         // Notification
-        start.notifications("<span>Podcast</span> Paused");
+        start.notifications("<span>Audio</span> Paused");
       } else {
         // Rewind 2 seconds
         start.audio.currentTime = start.audio.currentTime - 2;
         // Notification
-        start.notifications("<span>Podcast</span> Playing");
+        start.notifications("<span>Audio</span> Playing");
       }
       // Fader
       let fader = setInterval(function () {
