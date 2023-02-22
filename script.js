@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.15",
+    version: "1.10.16",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -638,32 +638,32 @@
       });
     },
 
-    // Podcast Fast Forward
+    // Podcast Rewind
     podcast_rewind: function () {
       start.audio.currentTime -= 5;
       // Notification
-      start.notifications("<span>Podcast Fast Forward</span> -5 seconds");
+      start.notifications("<span>Podcast</span> Rewind -5 seconds");
     },
 
     // Podcast Fast Forward
     podcast_fast_forward: function () {
       start.audio.currentTime += 15;
       // Notification
-      start.notifications("<span>Podcast Fast Forward</span> +10 seconds");
+      start.notifications("<span>Podcast</span> Fast Forward +10 seconds");
     },
 
     // Podcast Faster Playback
     podcast_more_speed: function () {
       start.audio.playbackRate += 0.25;
       // Notification
-      start.notifications("<span>Podcast Playback Rate</span> " + start.audio.playbackRate + "x");
+      start.notifications("<span>Podcast</span> Playback Rate " + start.audio.playbackRate + "x");
     },
 
     // Podcast Slower Playback
     podcast_less_speed: function () {
       start.audio.playbackRate -= 0.25;
       // Notification
-      start.notifications("<span>Podcast Playback Rate</span> " + start.audio.playbackRate + "x");
+      start.notifications("<span>Podcast</span> Playback Rate " + start.audio.playbackRate + "x");
     },
 
     // Podcast Timer
