@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.24",
+    version: "1.10.25",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -235,9 +235,9 @@
           if (start.down[52]) { // shift + 4
             start.reddit();
           }
-          // NFTs
+          // podcasts
           if (start.down[53]) { // shift + 5
-            start.nfts();
+            start.podcasts();
           }
           // Lexichronic
           if (start.down[54]) { // shift + 6
@@ -247,9 +247,9 @@
           if (start.down[55]) { // shift + 7
             start.poe();
           }
-          // Podcasts
+          // NFTs
           if (start.down[56]) { // shift + 8
-            start.podcasts();
+            start.nfts();
           }
           // Fast Podcast Forward
           if (start.down[39]) { // shift + ➡
