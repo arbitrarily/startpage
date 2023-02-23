@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.23",
+    version: "1.10.24",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -716,6 +716,8 @@
           $(".podcasts").removeClass("shown");
           // Notification
           start.notifications("<span>Podcast</span> Finished");
+          // Reset Audio
+          start.audio = new Audio();
         });
       }, 500);
     },
