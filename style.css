@@ -80,33 +80,6 @@ body.vaal,
     cursor: var(--cursor);
 }
 
-body.invert {
-    background: var(--white) !important;
-    filter: invert(100%);
-}
-
-body.invert img:not(.search) {
-    filter: invert(100%);
-}
-
-body.invert .ip img,
-body.invert .stats img {
-    filter: invert(0);
-}
-
-body.invert .container__list--full-item.container__list--current::before {
-    filter: invert(100%) grayscale(0);
-}
-
-body.invert img.background-image {
-    filter: invert(100%) blur(75px);
-}
-
-body.invert img.background-image.deblur {
-    filter: invert(100%) blur(0);
-    opacity: 1;
-}
-
 * {
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);

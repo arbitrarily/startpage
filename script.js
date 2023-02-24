@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.25",
+    version: "1.10.26",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -341,10 +341,6 @@
           if (start.down[66]) {
             start.toggle_blur();
           }
-          // Invert Colors - "n" Key
-          if (start.down[78]) {
-            start.invert();
-          }
           // Color Doge - "m" Key
           if (start.down[77]) {
             start.color_dodge();
@@ -368,14 +364,6 @@
       setTimeout(function () {
         noti.addClass("hidden");
       }, start.animation_time * 6);
-    },
-
-    // Invert Colors
-    invert: function () {
-      $("body").toggleClass("invert");
-      // Notification
-      const status = ($("body").hasClass("invert")) ? " Light" : " Dark";
-      start.notifications("<span>Toggled</span> " + status + " <span>Mode</span>");
     },
 
     // Load Background Image
