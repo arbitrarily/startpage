@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.27",
+    version: "1.10.28",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -605,16 +605,15 @@
 
     // Play X
     play_x: function () {
-      const x = start.numb(1, 5);
-      start.audio.src = start.conf.xURL + x + ".mp3";
       // Stop Other Audio
       if (start.audio.playing) {
         start.audio.pause();
       }
+      const x = start.numb(1, 5);
+      start.audio.src = start.conf.xURL + x + ".mp3";
       start.audio.playbackRate = 1;
       start.audio.play();
       // Timer
-      // when the audio is playing, update the timer
       $(".podcasts").addClass("shown");
       start.podcast_time();
       // Notification
