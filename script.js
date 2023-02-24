@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.28",
+    version: "1.10.29",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -506,7 +506,12 @@
       }
       // Show Now Playing
       $(".lastfm__container").show();
-      $(".lastfm__url").attr("href", data['link']).addClass("shown");
+      // Dead the Link if a Podcast
+      if (data['link']) {
+        $(".lastfm__url").attr("href", data['link']).addClass("shown");
+      } else {
+        $(".lastfm__url").attr("href", "#").addClass("shown");
+      }
     },
 
     // Replace News
@@ -634,7 +639,10 @@
           if (start.audio.playing) {
             start.audio.pause();
           }
+          // Play
           start.audio.play();
+          // Resize LastFM
+          start.resize_lastfm(podcast.data('title'));
           // Timer
           start.podcast_time();
         }
@@ -849,6 +857,18 @@
       // Notification
       const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
       start.notifications("<span>News Resized</span>" + status);
+    },
+
+    // Resize LastFM
+    resize_lastfm: function (string) {
+      const lastfm = $(".lastfm__container");
+      if (string.length < 80 && string.length > 45) {
+        if (lastfm.hasClass("large-offset-2")) {
+          lastfm.addClass("large-offset-3").removeClass("large-offset-2");
+        }
+      } else {
+        lastfm.removeClass("large-offset-3").addClass("large-offset-2");
+      }
     },
 
     // Animation on Leave
