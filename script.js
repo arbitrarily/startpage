@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.26",
+    version: "1.10.27",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -605,7 +605,7 @@
 
     // Play X
     play_x: function () {
-      const x = Math.floor(Math.random() * 5) + 1;
+      const x = start.numb(1, 5);
       start.audio.src = start.conf.xURL + x + ".mp3";
       // Stop Other Audio
       if (start.audio.playing) {
@@ -618,7 +618,7 @@
       $(".podcasts").addClass("shown");
       start.podcast_time();
       // Notification
-      start.notifications("<span>Secret</span> Song");
+      start.notifications("Now Playing <span>Secret</span> Song #" + x);
     },
 
     // Play Podcast
