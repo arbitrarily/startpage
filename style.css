@@ -192,10 +192,6 @@ a:focus img {
     padding: var(--padding);
 }
 
-.container.colordodge {
-    mix-blend-mode: color-dodge;
-}
-
 @media screen and (var(--small)) {
     .container {
         padding: calc(var(--padding) * 3) var(--padding);
