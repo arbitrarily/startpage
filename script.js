@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.34",
+    version: "1.10.35",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -126,7 +126,7 @@
       setInterval(start.lastfm, 1000 * 60 * 3)
 
       // Get Latest Instapaper Articles
-      this.instapaper();
+      this.instapaper(true);
 
       // Output into Console
       this.console_log();
@@ -445,7 +445,7 @@
             setTimeout(function () {
               $(".instapaper-links").addClass("shown");
             }, 1000);
-            start.notifications("<span>Feed Switched to</span> " + source);
+            if (source) start.notifications("<span>Feed Switched to</span> " + source);
           }
         })
         .catch(function (err) {
@@ -454,8 +454,9 @@
     },
 
     // Instapaper Home Feed
-    instapaper: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.instapaperURL, "Instapaper"));
+    instapaper: function (skip) {
+      const skipper = skip ? false : "Instapaper"
+      $.when(start.conf).then(start.fetch_news(start.conf.instapaperURL, skipper));
     },
 
     // News Home Feed
