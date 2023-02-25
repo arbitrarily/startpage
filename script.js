@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.33",
+    version: "1.10.34",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -149,13 +149,11 @@
 
     // Load Config, then Init
     load_config: function () {
-      $.getJSON("./conf.json", function (d) {
+      $.getJSON("./conf.json", function (conf) {
         // Store Config
-        start.conf = d;
+        start.conf = conf;
         // Init
-        $.when(start.conf).then(function () {
-          start.init();
-        });
+        $.when(start.conf).then(start.init());
       }).fail(function () {
         $(".instapaper-links").addClass("shown");
       });
@@ -207,55 +205,30 @@
         // Left Shift
         if (start.down[16]) {
           e.preventDefault();
-          // Instapaper
-          if (start.down[49]) { // shift + 1
-            start.instapaper();
-            start.notifications("<span>Feed Switched to</span> Instapaper");
-          }
-          // News
-          if (start.down[50]) { // shift + 2
-            start.news();
-          }
-          // New York Times
-          if (start.down[51]) { // shift + 3
-            start.nyt();
-          }
-          // Reddit
-          if (start.down[52]) { // shift + 4
-            start.reddit();
-          }
-          // podcasts
-          if (start.down[53]) { // shift + 5
-            start.podcasts();
-          }
-          // Lexichronic
-          if (start.down[54]) { // shift + 6
-            start.lexichronic();
-          }
-          // Path of Exile Characters
-          if (start.down[55]) { // shift + 7
-            start.poe();
-          }
-          // NFTs
-          if (start.down[56]) { // shift + 8
-            start.nfts();
-          }
-          // Fast Podcast Forward
-          if (start.down[39]) { // shift + ➡
-            start.podcast_fast_forward();
-          }
-          // Fast Podcast Forward
-          if (start.down[37]) { // shift + ⬅
-            start.podcast_rewind();
-          }
-          // Faster Podcast Playback
-          if (start.down[38]) { // shift + ⬆
-            start.podcast_more_speed();
-          }
-          // Slower Podcast Playback
-          if (start.down[40]) { // shift + ⬇
-            start.podcast_less_speed();
-          }
+          // Instapaper - shift + 1
+          if (start.down[49]) start.instapaper();
+          // News - shift + 2
+          if (start.down[50]) start.news();
+          // New York Times - shift + 3
+          if (start.down[51]) start.nyt();
+          // Reddit - shift + 4
+          if (start.down[52]) start.reddit();
+          // podcasts - shift + 5
+          if (start.down[53]) start.podcasts();
+          // Lexichronic - shift + 6
+          if (start.down[54]) start.lexichronic();
+          // Path of Exile Characters - shift + 7
+          if (start.down[55]) start.poe();
+          // NFTs - shift + 8
+          if (start.down[56]) start.nfts();
+          // Fast Podcast Forward - shift + ➡
+          if (start.down[39]) start.podcast_fast_forward();
+          // Fast Podcast Forward - shift + ⬅
+          if (start.down[37]) start.podcast_rewind();
+          // Faster Podcast Playback - shift + ⬆
+          if (start.down[38]) start.podcast_more_speed();
+          // Slower Podcast Playback - shift + ⬇
+          if (start.down[40]) start.podcast_less_speed();
         }
         // Alt/Option
         if (start.down[18]) {
@@ -294,42 +267,26 @@
             start.count = 9;
           }
           // Switch Search
-          if (search) {
-            start.switcher(search);
-          }
+          if (search) start.switcher(search);
           // Toggle Cursor - Backspace
-          if (start.down[8]) {
-            start.toggle_cursor();
-          }
+          if (start.down[8]) start.toggle_cursor();
           // Resize News - Right Bracket
-          if (start.down[221]) {
-            start.resize_news();
-          }
+          if (start.down[221]) start.resize_news();
           // Play/Pause Podcasts - "z" Key
-          if (start.down[90]) {
-            start.podcast_toggle();
-          }
+          if (start.down[90]) start.podcast_toggle();
           // Update LastFM - "x" Key
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
           // Hide Animated Background - "c" Key
-          if (start.down[67]) {
-            start.toggle_background();
-          }
+          if (start.down[67]) start.toggle_background();
           // Refresh Background Image - "v" Key
-          if (start.down[86]) {
-            start.background();
-          }
+          if (start.down[86]) start.background();
           // Blur - "b" Key
-          if (start.down[66]) {
-            start.toggle_blur();
-          }
+          if (start.down[66]) start.toggle_blur();
           // X "f12" Key
-          if (start.down[123]) {
-            start.play_x();
-          }
+          if (start.down[123]) start.play_x();
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
@@ -371,8 +328,9 @@
 
     // Toggle Animated Background
     toggle_background: function () {
-      ($(".background").hasClass("hidden")) ? $(".background").toggleClass("hidden").html(start.background_html) : $(".background").toggleClass("hidden").html("");
-      const status = ($(".background").hasClass("hidden")) ? " Off" : " On";
+      const bg = $(".background");
+      bg.hasClass("hidden") ? bg.toggleClass("hidden").html(start.background_html) : bg.toggleClass("hidden").html("");
+      const status = (bg.hasClass("hidden")) ? " Off" : " On";
       start.notifications("<span>Background Animation</span>" + status);
     },
 
@@ -396,7 +354,7 @@
         .then(res => res)
         .then(ip => {
           const region = (ip.country === "US") ? ip.region : ip.country;
-          const msg = ip.ip + " - " + ip.city.slice(0, 18) + ", " + region.slice(0, 5);
+          const msg = ip.ip.slice(0, 16) + " - " + ip.city.slice(0, 18) + ", " + region.slice(0, 5);
           $(".ip-replace").text(msg);
           $(".ip div").addClass("shown");
           console.log("\n");
@@ -443,7 +401,6 @@
             $(".lastfm__container").hide();
             start.version_number();
           });
-
         // Format Output
         function _map_it(song) {
           return {
@@ -463,29 +420,18 @@
       // Assign Data to Placeholders
       $(".lastfm__artist").text(data['artist']).attr("title", "Artist: " + data['artist']);
       $(".lastfm__song").text(data['name']).attr("title", "Song: " + data['name']);
-      if (data['album'] != "") {
-        $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']);
-      } else {
-        $(".lastfm__album").text("");
-      }
+      // Album
+      data['album'] != "" ? $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']) : $(".lastfm__album").text("");
       // Album Image
-      if (data['image'] != "") {
-        $(".lastfm__image").attr("src", data['image']).show();
-      } else {
-        $(".lastfm__image").hide();
-      }
+      data['image'] != "" ? $(".lastfm__image").attr("src", data['image']).show() : $(".lastfm__image").hide();
       // Show Now Playing
       $(".lastfm__container").show();
       // Dead the Link if a Podcast
-      if (data['link']) {
-        $(".lastfm__url").attr("href", data['link']).addClass("shown");
-      } else {
-        $(".lastfm__url").attr("href", "#").addClass("shown");
-      }
+      data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass("shown") : $(".lastfm__url").attr("href", "#").addClass("shown");
     },
 
     // Replace News
-    fetch_news: function (url) {
+    fetch_news: function (url, source) {
       fetch(url + '?t=' + start.timestamp)
         .then(function (response) {
           $(".instapaper-links").removeClass('shown');
@@ -499,6 +445,7 @@
             setTimeout(function () {
               $(".instapaper-links").addClass("shown");
             }, 1000);
+            start.notifications("<span>Feed Switched to</span> " + source);
           }
         })
         .catch(function (err) {
@@ -508,64 +455,43 @@
 
     // Instapaper Home Feed
     instapaper: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.instapaperURL);
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.instapaperURL, "Instapaper"));
     },
 
     // News Home Feed
     news: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.techmemeURL);
-        start.notifications("<span>Feed Switched to</span> All News");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.techmemeURL, "All News"));
     },
 
     // NYT Home Feed
     nyt: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.nytURL);
-        start.notifications("<span>Feed Switched to</span> New York Times");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.nytURL, "New York Times"));
     },
 
     // Reddit Home Feed
     reddit: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.redditURL);
-        start.notifications("<span>Feed Switched to</span> Reddit");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.redditURL, "Reddit"));
     },
 
     // NFTs Home Feed
     nfts: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.alchemyURL);
-        start.notifications("<span>Feed Switched to</span> NFTs");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.alchemyURL, "NFTs"));
     },
 
     // Lexichronic Home Feed
     lexichronic: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.lexiURL);
-        start.notifications("<span>Feed Switched to</span> Lexichronic");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.lexiURL, "Lexichronic"));
     },
 
     // Path of Exile Home Feed
     poe: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.poeURL);
-        start.notifications("<span>Feed Switched to</span> Path of Exile");
-      });
+      $.when(start.conf).then(start.fetch_news(start.conf.poeURL, "Path of Exile"));
     },
 
     // Podcasts Home Feed
     podcasts: function () {
       $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.podURL);
-        start.notifications("<span>Feed Switched to</span> Podcasts");
+        start.fetch_news(start.conf.podURL, "Podcasts");
         // Play Podcasts
         start.play_podcast();
       });
@@ -596,9 +522,7 @@
           // Play the Podcasts Slightly Faster
           start.audio.playbackRate = 1.25;
           // Stop Other Audio
-          if (start.audio.playing) {
-            start.audio.pause();
-          }
+          if (start.audio.playing) start.audio.pause();
           // Play
           start.audio.play();
           // Resize LastFM
@@ -672,10 +596,9 @@
     // Pause Podcast
     podcast_toggle: function () {
       let current_vol = start.audio.volume;
-      // Determine Step Size For Fading In / Out
-      let stepSize = 0.05;
+      let step_size = 0.05;
       if (!start.audio.paused) {
-        stepSize *= -1;
+        step_size *= -1;
         start.notifications("<span>Audio</span> Paused");
       } else {
         // Rewind 2 seconds
@@ -685,23 +608,17 @@
       // Fader
       let fader = setInterval(function () {
         // Calculate New Volume Based On Step Size
-        current_vol += stepSize;
+        current_vol += step_size;
         // No weird numbers
         current_vol = Math.max(0, Math.min(1, current_vol));
         // Update Volume
         start.audio.volume = current_vol;
         // Pause
-        if (current_vol <= 0) {
-          start.audio.pause();
-        }
+        if (current_vol <= 0) start.audio.pause();
         // Play
-        if (current_vol >= 1) {
-          start.audio.play();
-        }
+        if (current_vol >= 1) start.audio.play();
         // Stop Fader
-        if (current_vol <= 0 || current_vol >= 1) {
-          clearInterval(fader);
-        }
+        if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
     },
 
@@ -766,13 +683,8 @@
     // Change Search on Click
     change_search: function () {
       // Click Search to Toggle Targeting
-      $("#searchform label").on(this.touch, function () {
-        var s = $("#search");
-        if (start.count < start.searches.length - 1) {
-          start.count++;
-        } else {
-          start.count = 0;
-        }
+      $("#searchform label").on(start.touch, function () {
+        start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
         // Switch Search
         start.switcher(start.searches[start.count]);
       });
@@ -782,9 +694,7 @@
     click_focus_search: function () {
       // Focus Search if Clicking Anything Not a Link or Input
       $(document).on(start.touch, function (e) {
-        if (e.target.tagName !== "A" && e.target.tagName !== "INPUT") {
-          start.focus_search();
-        }
+        if (e.target.tagName !== "A" && e.target.tagName !== "INPUT") start.focus_search();
       });
       // Focus Out Remove Styling for Search
       $("#search").on("focusout", function () {
@@ -801,7 +711,6 @@
 
     // Resize
     resize_news: function () {
-      // Keep Both Large Classes for Smoothness
       $(".cell.small-12.large-4.instapaper-links.shown").toggleClass("large-6");
       const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
       start.notifications("<span>News Resized</span>" + status);
@@ -833,7 +742,7 @@
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
       );
-      console.log("Build Version : " + this.version);
+      console.log("Build Version : " + start.version);
     },
 
     // Version
@@ -845,10 +754,7 @@
 
     // Font Family
     font_family: function () {
-      $.when(start.conf).then(function () {
-        console.log("\n");
-        console.log("Font Family   : " + $("body").css("font-family"));
-      });
+      $.when(start.conf).then(console.log("\nFont Family   : " + $("body").css("font-family")));
     }
 
   };
