@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.38",
+    version: "1.10.39",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -306,7 +306,7 @@
           setTimeout(function () {
             noti.addClass("hidden");
             resolve();
-          }, start.animation_time * 6);
+          }, start.animation_time * 4);
         });
       });
     },
