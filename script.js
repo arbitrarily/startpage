@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.39",
+    version: "1.10.40",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -590,7 +590,16 @@
         const seconds = Math.floor(time_remaining % 60);
         const padded_time = seconds < 10 ? '0' + seconds : seconds;
         // Update Time
-        if (seconds) $(".podcasts-replace").text(minutes + ':' + padded_time);
+        if (seconds) {
+          $(".podcasts-replace").text(minutes + ':' + padded_time);
+          if ($(".container .progress").width() > 46) {
+            $(".container .progress").css('width', "calc( " + (start.audio.currentTime / start.audio.duration) * 100 + '%' + " - 46px )");
+          } else {
+            let width = (start.audio.currentTime / start.audio.duration) * 100;
+            if (width < 1) width = 1;
+            $(".container .progress").css('width', width + '%');
+          }
+        }
         // When Podcast Ends
         start.audio.addEventListener("ended", function () {
           $(".podcasts-replace").text('0:00');

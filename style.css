@@ -184,6 +184,18 @@ a:focus img {
     transition: var(--animation);
 }
 
+.container .progress {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 46px;
+    width: 0;
+    height: 100%;
+    border-radius: 8px;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .grid-container {
     max-width: 88rem;
 }
@@ -386,6 +398,7 @@ li {
 }
 
 .container form {
+    position: relative;
     display: flex;
     width: 100%;
     opacity: var(--opacity-start);
