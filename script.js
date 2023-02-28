@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.36",
+    version: "1.10.38",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -20,6 +20,9 @@
 
     // Pageviews
     pageviews: false,
+
+    // Promise
+    promise: Promise.resolve(),
 
     // Wallet Balance
     balance: false,
@@ -297,10 +300,15 @@
     // Notifications
     notifications: function (text) {
       const noti = $(".notifications");
-      noti.removeClass("hidden").html(text);
-      setTimeout(function () {
-        noti.addClass("hidden");
-      }, start.animation_time * 6);
+      start.promise = start.promise.then(function () {
+        return new Promise(function (resolve) {
+          noti.removeClass("hidden").html(text);
+          setTimeout(function () {
+            noti.addClass("hidden");
+            resolve();
+          }, start.animation_time * 6);
+        });
+      });
     },
 
     // Load Background Image
@@ -521,7 +529,7 @@
         if (podcast.attr("href").indexOf(".mp3") > -1) {
           start.audio.src = podcast.attr("href");
           // Play the Podcasts Slightly Faster
-          start.audio.playbackRate = 1.25;
+          start.audio.playbackRate = 1.3;
           // Stop Other Audio
           if (start.audio.playing) start.audio.pause();
           // Play
@@ -564,13 +572,13 @@
 
     // Podcast Faster Playback
     podcast_more_speed: function () {
-      start.audio.playbackRate += 0.25;
+      start.audio.playbackRate += 0.15;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Slower Playback
     podcast_less_speed: function () {
-      start.audio.playbackRate -= 0.25;
+      start.audio.playbackRate -= 0.15;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
