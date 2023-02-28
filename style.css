@@ -465,6 +465,8 @@ li {
     border-radius: 8px;
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 
 .lastfm__song {
