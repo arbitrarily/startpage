@@ -506,7 +506,11 @@ li {
 
 @media screen and (max-width: 40em) {
     .instapaper-list {
-        max-height: 390.4px;
+        max-height: 500px;
+    }
+
+    .lastfm__container {
+        margin-bottom: var(--padding);
     }
 
     .container {

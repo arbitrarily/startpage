@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.43",
+    version: "1.10.44",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -21,8 +21,9 @@
     // Pageviews
     pageviews: false,
 
-    // Promise
-    promise: Promise.resolve(),
+    // Shared Class Names
+    s: "shown",
+    h: "hidden",
 
     // Wallet Balance
     balance: false,
@@ -158,7 +159,7 @@
         // Init
         $.when(start.conf).then(start.init());
       }).fail(function () {
-        $(".instapaper-links").addClass("shown");
+        $(".instapaper-links").addClass(start.s);
       });
     },
 
@@ -299,10 +300,10 @@
     // Notifications
     notifications: function (text) {
       const noti = $(".notifications");
-      if (noti.hasClass("hidden")) noti.removeClass("hidden");
+      if (noti.hasClass(start.h)) noti.removeClass(start.h);
       noti.html(text);
       const timeout_id = setTimeout(function () {
-        noti.addClass("hidden");
+        noti.addClass(start.h);
       }, start.animation_time * 6);
       if (timeout_id) clearTimeout(start.timeout_id);
     },
@@ -311,11 +312,11 @@
     background: function () {
       const bg = $(".background-image");
       const num = start.numb(1, 291).toString().padStart(4, "0").toString();
-      bg.addClass("hidden");
+      bg.addClass(start.h);
       setTimeout(function () {
         bg.attr("src", "https://marko.tech/media/art/" + num + ".png");
         bg.one("load", function () {
-          bg.removeClass("hidden");
+          bg.removeClass(start.h);
         }).each(function () {
           if (this.complete) $(this).trigger('load');
         });
@@ -333,8 +334,8 @@
     // Toggle Animated Background
     toggle_background: function () {
       const bg = $(".background");
-      bg.hasClass("hidden") ? bg.toggleClass("hidden").html(start.background_html) : bg.toggleClass("hidden").html("");
-      const status = (bg.hasClass("hidden")) ? " Off" : " On";
+      bg.hasClass(start.h) ? bg.toggleClass(start.h).html(start.background_html) : bg.toggleClass(start.h).html("");
+      const status = (bg.hasClass(start.h)) ? " Off" : " On";
       start.notifications("<span>Background Animation</span>" + status);
     },
 
@@ -343,9 +344,9 @@
       $(window).bind("resize load", function () {
         const bg = $(".background");
         if (window.matchMedia("(min-width: 1024px)").matches) {
-          if (!bg.hasClass("hidden")) bg.addClass("hidden").html("");
+          if (!bg.hasClass(start.h)) bg.addClass(start.h).html("");
         } else {
-          if (bg.hasClass("hidden")) bg.removeClass("hidden").html(start.background_html);
+          if (bg.hasClass(start.h)) bg.removeClass(start.h).html(start.background_html);
           start.notifications("Toggled <span>Animated Background</span>");
         }
       });
@@ -358,9 +359,9 @@
         .then(res => res)
         .then(ip => {
           const region = (ip.country === "US") ? ip.region : ip.country;
-          const msg = ip.ip.slice(0, 16) + " - " + ip.city.slice(0, 18) + ", " + region.slice(0, 5);
+          const msg = ip.ip.slice(0, 16) + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
-          $(".ip div").addClass("shown");
+          $(".ip div").addClass(start.s);
           console.log("\n");
           console.log("IPv4          : " + msg);
         }).catch(error => {
@@ -381,7 +382,7 @@
                 setTimeout(function () {
                   var number_string = start.format_numb(count).trim().toString();
                   $(".songs-replace").text(number_string);
-                  $(".songs").addClass("shown");
+                  $(".songs").addClass(start.s);
                   console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
@@ -431,7 +432,7 @@
       // Show Now Playing
       $(".lastfm__container").show();
       // Dead the Link if a Podcast
-      data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass("shown") : $(".lastfm__url").attr("href", "#").addClass("shown");
+      data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass(start.s) : $(".lastfm__url").attr("href", "#").addClass(start.s);
     },
 
     // Replace News
@@ -447,7 +448,7 @@
               $(".instapaper-links").replaceWith(html);
             }, 600);
             setTimeout(function () {
-              $(".instapaper-links").addClass("shown");
+              $(".instapaper-links").addClass(start.s);
             }, 1000);
             if (source) start.notifications("<span>Feed Switched to</span> " + source);
           }
@@ -511,7 +512,7 @@
       start.audio.playbackRate = 1;
       start.audio.play();
       // Timer
-      $(".podcasts").addClass("shown");
+      $(".podcasts").addClass(start.s);
       start.podcast_time();
       start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + x);
     },
@@ -521,7 +522,7 @@
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
         const podcast = $(this);
-        $(".podcasts").addClass("shown");
+        $(".podcasts").addClass(start.s);
         if (podcast.attr("href").indexOf(".mp3") > -1) {
           start.audio.src = podcast.attr("href");
           // Play the Podcasts Slightly Faster
@@ -593,7 +594,7 @@
         // When Podcast Ends
         start.audio.addEventListener("ended", function () {
           $(".podcasts-replace").text('0:00');
-          $(".podcasts").removeClass("shown");
+          $(".podcasts").removeClass(start.s);
           $(".container .progress").css('width', '0%');
           start.notifications("<span>Podcast</span> Finished");
           // Reset Audio
@@ -643,7 +644,7 @@
               setTimeout(function () {
                 start.pageviews = number.trim().toString();
                 $(".counter-replace").text(start.pageviews);
-                $(".counter").addClass("shown");
+                $(".counter").addClass(start.s);
                 console.log("\n");
                 console.log("Page Views    : " + start.pageviews);
                 console.log("\n");
@@ -673,7 +674,7 @@
               // Show After Delay
               setTimeout(function () {
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
-                $(".wallet").addClass("shown");
+                $(".wallet").addClass(start.s);
               }, start.animation_time);
               // Console Log Details
               console.log("\n");
@@ -745,7 +746,7 @@
     // Version
     version_number: function () {
       setTimeout(function () {
-        $(".version-target").text(start.version).parent().addClass("shown");
+        $(".version-target").text(start.version).parent().addClass(start.s);
       }, start.animation_time * 4);
     },
 
