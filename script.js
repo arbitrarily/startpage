@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.44",
+    version: "1.11.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -33,6 +33,9 @@
 
     // Config
     conf: false,
+
+    // Art URL
+    art_url: false,
 
     // Search Inputs
     searches: [
@@ -156,6 +159,7 @@
       $.getJSON("./conf.json", function (conf) {
         // Store Config
         start.conf = conf;
+        start.art_url = conf.artThumbURL;
         // Init
         $.when(start.conf).then(start.init());
       }).fail(function () {
@@ -208,87 +212,89 @@
         // Left Shift
         if (start.down[16]) {
           e.preventDefault();
-          // Instapaper - shift + 1
+          // Instapaper (shift + 1)
           if (start.down[49]) start.instapaper();
-          // News - shift + 2
+          // News (shift + 2)
           if (start.down[50]) start.news();
-          // New York Times - shift + 3
+          // New York Times (shift + 3)
           if (start.down[51]) start.nyt();
-          // Reddit - shift + 4
+          // Reddit (shift + 4)
           if (start.down[52]) start.reddit();
-          // podcasts - shift + 5
+          // Podcasts (shift + 5)
           if (start.down[53]) start.podcasts();
-          // Lexichronic - shift + 6
+          // Lexichronic (shift + 6)
           if (start.down[54]) start.lexichronic();
-          // Path of Exile Characters - shift + 7
+          // Path of Exile Characters (shift + 7)
           if (start.down[55]) start.poe();
-          // NFTs - shift + 8
+          // NFTs (shift + 8)
           if (start.down[56]) start.nfts();
-          // Fast Podcast Forward - shift + ➡
+          // Audio: Fast Forward (shift + :arrow_right:)
           if (start.down[39]) start.podcast_fast_forward();
-          // Fast Podcast Forward - shift + ⬅
+          // Audio: Rewind (shift + :arrow_left:)
           if (start.down[37]) start.podcast_rewind();
-          // Faster Podcast Playback - shift + ⬆
+          // Audio: Increased Playback Speed (shift + :arrow_up:)
           if (start.down[38]) start.podcast_more_speed();
-          // Slower Podcast Playback - shift + ⬇
+          // Audio: Decreased Playback Speed (shift + :arrow_down:)
           if (start.down[40]) start.podcast_less_speed();
+          // Audio: Play/Pause Podcasts ("space" Key)
+          if (start.down[32]) start.podcast_toggle();
         }
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
           let search = false;
           // Alt Modifiers
-          if (start.down[49]) { // alt + 1
+          if (start.down[49]) { // (alt + 1)
             search = start.searches[0];
             start.count = 0;
-          } else if (start.down[50]) { // alt + 2
+          } else if (start.down[50]) { // (alt + 2)
             search = start.searches[1];
             start.count = 1;
-          } else if (start.down[51]) { // alt + 3
+          } else if (start.down[51]) { // (alt + 3)
             search = start.searches[2];
             start.count = 2;
-          } else if (start.down[52]) { // alt + 4
+          } else if (start.down[52]) { // (alt + 4)
             search = start.searches[3];
             start.count = 3;
-          } else if (start.down[53]) { // alt + 5
+          } else if (start.down[53]) { // (alt + 5)
             search = start.searches[4];
             start.count = 4;
-          } else if (start.down[54]) { // alt + 6
+          } else if (start.down[54]) { // (alt + 6)
             search = start.searches[5];
             start.count = 5;
-          } else if (start.down[55]) { // alt + 7
+          } else if (start.down[55]) { // (alt + 7)
             search = start.searches[6];
             start.count = 6;
-          } else if (start.down[56]) { // alt + 8
+          } else if (start.down[56]) { // (alt + 8)
             search = start.searches[7];
             start.count = 7;
-          } else if (start.down[57]) { // alt + 9
+          } else if (start.down[57]) { // (alt + 9)
             search = start.searches[8];
             start.count = 8;
-          } else if (start.down[48]) { // alt + 0
+          } else if (start.down[48]) { // (alt + 0)
             search = start.searches[9];
             start.count = 9;
           }
           // Switch Search
           if (search) start.switcher(search);
-          // Toggle Cursor - Backspace
+          // Toggle Cursor (alt + Backspace)
           if (start.down[8]) start.toggle_cursor();
-          // Resize News - Right Bracket
+          // Resize News (alt + Right Bracket)
           if (start.down[221]) start.resize_news();
-          // Play/Pause Podcasts - "z" Key
-          if (start.down[90]) start.podcast_toggle();
-          // Update LastFM - "x" Key
+          // Change Art Source To Full Resolution (alt + "z")
+          if (start.down[90]) start.change_art_source();
+          // Update LastFM (alt + "x")
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Hide Animated Background - "c" Key
+          // Hide Animated Background (alt + "c")
           if (start.down[67]) start.toggle_background();
-          // Refresh Background Image - "v" Key
+          // Refresh Background Image (alt + "v")
           if (start.down[86]) start.background();
-          // Blur - "b" Key
+          // Blur (alt + "b")
           if (start.down[66]) start.toggle_blur();
-          // X "f12" Key
+          // X (alt + "f12")
           if (start.down[123]) start.play_x();
         }
       }).keyup(function (e) {
@@ -314,21 +320,21 @@
       const num = start.numb(1, 291).toString().padStart(4, "0").toString();
       bg.addClass(start.h);
       setTimeout(function () {
-        bg.attr("src", "https://marko.tech/media/art/" + num + ".png");
+        bg.attr("src", start.art_url + num + ".png");
         bg.one("load", function () {
           bg.removeClass(start.h);
         }).each(function () {
           if (this.complete) $(this).trigger('load');
         });
       }, start.animation_time * 2);
-      start.notifications("<span>New</span> Background #" + num + " <span>Loaded</span>");
+      start.notifications("<span>New Background</span> #" + num + " <span>Loaded</span>");
     },
 
     // Toggle Blur on Background Image
     toggle_blur: function () {
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
-      start.notifications("<span>Blur on Background</span>" + status);
+      start.notifications("<span>Blurred Background</span>" + status);
     },
 
     // Toggle Animated Background
@@ -347,7 +353,6 @@
           if (!bg.hasClass(start.h)) bg.addClass(start.h).html("");
         } else {
           if (bg.hasClass(start.h)) bg.removeClass(start.h).html(start.background_html);
-          start.notifications("Toggled <span>Animated Background</span>");
         }
       });
     },
@@ -422,14 +427,10 @@
 
     // Change LastFM Artwork
     change_lastfm_artwork: function (data) {
-      // Assign Data to Placeholders
       $(".lastfm__artist").text(data['artist']).attr("title", "Artist: " + data['artist']);
       $(".lastfm__song").text(data['name']).attr("title", "Song: " + data['name']);
-      // Album
       data['album'] != "" ? $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']) : $(".lastfm__album").text("");
-      // Album Image
       data['image'] != "" ? $(".lastfm__image").attr("src", data['image']).show() : $(".lastfm__image").hide();
-      // Show Now Playing
       $(".lastfm__container").show();
       // Dead the Link if a Podcast
       data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass(start.s) : $(".lastfm__url").attr("href", "#").addClass(start.s);
@@ -498,21 +499,19 @@
     podcasts: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.podURL, "Podcasts");
-        // Play Podcasts
         start.play_podcast();
       });
     },
 
     // Play X
     play_x: function () {
-      // Stop Other Audio
       if (start.audio.playing) start.audio.pause();
-      const x = start.numb(1, 5);
+      const x = start.numb(1, 13);
       start.audio.src = start.conf.xURL + x + ".mp3";
       start.audio.playbackRate = 1;
       start.audio.play();
-      // Timer
       $(".podcasts").addClass(start.s);
+      start.podcast_click_play();
       start.podcast_time();
       start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + x);
     },
@@ -525,17 +524,12 @@
         $(".podcasts").addClass(start.s);
         if (podcast.attr("href").indexOf(".mp3") > -1) {
           start.audio.src = podcast.attr("href");
-          // Play the Podcasts Slightly Faster
           start.audio.playbackRate = 1.3;
-          // Stop Other Audio
           if (start.audio.playing) start.audio.pause();
-          // Play
           start.audio.play();
-          // Timer
           start.podcast_time();
         }
         start.notifications("<span>Now Playing</span> " + podcast.text().trim().slice(0, 75) + "...");
-        // Change Artwork
         const pod_data = {
           id: '',
           name: podcast.data('title'),
@@ -545,8 +539,12 @@
           link: podcast.data('link')
         }
         start.change_lastfm_artwork(pod_data);
+        start.podcast_click_play();
       });
-      // Pause on Click of Timer
+    },
+
+    // Pause on Click of Timer
+    podcast_click_play: function () {
       $(document).on(start.touch, ".podcasts", function (e) {
         e.preventDefault();
         start.podcast_toggle();
@@ -596,7 +594,7 @@
           $(".podcasts-replace").text('0:00');
           $(".podcasts").removeClass(start.s);
           $(".container .progress").css('width', '0%');
-          start.notifications("<span>Podcast</span> Finished");
+          start.notifications("<span>Audio</span> Finished Playing");
           // Reset Audio
           start.audio = new Audio();
         });
@@ -610,24 +608,20 @@
       if (!start.audio.paused) {
         step_size *= -1;
         start.notifications("<span>Audio</span> Paused");
+        $(".podcasts img").attr("src", "icons/icon__pause.svg");
       } else {
-        // Rewind 2 seconds
-        start.audio.currentTime = start.audio.currentTime - 2;
+        // Rewind 3 seconds
+        start.audio.currentTime = start.audio.currentTime - 3;
         start.notifications("<span>Audio</span> Playing");
+        $(".podcasts img").attr("src", "icons/icon__play.svg");
       }
       // Fader
       let fader = setInterval(function () {
-        // Calculate New Volume Based On Step Size
         current_vol += step_size;
-        // No weird numbers
         current_vol = Math.max(0, Math.min(1, current_vol));
-        // Update Volume
         start.audio.volume = current_vol;
-        // Pause
         if (current_vol <= 0) start.audio.pause();
-        // Play
         if (current_vol >= 1) start.audio.play();
-        // Stop Fader
         if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
     },
@@ -671,12 +665,10 @@
             var balance_diff = response["ETH"]["price"]["diff"];
             var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
             if (start.balance) {
-              // Show After Delay
               setTimeout(function () {
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
                 $(".wallet").addClass(start.s);
               }, start.animation_time);
-              // Console Log Details
               console.log("\n");
               console.log("Balance       : " + "Ξ " + start.balance.toString());
               console.log("1 Day Diff    : " + response["ETH"]["price"]["diff"].toString() + "%");
@@ -692,23 +684,16 @@
 
     // Change Search on Click
     change_search: function () {
-      // Click Search to Toggle Targeting
       $("#searchform label").on(start.touch, function () {
         start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
-        // Switch Search
         start.switcher(start.searches[start.count]);
       });
     },
 
-    // Focus/DeFocus Search
+    // Focus Search if Clicking Anything Not a Link or Input
     click_focus_search: function () {
-      // Focus Search if Clicking Anything Not a Link or Input
       $(document).on(start.touch, function (e) {
         if (e.target.tagName !== "A" && e.target.tagName !== "INPUT") start.focus_search();
-      });
-      // Focus Out Remove Styling for Search
-      $("#search").on("focusout", function () {
-        $("form").removeClass("focus");
       });
     },
 
@@ -724,6 +709,13 @@
       $(".cell.small-12.large-4.instapaper-links.shown").toggleClass("large-6");
       const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
       start.notifications("<span>News Resized</span>" + status);
+    },
+
+    // Change Background Art Resolution
+    change_art_source: function () {
+      start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
+      const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
+      start.notifications("<span>Background Source Changed To</span> " + message);
     },
 
     // Animation on Leave

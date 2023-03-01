@@ -144,7 +144,7 @@ a:focus img {
     width: 100%;
 }
 
-.container .progress {
+.progress {
     background-color: transparent;
     content: "";
     position: absolute;
@@ -157,11 +157,50 @@ a:focus img {
     pointer-events: none;
 }
 
-.container .progress__inner {
+.progress__inner {
     background-color: rgba(255, 255, 255, 0.05);
     width: 100%;
     height: 100%;
     border-radius: 8px;
+}
+
+.podcasts {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    line-height: 1;
+    color: var(--white);
+    font-size: 0.65rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    font-weight: var(--bold);
+    opacity: 0;
+    z-index: 2;
+}
+
+.podcasts.shown:hover,
+.podcasts.shown:focus {
+    opacity: 1;
+}
+
+.podcasts:active {
+    transform: translate(0, 2px);
+    opacity: var(--opacity-start);
+}
+
+.podcasts span {
+    line-height: 14px;
+    margin-top: 0.125rem;
+}
+
+.podcasts img {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
 }
 
 .grid-container {
@@ -446,7 +485,8 @@ li {
 
 
 .ip div.shown,
-.stats div.shown {
+.stats div.shown,
+.podcasts.shown {
     opacity: 0.25;
 }
 

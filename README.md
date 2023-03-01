@@ -6,13 +6,36 @@
 
 This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
+Some of the features:
+* Quick access links to my most used websites.
+* Background image is randomly chosen from a series of images I serve on my own website.
+* Background image is blurred to better view the content.
+* Background image resolution can be changed.
+* Background animation with CSS/SVG.
+* Background image can be refreshed.
+* Mouse cursor can be toggled on/off.
+* Click anywhere on page (except links) to focus search.
+* Rapidly search the web with a search bar.
+* Search bar can be toggled to different search engines.
+* News feed can be toggled to different up-to-date feeds.
+* News feed can be resized.
+* View my roster of Path of Exile characters sorted by League.
+* Listen to podcasts.
+* Audio control (play/pause, fast foward, rewind, faster/slower playback).
+* See what music I'm currently listening to.
+* See how my MetaMask wallet is doing.
+* See my public IP address.
+* See current total play count on LastFM.
+* See pageviews.
+* Responsive design.
+
 ---
 
 ### Notes
 
 There's a file JSON file named `conf.json` in the root of the project.
 
-It should look like this:
+It should look like this or similar, keeping what you want and removing what you don't:
 
 ```
 {
@@ -40,20 +63,23 @@ The background images are randomly chosen from a series of images I serve on my 
 
 ---
 
-### Keyboard Commands
+## Keyboard Commands
 
-There's some 'hidden' power user features in here in the form of keyboard commands:
+There's some 'hidden power user' features in here in the form of keyboard commands:
 
-*<kbd>Left Option</kbd>* (KeyCode 18) - Settings (reset on page refresh)
-- Use <kbd>loption</kbd> + <kbd>z</kbd> to `play/pause` a podcast (pau"Z"e lol).
-- Use <kbd>loption</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song.
+`Left Option` (KeyCode 18)
+`Left Shift `  (KeyCode 16)
+
+#### *<kbd>Left Option</kbd>* Settings (reset on page refresh)
+- Use <kbd>loption</kbd> + <kbd>z</kbd> to change the `Background Resolution` quality.
+- Use <kbd>loption</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song data from LastFM.
 - Use <kbd>loption</kbd> + <kbd>c</kbd> to toggle ("C"-olors) CSS/SVG based `background animation`.
 - Use <kbd>loption</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
 - Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
 - Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
 
-*<kbd>Left Option</kbd>* (KeyCode 18) - Search Toggles
+### *<kbd>Left Option</kbd>* Search Toggles
 - Use <kbd>loption</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
 - Use <kbd>loption</kbd> + <kbd>2</kbd> to toggle search bar to `YouTube`.
 - Use <kbd>loption</kbd> + <kbd>3</kbd> to toggle search bar to `DuckDuckGo`.
@@ -65,7 +91,7 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>loption</kbd> + <kbd>9</kbd> to toggle search bar to `Google`.
 - Use <kbd>loption</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
 
-*<kbd>Left Shift</kbd>* (KeyCode 16) - News Feed
+### *<kbd>Left Shift</kbd>* News Feed
 - Use <kbd>lshift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
 - Use <kbd>lshift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
 - Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
@@ -75,15 +101,16 @@ There's some 'hidden' power user features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
 - Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
-*<kbd>Left Shift</kbd>* (KeyCode 16) - Audio Controls
-- Use <kbd>loption</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
-- Use <kbd>loption</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
-- Use <kbd>loption</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
-- Use <kbd>loption</kbd> + <kbd>Left</kbd> to `rewind` Podcast playback 5 seconds.
+### *<kbd>Left Shift</kbd>* Audio Controls
+- Use <kbd>lshift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
+- Use <kbd>lshift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
+- Use <kbd>lshift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
+- Use <kbd>lshift</kbd> + <kbd>Left</kbd> to `rewind` Podcast playback 5 seconds.
+- Use <kbd>lshift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 
 ### Publishing
 
-Publishing to Surge
+Publishing to Surge for public viewing:
 
 ```
 surge . abstracted-war.surge.sh
