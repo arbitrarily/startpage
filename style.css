@@ -195,6 +195,7 @@ a:focus img {
 .podcasts span {
     line-height: 14px;
     margin-top: 0.125rem;
+    font-variant-numeric: tabular-nums;
 }
 
 .podcasts img {
