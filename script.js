@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.10.40",
+    version: "1.10.42",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -180,8 +180,7 @@
 
     // Focus Search
     focus_search: function () {
-      $("#search").focus();
-      $("form").addClass("focus");
+      $(document).find("#search").focus().addClass("focus");
     },
 
     // Search Switcher
@@ -300,15 +299,12 @@
     // Notifications
     notifications: function (text) {
       const noti = $(".notifications");
-      start.promise = start.promise.then(function () {
-        return new Promise(function (resolve) {
-          noti.removeClass("hidden").html(text);
-          setTimeout(function () {
-            noti.addClass("hidden");
-            resolve();
-          }, start.animation_time * 4);
-        });
-      });
+      if (noti.hasClass("hidden")) noti.removeClass("hidden");
+      noti.html(text);
+      const timeout_id = setTimeout(function () {
+        noti.addClass("hidden");
+      }, start.animation_time * 6);
+      if (timeout_id) clearTimeout(start.timeout_id);
     },
 
     // Load Background Image
@@ -592,18 +588,15 @@
         // Update Time
         if (seconds) {
           $(".podcasts-replace").text(minutes + ':' + padded_time);
-          if ($(".container .progress").width() > 46) {
-            $(".container .progress").css('width', "calc( " + (start.audio.currentTime / start.audio.duration) * 100 + '%' + " - 46px )");
-          } else {
-            let width = (start.audio.currentTime / start.audio.duration) * 100;
-            if (width < 1) width = 1;
-            $(".container .progress").css('width', width + '%');
-          }
+          let width = (start.audio.currentTime / start.audio.duration) * 100;
+          if (width < 1) width = 1;
+          $(".container .progress").css('width', width + '%');
         }
         // When Podcast Ends
         start.audio.addEventListener("ended", function () {
           $(".podcasts-replace").text('0:00');
           $(".podcasts").removeClass("shown");
+          $(".container .progress").css('width', '0%');
           start.notifications("<span>Podcast</span> Finished");
           // Reset Audio
           start.audio = new Audio();

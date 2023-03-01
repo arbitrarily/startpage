@@ -11,11 +11,6 @@
     --bold: 900;
     --body-size: 17px;
 
-    /* Media Queries */
-    --small: max-width: 40em;
-    --medium: min-width: 40em;
-    --large: min-width: 64em;
-
     /* Colors */
     --white: #fff;
     --black: #11110e;
@@ -38,37 +33,17 @@
     from { opacity: 0; }
     to   { opacity: var(--opacity-end); }
 }
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: var(--opacity-end); }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: var(--opacity-end); }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: var(--opacity-end); }
-}
-
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: var(--opacity-end); }
-}
+@-moz-keyframes fadein { from { opacity: 0; } to { opacity: var(--opacity-end); } }
+@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: var(--opacity-end); } }
+@-ms-keyframes fadein { from { opacity: 0; } to { opacity: var(--opacity-end); } }
+@-o-keyframes fadein { from { opacity: 0; } to { opacity: var(--opacity-end); } }
 
 body {
     background-color: var(--black);
-    -webkit-animation: fadein 1.33s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 1.33s; /* Firefox < 16 */
-    -ms-animation: fadein 1.33s; /* Internet Explorer */
-    -o-animation: fadein 1.33s; /* Opera < 12.1 */
+    -webkit-animation: fadein 1.33s;
+    -moz-animation: fadein 1.33s;
+    -ms-animation: fadein 1.33s;
+    -o-animation: fadein 1.33s;
     animation: fadein 1.33s;
     font-size: var(--body-size);
 }
@@ -87,16 +62,8 @@ body.vaal,
     transition: var(--animation);
 }
 
-body,
-a,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-family);
+body, a, p, h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
 }
 
 p {
@@ -162,10 +129,6 @@ a:focus img {
     opacity: 1;
 }
 
-.background-image.hidden {
-    opacity: 0;
-}
-
 .background svg {
     -webkit-animation: fadein 1.33s;
     -moz-animation: fadein 1.33s;
@@ -176,38 +139,37 @@ a:focus img {
     width: 100%;
 }
 
-.container input {
-    font-size: 26px;
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
+.search__input--container {
+    position: relative;
+    width: 100%;
 }
 
 .container .progress {
+    background-color: transparent;
     content: "";
     position: absolute;
     top: 0;
-    left: 46px;
+    left: 0;
     width: 0;
     height: 100%;
-    border-radius: 8px;
     z-index: -1;
-    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.container .progress__inner {
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
 }
 
 .grid-container {
-    max-width: 88rem;
+    max-width: 90rem;
 }
 
 .container {
     padding: var(--padding);
-}
-
-@media screen and (var(--small)) {
-    .container {
-        padding: calc(var(--padding) * 3) var(--padding);
-    }
 }
 
 .container,
@@ -244,25 +206,10 @@ li {
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
-@media screen and (var(--small)) and (var(--med)) {
-    .instapaper-list {
-        max-height: 472px;
-    }
-}
-
-@media screen and (var(--small)) {
-    .instapaper-list {
-        max-height: 390.4px;
-    }
-}
-
 .instapaper-links {
     opacity: 0;
 }
 
-.instapaper-links.shown {
-    opacity: var(--opacity-end);
-}
 .instapaper-links ul:not(.instapaper-list) {
     margin: 0;
 }
@@ -296,24 +243,6 @@ li {
     display: flex;
     align-items: center;
     padding: 6px 6px 6px 0;
-}
-
-@media screen and (max-width: 64em) {
-    .container__list {
-        padding: 10px 10px 10px 0;
-    }
-}
-
-@media screen and (max-width: 30em) {
-    .container__list span {
-        font-size: 0.9725rem;
-    }
-}
-
-@media screen and (var(--medium)) {
-    .container form {
-        margin-bottom: var(--padding);
-    }
 }
 
 .container__list span {
@@ -391,16 +320,12 @@ li {
     padding: 10px 0;
 }
 
-@media screen and (var(--medium)) {
-    .container__list--title {
-        padding: 5px 0 10px 0;
-    }
-}
-
 .container form {
     position: relative;
     display: flex;
     width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
     opacity: var(--opacity-start);
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
@@ -427,20 +352,26 @@ li {
 
 .container input {
     position: relative;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.0125);
     box-shadow: none;
     border: none;
-    padding: 0;
+    padding: 0 14px;
     margin: 0;
     height: auto;
-    width: calc(100% - 36px);
+    width: 100%;
     opacity: var(--opacity-start);
     border-radius: 10px;
     line-height: 3.25rem;
     color: var(--white);
     font-family: var(--font-family);
     font-weight: var(--bold);
+    font-size: 26px;
     outline: none;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+    border-radius: 8px;
 }
 
 .container input:focus {
@@ -448,8 +379,6 @@ li {
     box-shadow: none;
     border: none;
     outline: none;
-    border-radius: 8px;
-    padding: 0 14px;
     opacity: var(--opacity-end);
 }
 
@@ -464,10 +393,6 @@ li {
     font-family: var(--font-family);
     color: var(--grey);
     text-align: right;
-}
-
-.lastfm__url.shown {
-    opacity: var(--opacity-end);
 }
 
 .lastfm__image {
@@ -490,19 +415,6 @@ li {
     overflow: hidden;
 }
 
-@media screen and (var(--small)) {
-    .lastfm__url {
-        text-align: left;
-        justify-content: space-between;
-    }
-}
-
-@media screen and (var(--medium)) {
-    .lastfm__container {
-        padding-left: var(--padding);
-    }
-}
-
 .lastfm__album,
 .lastfm__artist {
     font-weight: var(--normal);
@@ -521,29 +433,6 @@ li {
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     font-weight: var(--bold);
-}
-
-@media screen and (min-width: 40em) {
-    .stats {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        padding: var(--foundation);
-    }
-
-    .stats div {
-        padding: 0 !important;
-        margin-left: var(--padding);
-    }
-
-    .ip {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        padding: var(--foundation);
-    }
 }
 
 .stats div {
@@ -571,7 +460,9 @@ li {
 .ip div.shown:hover,
 .ip div.shown:focus,
 .stats div.shown:hover,
-.stats div.shown:focus {
+.stats div.shown:focus,
+.lastfm__url.shown,
+.instapaper-links.shown {
     opacity: var(--opacity-end);
     cursor: default;
 }
@@ -602,6 +493,75 @@ li {
     color: var(--gray);
 }
 
-.notifications.hidden {
+.notifications.hidden,
+.background-image.hidden {
     opacity: 0;
+}
+
+@media screen and (max-width: 30em) {
+    .container__list span {
+        font-size: 0.9725rem;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .instapaper-list {
+        max-height: 390.4px;
+    }
+
+    .container {
+        padding: calc(var(--padding) * 3) var(--padding);
+    }
+
+    .lastfm__url {
+        text-align: left;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 40em) and (min-width: 40em) {
+    .instapaper-list {
+        max-height: 472px;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .container form {
+        margin-bottom: var(--padding);
+    }
+
+    .container__list--title {
+        padding: 5px 0 10px 0;
+    }
+
+    .lastfm__container {
+        padding-left: var(--padding);
+    }
+
+    .stats {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: var(--foundation);
+    }
+
+    .stats div {
+        padding: 0 !important;
+        margin-left: var(--padding);
+    }
+
+    .ip {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: var(--foundation);
+    }
+}
+
+@media screen and (max-width: 64em) {
+    .container__list {
+        padding: 10px 10px 10px 0;
+    }
 }
