@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.6",
+    version: "1.11.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -514,6 +514,7 @@
       start.podcast_click_play();
       start.podcast_time();
       start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + x);
+      if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
     // Play Podcast
@@ -594,6 +595,7 @@
           $(".podcasts-replace").text('0:00');
           $(".podcasts").removeClass(start.s);
           $(".container .progress").css('width', '0%');
+          if ($("#search").hasClass("full")) $("#search").removeClass("full");
           start.notifications("<span>Audio</span> Finished Playing");
           // Reset Audio
           start.audio = new Audio();
@@ -624,6 +626,7 @@
         if (current_vol >= 1) start.audio.play();
         if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
+      if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
     // Page View Counter

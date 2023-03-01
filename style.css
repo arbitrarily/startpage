@@ -414,6 +414,10 @@ li {
     border-radius: 8px;
 }
 
+.container input.full {
+    padding-right: 78px;
+}
+
 .container input:focus {
     background: rgba(255, 255, 255, 0.025);
     box-shadow: none;
