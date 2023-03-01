@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.7",
+    version: "1.11.8",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -140,9 +140,6 @@
 
       // Focus Search
       this.click_focus_search();
-
-      // Console Log Font Family
-      this.font_family();
 
       // Search Change on Click
       this.change_search();
@@ -367,8 +364,6 @@
           const msg = ip.ip.slice(0, 16) + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
           $(".ip div").addClass(start.s);
-          console.log("\n");
-          console.log("IPv4          : " + msg);
         }).catch(error => {
           $(".ip").hide();
         });
@@ -388,7 +383,6 @@
                   var number_string = start.format_numb(count).trim().toString();
                   $(".songs-replace").text(number_string);
                   $(".songs").addClass(start.s);
-                  console.log("Scrobbles     : " + number_string);
                 }, start.animation_time * 3);
               });
             }
@@ -642,9 +636,6 @@
                 start.pageviews = number.trim().toString();
                 $(".counter-replace").text(start.pageviews);
                 $(".counter").addClass(start.s);
-                console.log("\n");
-                console.log("Page Views    : " + start.pageviews);
-                console.log("\n");
               }, start.animation_time * 2);
             }
           })
@@ -672,11 +663,7 @@
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
                 $(".wallet").addClass(start.s);
               }, start.animation_time);
-              console.log("\n");
-              console.log("Balance       : " + "Ξ " + start.balance.toString());
-              console.log("1 Day Diff    : " + response["ETH"]["price"]["diff"].toString() + "%");
-              console.log("7 Day Diff    : " + response["ETH"]["price"]["diff7d"].toString() + "%");
-              console.log("30 Day Diff   : " + response["ETH"]["price"]["diff30d"].toString() + "%");
+              console.log(JSON.stringify(response['ETH'], null, 2));
             }
           })
           .catch(function (err) {
@@ -743,11 +730,6 @@
       setTimeout(function () {
         $(".version-target").text(start.version).parent().addClass(start.s);
       }, start.animation_time * 4);
-    },
-
-    // Font Family
-    font_family: function () {
-      $.when(start.conf).then(console.log("\nFont Family   : " + $("body").css("font-family")));
     }
 
   };
