@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.8",
+    version: "1.11.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -535,6 +535,7 @@
         }
         start.change_lastfm_artwork(pod_data);
         start.podcast_click_play();
+        if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
 
@@ -620,7 +621,6 @@
         if (current_vol >= 1) start.audio.play();
         if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
-      if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
     // Page View Counter
