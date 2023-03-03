@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.13",
+    version: "1.11.14",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -745,7 +745,7 @@
     version_number: function () {
       // fetch request
       let commits = "";
-      fetch(start.conf.githubURL + "?t=" + start.timestamp)
+      fetch(start.conf.githubURL + "&t=" + start.timestamp)
         .then(function (response) {
           return response.json();
         }).then(function (response) {
