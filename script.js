@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.9",
+    version: "1.11.13",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -34,8 +34,12 @@
     // Config
     conf: false,
 
-    // Art URL
+    // Art
     art_url: false,
+    art_num: false,
+
+    // NFTs
+    nfts: false,
 
     // Search Inputs
     searches: [
@@ -113,6 +117,10 @@
 
     // Init
     init: function () {
+
+      // Background Image Number
+      start.art_num = this.numb(1, 291).toString().padStart(4, "0")
+
       // Pageview Counter
       this.counter();
 
@@ -123,7 +131,7 @@
       this.background();
 
       // Background Resize
-      this.toggle_background_large_screens();
+      this.toggle_background_animation_large_screens();
 
       // Wallet Value
       this.wallet();
@@ -291,6 +299,8 @@
           if (start.down[86]) start.background();
           // Blur (alt + "b")
           if (start.down[66]) start.toggle_blur();
+          // Wallet Status (alt + "n")
+          if (start.down[78]) start.console_wallet();
           // X (alt + "f12")
           if (start.down[123]) start.play_x();
         }
@@ -312,19 +322,27 @@
     },
 
     // Load Background Image
-    background: function () {
+    background: function (num = false) {
       const bg = $(".background-image");
-      const num = start.numb(1, 291).toString().padStart(4, "0").toString();
+      if (!num) start.art_num = start.numb(1, 291).toString().padStart(4, "0").toString();
       bg.addClass(start.h);
       setTimeout(function () {
-        bg.attr("src", start.art_url + num + ".png");
+        bg.attr("src", start.art_url + start.art_num + ".png");
         bg.one("load", function () {
           bg.removeClass(start.h);
         }).each(function () {
           if (this.complete) $(this).trigger('load');
         });
-      }, start.animation_time * 2);
-      start.notifications("<span>New Background</span> #" + num + " <span>Loaded</span>");
+      }, start.animation_time * 3);
+      if (!num) start.notifications("<span>New Background</span> #" + start.art_num + " <span>Loaded</span>");
+    },
+
+    // Change Background Art Resolution
+    change_art_source: function () {
+      start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
+      const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
+      start.background(true);
+      start.notifications("<span>Background Source Changed To</span> " + message);
     },
 
     // Toggle Blur on Background Image
@@ -343,7 +361,7 @@
     },
 
     // Toggle Animated Desktop - Don't Render on Super Large Screens
-    toggle_background_large_screens: function () {
+    toggle_background_animation_large_screens: function () {
       $(window).bind("resize load", function () {
         const bg = $(".background");
         if (window.matchMedia("(min-width: 1024px)").matches) {
@@ -581,7 +599,7 @@
         // Update Time
         if (seconds) {
           $(".podcasts-replace").text(minutes + ':' + padded_time);
-          let width = (start.audio.currentTime / start.audio.duration) * 100;
+          let width = ((start.audio.currentTime / start.audio.duration) * 100).toFixed(3);
           if (width < 1) width = 1;
           $(".container .progress").css('width', width + '%');
         }
@@ -663,13 +681,19 @@
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
                 $(".wallet").addClass(start.s);
               }, start.animation_time);
-              console.log(JSON.stringify(response['ETH'], null, 2));
+              start.nfts = response['ETH']['price'];
             }
           })
           .catch(function (err) {
             $(".wallet").remove();
           });
       });
+    },
+
+    // Console Log Wallet Status
+    console_wallet: function () {
+      console.log(start.nfts)
+      start.notifications("Console.log <span>Wallet</span> Stats");
     },
 
     // Change Search on Click
@@ -696,16 +720,9 @@
 
     // Resize
     resize_news: function () {
-      $(".cell.small-12.large-4.instapaper-links.shown").toggleClass("large-6");
+      $(".container__inner").toggleClass("container__inner--large");
       const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
       start.notifications("<span>News Resized</span>" + status);
-    },
-
-    // Change Background Art Resolution
-    change_art_source: function () {
-      start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
-      const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
-      start.notifications("<span>Background Source Changed To</span> " + message);
     },
 
     // Animation on Leave
@@ -722,13 +739,20 @@
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
       );
-      console.log("Build Version : " + start.version);
     },
 
     // Version
     version_number: function () {
+      // fetch request
+      let commits = "";
+      fetch(start.conf.githubURL + "?t=" + start.timestamp)
+        .then(function (response) {
+          return response.json();
+        }).then(function (response) {
+          commits = " (" + response[0].contributions + ")";
+        });
       setTimeout(function () {
-        $(".version-target").text(start.version).parent().addClass(start.s);
+        $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
       }, start.animation_time * 4);
     }
 
