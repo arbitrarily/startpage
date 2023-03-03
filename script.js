@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.18",
+    version: "1.11.19",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -39,7 +39,7 @@
     art_num: false,
 
     // NFTs
-    nfts: false,
+    nfts_collection: false,
 
     // Search Inputs
     searches: [
@@ -681,7 +681,7 @@
                 $(".wallet-replace").text((balance_formatted + formatted).toString());
                 $(".wallet").addClass(start.s);
               }, start.animation_time);
-              start.nfts = response['ETH']['price'];
+              start.nfts_collection = response['ETH']['price'];
             }
           })
           .catch(function (err) {
@@ -692,7 +692,7 @@
 
     // Console Log Wallet Status
     console_wallet: function () {
-      console.log(start.nfts)
+      console.log(start.nfts_collection)
       start.notifications("Console.log <span>Wallet</span> Stats");
     },
 
