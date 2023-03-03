@@ -234,7 +234,7 @@ li {
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
-.instapaper-links.large-6 img {
+.container__inner--large .instapaper-links img {
     max-height: 100% !important;
     max-width: 30% !important;
     min-width: 30%;
