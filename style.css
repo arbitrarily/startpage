@@ -302,6 +302,12 @@ li {
     align-items: flex-start;
 }
 
+.podcast-links .container__list img,
+.news-list .container__list img,
+.news-links .container__list img {
+    background: var(--grey);
+}
+
 .podcast-links .container__list span,
 .news-links .container__list span {
     display: -webkit-box;
@@ -556,7 +562,7 @@ li {
 
 @media screen and (max-width: 40em) {
     .instapaper-list {
-        max-height: 500px;
+        max-height: 420px;
     }
 
     .lastfm__container {
