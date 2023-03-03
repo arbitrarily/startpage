@@ -237,6 +237,7 @@ li {
 .container__inner--large .instapaper-links img {
     max-height: 100% !important;
     max-width: 30% !important;
+    width: 30%;
     min-width: 30%;
     aspect-ratio: 3/1.5 !important;
 }
@@ -615,7 +616,7 @@ li {
 
 @media screen and (min-width: 64em) {
     .container__inner--large .instapaper-links {
-        width: calc(50% + 14px);
+        width: calc(50% + 0.9375rem);
     }
 }
 
