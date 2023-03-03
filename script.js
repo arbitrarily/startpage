@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.15",
+    version: "1.11.16",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",

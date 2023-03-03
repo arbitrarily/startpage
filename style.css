@@ -615,7 +615,7 @@ li {
 
 @media screen and (min-width: 64em) {
     .container__inner--large .instapaper-links {
-        width: 50%;
+        width: calc(50% + 14px);
     }
 }
 
