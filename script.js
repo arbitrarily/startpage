@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.7",
+    version: "1.13.8",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -264,6 +264,8 @@
           if (start.down[40]) start.audio_less_speed();
           // Audio: Play/Pause ("space" Key)
           if (start.down[32]) start.audio_toggle();
+          // Audio: Mute (shift + "m" Key)
+          if (start.down[77]) start.audio_mute();
         }
         // Alt/Option
         if (start.down[18]) {
@@ -655,6 +657,13 @@
       });
     },
 
+    // Audio: Toggle Mute
+    audio_mute: function () {
+      start.audio.muted = !start.audio.muted;
+      const status = start.audio.muted ? "Muted" : "Unmuted";
+      start.notifications("<span>Audio</span> " + status);
+    },
+
     // Audio: Rewind
     audio_rewind: function () {
       start.audio.currentTime -= 5;
@@ -818,7 +827,16 @@
     // Animation on Leave
     bye_bye: function () {
       $(window).on("beforeunload", function () {
-        $("body").css("opacity", 0);
+        if (start.audio && !start.audio.paused) {
+          const result = window.confirm("Audio is still playing, sure you want to leave?");
+          if (result) {
+            $("body").css("opacity", 0);
+          } else {
+            return false;
+          }
+        } else {
+          $("body").css("opacity", 0);
+        }
       });
     },
 

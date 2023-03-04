@@ -21,12 +21,14 @@ Some of the features:
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
 * Listen to podcasts.
+* Listen to music.
 * Audio control (play/pause, fast foward, rewind, faster/slower playback).
 * See what music I'm currently listening to.
 * See how my MetaMask wallet is doing.
 * See my public IP address.
 * See current total play count on LastFM.
 * See pageviews.
+* See commit count for this repo.
 * Responsive design.
 
 ---
@@ -67,47 +69,48 @@ The background images are randomly chosen from a series of images I serve on my 
 
 There's some 'hidden power user' features in here in the form of keyboard commands:
 
-`Left Option` (KeyCode 18)
-`Left Shift `  (KeyCode 16)
+`Option` (KeyCode 18)
+`Shift `  (KeyCode 16)
 
-#### *<kbd>Left Option</kbd>* Settings (reset on page refresh)
-- Use <kbd>loption</kbd> + <kbd>z</kbd> to change the `Background Resolution` quality.
-- Use <kbd>loption</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song data from LastFM.
-- Use <kbd>loption</kbd> + <kbd>c</kbd> to toggle ("C"-olors) CSS/SVG based `background animation`.
-- Use <kbd>loption</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
-- Use <kbd>loption</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
-- Use <kbd>loption</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
-- Use <kbd>loption</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
+#### *<kbd>Option</kbd>* Settings (reset on page refresh)
+- Use <kbd>option</kbd> + <kbd>z</kbd> to change the `Background Resolution` quality.
+- Use <kbd>option</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song data from LastFM.
+- Use <kbd>option</kbd> + <kbd>c</kbd> to toggle ("C"-olors) CSS/SVG based `background animation`.
+- Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
+- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
+- Use <kbd>option</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
+- Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
 
-### *<kbd>Left Option</kbd>* Search Toggles
-- Use <kbd>loption</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
-- Use <kbd>loption</kbd> + <kbd>2</kbd> to toggle search bar to `YouTube`.
-- Use <kbd>loption</kbd> + <kbd>3</kbd> to toggle search bar to `DuckDuckGo`.
-- Use <kbd>loption</kbd> + <kbd>4</kbd> to toggle search bar to `Apple Music`.
-- Use <kbd>loption</kbd> + <kbd>5</kbd> to toggle search bar to `LastFM`.
-- Use <kbd>loption</kbd> + <kbd>6</kbd> to toggle search bar to `Twitter`.
-- Use <kbd>loption</kbd> + <kbd>7</kbd> to toggle search bar to `Google News`.
-- Use <kbd>loption</kbd> + <kbd>8</kbd> to toggle search bar to `Github`.
-- Use <kbd>loption</kbd> + <kbd>9</kbd> to toggle search bar to `Google`.
-- Use <kbd>loption</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
+### *<kbd>Option</kbd>* Search Toggles
+- Use <kbd>option</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
+- Use <kbd>option</kbd> + <kbd>2</kbd> to toggle search bar to `YouTube`.
+- Use <kbd>option</kbd> + <kbd>3</kbd> to toggle search bar to `DuckDuckGo`.
+- Use <kbd>option</kbd> + <kbd>4</kbd> to toggle search bar to `Apple Music`.
+- Use <kbd>option</kbd> + <kbd>5</kbd> to toggle search bar to `LastFM`.
+- Use <kbd>option</kbd> + <kbd>6</kbd> to toggle search bar to `Twitter`.
+- Use <kbd>option</kbd> + <kbd>7</kbd> to toggle search bar to `Google News`.
+- Use <kbd>option</kbd> + <kbd>8</kbd> to toggle search bar to `Github`.
+- Use <kbd>option</kbd> + <kbd>9</kbd> to toggle search bar to `Google`.
+- Use <kbd>option</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
 
-### *<kbd>Left Shift</kbd>* News Feed
-- Use <kbd>lshift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
-- Use <kbd>lshift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
-- Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
-- Use <kbd>lshift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
-- Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
-- Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
-- Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
-- Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `Lexichronic` news feed.
-- Use <kbd>lshift</kbd> + <kbd>9</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
+### *<kbd>Shift</kbd>* News Feed
+- Use <kbd>shift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
+- Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
+- Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
+- Use <kbd>shift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
+- Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
+- Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
+- Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
+- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
-### *<kbd>Left Shift</kbd>* Audio Controls
-- Use <kbd>lshift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
-- Use <kbd>lshift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
-- Use <kbd>lshift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
-- Use <kbd>lshift</kbd> + <kbd>Left</kbd> to `rewind` Podcast playback 5 seconds.
-- Use <kbd>lshift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
+### *<kbd>Shift</kbd>* Audio Controls
+- Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
+- Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
+- Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
+- Use <kbd>shift</kbd> + <kbd>/kbd> to `rewind` Podcast playback 5 seconds.
+- Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
+- Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
 
 ### Publishing
 
