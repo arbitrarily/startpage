@@ -97,9 +97,10 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>lshift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
 - Use <kbd>lshift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
 - Use <kbd>lshift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
-- Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>lshift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
 - Use <kbd>lshift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
-- Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
+- Use <kbd>lshift</kbd> + <kbd>8</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>lshift</kbd> + <kbd>9</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
 ### *<kbd>Left Shift</kbd>* Audio Controls
 - Use <kbd>lshift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.

@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.12.5",
+    version: "1.13.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -228,11 +228,13 @@
           // Podcasts (shift + 5)
           if (start.down[53]) start.podcasts();
           // Lexichronic (shift + 6)
-          if (start.down[54]) start.lexichronic();
+          if (start.down[54]) start.music();
           // Path of Exile Characters (shift + 7)
           if (start.down[55]) start.poe();
-          // NFTs (shift + 8)
-          if (start.down[56]) start.nfts();
+          // Music (shift + 8)
+          if (start.down[56]) start.lexichronic();
+          // NFTs (shift + 9)
+          if (start.down[57]) start.nfts();
           // Audio: Fast Forward (shift + :arrow_right:)
           if (start.down[39]) start.podcast_fast_forward();
           // Audio: Rewind (shift + :arrow_left:)
@@ -516,6 +518,14 @@
       });
     },
 
+    // Music Home Feed
+    music: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
+        start.play_podcast();
+      });
+    },
+
     // Play X
     play_x: function (url) {
       if (start.audio.playing) start.audio.pause();
@@ -538,9 +548,8 @@
     // Play X Playlist
     play_x_playlist: function () {
       if (start.audio.playing) start.audio.pause();
-      let x = null;
       $.when(start.conf).then(function () {
-        fetch(start.conf.xPlaylistURL + '?t=' + start.timestamp)
+        fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
           .then(function (response) {
             return response.json();
           })
@@ -550,8 +559,9 @@
               [x[i], x[j]] = [x[j], x[i]];
             }
             if (x) {
-              for (var i = 0; i < x.length; i++) {
-                async function x_pl() {
+              async function x_pl() {
+                for (var i = 0; i < 25; i++) {
+                  console.log(x[i]);
                   start.play_x(x[i]);
                   await new Promise(resolve => {
                     start.audio.addEventListener('ended', function () {
@@ -559,8 +569,8 @@
                     });
                   });
                 }
-                x_pl();
               }
+              x_pl();
             }
           })
           .catch(function (err) {
@@ -575,13 +585,11 @@
         e.preventDefault();
         const podcast = $(this);
         $(".podcasts").addClass(start.s);
-        if (podcast.attr("href").indexOf(".mp3") > -1) {
-          start.audio.src = podcast.attr("href");
-          start.audio.playbackRate = 1.3;
-          if (start.audio.playing) start.audio.pause();
-          start.audio.play();
-          start.podcast_time();
-        }
+        start.audio.src = podcast.attr("href");
+        start.audio.playbackRate = 1.3;
+        if (start.audio.playing) start.audio.pause();
+        start.audio.play();
+        start.podcast_time();
         start.notifications("<span>Now Playing</span> " + podcast.text().trim().slice(0, 75) + "...");
         const pod_data = {
           id: '',
