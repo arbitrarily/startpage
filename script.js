@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.4",
+    version: "1.13.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -157,10 +157,10 @@
     init: function () {
 
       // Background Image Number
-      start.art_num = this.numb(1, 291).toString().padStart(4, "0")
+      start.art_num = this.random_numb(1, 291).toString().padStart(4, "0")
 
       // Pageview Counter
-      this.counter();
+      this.pageview_counter();
 
       // Key Listeners
       this.key_listener();
@@ -211,7 +211,7 @@
     },
 
     // Random Number in a Range
-    numb: function (min, max) {
+    random_numb: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
@@ -223,22 +223,6 @@
     // Focus Search
     focus_search: function () {
       $(document).find("#search").focus().addClass("focus");
-    },
-
-    // Search Switcher
-    switcher: function (search) {
-      const action = search['action'],
-            logo = search['logo'],
-            text = search['text'],
-            name = search['name'],
-            type = search['type'];
-      $("#searchform").attr("action", action);
-      $(".search").attr("src", logo);
-      $("#search").attr("placeholder", text)
-        .attr("name", name)
-        .attr("data-type", type)
-        .focus();
-      start.notifications("<span>Search Switched to </span> " + search['type']);
     },
 
     // Function Triggers by Keyboard Combos
@@ -271,15 +255,15 @@
           // Switch Feed Source
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
           // Audio: Fast Forward (shift + ⏩)
-          if (start.down[39]) start.podcast_fast_forward();
+          if (start.down[39]) start.audio_fast_forward();
           // Audio: Rewind (shift + ⏪)
-          if (start.down[37]) start.podcast_rewind();
+          if (start.down[37]) start.audio_rewind();
           // Audio: Increased Playback Speed (shift + ⏫)
-          if (start.down[38]) start.podcast_more_speed();
+          if (start.down[38]) start.audio_more_speed();
           // Audio: Decreased Playback Speed (shift + ⏬)
-          if (start.down[40]) start.podcast_less_speed();
+          if (start.down[40]) start.audio_less_speed();
           // Audio: Play/Pause ("space" Key)
-          if (start.down[32]) start.podcast_toggle();
+          if (start.down[32]) start.audio_toggle();
         }
         // Alt/Option
         if (start.down[18]) {
@@ -307,7 +291,7 @@
             start.count = 9;
           }
           // Switch Search Source
-          if (Number.isInteger(start.count)) start.switcher(start.searches[start.count]);
+          if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           // Toggle Cursor (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
           // Resize News (alt + ])
@@ -351,7 +335,7 @@
     // Load Background Image
     background: function (num = false) {
       const bg = $(".background-image");
-      if (!num) start.art_num = start.numb(1, 291).toString().padStart(4, "0").toString();
+      if (!num) start.art_num = start.random_numb(1, 291).toString().padStart(4, "0").toString();
       bg.addClass(start.h);
       setTimeout(function () {
         bg.attr("src", start.art_url + start.art_num + ".png");
@@ -492,6 +476,22 @@
       container.show();
     },
 
+    // Search Switcher
+    search_switcher: function (search) {
+      const action = search['action'],
+            logo = search['logo'],
+            text = search['text'],
+            name = search['name'],
+            type = search['type'];
+      $("#searchform").attr("action", action);
+      $(".search").attr("src", logo);
+      $("#search").attr("placeholder", text)
+        .attr("name", name)
+        .attr("data-type", type)
+        .focus();
+      start.notifications("<span>Search Switched to </span> " + search['type']);
+    },
+
     // Replace News
     fetch_news: function (url, source) {
       fetch(url + '?t=' + start.timestamp)
@@ -555,7 +555,7 @@
     podcasts: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.podURL, "Podcasts");
-        start.play_podcast();
+        start.play_audio();
       });
     },
 
@@ -563,14 +563,14 @@
     music: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
-        start.play_podcast();
+        start.play_audio();
       });
     },
 
     // Play X
     play_x: function (url) {
       if (start.audio.playing) start.audio.pause();
-      let number = start.numb(1, 13);
+      let number = start.random_numb(1, 13);
       if (!url) {
         start.audio.src = start.conf.xURL + number + ".mp3";
       } else {
@@ -580,8 +580,8 @@
       start.audio.playbackRate = 1;
       start.audio.play();
       $(".podcasts").addClass(start.s);
-      start.podcast_click_play();
-      start.podcast_time();
+      start.audio_click_play();
+      start.audio_time();
       start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + number);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
@@ -601,7 +601,7 @@
             }
             if (x) {
               async function x_pl() {
-                for (var i = 0; i < 25; i++) {
+                for (var i = 0; i < 20; i++) {
                   start.play_x(x[i]);
                   await new Promise(resolve => {
                     start.audio.addEventListener('ended', function () {
@@ -620,7 +620,7 @@
     },
 
     // Play Podcast
-    play_podcast: function () {
+    play_audio: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
         const podcast = $(this);
@@ -629,7 +629,7 @@
         start.audio.playbackRate = 1.3;
         if (start.audio.playing) start.audio.pause();
         start.audio.play();
-        start.podcast_time();
+        start.audio_time();
         start.notifications("<span>Now Playing</span> " + podcast.text().trim().slice(0, 75) + "...");
         const pod_data = {
           id: '',
@@ -640,45 +640,45 @@
           link: podcast.data('link')
         }
         start.change_lastfm_artwork(pod_data);
-        start.podcast_click_play();
+        start.audio_click_play();
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
 
-    // Pause on Click of Timer
-    podcast_click_play: function () {
+    // Audio: Pause on Click of Timer
+    audio_click_play: function () {
       $(document).on(start.touch, ".podcasts", function (e) {
         e.preventDefault();
-        start.podcast_toggle();
+        start.audio_toggle();
       });
     },
 
-    // Podcast Rewind
-    podcast_rewind: function () {
+    // Audio: Rewind
+    audio_rewind: function () {
       start.audio.currentTime -= 5;
       start.notifications("<span>Audio</span> Rewind <span>-5 seconds</span>");
     },
 
-    // Podcast Fast Forward
-    podcast_fast_forward: function () {
+    // Audio: Fast Forward
+    audio_fast_forward: function () {
       start.audio.currentTime += 15;
       start.notifications("<span>Audio</span> Fast Forward <span>+15 seconds</span>");
     },
 
-    // Podcast Faster Playback
-    podcast_more_speed: function () {
+    // Audio: Faster Playback
+    audio_more_speed: function () {
       start.audio.playbackRate += 0.1;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
-    // Podcast Slower Playback
-    podcast_less_speed: function () {
+    // Audio: Slower Playback
+    audio_less_speed: function () {
       start.audio.playbackRate -= 0.1;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
-    // Podcast Timer
-    podcast_time: function () {
+    // Audio: Timer
+    audio_time: function () {
       setInterval(function () {
         const time_remaining = start.audio.duration - start.audio.currentTime,
               minutes = Math.floor(time_remaining / 60),
@@ -705,7 +705,7 @@
     },
 
     // Pause Podcast
-    podcast_toggle: function () {
+    audio_toggle: function () {
       let current_vol = start.audio.volume;
       let step_size = 0.05;
       if (!start.audio.paused) {
@@ -730,7 +730,7 @@
     },
 
     // Page View Counter
-    counter: function () {
+    pageview_counter: function () {
       $.when(start.conf).then(function () {
         fetch(start.conf.counterURL + '?t=' + start.timestamp)
           .then(function (response) {
@@ -788,7 +788,7 @@
     change_search: function () {
       $("#searchform label").on(start.touch, function () {
         start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
-        start.switcher(start.searches[start.count]);
+        start.search_switcher(start.searches[start.count]);
       });
     },
 
