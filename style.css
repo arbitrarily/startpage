@@ -4,6 +4,7 @@
     --padding: 20px;
     --large-padding: 10vh;
     --foundation: 0.625rem;
+    --foundation-large: 0.9375rem;
 
     /* Fonts */
     --font-family: "Man Rope", sans-serif;
@@ -48,10 +49,7 @@ body {
     font-size: var(--body-size);
 }
 
-body.vaal,
-.vaal a:hover,
-.vaal a:focus,
-.vaal .container label {
+body.vaal * {
     cursor: var(--cursor);
 }
 
@@ -164,7 +162,8 @@ a:focus img {
     border-radius: 8px;
 }
 
-.container__inner--large .instapaper-links {
+.container__inner--large .instapaper-links,
+.container__inner--large .menu-links {
     width: 100%;
 }
 
@@ -255,6 +254,24 @@ li {
     opacity: 0;
 }
 
+.menu-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.menu-links-source.hidden {
+    display: none;
+    visibility: hidden;
+    position: fixed;
+}
+
 .instapaper-links ul:not(.instapaper-list) {
     margin: 0;
 }
@@ -264,6 +281,32 @@ li {
     justify-content: space-between
 }
 
+.menu-links--item {
+    position: relative;
+    text-align: center;
+    padding: var(--foundation-large);
+    aspect-ratio: 4/3;
+    padding: 2rem;
+}
+
+.menu-links--item img {
+    width: 100%;
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    filter: brightness(180%) saturate(0);
+}
+
+.menu-links--item .instapaper-container {
+    padding: var(--foundation-large);
+}
+
 .container__list--item:hover {
     background: rgba(255, 255, 255, 0.033);
     box-shadow: none;
@@ -271,7 +314,7 @@ li {
     outline: none;
     color: var(--white);
     border-radius: 8px;
-    padding: 0 10px;
+    padding: 0 var(--foundation);
     opacity: var(--opacity-end);
 }
 
@@ -518,7 +561,8 @@ li {
 .stats div.shown:hover,
 .stats div.shown:focus,
 .lastfm__url.shown,
-.instapaper-links.shown {
+.instapaper-links.shown,
+.menu-links.shown {
     opacity: var(--opacity-end);
     cursor: default;
 }
@@ -621,8 +665,9 @@ li {
 }
 
 @media screen and (min-width: 64em) {
-    .container__inner--large .instapaper-links {
-        width: calc(50% + 0.9375rem);
+    .container__inner--large .instapaper-links,
+    .container__inner--large .menu-links {
+        width: calc(50% + var(--foundation-large));
     }
 }
 

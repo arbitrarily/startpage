@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.12",
+    version: "1.14.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -190,6 +190,9 @@
       // Search Change on Click
       this.change_search();
 
+      // Menu
+      this.menu();
+
       // Animation on Leave
       this.bye_bye();
 
@@ -320,6 +323,29 @@
       }).keyup(function (e) {
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
+      });
+    },
+
+    // Menu
+    menu: function () {
+      $(".menu-toggle").on(start.touch, function (e) {
+        e.preventDefault();
+        const html = $(".menu-links-source").html();
+        $(".instapaper-links").removeClass(start.s);
+        setTimeout(function () {
+          $(".instapaper-links").html(html);
+        }, 600);
+        setTimeout(function () {
+          $(".instapaper-links").addClass(start.s).addClass("");
+        }, 1000);
+        start.notifications("Menu <span>Toggled</span> ");
+      });
+      // Menu Clicks
+      $(document).on(start.touch, ".menu-links--item", function (e) {
+        e.preventDefault();
+        start.feed_count = $(this).data("id");
+        // Switch Feed Source
+        if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
       });
     },
 
@@ -499,7 +525,7 @@
     fetch_news: function (url, source) {
       fetch(url + '?t=' + start.timestamp)
         .then(function (response) {
-          $(".instapaper-links").removeClass('shown');
+          $(".instapaper-links").removeClass(start.s);
           return response.text();
         })
         .then(function (html) {
@@ -751,7 +777,7 @@
           .then(function (number) {
             if (number) {
               setTimeout(function () {
-                start.pageviews = number.trim().toString();
+                start.pageviews = number.trim().toString().slice(0, 10);
                 $(".counter-replace").text(start.pageviews);
                 $(".counter").addClass(start.s);
               }, start.animation_time * 2);
@@ -856,9 +882,9 @@
       let commits = "";
       fetch(start.conf.githubURL + "&t=" + start.timestamp)
         .then(function (response) {
-          return response.json();
+          if (response) return response.json();
         }).then(function (response) {
-          commits = " (" + response[0].contributions + ")";
+          if (response) commits = " (" + response[0].contributions + ")";
         });
       setTimeout(function () {
         $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
