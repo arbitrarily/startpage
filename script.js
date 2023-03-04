@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.5",
+    version: "1.13.6",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -489,6 +489,7 @@
         .attr("name", name)
         .attr("data-type", type)
         .focus();
+      start.count = false;
       start.notifications("<span>Search Switched to </span> " + search['type']);
     },
 
@@ -513,6 +514,7 @@
         .catch(function (err) {
           $(".instapaper-links").removeClass("large-4").addClass("large-auto");
         });
+      start.feed_count = false;
     },
 
     // Instapaper Home Feed
