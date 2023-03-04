@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.8",
+    version: "1.13.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -296,8 +296,8 @@
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           // Toggle Cursor (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Resize News (alt + ])
-          if (start.down[221]) start.resize_news();
+          // Resize News (alt + ] or alt + [)
+          if (start.down[221] || start.down[219]) start.resize_news();
           // Change Art Source To Full Resolution (alt + )
           if (start.down[90]) start.change_art_source();
           // Update LastFM (alt + "x")
