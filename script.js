@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.9",
+    version: "1.13.10",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -661,6 +661,7 @@
     audio_mute: function () {
       start.audio.muted = !start.audio.muted;
       const status = start.audio.muted ? "Muted" : "Unmuted";
+      start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
       start.notifications("<span>Audio</span> " + status);
     },
 
