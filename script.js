@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.5",
+    version: "1.14.6",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -403,7 +403,7 @@
     toggle_background_animation_large_screens: function () {
       $(window).bind("resize load", function () {
         const bg = $(".background");
-        if (window.matchMedia("(min-width: 1024px)").matches) {
+        if (window.matchMedia("(min-width: 64em)").matches) {
           if (!bg.hasClass(start.h)) bg.addClass(start.h).html("");
         } else {
           if (bg.hasClass(start.h)) bg.removeClass(start.h).html(start.background_html);
@@ -832,9 +832,14 @@
 
     // Focus Search if Clicking Anything Not a Link or Input
     click_focus_search: function () {
-      $(document).on(start.touch, function (e) {
-        if (e.target.tagName !== "A" && e.target.tagName !== "INPUT") start.focus_search();
-      });
+      if (window.matchMedia("(min-width: 40em)").matches) {
+        $(document).on(start.touch, function (e) {
+          if (e.target.tagName !== "A" &&
+              e.target.tagName !== "INPUT" &&
+              e.target.className !== "menu-toggle"
+          ) start.focus_search();
+        });
+      }
     },
 
     // Reset Mouse Cursor

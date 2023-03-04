@@ -621,6 +621,10 @@ li {
         text-align: left;
         justify-content: space-between;
     }
+
+    .container form {
+        margin-bottom: var(--padding);
+    }
 }
 
 @media screen and (max-width: 40em) and (min-width: 40em) {
