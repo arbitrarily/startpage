@@ -245,7 +245,7 @@ li {
 .instapaper-list {
     overflow: hidden;
     overflow-y: scroll;
-    max-height: 392px;
+    max-height: 374px;
     scrollbar-color: var(--grey) transparent;
     scrollbar-width: thin;
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
@@ -562,7 +562,7 @@ li {
 
 @media screen and (max-width: 40em) {
     .instapaper-list {
-        max-height: 420px;
+        max-height: 360px;
     }
 
     .lastfm__container {

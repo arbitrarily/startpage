@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.11.19",
+    version: "1.12.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -301,8 +301,9 @@
           if (start.down[66]) start.toggle_blur();
           // Wallet Status (alt + "n")
           if (start.down[78]) start.console_wallet();
-          // X (alt + "f12")
+          // X
           if (start.down[123]) start.play_x();
+          if (start.down[122]) start.play_x_playlist();
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
@@ -516,17 +517,34 @@
     },
 
     // Play X
-    play_x: function () {
+    play_x: function (number) {
       if (start.audio.playing) start.audio.pause();
-      const x = start.numb(1, 13);
-      start.audio.src = start.conf.xURL + x + ".mp3";
+      if (!number) number = start.numb(1, 13);
+      start.audio.src = start.conf.xURL + number + ".mp3";
       start.audio.playbackRate = 1;
       start.audio.play();
       $(".podcasts").addClass(start.s);
       start.podcast_click_play();
       start.podcast_time();
-      start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + x);
+      start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + number);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
+    },
+
+    // Play X Playlist
+    play_x_playlist: function () {
+      if (start.audio.playing) start.audio.pause();
+      const numbers = [...Array(13).keys()].map(i => i + 1).sort(() => Math.random() - 0.5);
+      async function x_pl() {
+        for (var i = 0; i < numbers.length; i++) {
+          start.play_x(numbers[i]);
+          await new Promise(resolve => {
+            start.audio.addEventListener('ended', function () {
+              resolve();
+            });
+          });
+        }
+      }
+      x_pl();
     },
 
     // Play Podcast
@@ -603,17 +621,17 @@
           if (width < 1) width = 1;
           $(".container .progress").css('width', width + '%');
         }
-        // When Podcast Ends
-        start.audio.addEventListener("ended", function () {
-          $(".podcasts-replace").text('0:00');
-          $(".podcasts").removeClass(start.s);
-          $(".container .progress").css('width', '0%');
-          if ($("#search").hasClass("full")) $("#search").removeClass("full");
-          start.notifications("<span>Audio</span> Finished Playing");
-          // Reset Audio
-          start.audio = new Audio();
-        });
       }, 500);
+      // When Podcast Ends
+      start.audio.addEventListener("ended", function () {
+        $(".podcasts-replace").text('0:00');
+        $(".podcasts").removeClass(start.s);
+        $(".container .progress").css('width', '0%');
+        if ($("#search").hasClass("full")) $("#search").removeClass("full");
+        start.notifications("<span>Audio</span> Finished Playing");
+        // Reset Audio
+        start.audio = new Audio();
+      });
     },
 
     // Pause Podcast
