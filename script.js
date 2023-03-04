@@ -561,7 +561,6 @@
             if (x) {
               async function x_pl() {
                 for (var i = 0; i < 25; i++) {
-                  console.log(x[i]);
                   start.play_x(x[i]);
                   await new Promise(resolve => {
                     start.audio.addEventListener('ended', function () {
