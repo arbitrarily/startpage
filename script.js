@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.2",
+    version: "1.13.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -12,8 +12,8 @@
     // Keyboard Variable
     down: {},
 
-    // Count for Arrays
-    count: 0,
+    // Count for Search
+    count: false,
 
     // Animation Time
     animation_time: 333,
@@ -40,6 +40,12 @@
 
     // NFTs
     nfts_collection: false,
+
+    // Timestamp for Breaking Cached URLs
+    timestamp: ~~(new Date().getTime() / 1000),
+
+    // Background HTML
+    background_html: $(".background").html(),
 
     // Search Inputs
     searches: [
@@ -172,12 +178,6 @@
       });
     },
 
-    // Timestamp for Breaking Cached URLs
-    timestamp: ~~(new Date().getTime() / 1000),
-
-    // Background HTML
-    background_html: $(".background").html(),
-
     // Random Number in a Range
     numb: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
@@ -235,55 +235,44 @@
           if (start.down[56]) start.lexichronic();
           // NFTs (shift + 9)
           if (start.down[57]) start.nfts();
-          // Audio: Fast Forward (shift + :arrow_right:)
+          // Audio: Fast Forward (shift + ⏩)
           if (start.down[39]) start.podcast_fast_forward();
-          // Audio: Rewind (shift + :arrow_left:)
+          // Audio: Rewind (shift + ⏪)
           if (start.down[37]) start.podcast_rewind();
-          // Audio: Increased Playback Speed (shift + :arrow_up:)
+          // Audio: Increased Playback Speed (shift + ⏫)
           if (start.down[38]) start.podcast_more_speed();
-          // Audio: Decreased Playback Speed (shift + :arrow_down:)
+          // Audio: Decreased Playback Speed (shift + ⏬)
           if (start.down[40]) start.podcast_less_speed();
-          // Audio: Play/Pause Podcasts ("space" Key)
+          // Audio: Play/Pause ("space" Key)
           if (start.down[32]) start.podcast_toggle();
         }
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
-          let search = false;
           // Alt Modifiers
           if (start.down[49]) { // (alt + 1)
-            search = start.searches[0];
             start.count = 0;
           } else if (start.down[50]) { // (alt + 2)
-            search = start.searches[1];
             start.count = 1;
           } else if (start.down[51]) { // (alt + 3)
-            search = start.searches[2];
             start.count = 2;
           } else if (start.down[52]) { // (alt + 4)
-            search = start.searches[3];
             start.count = 3;
           } else if (start.down[53]) { // (alt + 5)
-            search = start.searches[4];
             start.count = 4;
           } else if (start.down[54]) { // (alt + 6)
-            search = start.searches[5];
             start.count = 5;
           } else if (start.down[55]) { // (alt + 7)
-            search = start.searches[6];
             start.count = 6;
           } else if (start.down[56]) { // (alt + 8)
-            search = start.searches[7];
             start.count = 7;
           } else if (start.down[57]) { // (alt + 9)
-            search = start.searches[8];
             start.count = 8;
           } else if (start.down[48]) { // (alt + 0)
-            search = start.searches[9];
             start.count = 9;
           }
           // Switch Search
-          if (search) start.switcher(search);
+          if (Number.isInteger(start.count)) start.switcher(start.searches[start.count]);
           // Toggle Cursor (alt + Backspace)
           if (start.down[8]) start.toggle_cursor();
           // Resize News (alt + Right Bracket)
@@ -401,8 +390,7 @@
             if (count) {
               $.when(start.pageviews).then(function () {
                 setTimeout(function () {
-                  var number_string = start.format_numb(count).trim().toString();
-                  $(".songs-replace").text(number_string);
+                  $(".songs-replace").text(start.format_numb(count).trim().toString());
                   $(".songs").addClass(start.s);
                 }, start.animation_time * 3);
               });
@@ -447,7 +435,7 @@
       data['album'] != "" ? $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']) : $(".lastfm__album").text("");
       data['image'] != "" ? $(".lastfm__image").attr("src", data['image']).show() : $(".lastfm__image").hide();
       $(".lastfm__container").show();
-      // Dead the Link if a Podcast
+      // Dead the Link if Audio
       data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass(start.s) : $(".lastfm__url").attr("href", "#").addClass(start.s);
     },
 
@@ -626,23 +614,23 @@
 
     // Podcast Faster Playback
     podcast_more_speed: function () {
-      start.audio.playbackRate += 0.15;
+      start.audio.playbackRate += 0.1;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Slower Playback
     podcast_less_speed: function () {
-      start.audio.playbackRate -= 0.15;
+      start.audio.playbackRate -= 0.1;
       start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
     },
 
     // Podcast Timer
     podcast_time: function () {
       setInterval(function () {
-        const time_remaining = start.audio.duration - start.audio.currentTime;
-        const minutes = Math.floor(time_remaining / 60);
-        const seconds = Math.floor(time_remaining % 60);
-        const padded_time = seconds < 10 ? '0' + seconds : seconds;
+        const time_remaining = start.audio.duration - start.audio.currentTime,
+              minutes = Math.floor(time_remaining / 60),
+              seconds = Math.floor(time_remaining % 60),
+              padded_time = seconds < 10 ? '0' + seconds : seconds;
         // Update Time
         if (seconds) {
           $(".podcasts-replace").text(minutes + ':' + padded_time);
