@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.3",
+    version: "1.13.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -12,8 +12,12 @@
     // Keyboard Variable
     down: {},
 
-    // Count for Search
+    // Config
+    conf: false,
+
+    // Counts
     count: false,
+    feed_count: false,
 
     // Animation Time
     animation_time: 333,
@@ -21,18 +25,8 @@
     // Pageviews
     pageviews: false,
 
-    // Shared Class Names
-    s: "shown",
-    h: "hidden",
-
     // Wallet Balance
     balance: false,
-
-    // Audio
-    audio: new Audio(),
-
-    // Config
-    conf: false,
 
     // Art
     art_url: false,
@@ -40,6 +34,13 @@
 
     // NFTs
     nfts_collection: false,
+
+    // Shared Class Names
+    s: "shown",
+    h: "hidden",
+
+    // Audio
+    audio: new Audio(),
 
     // Timestamp for Breaking Cached URLs
     timestamp: ~~(new Date().getTime() / 1000),
@@ -118,6 +119,37 @@
         "text": "Search Google",
         "name": "q",
         "type": "google"
+      }
+    ],
+
+    // Feeds
+    feeds: [
+      function() {
+        start.instapaper();
+      },
+      function() {
+        start.news();
+      },
+      function() {
+        start.nyt();
+      },
+      function() {
+        start.reddit();
+      },
+      function() {
+        start.podcasts();
+      },
+      function() {
+        start.music();
+      },
+      function() {
+        start.poe();
+      },
+      function() {
+        start.lexichronic();
+      },
+      function() {
+        start.nfts();
       }
     ],
 
@@ -217,24 +249,27 @@
         // Left Shift
         if (start.down[16]) {
           e.preventDefault();
-          // Instapaper (shift + 1)
-          if (start.down[49]) start.instapaper();
-          // News (shift + 2)
-          if (start.down[50]) start.news();
-          // New York Times (shift + 3)
-          if (start.down[51]) start.nyt();
-          // Reddit (shift + 4)
-          if (start.down[52]) start.reddit();
-          // Podcasts (shift + 5)
-          if (start.down[53]) start.podcasts();
-          // Lexichronic (shift + 6)
-          if (start.down[54]) start.music();
-          // Path of Exile Characters (shift + 7)
-          if (start.down[55]) start.poe();
-          // Music (shift + 8)
-          if (start.down[56]) start.lexichronic();
-          // NFTs (shift + 9)
-          if (start.down[57]) start.nfts();
+          if (start.down[49]) { // Instapaper (shift + 1️⃣)
+            start.feed_count = 0;
+          } else if (start.down[50]) { // News (shift + 2️⃣)
+            start.feed_count = 1;
+          } else if (start.down[51]) { // New York Times (shift + 3️⃣)
+            start.feed_count = 2;
+          } else if (start.down[52]) { // Reddit (shift + 4️⃣)
+            start.feed_count = 3;
+          } else if (start.down[53]) { // Podcasts (shift + 5️⃣)
+            start.feed_count = 4;
+          } else if (start.down[54]) { // Lexichronic (shift + 6️⃣)
+            start.feed_count = 5;
+          } else if (start.down[55]) { // Path of Exile Characters (shift + 7️⃣)
+            start.feed_count = 6;
+          } else if (start.down[56]) { // Music (shift + 8️⃣)
+            start.feed_count = 7;
+          } else if (start.down[57]) { // NFTs (shift + 9️⃣)
+            start.feed_count = 8;
+          }
+          // Switch Feed Source
+          if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
           // Audio: Fast Forward (shift + ⏩)
           if (start.down[39]) start.podcast_fast_forward();
           // Audio: Rewind (shift + ⏪)
@@ -250,34 +285,34 @@
         if (start.down[18]) {
           e.preventDefault();
           // Alt Modifiers
-          if (start.down[49]) { // (alt + 1)
+          if (start.down[49]) { // Path of Exile (alt + 1️⃣)
             start.count = 0;
-          } else if (start.down[50]) { // (alt + 2)
+          } else if (start.down[50]) { // YouTube (alt + 2️⃣)
             start.count = 1;
-          } else if (start.down[51]) { // (alt + 3)
+          } else if (start.down[51]) { // DuckDuckGo (alt + 3️⃣)
             start.count = 2;
-          } else if (start.down[52]) { // (alt + 4)
+          } else if (start.down[52]) { // Apple Music (alt + 4️⃣)
             start.count = 3;
-          } else if (start.down[53]) { // (alt + 5)
+          } else if (start.down[53]) { // LastFM (alt + 5️⃣)
             start.count = 4;
-          } else if (start.down[54]) { // (alt + 6)
+          } else if (start.down[54]) { // Twitter (alt + 6️⃣)
             start.count = 5;
-          } else if (start.down[55]) { // (alt + 7)
+          } else if (start.down[55]) { // Google News (alt + 7️⃣)
             start.count = 6;
-          } else if (start.down[56]) { // (alt + 8)
+          } else if (start.down[56]) { // Github (alt + 8️⃣)
             start.count = 7;
-          } else if (start.down[57]) { // (alt + 9)
+          } else if (start.down[57]) { // MidJourney (alt + 9️⃣)
             start.count = 8;
-          } else if (start.down[48]) { // (alt + 0)
+          } else if (start.down[48]) { // Google (alt + 0️⃣)
             start.count = 9;
           }
-          // Switch Search
+          // Switch Search Source
           if (Number.isInteger(start.count)) start.switcher(start.searches[start.count]);
-          // Toggle Cursor (alt + Backspace)
+          // Toggle Cursor (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Resize News (alt + Right Bracket)
+          // Resize News (alt + ])
           if (start.down[221]) start.resize_news();
-          // Change Art Source To Full Resolution (alt + "z")
+          // Change Art Source To Full Resolution (alt + )
           if (start.down[90]) start.change_art_source();
           // Update LastFM (alt + "x")
           if (start.down[88]) {
@@ -430,13 +465,31 @@
 
     // Change LastFM Artwork
     change_lastfm_artwork: function (data) {
-      $(".lastfm__artist").text(data['artist']).attr("title", "Artist: " + data['artist']);
-      $(".lastfm__song").text(data['name']).attr("title", "Song: " + data['name']);
-      data['album'] != "" ? $(".lastfm__album").text(" - " + data['album']).attr("title", "Album: " + data['album']) : $(".lastfm__album").text("");
-      data['image'] != "" ? $(".lastfm__image").attr("src", data['image']).show() : $(".lastfm__image").hide();
-      $(".lastfm__container").show();
-      // Dead the Link if Audio
-      data['link'] ? $(".lastfm__url").attr("href", data['link']).addClass(start.s) : $(".lastfm__url").attr("href", "#").addClass(start.s);
+      const artist = $(".lastfm__artist"),
+            song = $(".lastfm__song"),
+            album = $(".lastfm__album"),
+            image = $(".lastfm__image"),
+            container = $(".lastfm__container"),
+            url = $(".lastfm__url");
+
+      artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
+      song.text(data.name).attr("title", `Song: ${data.name}`);
+      if (data.album) {
+        album.text(` - ${data.album}`).attr("title", `Album: ${data.album}`);
+      } else {
+        album.text("");
+      }
+      if (data.image) {
+        image.attr("src", data.image).show();
+      } else {
+        image.hide();
+      }
+      if (data.link) {
+        url.attr("href", data.link).addClass(start.s);
+      } else {
+        url.attr("href", "#").addClass(start.s);
+      }
+      container.show();
     },
 
     // Replace News
