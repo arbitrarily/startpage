@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.12.3",
+    version: "1.12.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -517,10 +517,15 @@
     },
 
     // Play X
-    play_x: function (number) {
+    play_x: function (url) {
       if (start.audio.playing) start.audio.pause();
-      if (!number) number = start.numb(1, 13);
-      start.audio.src = start.conf.xURL + number + ".mp3";
+      let number = start.numb(1, 13);
+      if (!url) {
+        start.audio.src = start.conf.xURL + number + ".mp3";
+      } else {
+        let number = url.length;
+        start.audio.src = url;
+      }
       start.audio.playbackRate = 1;
       start.audio.play();
       $(".podcasts").addClass(start.s);
@@ -533,18 +538,35 @@
     // Play X Playlist
     play_x_playlist: function () {
       if (start.audio.playing) start.audio.pause();
-      const numbers = [...Array(13).keys()].map(i => i + 1).sort(() => Math.random() - 0.5);
-      async function x_pl() {
-        for (var i = 0; i < numbers.length; i++) {
-          start.play_x(numbers[i]);
-          await new Promise(resolve => {
-            start.audio.addEventListener('ended', function () {
-              resolve();
-            });
+      let x = null;
+      $.when(start.conf).then(function () {
+        fetch(start.conf.xPlaylistURL + '?t=' + start.timestamp)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (x) {
+            for (let i = x.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [x[i], x[j]] = [x[j], x[i]];
+            }
+            if (x) {
+              for (var i = 0; i < x.length; i++) {
+                async function x_pl() {
+                  start.play_x(x[i]);
+                  await new Promise(resolve => {
+                    start.audio.addEventListener('ended', function () {
+                      resolve();
+                    });
+                  });
+                }
+                x_pl();
+              }
+            }
+          })
+          .catch(function (err) {
+            console.log(err);
           });
-        }
-      }
-      x_pl();
+      });
     },
 
     // Play Podcast
