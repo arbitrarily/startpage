@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.13.6",
+    version: "1.13.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -670,13 +670,13 @@
     // Audio: Faster Playback
     audio_more_speed: function () {
       start.audio.playbackRate += 0.1;
-      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
+      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate.toFixed(2) + "x</span>");
     },
 
     // Audio: Slower Playback
     audio_less_speed: function () {
       start.audio.playbackRate -= 0.1;
-      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate + "x</span>");
+      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate.toFixed(2) + "x</span>");
     },
 
     // Audio: Timer
