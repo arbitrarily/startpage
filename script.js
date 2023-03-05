@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.23",
+    version: "1.14.24",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -162,15 +162,11 @@
       },
       function () {
         start.audio_toggle();
-        const state = start.audio.paused ? "pause" : "play";
-        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__" + state + ".svg");
       },
       function () {
         start.audio_fast_forward();
       },
       function () {
-        const status = start.audio.muted ? "mute" : "unmuted";
-        $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + status + ".svg");
         start.audio_mute();
       }
     ],
@@ -694,6 +690,8 @@
     audio_mute: function () {
       start.audio.muted = !start.audio.muted;
       const status = start.audio.muted ? "Muted" : "Unmuted";
+      const icon = start.audio.muted ? "mute" : "unmuted";
+      $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
       start.notifications("<span>Audio</span> " + status);
     },
@@ -756,12 +754,12 @@
       if (!start.audio.paused) {
         step_size *= -1;
         start.notifications("<span>Audio</span> Paused");
-        $(".podcasts img").attr("src", "icons/icon__pause.svg");
+        $(".podcasts img, .instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__pause.svg");
       } else {
         // Rewind 3 seconds
         start.audio.currentTime = start.audio.currentTime - 3;
         start.notifications("<span>Audio</span> Playing");
-        $(".podcasts img").attr("src", "icons/icon__play.svg");
+        $(".podcasts img, .instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__play.svg");
       }
       // Fader
       let fader = setInterval(function () {
