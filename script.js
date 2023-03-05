@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.24",
+    version: "1.14.25",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -690,7 +690,7 @@
     audio_mute: function () {
       start.audio.muted = !start.audio.muted;
       const status = start.audio.muted ? "Muted" : "Unmuted";
-      const icon = start.audio.muted ? "mute" : "unmuted";
+      const icon = start.audio.muted ? "unmuted" : "mute";
       $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
       start.notifications("<span>Audio</span> " + status);
