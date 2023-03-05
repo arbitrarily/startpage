@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.19",
+    version: "1.14.20",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -577,7 +577,7 @@
       if (!url) {
         start.audio.src = start.conf.xURL + number + ".mp3";
       } else {
-        let number = url.length;
+        number = start.random_numb(1, 268);
         start.audio.src = url;
       }
       start.audio.playbackRate = 1;
@@ -585,6 +585,15 @@
       $(".podcasts").addClass(start.s);
       start.audio_click_play();
       start.audio_time();
+      const pod_data = {
+        id: "",
+        name: "Song #" + number,
+        album: "",
+        artist: "Lofi Girl",
+        image: "icons/icon__lofi-girl.jpg",
+        link: "https://www.youtube.com/@LofiGirl"
+      }
+      start.change_lastfm_artwork(pod_data);
       start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + number);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
