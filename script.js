@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.28",
+    version: "1.14.29",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -754,12 +754,14 @@
       if (!start.audio.paused) {
         step_size *= -1;
         start.notifications("<span>Audio</span> Paused");
-        $(".podcasts img, .instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__pause.svg");
+        $(".podcasts img").attr("src", "icons/icon__pause.svg");
+        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__play.svg");
       } else {
         // Rewind 3 seconds
         start.audio.currentTime = start.audio.currentTime - 3;
         start.notifications("<span>Audio</span> Playing");
-        $(".podcasts img, .instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__play.svg");
+        $(".podcasts img").attr("src", "icons/icon__play.svg");
+        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__pause.svg");
       }
       // Fader
       let fader = setInterval(function () {
