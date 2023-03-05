@@ -235,7 +235,7 @@ li {
 .instapaper-list {
     overflow: hidden;
     overflow-y: scroll;
-    height: 374px;
+    height: 420px;
     scrollbar-color: var(--grey) transparent;
     scrollbar-width: thin;
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
@@ -408,7 +408,7 @@ li {
 .container__list--title {
     font-family: var(--font-family);
     text-transform: uppercase;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     font-size: 0.9rem;
     font-weight: var(--bold);
     color: var(--grey);
@@ -611,10 +611,6 @@ li {
 }
 
 @media screen and (max-width: 40em) {
-    .instapaper-list {
-        height: 360px;
-    }
-
     .lastfm__container {
         margin-bottom: calc(var(--padding) * 2);
     }
@@ -646,6 +642,7 @@ li {
 
     .container__list--title {
         padding: 5px 0 10px 0;
+        letter-spacing: 10px;
     }
 
     .lastfm__container {
