@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.11",
+    version: "1.14.12",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -627,7 +627,7 @@
         const podcast = $(this);
         $(".podcasts").addClass(start.s);
         start.audio.src = podcast.attr("href");
-        start.audio.playbackRate = 1.3;
+        if (!podcast.hasClass("music-links")) start.audio.playbackRate = 1.3;
         if (start.audio.playing) start.audio.pause();
         start.audio.play();
         start.audio_time();
