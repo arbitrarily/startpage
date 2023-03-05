@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.9",
+    version: "1.14.11",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -345,7 +345,7 @@
     notifications: function (text) {
       const noti = $(".notifications");
       if (noti.hasClass(start.h)) noti.removeClass(start.h);
-      noti.html(text);
+      noti.find(".notifications__inner").html(text);
       const timeout_id = setTimeout(function () {
         noti.addClass(start.h);
       }, start.animation_time * 6);
@@ -455,7 +455,6 @@
             image = $(".lastfm__image"),
             container = $(".lastfm__container"),
             url = $(".lastfm__url");
-
       artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
       song.text(data.name).attr("title", `Song: ${data.name}`);
       if (data.album) {
@@ -621,7 +620,7 @@
       });
     },
 
-    // Play Podcast
+    // Audio: Play
     play_audio: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
