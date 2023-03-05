@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.31",
+    version: "1.14.32",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -196,23 +196,22 @@
       // Get Latest Instapaper Articles
       this.instapaper(true);
 
-      // Output into Console
-      this.console_log();
-
-      // Focus Search
+      // Search
       this.click_focus_search();
-
-      // Search Change on Click
       this.change_search();
 
       // Menu
       this.menu();
+      this.menu_clicks();
 
       // Animation on Leave
       this.bye_bye();
 
       // IP
       this.ip();
+
+      // Output into Console
+      this.console_log();
     },
 
     // Load Config, then Init
@@ -316,13 +315,15 @@
           if (start.down[8]) start.toggle_cursor();
           // Resize News (alt + ] or alt + [)
           if (start.down[221] || start.down[219]) start.resize_news();
-          // Change Art Source To Full Resolution (alt + )
+          // Change Art Source To Full Resolution (alt + z)
           if (start.down[90]) start.change_art_source();
           // Update LastFM (alt + "x")
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
+          // Toggle Menu (alt + "c")
+          if (start.down[67]) start.menu();
           // Refresh Background Image (alt + "v")
           if (start.down[86]) start.background();
           // Blur (alt + "b")
@@ -341,17 +342,22 @@
 
     // Menu
     menu: function () {
+      const html = $(".menu-links-source").html();
+      $(".instapaper-links").removeClass(start.s);
+      setTimeout(function () {
+        $(".instapaper-links").html(html);
+      }, 600);
+      setTimeout(function () {
+        $(".instapaper-links").addClass(start.s).addClass("");
+      }, 1000);
+      start.notifications("Menu <span>Toggled</span> ");
+    },
+
+    // Menu Click Events
+    menu_clicks: function() {
       $(".menu-toggle").on(start.touch, function (e) {
         e.preventDefault();
-        const html = $(".menu-links-source").html();
-        $(".instapaper-links").removeClass(start.s);
-        setTimeout(function () {
-          $(".instapaper-links").html(html);
-        }, 600);
-        setTimeout(function () {
-          $(".instapaper-links").addClass(start.s).addClass("");
-        }, 1000);
-        start.notifications("Menu <span>Toggled</span> ");
+        start.menu();
       });
       // Menu Clicks
       $(document).on(start.touch, ".menu-links--item", function (e) {
@@ -534,7 +540,7 @@
           }
         })
         .catch(function (err) {
-          $(".instapaper-links").removeClass("large-4").addClass("large-auto");
+          $(".instapaper-links").addClass(start.s);
         });
       start.feed_count = false;
     },

@@ -75,8 +75,10 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 #### *<kbd>Option</kbd>* Settings (reset on page refresh)
 - Use <kbd>option</kbd> + <kbd>z</kbd> to change the `Background Resolution` quality.
 - Use <kbd>option</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song data from LastFM.
+- Use <kbd>option</kbd> + <kbd>c</kbd> to bring up the `Main Menu` toggles.
 - Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
 - Use <kbd>option</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
+- Use <kbd>option</kbd> + <kbd>[</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>option</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
 - Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
 
