@@ -23,7 +23,7 @@
     --animation-long: all 0.999s ease-in-out;
 
     /* Opacity */
-    --opacity-start: 0.777;
+    --opacity-start: 0.666;
     --opacity-end: 1;
 
     /* Cursor */
@@ -285,9 +285,13 @@ li {
     left: 50%;
     transform: translate(-50%, -50%);
     filter: brightness(180%) saturate(0);
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
     padding: 17px;
     border-radius: 10px;
+}
+
+.menu-links--item.menu-links--item-audio img {
+    background: rgba(255, 255, 255, 0.033);
 }
 
 .container__list--item:hover {
@@ -306,7 +310,7 @@ li {
 }
 
 .menu-links--item:hover img {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .news-links .container__list--item:hover,

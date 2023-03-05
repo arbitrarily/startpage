@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.20",
+    version: "1.14.23",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -147,6 +147,31 @@
       },
       function() {
         start.nfts();
+      },
+      function () {
+        start.background();
+      },
+      function () {
+        start.play_x();
+      },
+      function () {
+        start.play_x_playlist();
+      },
+      function () {
+        start.audio_rewind();
+      },
+      function () {
+        start.audio_toggle();
+        const state = start.audio.paused ? "pause" : "play";
+        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__" + state + ".svg");
+      },
+      function () {
+        start.audio_fast_forward();
+      },
+      function () {
+        const status = start.audio.muted ? "mute" : "unmuted";
+        $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + status + ".svg");
+        start.audio_mute();
       }
     ],
 
