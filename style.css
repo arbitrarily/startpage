@@ -233,10 +233,6 @@ li {
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
-.instapaper-container--padded {
-    padding: var(--foundation-large);
-}
-
 .container__inner--large .instapaper-links img {
     max-height: 100% !important;
     max-width: 30% !important;
@@ -248,10 +244,14 @@ li {
 .instapaper-list {
     overflow: hidden;
     overflow-y: scroll;
-    max-height: 374px;
+    height: 374px;
     scrollbar-color: var(--grey) transparent;
     scrollbar-width: thin;
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
+}
+
+.instapaper-list--padded {
+    padding: var(--foundation-large) 0;
 }
 
 .instapaper-links {
@@ -606,7 +606,7 @@ li {
 
 @media screen and (max-width: 40em) {
     .instapaper-list {
-        max-height: 360px;
+        height: 360px;
     }
 
     .lastfm__container {
@@ -629,7 +629,7 @@ li {
 
 @media screen and (max-width: 40em) and (min-width: 40em) {
     .instapaper-list {
-        max-height: 472px;
+        height: 472px;
     }
 }
 
