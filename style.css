@@ -629,12 +629,6 @@ li {
     }
 }
 
-@media screen and (max-width: 40em) and (min-width: 40em) {
-    .instapaper-list {
-        height: 472px;
-    }
-}
-
 @media screen and (min-width: 40em) {
     .container form {
         margin-bottom: var(--padding);
@@ -675,6 +669,10 @@ li {
     .container__inner--large .instapaper-links,
     .container__inner--large .menu-links {
         width: calc(50% + var(--foundation-large));
+    }
+
+    .instapaper-list {
+        height: 374px;
     }
 }
 
