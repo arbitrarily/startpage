@@ -309,6 +309,11 @@ li {
     background: none;
 }
 
+.menu-links--item:active {
+    transform: translate(0, 2px);
+    opacity: var(--opacity-start);
+}
+
 .menu-links--item:hover img {
     background: rgba(255, 255, 255, 0.3);
 }
