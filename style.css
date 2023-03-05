@@ -106,11 +106,6 @@ a:focus img {
     z-index: -1;
 }
 
-.background.hidden {
-    display: none;
-    visibility: hidden;
-}
-
 .background-image {
     z-index: -2;
     opacity: 0.44;
@@ -125,16 +120,6 @@ a:focus img {
 .background-image.deblur {
     filter: blur(0);
     opacity: 1;
-}
-
-.background svg {
-    -webkit-animation: fadein 1.33s;
-    -moz-animation: fadein 1.33s;
-    -ms-animation: fadein 1.33s;
-    -o-animation: fadein 1.33s;
-    animation: fadein 1.33s;
-    height: 100%;
-    width: 100%;
 }
 
 .search__input--container {

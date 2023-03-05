@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.7",
+    version: "1.14.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -44,9 +44,6 @@
 
     // Timestamp for Breaking Cached URLs
     timestamp: ~~(new Date().getTime() / 1000),
-
-    // Background HTML
-    background_html: $(".background").html(),
 
     // Search Inputs
     searches: [
@@ -167,9 +164,6 @@
 
       // Background Image
       this.background();
-
-      // Background Resize
-      this.toggle_background_animation_large_screens();
 
       // Wallet Value
       this.wallet();
@@ -308,8 +302,6 @@
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Hide Animated Background (alt + "c")
-          if (start.down[67]) start.toggle_background();
           // Refresh Background Image (alt + "v")
           if (start.down[86]) start.background();
           // Blur (alt + "b")
@@ -389,26 +381,6 @@
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
       start.notifications("<span>Blurred Background</span>" + status);
-    },
-
-    // Toggle Animated Background
-    toggle_background: function () {
-      const bg = $(".background");
-      bg.hasClass(start.h) ? bg.toggleClass(start.h).html(start.background_html) : bg.toggleClass(start.h).html("");
-      const status = (bg.hasClass(start.h)) ? " Off" : " On";
-      start.notifications("<span>Background Animation</span>" + status);
-    },
-
-    // Toggle Animated Desktop - Don't Render on Super Large Screens
-    toggle_background_animation_large_screens: function () {
-      $(window).bind("resize load", function () {
-        const bg = $(".background");
-        if (window.matchMedia("(min-width: 64em)").matches) {
-          if (!bg.hasClass(start.h)) bg.addClass(start.h).html("");
-        } else {
-          if (bg.hasClass(start.h)) bg.removeClass(start.h).html(start.background_html);
-        }
-      });
     },
 
     // IP
