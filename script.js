@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.18",
+    version: "1.14.19",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -479,16 +479,18 @@
     search_switcher: function (search) {
       const action = search['action'],
             logo = search['logo'],
-            text = search['text'],
             name = search['name'],
             type = search['type'];
+      let text = search['text'];
+      if (window.matchMedia("(max-width: 30em)").matches) {
+        text = text.replace("Search ", "");
+      }
       $("#searchform").attr("action", action);
       $(".search").attr("src", logo);
       $("#search").attr("placeholder", text)
         .attr("name", name)
         .attr("data-type", type)
         .focus();
-      start.count = false;
       start.notifications("<span>Search Switched to </span> " + search['type']);
     },
 
