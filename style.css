@@ -74,10 +74,14 @@ a {
     opacity: var(--opacity-start);
 }
 
-a:hover,
-a:focus {
+a:hover {
     color: var(--white);
     opacity: var(--opacity-end);
+}
+
+a:focus {
+    color: var(--white);
+    opacity: var(--opacity-start);
 }
 
 a:active,
