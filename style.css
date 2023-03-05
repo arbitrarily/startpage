@@ -80,9 +80,11 @@ a:focus {
     opacity: var(--opacity-end);
 }
 
-a:active {
+a:active,
+.menu-links--item:active {
     transform: translate(0, 2px);
     opacity: var(--opacity-start);
+    transition: all 0ms ease;
 }
 
 a:hover img,
@@ -307,11 +309,6 @@ li {
 
 .menu-links--item:hover {
     background: none;
-}
-
-.menu-links--item:active {
-    transform: translate(0, 2px);
-    opacity: var(--opacity-start);
 }
 
 .menu-links--item:hover img {
