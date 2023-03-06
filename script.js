@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.33",
+    version: "1.14.34",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -201,7 +201,6 @@
       this.change_search();
 
       // Menu
-      this.menu();
       this.menu_clicks();
 
       // Animation on Leave

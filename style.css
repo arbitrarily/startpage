@@ -225,11 +225,24 @@ li {
 }
 
 .container__inner--large .instapaper-links img {
-    max-height: 100% !important;
-    max-width: 30% !important;
+    max-height: 100%;
+    max-width: 30%;
     width: 30%;
     min-width: 30%;
-    aspect-ratio: 3/1.5 !important;
+    aspect-ratio: 3/1.5;
+}
+
+.container__inner--large .instapaper-links .menu-links--item img {
+    max-height: 60px;
+    max-width: 30%;
+    width: 60px;
+    min-width: 60px;
+    aspect-ratio: inherit;
+}
+
+.container__inner--large .podcast-links .container__list,
+.container__inner--large .news-links .container__list {
+    align-items: center;
 }
 
 .instapaper-list {
