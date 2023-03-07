@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.3",
+    version: "1.15.5",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -140,16 +140,16 @@
         start.music();
       },
       function() {
+        start.yt();
+      },
+      function() {
         start.poe();
       },
       function() {
         start.lexichronic();
       },
-      function() {
-        start.nfts();
-      },
       function () {
-        start.yt();
+        start.nfts();
       },
       function () {
         start.background();
@@ -249,91 +249,91 @@
         // Left Shift
         if (start.down[16]) {
           e.preventDefault();
-          if (start.down[49]) { // Instapaper (shift + 1️⃣)
+          if (start.down[49]) { // Instapaper             (shift + 1️⃣)
             start.feed_count = 0;
-          } else if (start.down[50]) { // News (shift + 2️⃣)
+          } else if (start.down[50]) { // News            (shift + 2️⃣)
             start.feed_count = 1;
-          } else if (start.down[51]) { // New York Times (shift + 3️⃣)
+          } else if (start.down[51]) { // New York Times  (shift + 3️⃣)
             start.feed_count = 2;
-          } else if (start.down[52]) { // Reddit (shift + 4️⃣)
+          } else if (start.down[52]) { // Reddit          (shift + 4️⃣)
             start.feed_count = 3;
-          } else if (start.down[53]) { // Podcasts (shift + 5️⃣)
+          } else if (start.down[53]) { // Podcasts        (shift + 5️⃣)
             start.feed_count = 4;
-          } else if (start.down[54]) { // Lexichronic (shift + 6️⃣)
+          } else if (start.down[54]) { // Lexichronic     (shift + 6️⃣)
             start.feed_count = 5;
-          } else if (start.down[55]) { // Path of Exile Characters (shift + 7️⃣)
+          } else if (start.down[55]) { // YouTube         (shift + 7️⃣)
             start.feed_count = 6;
-          } else if (start.down[56]) { // Music (shift + 8️⃣)
+          } else if (start.down[56]) { // Path of Exile   (shift + 8️⃣)
             start.feed_count = 7;
-          } else if (start.down[57]) { // NFTs (shift + 9️⃣)
+          } else if (start.down[57]) { // Music           (shift + 9️⃣)
             start.feed_count = 8;
-          } else if (start.down[48]) { // YouTube (shift + 0)
-            start.yt();
+          } else if (start.down[48]) { // NFTs            (shift + 0️⃣)
+            start.feed_count = 9;
           }
           // Switch Feed Source
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
-          // Audio: Fast Forward (shift + ⏩)
+          // Audio: Fast Forward                      (shift + ⏩)
           if (start.down[39]) start.audio_fast_forward();
-          // Audio: Rewind (shift + ⏪)
+          // Audio: Rewind                            (shift + ⏪)
           if (start.down[37]) start.audio_rewind();
-          // Audio: Increased Playback Speed (shift + ⏫)
+          // Audio: Increased Playback Speed          (shift + ⏫)
           if (start.down[38]) start.audio_more_speed();
-          // Audio: Decreased Playback Speed (shift + ⏬)
+          // Audio: Decreased Playback Speed          (shift + ⏬)
           if (start.down[40]) start.audio_less_speed();
-          // Audio: Play/Pause ("space" Key)
+          // Audio: Play/Pause                        ("space" Key)
           if (start.down[32]) start.audio_toggle();
-          // Audio: Mute (shift + "m" Key)
+          // Audio: Mute                              (shift + "m" Key)
           if (start.down[77]) start.audio_mute();
         }
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
-          // Alt Modifiers
-          if (start.down[49]) { // Path of Exile (alt + 1️⃣)
+          if (start.down[49]) { // Path of Exile      (alt + 1️⃣)
             start.count = 0;
-          } else if (start.down[50]) { // YouTube (alt + 2️⃣)
+          } else if (start.down[50]) { // YouTube     (alt + 2️⃣)
             start.count = 1;
-          } else if (start.down[51]) { // DuckDuckGo (alt + 3️⃣)
+          } else if (start.down[51]) { // DuckDuckGo  (alt + 3️⃣)
             start.count = 2;
           } else if (start.down[52]) { // Apple Music (alt + 4️⃣)
             start.count = 3;
-          } else if (start.down[53]) { // LastFM (alt + 5️⃣)
+          } else if (start.down[53]) { // LastFM      (alt + 5️⃣)
             start.count = 4;
-          } else if (start.down[54]) { // Twitter (alt + 6️⃣)
+          } else if (start.down[54]) { // Twitter     (alt + 6️⃣)
             start.count = 5;
           } else if (start.down[55]) { // Google News (alt + 7️⃣)
             start.count = 6;
-          } else if (start.down[56]) { // Github (alt + 8️⃣)
+          } else if (start.down[56]) { // Github      (alt + 8️⃣)
             start.count = 7;
-          } else if (start.down[57]) { // MidJourney (alt + 9️⃣)
+          } else if (start.down[57]) { // MidJourney  (alt + 9️⃣)
             start.count = 8;
-          } else if (start.down[48]) { // Google (alt + 0️⃣)
+          } else if (start.down[48]) { // Google      (alt + 0️⃣)
             start.count = 9;
           }
           // Switch Search Source
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
-          // Toggle Cursor (alt + 🔙)
+          // Toggle Cursor                            (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Resize News (alt + ] or alt + [)
+          // Resize News                              (alt + ] or alt + [)
           if (start.down[221] || start.down[219]) start.resize_news();
-          // Change Art Source To Full Resolution (alt + z)
+          // Change Art Source To Full Resolution     (alt + z)
           if (start.down[90]) start.change_art_source();
-          // Update LastFM (alt + "x")
+          // Update LastFM                            (alt + "x")
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Toggle Menu (alt + "c")
+          // Toggle Menu                              (alt + "c")
           if (start.down[67]) start.menu();
-          // Refresh Background Image (alt + "v")
+          // Refresh Background Image                 (alt + "v")
           if (start.down[86]) start.background();
-          // Blur (alt + "b")
+          // Blur                                     (alt + "b")
           if (start.down[66]) start.toggle_blur();
-          // Wallet Status (alt + "n")
+          // Wallet Status                            (alt + "n")
           if (start.down[78]) start.console_wallet();
-          // X
-          if (start.down[123]) start.play_x();
+          // Music: Randomized Playlist               (alt + "f11")
           if (start.down[122]) start.play_x_playlist();
+          // Music: Random Song                       (alt + "f12")
+          if (start.down[123]) start.play_x();
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
@@ -602,7 +602,7 @@
     yt: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.youTubeURL, "YouTube");
-        // start.yt_click();
+        start.yt_click();
       });
     },
 
@@ -610,13 +610,20 @@
     yt_click: function () {
       $(document).on(start.touch, ".video-links a", function (e) {
         e.preventDefault();
-        const url = $(this).attr("href");
-        var iframe = $("<iframe></iframe>", {
-          "src": url + "?autoplay=1",
-          "width": "640",
-          "height": "360"
+        // Create a new YouTube player
+        var player = new YT.Player('video-container', {
+          height: '360',
+          width: '640',
+          videoId: $(this).data("id"),
+          playerVars: {
+            'autoplay': 1,
+            'controls': 1,
+            'modestbranding': 1,
+            'rel': 0,
+            'showinfo': 0
+          }
         });
-        $(".instapaper-list").html(iframe);
+        if (!$(".instapaper-links").hasClass("large-6")) start.resize_news();
       });
     },
 
@@ -910,7 +917,6 @@
 
     // Console Log Attribution
     console_log: function () {
-      console.log("Built By");
       console.log(
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"

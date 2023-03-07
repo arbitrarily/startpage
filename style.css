@@ -294,6 +294,10 @@ li {
     position: fixed;
 }
 
+.video-links iframe {
+    width: 100%;
+}
+
 .instapaper-links ul:not(.instapaper-list) {
     margin: 0;
 }
@@ -657,6 +661,10 @@ li {
 
     .container form {
         margin-bottom: var(--padding);
+    }
+
+    .video-links iframe {
+        margin: 0 0 calc(var(--padding) * 1.5);
     }
 }
 

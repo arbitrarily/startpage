@@ -73,14 +73,15 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 `Shift `  (KeyCode 16)
 
 #### *<kbd>Option</kbd>* Settings (reset on page refresh)
-- Use <kbd>option</kbd> + <kbd>z</kbd> to change the `Background Resolution` quality.
-- Use <kbd>option</kbd> + <kbd>x</kbd> to get the `latest Now Playing` song data from LastFM.
+- Use <kbd>option</kbd> + <kbd>z</kbd> to toggle the `Background Resolution` resolution (quality).
+- Use <kbd>option</kbd> + <kbd>x</kbd> to fetch the `latest Now Playing` song data from LastFM.
 - Use <kbd>option</kbd> + <kbd>c</kbd> to bring up the `Main Menu` toggles.
-- Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh ("V"-iew) `the background wallpaper`.
-- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle ("B"-lur) `background blur` to better view the background image.
-- Use <kbd>option</kbd> + <kbd>[</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
-- Use <kbd>option</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed.
-- Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the `mouse cursor`.
+- Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh (<kbd>V</kbd>iew) `the background wallpaper`.
+- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) `background blur` to better view the background image.
+- Use <kbd>option</kbd> + <kbd>n</kbd> to toggle (co<kbd>N</kbd>sole.log) `Wallet` stats.
+- Use <kbd>option</kbd> + <kbd>[</kbd> to toggle `news feed resize` to get an alternative, larger news feed or return to default size.
+- Use <kbd>option</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed or return to default size.
+- Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
 
 ### *<kbd>Option</kbd>* Search Toggles
 - Use <kbd>option</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
@@ -96,22 +97,25 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 
 ### *<kbd>Shift</kbd>* News Feed
 - Use <kbd>shift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
-- Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `Techmeme` news feed.
+- Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `News` feed (aggregated news feed).
 - Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
 - Use <kbd>shift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
 - Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
 - Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
-- Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `Path of Exile` character feed.
-- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle the `Lexichronic` news feed.
-- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
+- Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `YouTube` latest videos feed.
+- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle the `Path of Exile` character feed.
+- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
 ### *<kbd>Shift</kbd>* Audio Controls
 - Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
 - Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
 - Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
-- Use <kbd>shift</kbd> + <kbd>/kbd> to `rewind` Podcast playback 5 seconds.
+- Use <kbd>shift</kbd> + <kbd> to `rewind` Podcast playback 5 seconds.
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 - Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
+- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from [https://www.youtube.com/@LofiGirl](@LofiGirl).
+- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from [https://www.youtube.com/@LofiGirl](@LofiGirl).
 
 ### Publishing
 
