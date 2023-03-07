@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.14.34",
+    version: "1.15.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -247,6 +247,7 @@
         // Key Down
         start.down[e.keyCode] = true;
         // Left Shift
+        console.log(e.keyCode);
         if (start.down[16]) {
           e.preventDefault();
           if (start.down[49]) { // Instapaper (shift + 1️⃣)
@@ -267,6 +268,8 @@
             start.feed_count = 7;
           } else if (start.down[57]) { // NFTs (shift + 9️⃣)
             start.feed_count = 8;
+          } else if (start.down[48]) { // YouTube (shift + 0)
+            start.yt();
           }
           // Switch Feed Source
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
@@ -593,6 +596,13 @@
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
         start.play_audio();
+      });
+    },
+
+    // YouTube Home Feed
+    yt: function () {
+      $.when(start.conf).then(function () {
+        start.fetch_news(start.conf.youTubeURL, "YouTube");
       });
     },
 
