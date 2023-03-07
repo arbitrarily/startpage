@@ -114,8 +114,8 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd> to `rewind` Podcast playback 5 seconds.
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 - Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
-- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from [https://www.youtube.com/@LofiGirl](@LofiGirl).
-- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from [https://www.youtube.com/@LofiGirl](@LofiGirl).
+- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from (https://www.youtube.com/@LofiGirl)[@LofiGirl].
+- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from (https://www.youtube.com/@LofiGirl)[@LofiGirl].
 
 ### Publishing
 
