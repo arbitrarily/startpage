@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.10",
+    version: "1.15.12",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -283,10 +283,16 @@
           if (start.down[38]) start.audio_more_speed();
           // Audio: Decreased Playback Speed          (shift + ⏬)
           if (start.down[40]) start.audio_less_speed();
-          // Audio: Play/Pause                        ("space" Key)
+          // Audio: Play/Pause                        (shift + "space")
           if (start.down[32]) start.audio_toggle();
-          // Audio: Mute                              (shift + "m" Key)
+          // Audio: Mute                              (shift + "m")
           if (start.down[77]) start.audio_mute();
+          // Video: Fullscreen Toggle                 (shift + "f")
+          if (start.down[70]) start.fullscreen_video();
+          // Music: Randomized Playlist               (alt + "f11")
+          if (start.down[122]) start.play_x_playlist();
+          // Music: Random Song                       (alt + "f12")
+          if (start.down[123]) start.play_x();
         }
         // Alt/Option
         if (start.down[18]) {
@@ -333,10 +339,6 @@
           if (start.down[66]) start.toggle_blur();
           // Wallet Status                            (alt + "n")
           if (start.down[78]) start.console_wallet();
-          // Music: Randomized Playlist               (alt + "f11")
-          if (start.down[122]) start.play_x_playlist();
-          // Music: Random Song                       (alt + "f12")
-          if (start.down[123]) start.play_x();
         }
       }).keyup(function (e) {
         // Reset Key on Key Up
@@ -535,6 +537,7 @@
           $(".instapaper-links").addClass(start.s);
         });
       start.feed_count = false;
+      if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
     },
 
     // Instapaper Home Feed
@@ -626,6 +629,13 @@
         if (!$(".instapaper-links").hasClass("large-6")) start.resize_news();
         start.notifications(`Now Playing <span>${vid_data.name}</span>`);
       });
+    },
+
+    // Fullscreen Toggle
+    fullscreen_video: function () {
+      $(".video-links .instapaper-list").toggleClass("fullscreen");
+      const fullscreen = $(".video-links .instapaper-list").hasClass("fullscreen") ? "Fullscreen" : "Fullscreen Off";
+      start.notifications(`Video <span>${fullscreen}</span>`);
     },
 
     // Play X

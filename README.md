@@ -20,9 +20,13 @@ Some of the features:
 * News feed can be toggled to different up-to-date feeds.
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
+* View owned NFTs.
 * Listen to podcasts.
 * Listen to music.
-* Audio control (play/pause, fast foward, rewind, faster/slower playback).
+* Listen to shuffled music playlist from Lofi Girl.
+* Watch subscribed YouTube Videos in line without leaving the site.
+* Fullscreen video toggle.
+* Media control (mute/unmute, play/pause, fast foward, rewind, faster/slower playback).
 * See what music I'm currently listening to.
 * See how my MetaMask wallet is doing.
 * See my public IP address.
@@ -30,6 +34,7 @@ Some of the features:
 * See pageviews.
 * See commit count for this repo.
 * Responsive design.
+* Mobile ready toggle menu.
 
 ---
 
@@ -107,13 +112,14 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Lexichronic` news feed.
 - Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
-### *<kbd>Shift</kbd>* Audio Controls
+### *<kbd>Shift</kbd>* Media Controls
 - Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
 - Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
 - Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
 - Use <kbd>shift</kbd> + <kbd> to `rewind` Podcast playback 5 seconds.
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 - Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
+- Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle `fullscreen` for video.
 - Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
 - Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
 
