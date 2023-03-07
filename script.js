@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.5",
+    version: "1.15.9",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -31,6 +31,9 @@
     // Art
     art_url: false,
     art_num: false,
+
+    // Video
+    video: false,
 
     // NFTs
     nfts_collection: false,
@@ -351,7 +354,7 @@
       setTimeout(function () {
         $(".instapaper-links").addClass(start.s).addClass("");
       }, 1000);
-      start.notifications("Menu <span>Toggled</span> ");
+      start.notifications("Menu <span>Toggled</span>");
     },
 
     // Menu Click Events
@@ -393,7 +396,7 @@
           if (this.complete) $(this).trigger('load');
         });
       }, start.animation_time * 3);
-      if (!num) start.notifications("<span>New Background</span> #" + start.art_num + " <span>Loaded</span>");
+      if (!num) start.notifications(`<span>New Background</span> #${start.art_num} <span>Loaded</span>`);
     },
 
     // Change Background Art Resolution
@@ -401,14 +404,14 @@
       start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
       const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
       start.background(true);
-      start.notifications("<span>Background Source Changed To</span> " + message);
+      start.notifications(`<span>Background Source Changed To</span> ${message}`);
     },
 
     // Toggle Blur on Background Image
     toggle_blur: function () {
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
-      start.notifications("<span>Blurred Background</span>" + status);
+      start.notifications(`<span>Blurred Background</span>${status}`);
     },
 
     // IP
@@ -485,21 +488,9 @@
             url = $(".lastfm__url");
       artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
       song.text(data.name).attr("title", `Song: ${data.name}`);
-      if (data.album) {
-        album.text(` - ${data.album}`).attr("title", `Album: ${data.album}`);
-      } else {
-        album.text("");
-      }
-      if (data.image) {
-        image.attr("src", data.image).show();
-      } else {
-        image.hide();
-      }
-      if (data.link) {
-        url.attr("href", data.link).addClass(start.s);
-      } else {
-        url.attr("href", "#").addClass(start.s);
-      }
+      album.text(data.album ? ` - ${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
+      image.toggle(data.image != null).attr("src", data.image);
+      url.attr("href", data.link ? data.link : "#").addClass(start.s);
       container.show();
     },
 
@@ -510,16 +501,16 @@
             name = search['name'],
             type = search['type'];
       let text = search['text'];
-      if (window.matchMedia("(max-width: 30em)").matches) {
-        text = text.replace("Search ", "");
-      }
+      const is_mobile = window.matchMedia("(max-width: 30em)").matches;
+      const search_text = is_mobile ? text.replace("Search ", "") : text;
       $("#searchform").attr("action", action);
       $(".search").attr("src", logo);
-      $("#search").attr("placeholder", text)
-        .attr("name", name)
-        .attr("data-type", type)
-        .focus();
-      start.notifications("<span>Search Switched to </span> " + search['type']);
+      $("#search").attr({
+        "placeholder": search_text,
+        "name": name,
+        "data-type": type
+      }).focus();
+      start.notifications(`<span>Search Switched to </span> ${type}`);
     },
 
     // Replace News
@@ -537,7 +528,7 @@
             setTimeout(function () {
               $(".instapaper-links").addClass(start.s);
             }, 1000);
-            if (source) start.notifications("<span>Feed Switched to</span> " + source);
+            if (source) start.notifications(`<span>Feed Switched to</span> ${source}`);
           }
         })
         .catch(function (err) {
@@ -610,8 +601,8 @@
     yt_click: function () {
       $(document).on(start.touch, ".video-links a", function (e) {
         e.preventDefault();
-        // Create a new YouTube player
-        var player = new YT.Player('video-container', {
+        start.audio_toggle();
+        start.video = new YT.Player('video-container', {
           height: '360',
           width: '640',
           videoId: $(this).data("id"),
@@ -623,13 +614,24 @@
             'showinfo': 0
           }
         });
+        const vid_data = {
+          id: $(this).data("id"),
+          name: $(this).data("title"),
+          album: "",
+          artist: $(this).data("feed"),
+          image: $(this).find("img").attr("src"),
+          link: $(this).attr("href")
+        }
+        start.change_lastfm_artwork(vid_data);
         if (!$(".instapaper-links").hasClass("large-6")) start.resize_news();
+        start.notifications(`Now Playing <span>${vid_data.name}</span>`);
       });
     },
 
     // Play X
     play_x: function (url) {
-      if (start.audio.playing) start.audio.pause();
+      if (!start.audio.paused) start.audio.pause();
+      if (start.video && start.video.getPlayerState() === 1) start.video.pauseVideo();
       let number = start.random_numb(1, 13);
       if (!url) {
         start.audio.src = start.conf.xURL + number + ".mp3";
@@ -651,13 +653,14 @@
         link: "https://www.youtube.com/@LofiGirl"
       }
       start.change_lastfm_artwork(pod_data);
-      start.notifications("Now Playing <span>" + start.conf.x + "</span> #" + number);
+      start.notifications(`Now Playing <span>${start.conf.x}</span> #${number}`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
     // Play X Playlist
     play_x_playlist: function () {
-      if (start.audio.playing) start.audio.pause();
+      if (!start.audio.paused) start.audio.pause();
+      if (start.video && start.video.getPlayerState() === 1) start.video.pauseVideo();
       $.when(start.conf).then(function () {
         fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
           .then(function (response) {
@@ -692,14 +695,17 @@
     play_audio: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
+        if (!start.audio.paused) start.audio.pause();
+        if (start.video) {
+          if (start.video.getPlayerState() === 1) start.video.pauseVideo();
+        }
         const podcast = $(this);
         $(".podcasts").addClass(start.s);
         start.audio.src = podcast.attr("href");
         if (!$(".podcast-links").hasClass("music-links")) start.audio.playbackRate = 1.3;
-        if (start.audio.playing) start.audio.pause();
         start.audio.play();
         start.audio_time();
-        start.notifications("<span>Now Playing</span> " + podcast.text().trim().slice(0, 75) + "...");
+        start.notifications(`<span>Now Playing</span> ${podcast.text().trim().slice(0, 75) + "..."}`);
         const pod_data = {
           id: '',
           name: podcast.data('title'),
@@ -729,31 +735,38 @@
       const icon = start.audio.muted ? "unmuted" : "mute";
       $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
-      start.notifications("<span>Audio</span> " + status);
+      start.video.isMuted() ? start.video.unMute() : start.video.mute();
+      start.notifications(`<span>Audio</span> ${status}`);
     },
 
     // Audio: Rewind
-    audio_rewind: function () {
-      start.audio.currentTime -= 5;
-      start.notifications("<span>Audio</span> Rewind <span>-5 seconds</span>");
+    audio_rewind: function (val = 5) {
+      if (!start.audio.paused) start.audio.currentTime -= val;
+      if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() - val);
+      start.notifications(`<span>Audio</span> Rewind <span>-${val} seconds</span>`);
     },
 
     // Audio: Fast Forward
-    audio_fast_forward: function () {
-      start.audio.currentTime += 15;
-      start.notifications("<span>Audio</span> Fast Forward <span>+15 seconds</span>");
+    audio_fast_forward: function (val = 15) {
+      if (!start.audio.paused) start.audio.currentTime += val;
+      if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() + val);
+      start.notifications(`<span>Audio</span> Fast Forward <span>+${val} seconds</span>`);
     },
 
     // Audio: Faster Playback
     audio_more_speed: function () {
-      start.audio.playbackRate += 0.1;
-      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate.toFixed(2) + "x</span>");
+      if (!start.audio.paused) {
+        start.audio.playbackRate += 0.1;
+        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2) }x</span>`);
+      }
     },
 
     // Audio: Slower Playback
     audio_less_speed: function () {
-      start.audio.playbackRate -= 0.1;
-      start.notifications("<span>Audio</span> Playback Rate <span>" + start.audio.playbackRate.toFixed(2) + "x</span>");
+      if (!start.audio.paused) {
+        start.audio.playbackRate -= 0.1;
+        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2) }x</span>`);
+      }
     },
 
     // Audio: Timer
@@ -771,7 +784,7 @@
           $(".container .progress").css('width', width + '%');
         }
       }, 500);
-      // When Podcast Ends
+      // When Audio Ends
       start.audio.addEventListener("ended", function () {
         $(".podcasts-replace").text('0:00');
         $(".podcasts").removeClass(start.s);
@@ -781,23 +794,36 @@
         // Reset Audio
         start.audio = new Audio();
       });
+      // When Video Ends
+      if (start.video) {
+        start.video.addEventListener('onEnded', function () {
+          start.notifications("<span>Video</span> Finished Playing");
+          start.yt();
+        });
+      }
     },
 
-    // Pause Podcast
+    // Audio: Play/Pause
     audio_toggle: function () {
       let current_vol = start.audio.volume;
       let step_size = 0.05;
+      // Audio Toggle
       if (!start.audio.paused) {
         step_size *= -1;
-        start.notifications("<span>Audio</span> Paused");
         $(".podcasts img").attr("src", "icons/icon__pause.svg");
         $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__play.svg");
+        start.notifications("<span>Audio</span> Paused");
       } else {
         // Rewind 3 seconds
         start.audio.currentTime = start.audio.currentTime - 3;
-        start.notifications("<span>Audio</span> Playing");
         $(".podcasts img").attr("src", "icons/icon__play.svg");
         $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__pause.svg");
+        start.notifications("<span>Audio</span> Playing");
+        if (start.video) {
+          if (start.video.getPlayerState() === 1) {
+            start.video.pauseVideo();
+          }
+        }
       }
       // Fader
       let fader = setInterval(function () {
@@ -808,6 +834,19 @@
         if (current_vol >= 1) start.audio.play();
         if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
+      // Video Toggle
+      try {
+        if (start.video.getPlayerState() === 1) {
+          start.video.pauseVideo();
+          start.notifications("<span>Video</span> Paused");
+        } else {
+          start.video.playVideo();
+          start.notifications("<span>Video</span> Playing");
+          if (!start.audio.paused) fader;
+        }
+      } catch (e) {
+        return;
+      }
     },
 
     // Page View Counter
@@ -889,20 +928,21 @@
     toggle_cursor: function () {
       $("body").toggleClass("vaal");
       const status = ($("body").hasClass("vaal")) ? " On" : " Off";
-      start.notifications("<span>Cursor Toggled</span>" + status);
+      start.notifications(`<span>Cursor Toggled</span>${status}`);
     },
 
     // Resize
     resize_news: function () {
       $(".container__inner").toggleClass("container__inner--large");
       const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
-      start.notifications("<span>News Resized</span>" + status);
+      start.notifications(`<span>News Resized</span>${status}`);
     },
 
-    // Animation on Leave
+    // Animation on Leave & Alert Check if Media is Playing
     bye_bye: function () {
       $(window).on("beforeunload", function () {
-        if (start.audio && !start.audio.paused) {
+        const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
+        if (media_playing) {
           const result = window.confirm("Audio is still playing, sure you want to leave?");
           if (result) {
             $("body").css("opacity", 0);

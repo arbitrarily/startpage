@@ -224,6 +224,11 @@ li {
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
+.video-links .instapaper-container,
+.video-links .instapaper-list {
+    mask-image: none;
+}
+
 .container__inner--large .instapaper-links img {
     max-height: 100%;
     max-width: 30%;
