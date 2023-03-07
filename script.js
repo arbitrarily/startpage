@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.1",
+    version: "1.15.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -149,10 +149,10 @@
         start.nfts();
       },
       function () {
-        start.background();
+        start.yt();
       },
       function () {
-        start.play_x();
+        start.background();
       },
       function () {
         start.play_x_playlist();
