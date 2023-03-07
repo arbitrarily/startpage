@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.2",
+    version: "1.15.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -247,7 +247,6 @@
         // Key Down
         start.down[e.keyCode] = true;
         // Left Shift
-        console.log(e.keyCode);
         if (start.down[16]) {
           e.preventDefault();
           if (start.down[49]) { // Instapaper (shift + 1️⃣)
@@ -603,6 +602,21 @@
     yt: function () {
       $.when(start.conf).then(function () {
         start.fetch_news(start.conf.youTubeURL, "YouTube");
+        // start.yt_click();
+      });
+    },
+
+    // Open Youtube Video in Modal
+    yt_click: function () {
+      $(document).on(start.touch, ".video-links a", function (e) {
+        e.preventDefault();
+        const url = $(this).attr("href");
+        var iframe = $("<iframe></iframe>", {
+          "src": url + "?autoplay=1",
+          "width": "640",
+          "height": "360"
+        });
+        $(".instapaper-list").html(iframe);
       });
     },
 
