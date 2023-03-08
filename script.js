@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.25",
+    version: "1.15.27",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -616,8 +616,9 @@
     },
 
     video_is_ready: function (event) {
-      start.video_timer();
+      start.audio_time();
       start.video.addEventListener('onStateChange', function (event) {
+        if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
         if (event.data === YT.PlayerState.ENDED) {
           start.yt();
           start.notifications("<span>Video</span> Finished Playing");
@@ -695,7 +696,6 @@
       }
       start.audio.playbackRate = 1;
       start.audio.play();
-      $(".podcasts").addClass(start.s);
       start.audio_click_play();
       start.audio_time();
       const pod_data = {
@@ -825,20 +825,32 @@
 
     // Audio: Timer
     audio_time: function () {
+      let tr = 0;
+      let width = 0;
       setInterval(function () {
-        const tr = start.audio.duration - start.audio.currentTime,
-              minutes = Math.floor(tr / 60),
-              seconds = Math.floor(tr % 60),
-              padded_time = seconds < 10 ? '0' + seconds : seconds;
-        // Update Time
-        if (seconds) {
-          $(".podcasts-replace").text(minutes + ':' + padded_time);
-          let width = ((start.audio.currentTime / start.audio.duration) * 100).toFixed(3);
-          if (width < 1) width = 1;
-          $(".container .progress").css('width', width + '%');
+        if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
+          tr = start.video.getDuration() - start.video.getCurrentTime() > 0 ? start.video.getDuration() - start.video.getCurrentTime() : 0;
+          width = start.video.getCurrentTime() / start.video.getDuration();
         }
+        if (!start.audio.paused) {
+          width = start.audio.currentTime / start.audio.duration;
+          tr = start.audio.duration - start.audio.currentTime > 0 ? start.audio.duration - start.audio.currentTime : 0;
+        }
+        // Update Time
+        const interval = {
+          minutes: Math.floor(tr / 60),
+          seconds: Math.floor(tr % 60),
+          padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
+        }
+        if (!$(".podcasts").hasClass(start.s) && interval.seconds > 0) $(".podcasts").addClass(start.s);
+        $(".podcasts-replace").text(interval.minutes + ':' + interval.padded_time);
+        width = (width * 100).toFixed(3);
+        if (width < 1) width = 1;
+        $(".container .progress").css('width', width + '%');
       }, 500);
-      // When Audio Ends
+      start.audio.addEventListener("play", function() {
+        if (start.video) start.video.pauseVideo();
+      });
       start.audio.addEventListener("ended", function () {
         $(".podcasts-replace").text('0:00');
         $(".podcasts").removeClass(start.s);
@@ -847,27 +859,8 @@
         start.notifications("<span>Audio</span> Finished Playing");
         // Reset Audio
         start.audio = new Audio();
+        cleatInterval();
       });
-    },
-
-    // Video Timer
-    video_timer: function () {
-      $(".podcasts").addClass(start.s);
-      setInterval(function () {
-        try {
-            var tr = start.video.getDuration() - start.video.getCurrentTime(),
-                min = Math.floor(tr / 60),
-                sec = Math.floor(tr % 60),
-                pt = sec < 10 ? '0' + sec : sec;
-            // Update Time
-            if (sec) {
-              $(".podcasts-replace").text(min + ':' + pt);
-              let width = ((start.video.getCurrentTime() / start.video.getDuration()) * 100).toFixed(3);
-              if (width < 1) width = 1;
-              $(".container .progress").css('width', width + '%');
-            }
-        } finally {}
-      }, 500);
     },
 
     // Audio: Play/Pause
