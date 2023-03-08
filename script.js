@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.24",
+    version: "1.15.25",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -615,6 +615,21 @@
       });
     },
 
+    video_is_ready: function (event) {
+      start.video_timer();
+      start.video.addEventListener('onStateChange', function (event) {
+        if (event.data === YT.PlayerState.ENDED) {
+          start.yt();
+          start.notifications("<span>Video</span> Finished Playing");
+          $(".podcasts-replace").text('0:00');
+          $(".podcasts").removeClass(start.s);
+          $(".container .progress").css('width', '0%');
+          if ($("#search").hasClass("full")) $("#search").removeClass("full");
+          if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
+        }
+      });
+    },
+
     // Open Youtube Video in Modal
     yt_click: function () {
       $(document).on(start.touch, ".video-links a", function (e) {
@@ -632,13 +647,9 @@
             'modestbranding': 1,
             'rel': 0,
             'showinfo': 0
-          }
-        });
-        start.video.addEventListener('onStateChange', function (event) {
-          if (event.data === YT.PlayerState.ENDED) {
-            start.yt();
-            start.notifications("<span>Video</span> Finished Playing");
-            if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
+          },
+          events: {
+            'onReady': start.video_is_ready,
           }
         });
         // get href from $(this) and set it to the iframe src
@@ -815,9 +826,9 @@
     // Audio: Timer
     audio_time: function () {
       setInterval(function () {
-        const time_remaining = start.audio.duration - start.audio.currentTime,
-              minutes = Math.floor(time_remaining / 60),
-              seconds = Math.floor(time_remaining % 60),
+        const tr = start.audio.duration - start.audio.currentTime,
+              minutes = Math.floor(tr / 60),
+              seconds = Math.floor(tr % 60),
               padded_time = seconds < 10 ? '0' + seconds : seconds;
         // Update Time
         if (seconds) {
@@ -837,6 +848,26 @@
         // Reset Audio
         start.audio = new Audio();
       });
+    },
+
+    // Video Timer
+    video_timer: function () {
+      $(".podcasts").addClass(start.s);
+      setInterval(function () {
+        try {
+            var tr = start.video.getDuration() - start.video.getCurrentTime(),
+                min = Math.floor(tr / 60),
+                sec = Math.floor(tr % 60),
+                pt = sec < 10 ? '0' + sec : sec;
+            // Update Time
+            if (sec) {
+              $(".podcasts-replace").text(min + ':' + pt);
+              let width = ((start.video.getCurrentTime() / start.video.getDuration()) * 100).toFixed(3);
+              if (width < 1) width = 1;
+              $(".container .progress").css('width', width + '%');
+            }
+        } finally {}
+      }, 500);
     },
 
     // Audio: Play/Pause
