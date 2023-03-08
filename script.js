@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.27",
+    version: "1.15.28",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -607,6 +607,14 @@
       });
     },
 
+    // Reset Timer & Progress Bar
+    media_ended: function() {
+      $(".podcasts-replace").text('0:00');
+      $(".podcasts").removeClass(start.s);
+      $(".container .progress").css('width', '0%');
+      if ($("#search").hasClass("full")) $("#search").removeClass("full");
+    },
+
     // YouTube Home Feed
     yt: function () {
       $.when(start.conf).then(function () {
@@ -621,11 +629,8 @@
         if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
         if (event.data === YT.PlayerState.ENDED) {
           start.yt();
+          start.media_ended();
           start.notifications("<span>Video</span> Finished Playing");
-          $(".podcasts-replace").text('0:00');
-          $(".podcasts").removeClass(start.s);
-          $(".container .progress").css('width', '0%');
-          if ($("#search").hasClass("full")) $("#search").removeClass("full");
           if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
         }
       });
@@ -852,10 +857,7 @@
         if (start.video) start.video.pauseVideo();
       });
       start.audio.addEventListener("ended", function () {
-        $(".podcasts-replace").text('0:00');
-        $(".podcasts").removeClass(start.s);
-        $(".container .progress").css('width', '0%');
-        if ($("#search").hasClass("full")) $("#search").removeClass("full");
+        start.media_ended();
         start.notifications("<span>Audio</span> Finished Playing");
         // Reset Audio
         start.audio = new Audio();
@@ -895,6 +897,11 @@
         if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
       }, 1000 / 25);
       // Video Toggle
+      start.video_toggle();
+    },
+
+    // Toggle Video Play / Pause
+    video_toggle: function() {
       try {
         if (start.video.getPlayerState() === 1) {
           start.video.pauseVideo();
@@ -1003,7 +1010,7 @@
       $(window).on("beforeunload", function () {
         const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
         if (media_playing) {
-          const result = window.confirm("Audio is still playing, sure you want to leave?");
+          const result = window.confirm("Media is still playing, sure you want to leave?");
           if (result) {
             $("body").css("opacity", 0);
           } else {
