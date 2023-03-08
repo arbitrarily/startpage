@@ -317,11 +317,13 @@ li {
 }
 
 .video-links iframe.instapaper-list {
+    background: black;
     box-shadow: 0 0 5rem 1rem rgba(0, 0, 0, 0.3);
     border-radius: 10px;
 }
 
 .video-links .instapaper-list.fullscreen {
+    background: transparent;
     position: fixed;
     top: 0;
     left: 0;
