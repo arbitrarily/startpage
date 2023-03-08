@@ -758,13 +758,18 @@ li {
 }
 
 @media screen and (min-width: 64em) {
-    .container__inner--large .instapaper-links,
+    .container__inner--large   .instapaper-links,
+    .container__inner--large  .instapaper-links,
     .container__inner--large .menu-links {
-        width: calc(50% + var(--foundation-large));
+        width: calc(50% + var(--foundation-large)) !important;
     }
 
     .instapaper-list {
         height: 415px;
+    }
+
+    .grid-x > .large-5.instapaper-links {
+        width: 37.667%;
     }
 }
 
