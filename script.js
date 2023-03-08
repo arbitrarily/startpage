@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.17",
+    version: "1.15.19",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -649,7 +649,7 @@
           link: $(this).attr("href")
         }
         start.change_lastfm_artwork(vid_data);
-        if (!$(".instapaper-links").hasClass("large-6")) start.resize_news();
+        if (!$(".container__inner").hasClass("container__inner--large")) start.resize_news();
         start.notifications(`Now Playing <span>${vid_data.name}</span>`);
       });
     },
