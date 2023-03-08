@@ -708,12 +708,14 @@ li {
         margin: 0 0 calc(var(--padding) * 1.5);
     }
 
-    .video-links .container__list:not(.container__list--title) {
+    .video-links .container__list:not(.container__list--title),
+    .nft-links .container__list:not(.container__list--title) {
         display: block;
         padding: 10px 0;
     }
 
-    .video-links .container__list img {
+    .video-links .container__list img,
+    .nft-links .container__list img {
         margin-bottom: var(--foundation);
         margin-right: 0;
         max-height: inherit;
