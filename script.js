@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.12",
+    version: "1.15.16",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -155,7 +155,7 @@
         start.nfts();
       },
       function () {
-        start.background();
+        start.play_x();
       },
       function () {
         start.play_x_playlist();
@@ -171,11 +171,26 @@
       },
       function () {
         start.audio_mute();
+      },
+      function () {
+        start.background();
+      },
+      function () {
+        start.toggle_blur();
+      },
+      function () {
+        start.change_art_source();
+      },
+      function () {
+        start.resize_news();
       }
     ],
 
     // Init
     init: function () {
+
+      // Version Number
+      start.version_number();
 
       // Background Image Number
       start.art_num = this.random_numb(1, 291).toString().padStart(4, "0")
@@ -354,14 +369,15 @@
         $(".instapaper-links").html(html);
       }, 600);
       setTimeout(function () {
-        $(".instapaper-links").addClass(start.s).addClass("");
+        $(".instapaper-links").addClass(start.s);
       }, 1000);
       start.notifications("Menu <span>Toggled</span>");
     },
 
     // Menu Click Events
     menu_clicks: function() {
-      $(".menu-toggle").on(start.touch, function (e) {
+      // Trigger Menu on Hambuger Click
+      $(document).on(start.touch, ".menu-toggle", function (e) {
         e.preventDefault();
         start.menu();
       });
@@ -450,7 +466,8 @@
             // Remap Data
             var s = song["recenttracks"]["track"].map(_map_it)[0];
             // Change Artwork
-            if (start.audio.paused || !start.audio.currentTime) {
+            const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
+            if (!media_playing) {
               const pod_data = {
                 id: s.id,
                 name: s.name,
@@ -461,10 +478,8 @@
               }
               start.change_lastfm_artwork(pod_data);
             }
-            start.version_number();
           }).catch(error => {
             $(".lastfm__container").hide();
-            start.version_number();
           });
         // Format Output
         function _map_it(song) {
@@ -605,6 +620,7 @@
       $(document).on(start.touch, ".video-links a", function (e) {
         e.preventDefault();
         start.audio_toggle();
+        // Init New Player
         start.video = new YT.Player('video-container', {
           height: '360',
           width: '640',
@@ -615,6 +631,13 @@
             'modestbranding': 1,
             'rel': 0,
             'showinfo': 0
+          }
+        });
+        start.video.addEventListener('onStateChange', function (event) {
+          if (event.data === YT.PlayerState.ENDED) {
+            start.yt();
+            start.notifications("<span>Video</span> Finished Playing");
+            if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
           }
         });
         const vid_data = {
@@ -633,9 +656,17 @@
 
     // Fullscreen Toggle
     fullscreen_video: function () {
-      $(".video-links .instapaper-list").toggleClass("fullscreen");
-      const fullscreen = $(".video-links .instapaper-list").hasClass("fullscreen") ? "Fullscreen" : "Fullscreen Off";
-      start.notifications(`Video <span>${fullscreen}</span>`);
+      const v = $(".video-links .instapaper-list"),
+            vl = $(".video-links"),
+            fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
+      vl.removeClass(start.s);
+      setTimeout(function () {
+        v.toggleClass("fullscreen");
+      }, 600);
+      setTimeout(function () {
+        vl.addClass(start.s);
+      }, 1000);
+      start.notifications(`Video <span>${fs}</span>`);
     },
 
     // Play X
@@ -745,7 +776,7 @@
       const icon = start.audio.muted ? "unmuted" : "mute";
       $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
-      start.video.isMuted() ? start.video.unMute() : start.video.mute();
+      if (start.video) start.video.isMuted() ? start.video.unMute() : start.video.mute();
       start.notifications(`<span>Audio</span> ${status}`);
     },
 
@@ -804,13 +835,6 @@
         // Reset Audio
         start.audio = new Audio();
       });
-      // When Video Ends
-      if (start.video) {
-        start.video.addEventListener('onEnded', function () {
-          start.notifications("<span>Video</span> Finished Playing");
-          start.yt();
-        });
-      }
     },
 
     // Audio: Play/Pause
