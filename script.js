@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.15.23",
+    version: "1.15.24",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -618,13 +618,14 @@
     // Open Youtube Video in Modal
     yt_click: function () {
       $(document).on(start.touch, ".video-links a", function (e) {
+        const that = $(this);
         e.preventDefault();
         start.audio_toggle();
         // Init New Player
         start.video = new YT.Player('video-container', {
           height: '360',
           width: '640',
-          videoId: $(this).data("id"),
+          videoId: that.data("id"),
           playerVars: {
             'autoplay': 1,
             'controls': 1,
@@ -640,13 +641,14 @@
             if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
           }
         });
+        // get href from $(this) and set it to the iframe src
         const vid_data = {
-          id: $(this).data("id"),
-          name: $(this).data("title"),
+          id: that.data("id"),
+          name: that.data("title"),
           album: "",
-          artist: $(this).data("feed"),
-          image: $(this).find("img").attr("src"),
-          link: $(this).attr("href")
+          artist: that.data("feed"),
+          image: that.find("img").attr("src"),
+          link: that.attr("href")
         }
         start.change_lastfm_artwork(vid_data);
         if (!$(".container__inner").hasClass("container__inner--large")) start.resize_news();
@@ -736,24 +738,24 @@
     play_audio: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
+        const a = $(this);
         if (!start.audio.paused) start.audio.pause();
         if (start.video) {
           if (start.video.getPlayerState() === 1) start.video.pauseVideo();
         }
-        const podcast = $(this);
         $(".podcasts").addClass(start.s);
-        start.audio.src = podcast.attr("href");
+        start.audio.src = a.attr("href");
         if (!$(".podcast-links").hasClass("music-links")) start.audio.playbackRate = 1.3;
         start.audio.play();
         start.audio_time();
-        start.notifications(`<span>Now Playing</span> ${podcast.text().trim().slice(0, 75) + "..."}`);
+        start.notifications(`<span>Now Playing</span> ${a.text().trim().slice(0, 75) + "..."}`);
         const pod_data = {
           id: '',
-          name: podcast.data('title'),
+          name: a.data('title'),
           album:'',
-          artist: podcast.data('feed'),
-          image: podcast.find("img").attr('src'),
-          link: podcast.data('link')
+          artist: a.data('feed'),
+          image: a.find("img").attr('src'),
+          link: a.attr('href')
         }
         start.change_lastfm_artwork(pod_data);
         start.audio_click_play();
