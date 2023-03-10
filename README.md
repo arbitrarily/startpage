@@ -99,8 +99,8 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>option</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
 
 ### *<kbd>Shift</kbd>* News Feed
-- Use <kbd>left arrow</kbd> to toggle feeds.
-- Use <kbd>right arrow</kbd> to toggle feeds.
+- Use <kbd>left arrow</kbd> to toggle feed view.
+- Use <kbd>right arrow</kbd> to toggle feed view.
 - Use <kbd>shift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
 - Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `News` feed (aggregated news feed).
 - Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
@@ -113,10 +113,10 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 
 ### *<kbd>Shift</kbd>* Media Controls
-- Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` Podcast playback speed.
-- Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` Podcast playback speed.
-- Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` Podcast playback 15 seconds.
-- Use <kbd>shift</kbd> + <kbd> to `rewind` Podcast playback 5 seconds.
+- Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` audio playback speed.
+- Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` audio playback speed.
+- Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` audio playback 15 seconds.
+- Use <kbd>shift</kbd> + <kbd>Left</kbd> to `rewind` audio playback 5 seconds.
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 - Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
 - Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle `fullscreen` for video.
