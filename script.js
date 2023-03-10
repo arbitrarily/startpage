@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.25",
+    version: "1.16.26",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -861,13 +861,13 @@
     },
 
     // Media: Play / Pause
-    media_toggle: function () {
+    media_toggle: () => {
       start.audio_toggle();
       start.video_toggle();
     },
 
     // Audio: Play/Pause
-    audio_toggle: function () {
+    audio_toggle: () => {
       if (!start.audio.paused) {
         start.audio.pause();
         $(".podcasts img").attr("src", "icons/icon__pause.svg");
@@ -883,16 +883,12 @@
     },
 
     // Toggle Video Play / Pause
-    video_toggle: function () {
+    video_toggle: () => {
       try {
         if (start.video && start.video.getPlayerState() === 1) {
           start.video.pauseVideo();
-          $(".podcasts img").attr("src", "icons/icon__pause.svg");
-          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
           start.notifications("<span>Video</span> Paused");
         } else {
-          $(".podcasts img").attr("src", "icons/icon__play.svg");
-          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
           start.notifications("<span>Video</span> Playing");
           start.video.playVideo();
         }
@@ -902,7 +898,7 @@
     },
 
     // Page View Counter
-    pageview_counter: function () {
+    pageview_counter: () => {
       fetch(start.conf.counterURL + '?t=' + start.timestamp)
         .then(res => { return res.text() })
         .then(number => {
@@ -976,7 +972,11 @@
         const media_playing = !start.audio.paused || start.video && start.video.getPlayerState() === 1;
         if (media_playing) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
-          result ? $("body").css("opacity", 0) : false;
+          if (result) {
+            $("body").css("opacity", 0);
+          } else {
+            return false;
+          };
         } else {
           $("body").css("opacity", 0);
         }
