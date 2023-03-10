@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.26",
+    version: "1.16.27",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -165,6 +165,7 @@
 
       // Background Image
       this.background();
+      setInterval(start.lastfm, 1000 * 60 * 10)
 
       // Remove Menu Source HTML
       this.remove_html();
