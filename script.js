@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.30",
+    version: "1.16.31",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -133,6 +133,7 @@
       () => start.yt(),
       () => start.poe(),
       () => start.nft_summaries(),
+      () => start.lexichronic(),
       () => start.nfts(),
       () => start.play_single(),
       () => start.play_playlist(),
@@ -256,9 +257,9 @@
           } else if (start.down[57]) { // Music           (shift + 9️⃣)
             start.feed_count = 8;
           } else if (start.down[48]) { // NFTs            (shift + 0️⃣)
-            start.feed_count = 9;
+            start.feed_count = 10;
           } else if (start.down[173]) { // Lexichronic    (shift + "-")
-            start.lexichronic();
+            start.feed_count = 9;
           }
           // Switch Feed Source
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
