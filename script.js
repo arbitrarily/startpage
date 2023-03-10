@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.19",
+    version: "1.16.20",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -306,28 +306,28 @@
           }
           // Switch Feed Source
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
-          // Audio: Fast Forward                      (shift + ⏩)
+          // Audio: Fast Forward                          (shift + ⏩)
           if (start.down[39]) start.audio_fast_forward();
-          // Audio: Rewind                            (shift + ⏪)
+          // Audio: Rewind                                (shift + ⏪)
           if (start.down[37]) start.audio_rewind();
-          // Audio: Increased Playback Speed          (shift + ⏫)
+          // Audio: Increased Playback Speed              (shift + ⏫)
           if (start.down[38]) start.audio_more_speed();
-          // Audio: Decreased Playback Speed          (shift + ⏬)
+          // Audio: Decreased Playback Speed              (shift + ⏬)
           if (start.down[40]) start.audio_less_speed();
-          // Audio: Play/Pause                        (shift + "space")
+          // Audio: Play/Pause                            (shift + "space")
           if (start.down[32]) start.media_toggle();
-          // Audio: Mute                              (shift + "m")
+          // Audio: Mute                                  (shift + "m")
           if (start.down[77]) start.audio_mute();
-          // Video: Fullscreen Toggle                 (shift + "f")
+          // Video: Fullscreen Toggle                     (shift + "f")
           if (start.down[70]) start.fullscreen_video();
-          // Music: Randomized Playlist               (alt + "f11")
+          // Music: Randomized Playlist                   (alt + "f11")
           if (start.down[122]) start.play_playlist();
-          // Music: Random Song                       (alt + "f12")
+          // Music: Random Song                           (alt + "f12")
           if (start.down[123]) start.play_single();
         } else {
-          // Menu: Toggle                            (⏪ or ⏩)
+          // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
-          // Close Fullscreen Video
+          // Close Fullscreen Video                       (esc)
           if (start.down[27]) {
             if ($(".container__content").hasClass("fullscreen")) start.fullscreen_video();
           }
@@ -335,45 +335,45 @@
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
-          if (start.down[49]) { // Path of Exile      (alt + 1️⃣)
+          if (start.down[49]) { // Path of Exile          (alt + 1️⃣)
             start.count = 0;
-          } else if (start.down[50]) { // YouTube     (alt + 2️⃣)
+          } else if (start.down[50]) { // YouTube         (alt + 2️⃣)
             start.count = 1;
-          } else if (start.down[51]) { // DuckDuckGo  (alt + 3️⃣)
+          } else if (start.down[51]) { // DuckDuckGo      (alt + 3️⃣)
             start.count = 2;
-          } else if (start.down[52]) { // Apple Music (alt + 4️⃣)
+          } else if (start.down[52]) { // Apple Music     (alt + 4️⃣)
             start.count = 3;
-          } else if (start.down[53]) { // LastFM      (alt + 5️⃣)
+          } else if (start.down[53]) { // LastFM          (alt + 5️⃣)
             start.count = 4;
-          } else if (start.down[54]) { // Twitter     (alt + 6️⃣)
+          } else if (start.down[54]) { // Twitter         (alt + 6️⃣)
             start.count = 5;
-          } else if (start.down[55]) { // Google News (alt + 7️⃣)
+          } else if (start.down[55]) { // Google News     (alt + 7️⃣)
             start.count = 6;
-          } else if (start.down[56]) { // Github      (alt + 8️⃣)
+          } else if (start.down[56]) { // Github          (alt + 8️⃣)
             start.count = 7;
-          } else if (start.down[57]) { // MidJourney  (alt + 9️⃣)
+          } else if (start.down[57]) { // MidJourney      (alt + 9️⃣)
             start.count = 8;
-          } else if (start.down[48]) { // Google      (alt + 0️⃣)
+          } else if (start.down[48]) { // Google          (alt + 0️⃣)
             start.count = 9;
           }
           // Switch Search Source
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
-          // Toggle Cursor                            (alt + 🔙)
+          // Toggle Cursor                                (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Change Art Source To Full Resolution     (alt + z)
+          // Change Art Source To Full Resolution         (alt + z)
           if (start.down[90]) start.change_art_source();
-          // Update LastFM                            (alt + "x")
+          // Update LastFM                                (alt + "x")
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Toggle Menu                              (alt + "c")
+          // Toggle Menu                                  (alt + "c")
           if (start.down[67]) start.menu();
-          // Refresh Background Image                 (alt + "v")
+          // Refresh Background Image                     (alt + "v")
           if (start.down[86]) start.background();
-          // Blur                                     (alt + "b")
+          // Blur                                         (alt + "b")
           if (start.down[66]) start.toggle_blur();
-          // Wallet Status                            (alt + "n")
+          // Wallet Status                                (alt + "n")
           if (start.down[78]) start.console_wallet();
         }
       }).keyup(function (e) {
