@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.16",
+    version: "1.16.17",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -203,15 +203,18 @@
 
     // Load Config, then Init
     load_config: () => {
-      $.getJSON("./conf.json", conf => {
-        // Store Config
-        start.conf = conf;
-        start.art_url = conf.artThumbURL;
-        // Init
-        $.when(start.conf).then(start.init());
-      }).fail(() => {
-        $(".feed-links").addClass(start.s);
-      });
+      fetch('./conf.json')
+        .then(response => response.json())
+        .then(conf => {
+          // Store Config
+          start.conf = conf;
+          start.art_url = conf.artThumbURL;
+          // Init
+          start.init();
+        })
+        .catch(() => {
+          $(".feed-links").addClass(start.s);
+        });
     },
 
     // Random Number in a Range
