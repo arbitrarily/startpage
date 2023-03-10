@@ -57,8 +57,16 @@ It should look like this or similar, keeping what you want and removing what you
   "poeURL": "X",
   "podURL": "X",
   "counterURL": "X",
+  "githubURL": "X",
+  "artURL": "X",
+  "artThumbURL": "X",
   "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=X&api_key=X&format=json&limit=1",
-  "ipKey" : "X"
+  "ipKey" : "X",
+  "x" : "X",
+  "xURL" : "X",
+  "xPlaylistJSONURL": "X/X.json",
+  "xPlaylistHTMLURL": "X",
+  "youTubeURL": "X",
 }
 ```
 
@@ -131,8 +139,3 @@ Publishing to Surge for public viewing:
 ```
 surge . abstracted-war.surge.sh
 ```
-
-# TODOS
-* add more ways to exit fullscreen video mode
-  * click outside video
-  * stop video keyboard command
