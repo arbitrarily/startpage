@@ -84,8 +84,6 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh (<kbd>V</kbd>iew) `the background wallpaper`.
 - Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) `background blur` to better view the background image.
 - Use <kbd>option</kbd> + <kbd>n</kbd> to toggle (co<kbd>N</kbd>sole.log) `Wallet` stats.
-- Use <kbd>option</kbd> + <kbd>[</kbd> to toggle `news feed resize` to get an alternative, larger news feed or return to default size.
-- Use <kbd>option</kbd> + <kbd>]</kbd> to toggle `news feed resize` to get an alternative, larger news feed or return to default size.
 - Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
 
 ### *<kbd>Option</kbd>* Search Toggles
@@ -101,6 +99,8 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>option</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
 
 ### *<kbd>Shift</kbd>* News Feed
+- Use <kbd>left arrow</kbd> to toggle feeds.
+- Use <kbd>right arrow</kbd> to toggle feeds.
 - Use <kbd>shift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
 - Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `News` feed (aggregated news feed).
 - Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
@@ -120,6 +120,7 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
 - Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
 - Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle `fullscreen` for video.
+- Use <kbd>esc</kbd> to exit `fullscreen` for video.
 - Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
 - Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
 
@@ -130,3 +131,9 @@ Publishing to Surge for public viewing:
 ```
 surge . abstracted-war.surge.sh
 ```
+
+# TODOS
+* hide timer when video is hidden/removed on feed toggle
+* add more ways to exit fullscreen video mode
+  * click outside video
+  * stop video keyboard command

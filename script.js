@@ -4,10 +4,16 @@
   var start = {
 
     // Version Number
-    version: "1.15.28",
+    version: "1.16.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
+
+    // Timestamp for Breaking Cached URLs
+    timestamp: ~~(new Date().getTime() / 1000),
+
+    // Animation Time
+    animation_time: 333,
 
     // Keyboard Variable
     down: {},
@@ -18,9 +24,7 @@
     // Counts
     count: false,
     feed_count: false,
-
-    // Animation Time
-    animation_time: 333,
+    timer: false,
 
     // Pageviews
     pageviews: false,
@@ -32,21 +36,19 @@
     art_url: false,
     art_num: false,
 
-    // Video
+    // Media
     video: false,
+    audio: new Audio(),
 
     // NFTs
     nfts_collection: false,
 
+    // Menu HTML
+    menu_html: $(".menu-links-source").html(),
+
     // Shared Class Names
     s: "shown",
     h: "hidden",
-
-    // Audio
-    audio: new Audio(),
-
-    // Timestamp for Breaking Cached URLs
-    timestamp: ~~(new Date().getTime() / 1000),
 
     // Search Inputs
     searches: [
@@ -124,47 +126,47 @@
 
     // Feeds
     feeds: [
-      function() {
+      function () {
         start.instapaper();
       },
-      function() {
+      function () {
         start.news();
       },
-      function() {
+      function () {
         start.nyt();
       },
-      function() {
+      function () {
         start.reddit();
       },
-      function() {
+      function () {
         start.podcasts();
       },
-      function() {
+      function () {
         start.music();
       },
-      function() {
+      function () {
         start.yt();
       },
-      function() {
+      function () {
         start.poe();
       },
-      function() {
+      function () {
         start.lexichronic();
       },
       function () {
         start.nfts();
       },
       function () {
-        start.play_x();
+        start.play_single();
       },
       function () {
-        start.play_x_playlist();
+        start.play_playlist();
       },
       function () {
         start.audio_rewind();
       },
       function () {
-        start.audio_toggle();
+        start.media_toggle();
       },
       function () {
         start.audio_fast_forward();
@@ -180,9 +182,6 @@
       },
       function () {
         start.change_art_source();
-      },
-      function () {
-        start.resize_news();
       }
     ],
 
@@ -193,7 +192,7 @@
       start.version_number();
 
       // Background Image Number
-      start.art_num = this.random_numb(1, 291).toString().padStart(4, "0")
+      start.art_num = this.random_numb(1, 291).toString().padStart(4, "0");
 
       // Pageview Counter
       this.pageview_counter();
@@ -204,25 +203,33 @@
       // Background Image
       this.background();
 
+      // Remove Menu Source HTML
+      this.remove_html();
+
       // Wallet Value
       this.wallet();
+
+      // Instapaper
+      this.instapaper(true);
 
       // Get Last FM Now Playing
       this.lastfm();
       setInterval(start.lastfm, 1000 * 60 * 3)
 
-      // Get Latest Instapaper Articles
-      this.instapaper(true);
-
       // Search
       this.click_focus_search();
       this.change_search();
+      this.focus_search();
 
       // Menu
       this.menu_clicks();
+      this.menu_toggle();
 
       // Animation on Leave
       this.bye_bye();
+
+      // Add Event Listeners
+      this.media_events();
 
       // IP
       this.ip();
@@ -240,7 +247,7 @@
         // Init
         $.when(start.conf).then(start.init());
       }).fail(function () {
-        $(".instapaper-links").addClass(start.s);
+        $(".feed-links").addClass(start.s);
       });
     },
 
@@ -257,6 +264,11 @@
     // Focus Search
     focus_search: function () {
       $(document).find("#search").focus().addClass("focus");
+    },
+
+    // Remove Source HTML
+    remove_html: function () {
+      $(".menu-links-source").remove();
     },
 
     // Function Triggers by Keyboard Combos
@@ -299,15 +311,22 @@
           // Audio: Decreased Playback Speed          (shift + ⏬)
           if (start.down[40]) start.audio_less_speed();
           // Audio: Play/Pause                        (shift + "space")
-          if (start.down[32]) start.audio_toggle();
+          if (start.down[32]) start.media_toggle();
           // Audio: Mute                              (shift + "m")
           if (start.down[77]) start.audio_mute();
           // Video: Fullscreen Toggle                 (shift + "f")
           if (start.down[70]) start.fullscreen_video();
           // Music: Randomized Playlist               (alt + "f11")
-          if (start.down[122]) start.play_x_playlist();
+          if (start.down[122]) start.play_playlist();
           // Music: Random Song                       (alt + "f12")
-          if (start.down[123]) start.play_x();
+          if (start.down[123]) start.play_single();
+        } else {
+          // Menu: Toggle                            (⏪ or ⏩)
+          if (start.down[39] || start.down[37]) start.slide_menu();
+          // Close Fullscreen Video
+          if (start.down[27]) {
+            if ($(".container__content").hasClass("fullscreen")) start.fullscreen_video();
+          }
         }
         // Alt/Option
         if (start.down[18]) {
@@ -337,8 +356,6 @@
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           // Toggle Cursor                            (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Resize News                              (alt + ] or alt + [)
-          if (start.down[221] || start.down[219]) start.resize_news();
           // Change Art Source To Full Resolution     (alt + z)
           if (start.down[90]) start.change_art_source();
           // Update LastFM                            (alt + "x")
@@ -361,32 +378,31 @@
       });
     },
 
+    // Slide Menu Toggle
+    slide_menu: function () {
+      $(".container__overflow").toggleClass(start.s);
+    },
+
     // Menu
     menu: function () {
-      const html = $(".menu-links-source").html();
-      $(".instapaper-links").removeClass(start.s);
-      setTimeout(function () {
-        $(".instapaper-links").html(html);
-      }, 600);
-      setTimeout(function () {
-        $(".instapaper-links").addClass(start.s);
-      }, 1000);
-      start.notifications("Menu <span>Toggled</span>");
+      $(".feed-links").removeClass(start.s);
+      start.feed_toggle(start.menu_html, "Menu Toggles");
     },
 
     // Menu Click Events
-    menu_clicks: function() {
-      // Trigger Menu on Hambuger Click
+    menu_clicks: function () {
+      $(document).on(start.touch, ".menu-links__item, .menu-links__toggle", function (e) {
+        e.preventDefault();
+        start.feed_count = $(this).data("id");
+        if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
+      });
+    },
+
+    // Trigger Menu on Hambuger Click
+    menu_toggle: function () {
       $(document).on(start.touch, ".menu-toggle", function (e) {
         e.preventDefault();
         start.menu();
-      });
-      // Menu Clicks
-      $(document).on(start.touch, ".menu-links--item", function (e) {
-        e.preventDefault();
-        start.feed_count = $(this).data("id");
-        // Switch Feed Source
-        if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
       });
     },
 
@@ -468,7 +484,7 @@
             // Change Artwork
             const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
             if (!media_playing) {
-              const pod_data = {
+              const song_data = {
                 id: s.id,
                 name: s.name,
                 album: s.album,
@@ -476,10 +492,10 @@
                 image: s.image,
                 link: s.link
               }
-              start.change_lastfm_artwork(pod_data);
+              start.now_playing(song_data, false);
             }
           }).catch(error => {
-            $(".lastfm__container").hide();
+            $(".nowplaying__container").hide();
           });
         // Format Output
         function _map_it(song) {
@@ -495,20 +511,21 @@
       });
     },
 
-    // Change LastFM Artwork
-    change_lastfm_artwork: function (data) {
-      const artist = $(".lastfm__artist"),
-            song = $(".lastfm__song"),
-            album = $(".lastfm__album"),
-            image = $(".lastfm__image"),
-            container = $(".lastfm__container"),
-            url = $(".lastfm__url");
+    // Change Now Playing Artwork
+    now_playing: function (data, source = false) {
+      const artist = $(".nowplaying__artist"),
+            song = $(".nowplaying__song"),
+            album = $(".nowplaying__album"),
+            image = $(".nowplaying__image"),
+            container = $(".nowplaying__container"),
+            url = $(".nowplaying__url");
       artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
       song.text(data.name).attr("title", `Song: ${data.name}`);
       album.text(data.album ? ` - ${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
       image.toggle(data.image != null).attr("src", data.image);
       url.attr("href", data.link ? data.link : "#").addClass(start.s);
       container.show();
+      if (source) start.notifications(`Now Playing <span>${source}</span>`);
     },
 
     // Search Switcher
@@ -530,29 +547,36 @@
       start.notifications(`<span>Search Switched to </span> ${type}`);
     },
 
+    // Feed Toggle Animation
+    feed_toggle: function (html, source) {
+      if (start.video === YT.PlayerState.PLAYING) start.media_stop();
+      setTimeout(function () {
+        $(".feed-links").replaceWith(html);
+      }, 600);
+      setTimeout(function () {
+        $(".feed-links").addClass(start.s);
+      }, 1000);
+      if (source) {
+        start.notifications(`<span>Feed Switched to</span> ${source}`);
+        if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();
+      }
+    },
+
     // Replace News
     fetch_news: function (url, source) {
       fetch(url + '?t=' + start.timestamp)
         .then(function (response) {
-          $(".instapaper-links").removeClass(start.s);
+          $(".feed-links").removeClass(start.s);
           return response.text();
         })
         .then(function (html) {
-          if (html) {
-            setTimeout(function () {
-              $(".instapaper-links").replaceWith(html);
-            }, 600);
-            setTimeout(function () {
-              $(".instapaper-links").addClass(start.s);
-            }, 1000);
-            if (source) start.notifications(`<span>Feed Switched to</span> ${source}`);
-          }
+          if (html) start.feed_toggle(html, source);
         })
         .catch(function (err) {
-          $(".instapaper-links").addClass(start.s);
+          $(".feed-links").addClass(start.s);
         });
       start.feed_count = false;
-      if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
+      if (!$(".feed-links").hasClass("video-links")) start.video = false;
     },
 
     // Instapaper Home Feed
@@ -607,14 +631,6 @@
       });
     },
 
-    // Reset Timer & Progress Bar
-    media_ended: function() {
-      $(".podcasts-replace").text('0:00');
-      $(".podcasts").removeClass(start.s);
-      $(".container .progress").css('width', '0%');
-      if ($("#search").hasClass("full")) $("#search").removeClass("full");
-    },
-
     // YouTube Home Feed
     yt: function () {
       $.when(start.conf).then(function () {
@@ -623,42 +639,94 @@
       });
     },
 
-    video_is_ready: function (event) {
-      start.audio_time();
-      start.video.addEventListener('onStateChange', function (event) {
-        if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
-        if (event.data === YT.PlayerState.ENDED) {
-          start.yt();
-          start.media_ended();
-          start.notifications("<span>Video</span> Finished Playing");
-          if (!$(".instapaper-links").hasClass("video-links")) start.video = false;
+    // Media Based Event Listeners
+    media_events: function () {
+      start.audio.addEventListener("play", function () {
+        if (start.video) start.video.pauseVideo();
+      });
+      start.audio.addEventListener("ended", function () {
+        start.media_ended();
+        start.notifications("<span>Audio</span> Finished Playing");
+        // Reset Audio
+        start.audio = new Audio();
+        start.timer = 0;
+      });
+      if (start.video) {
+        start.video.addEventListener('onStateChange', function (event) {
+          // if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
+          if (event.data === YT.PlayerState.ENDED) {
+            start.timer = 0;
+            start.yt();
+            start.media_ended();
+            start.notifications("<span>Video</span> Finished Playing");
+            if (!$(".feed-links").hasClass("video-links")) start.video = false;
+          }
+        })
+      }
+    },
+
+    // Reset Timer & Progress Bar
+    media_ended: function () {
+      start.timer = 0;
+      $(".podcasts-replace").text('0:00');
+      $(".progress").css('width', '0%');
+      $(".podcasts").removeClass(start.s);
+      $("#search").removeClass("full");
+    },
+
+    // Media: Stop
+    media_stop: function () {
+      start.media_ended();
+      if (start.video && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
+      if (!start.audio.paused) start.audio.pause();
+    },
+
+    // Media: Pause
+    media_pause: function () {
+      if (start.video && start.video === YT.PlayerState.PLAYING) {
+        start.video.pauseVideo();
+      } else if (!start.audio.paused) {
+        start.audio.pause();
+      }
+    },
+
+    // Media: Play
+    media_play: function () {
+      if (start.video && start.video === YT.PlayerState.PAUSED) {
+        start.video.playVideo();
+      } else if (!start.audio.paused) {
+        start.audio.play();
+      }
+      if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
+    },
+
+    // Start YouTube Video
+    yt_start: function (video_id) {
+      start.video = new YT.Player('video-container', {
+        height: '360',
+        width: '640',
+        videoId: video_id,
+        playerVars: {
+          'autoplay': 1,
+          'controls': 1,
+          'modestbranding': 1,
+          'rel': 0,
+          'showinfo': 0
+        },
+        events: {
+          'onReady': start.media_timer,
         }
       });
+      start.media_events();
     },
 
     // Open Youtube Video in Modal
     yt_click: function () {
       $(document).on(start.touch, ".video-links a", function (e) {
-        const that = $(this);
         e.preventDefault();
-        start.audio_toggle();
-        // Init New Player
-        start.video = new YT.Player('video-container', {
-          height: '360',
-          width: '640',
-          videoId: that.data("id"),
-          playerVars: {
-            'autoplay': 1,
-            'controls': 1,
-            'modestbranding': 1,
-            'rel': 0,
-            'showinfo': 0
-          },
-          events: {
-            'onReady': start.video_is_ready,
-          }
-        });
-        // get href from $(this) and set it to the iframe src
+        const that = $(this);
+        start.media_stop();
+        start.yt_start(that.data("id"));
         const vid_data = {
           id: that.data("id"),
           name: that.data("title"),
@@ -667,15 +735,13 @@
           image: that.find("img").attr("src"),
           link: that.attr("href")
         }
-        start.change_lastfm_artwork(vid_data);
-        if (!$(".container__inner").hasClass("container__inner--large")) start.resize_news();
-        start.notifications(`Now Playing <span>${vid_data.name}</span>`);
+        start.now_playing(vid_data, vid_data.name);
       });
     },
 
-    // Fullscreen Toggle
+    // Video: Fullscreen Toggle
     fullscreen_video: function () {
-      const v = $(".video-links .instapaper-list"),
+      const v = $(".video-links .feed-list, .container__overflow"),
             vl = $(".video-links"),
             fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
@@ -688,10 +754,9 @@
       start.notifications(`Video <span>${fs}</span>`);
     },
 
-    // Play X
-    play_x: function (url) {
-      if (!start.audio.paused) start.audio.pause();
-      if (start.video && start.video.getPlayerState() === 1) start.video.pauseVideo();
+    // Audio: Play Single Track
+    play_single: function (url) {
+      start.media_stop();
       let number = start.random_numb(1, 13);
       if (!url) {
         start.audio.src = start.conf.xURL + number + ".mp3";
@@ -701,9 +766,8 @@
       }
       start.audio.playbackRate = 1;
       start.audio.play();
-      start.audio_click_play();
-      start.audio_time();
-      const pod_data = {
+      start.media_timer();
+      const song_data = {
         id: "",
         name: "Song #" + number,
         album: "",
@@ -711,15 +775,14 @@
         image: "icons/icon__lofi-girl.jpg",
         link: "https://www.youtube.com/@LofiGirl"
       }
-      start.change_lastfm_artwork(pod_data);
+      start.now_playing(song_data, false);
       start.notifications(`Now Playing <span>${start.conf.x}</span> #${number}`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
-    // Play X Playlist
-    play_x_playlist: function () {
-      if (!start.audio.paused) start.audio.pause();
-      if (start.video && start.video.getPlayerState() === 1) start.video.pauseVideo();
+    // Audio: Play X Playlist
+    play_playlist: function () {
+      start.media_stop();
       $.when(start.conf).then(function () {
         fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
           .then(function (response) {
@@ -733,7 +796,7 @@
             if (x) {
               async function x_pl() {
                 for (var i = 0; i < 20; i++) {
-                  start.play_x(x[i]);
+                  start.play_single(x[i]);
                   await new Promise(resolve => {
                     start.audio.addEventListener('ended', function () {
                       resolve();
@@ -745,6 +808,7 @@
             }
           })
           .catch(function (err) {
+            start.media_stop();
             console.log(err);
           });
       });
@@ -755,17 +819,13 @@
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
         const a = $(this);
-        if (!start.audio.paused) start.audio.pause();
-        if (start.video) {
-          if (start.video.getPlayerState() === 1) start.video.pauseVideo();
-        }
+        start.media_stop();
         $(".podcasts").addClass(start.s);
         start.audio.src = a.attr("href");
         if (!$(".podcast-links").hasClass("music-links")) start.audio.playbackRate = 1.3;
         start.audio.play();
-        start.audio_time();
-        start.notifications(`<span>Now Playing</span> ${a.text().trim().slice(0, 75) + "..."}`);
-        const pod_data = {
+        start.media_timer();
+        const song_data = {
           id: '',
           name: a.data('title'),
           album:'',
@@ -773,17 +833,16 @@
           image: a.find("img").attr('src'),
           link: a.attr('href')
         }
-        start.change_lastfm_artwork(pod_data);
-        start.audio_click_play();
+        start.now_playing(song_data, `${a.text().trim().slice(0, 75) + "..."}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
 
     // Audio: Pause on Click of Timer
-    audio_click_play: function () {
+    timer_media_toggle: function () {
       $(document).on(start.touch, ".podcasts", function (e) {
         e.preventDefault();
-        start.audio_toggle();
+        start.media_toggle();
       });
     },
 
@@ -792,7 +851,7 @@
       start.audio.muted = !start.audio.muted;
       const status = start.audio.muted ? "Muted" : "Unmuted";
       const icon = start.audio.muted ? "unmuted" : "mute";
-      $(".instapaper-links .menu-links--item-mute img").attr("src", "icons/icon__" + icon + ".svg");
+      $(".feed-links .menu-links__item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
       if (start.video) start.video.isMuted() ? start.video.unMute() : start.video.mute();
       start.notifications(`<span>Audio</span> ${status}`);
@@ -828,88 +887,69 @@
       }
     },
 
-    // Audio: Timer
-    audio_time: function () {
+    // Media: Timer
+    media_timer: function () {
+      let elapsed = 0;
       let tr = 0;
       let width = 0;
       setInterval(function () {
         if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
-          tr = start.video.getDuration() - start.video.getCurrentTime() > 0 ? start.video.getDuration() - start.video.getCurrentTime() : 0;
+          elapsed = start.video.getDuration() - start.video.getCurrentTime();
+          tr = elapsed > 0 ? elapsed : 0;
           width = start.video.getCurrentTime() / start.video.getDuration();
         }
         if (!start.audio.paused) {
+          elapsed = start.audio.duration - start.audio.currentTime;
+          tr = elapsed > 0 ? elapsed : 0;
           width = start.audio.currentTime / start.audio.duration;
-          tr = start.audio.duration - start.audio.currentTime > 0 ? start.audio.duration - start.audio.currentTime : 0;
         }
         // Update Time
-        const interval = {
+        start.timer = {
           minutes: Math.floor(tr / 60),
           seconds: Math.floor(tr % 60),
           padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
         }
-        if (!$(".podcasts").hasClass(start.s) && interval.seconds > 0) $(".podcasts").addClass(start.s);
-        $(".podcasts-replace").text(interval.minutes + ':' + interval.padded_time);
-        width = (width * 100).toFixed(3);
-        if (width < 1) width = 1;
-        $(".container .progress").css('width', width + '%');
+        if (start.timer.seconds) {
+          if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
+          $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
+          width = Math.min(Math.max((width * 100).toFixed(3), 1), 100)
+          $(".progress").css('width', width + '%');
+        }
       }, 500);
-      start.audio.addEventListener("play", function() {
-        if (start.video) start.video.pauseVideo();
-      });
-      start.audio.addEventListener("ended", function () {
-        start.media_ended();
-        start.notifications("<span>Audio</span> Finished Playing");
-        // Reset Audio
-        start.audio = new Audio();
-        cleatInterval();
-      });
+    },
+
+    // Media: Play / Pause
+    media_toggle: function () {
+      start.audio_toggle();
+      start.video_toggle();
     },
 
     // Audio: Play/Pause
     audio_toggle: function () {
-      let current_vol = start.audio.volume;
-      let step_size = 0.05;
-      // Audio Toggle
       if (!start.audio.paused) {
-        step_size *= -1;
+        start.audio.pause();
         $(".podcasts img").attr("src", "icons/icon__pause.svg");
-        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__play.svg");
+        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
         start.notifications("<span>Audio</span> Paused");
       } else {
         // Rewind 3 seconds
         start.audio.currentTime = start.audio.currentTime - 3;
         $(".podcasts img").attr("src", "icons/icon__play.svg");
-        $(".instapaper-links .menu-links--item-pause img").attr("src", "icons/icon__pause.svg");
+        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
         start.notifications("<span>Audio</span> Playing");
-        if (start.video) {
-          if (start.video.getPlayerState() === 1) {
-            start.video.pauseVideo();
-          }
-        }
+        start.audio.play();
       }
-      // Fader
-      let fader = setInterval(function () {
-        current_vol += step_size;
-        current_vol = Math.max(0, Math.min(1, current_vol));
-        start.audio.volume = current_vol;
-        if (current_vol <= 0) start.audio.pause();
-        if (current_vol >= 1) start.audio.play();
-        if (current_vol <= 0 || current_vol >= 1) clearInterval(fader);
-      }, 1000 / 25);
-      // Video Toggle
-      start.video_toggle();
     },
 
     // Toggle Video Play / Pause
     video_toggle: function() {
       try {
-        if (start.video.getPlayerState() === 1) {
+        if (start.video && start.video.getPlayerState() === 1) {
           start.video.pauseVideo();
           start.notifications("<span>Video</span> Paused");
         } else {
           start.video.playVideo();
           start.notifications("<span>Video</span> Playing");
-          if (!start.audio.paused) fader;
         }
       } catch (e) {
         return;
@@ -920,8 +960,8 @@
     pageview_counter: function () {
       $.when(start.conf).then(function () {
         fetch(start.conf.counterURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            return response.text();
+          .then(function (res) {
+            return res.text();
           })
           .then(function (number) {
             if (number) {
@@ -998,17 +1038,10 @@
       start.notifications(`<span>Cursor Toggled</span>${status}`);
     },
 
-    // Resize
-    resize_news: function () {
-      $(".container__inner").toggleClass("container__inner--large");
-      const status = ($(".instapaper-links").hasClass("large-6")) ? " Large" : " Default";
-      start.notifications(`<span>News Resized</span>${status}`);
-    },
-
     // Animation on Leave & Alert Check if Media is Playing
     bye_bye: function () {
       $(window).on("beforeunload", function () {
-        const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
+        const media_playing = !start.audio.paused || start.video && start.video.getPlayerState() === 1;
         if (media_playing) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
           if (result) {
@@ -1035,10 +1068,10 @@
       // fetch request
       let commits = "";
       fetch(start.conf.githubURL + "&t=" + start.timestamp)
-        .then(function (response) {
-          if (response) return response.json();
-        }).then(function (response) {
-          if (response) commits = " (" + response[0].contributions + ")";
+        .then(function (res) {
+          if (res) return res.json();
+        }).then(function (res) {
+          if (res) commits = " (" + res[0].contributions + ")";
         });
       setTimeout(function () {
         $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
@@ -1049,10 +1082,5 @@
 
   // Init
   start.load_config();
-
-  // Focus on Load
-  $(window).on("load", function () {
-    start.focus_search();
-  });
 
 })(this, jQuery);
