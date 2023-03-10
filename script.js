@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.23",
+    version: "1.16.24",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -127,63 +127,25 @@
 
     // Feeds
     feeds: [
-      function () {
-        start.instapaper();
-      },
-      function () {
-        start.news();
-      },
-      function () {
-        start.nyt();
-      },
-      function () {
-        start.reddit();
-      },
-      function () {
-        start.podcasts();
-      },
-      function () {
-        start.music();
-      },
-      function () {
-        start.yt();
-      },
-      function () {
-        start.poe();
-      },
-      function () {
-        start.lexichronic();
-      },
-      function () {
-        start.nfts();
-      },
-      function () {
-        start.play_single();
-      },
-      function () {
-        start.play_playlist();
-      },
-      function () {
-        start.audio_rewind();
-      },
-      function () {
-        start.media_toggle();
-      },
-      function () {
-        start.audio_fast_forward();
-      },
-      function () {
-        start.audio_mute();
-      },
-      function () {
-        start.background();
-      },
-      function () {
-        start.toggle_blur();
-      },
-      function () {
-        start.change_art_source();
-      }
+      () => { start.instapaper() },
+      () => { start.news() },
+      () => { start.nyt() },
+      () => { start.reddit() },
+      () => { start.podcasts() },
+      () => { start.music() },
+      () => { start.yt() },
+      () => { start.poe() },
+      () => { start.lexichronic() },
+      () => { start.nfts() },
+      () => { start.play_single() },
+      () => { start.play_playlist() },
+      () => { start.audio_rewind() },
+      () => { start.media_toggle() },
+      () => { start.audio_fast_forward() },
+      () => { start.audio_mute() },
+      () => { start.background() },
+      () => { start.toggle_blur() },
+      () => { start.change_art_source() }
     ],
 
     // Init
@@ -241,7 +203,7 @@
     },
 
     // Load Config, then Init
-    load_config: function () {
+    load_config: () => {
       fetch('./conf.json')
         .then(response => response.json())
         .then(conf => {
@@ -260,7 +222,7 @@
     },
 
     // Prettify Numbers
-    format_numb: (numb) => {
+    format_numb: numb => {
       return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
 
@@ -271,8 +233,8 @@
     remove_html: () => { $(".menu-links-source").remove() },
 
     // Function Triggers by Keyboard Combos
-    key_listener: function () {
-      $(document).keydown(function (e) {
+    key_listener: () => {
+      $(document).keydown( e => {
         // Key Down
         start.down[e.keyCode] = true;
         // Left Shift
@@ -371,7 +333,7 @@
           // Wallet Status                                (alt + "n")
           if (start.down[78]) start.console_wallet();
         }
-      }).keyup(function (e) {
+      }).keyup( e => {
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
       });
@@ -381,7 +343,7 @@
     slide_menu: () => { $(".container__overflow").toggleClass(start.s) },
 
     // Menu
-    menu: function () {
+    menu: () => {
       $(".feed-links").removeClass(start.s);
       start.feed_toggle(start.menu_html, "Menu Toggles");
     },
@@ -396,15 +358,15 @@
     },
 
     // Trigger Menu on Hambuger Click
-    menu_toggle: function () {
-      $(document).on(start.touch, ".menu-toggle", function (e) {
+    menu_toggle: () => {
+      $(document).on(start.touch, ".menu-toggle", e => {
         e.preventDefault();
         start.menu();
       });
     },
 
     // Notifications
-    notifications: function (text) {
+    notifications: text => {
       const noti = $(".notifications");
       if (noti.hasClass(start.h)) noti.removeClass(start.h);
       noti.find(".notifications__inner").html(text);
@@ -429,7 +391,7 @@
     },
 
     // Change Background Art Resolution
-    change_art_source: function () {
+    change_art_source: () => {
       start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
       const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
       start.background(true);
@@ -437,14 +399,14 @@
     },
 
     // Toggle Blur on Background Image
-    toggle_blur: function () {
+    toggle_blur: () => {
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
       start.notifications(`<span>Blurred Background</span>${status}`);
     },
 
     // IP
-    ip: function () {
+    ip: () => {
       fetch('https://ipinfo.io/json?token=' + start.conf.ipKey)
         .then(res => res.json())
         .then(res => res)
@@ -453,13 +415,11 @@
           const msg = ip.ip.slice(0, 16) + " - " + ip.city + ", " + region;
           $(".ip-replace").text(msg);
           $(".ip div").addClass(start.s);
-        }).catch(error => {
-          $(".ip").hide();
-        });
+        }).catch(error => { $(".ip").hide() });
     },
 
     // LastFM Song
-    lastfm: function () {
+    lastfm: () => {
       $.when(start.conf).then(function () {
         fetch(start.conf.lastFMURL)
           .then(res => res.json())
@@ -504,7 +464,7 @@
     },
 
     // Change Now Playing Artwork
-    now_playing: function (data, source = false) {
+    now_playing: (data, source = false) => {
       const artist = $(".nowplaying__artist"),
         song = $(".nowplaying__song"),
         album = $(".nowplaying__album"),
@@ -521,7 +481,7 @@
     },
 
     // Search Switcher
-    search_switcher: function (search) {
+    search_switcher: search => {
       const action = search['action'],
         logo = search['logo'],
         name = search['name'],
@@ -564,43 +524,43 @@
     },
 
     // Instapaper Home Feed
-    instapaper: function (skip) {
+    instapaper: skip => {
       const skipper = skip ? false : "Instapaper"
       start.fetch_news(start.conf.instapaperURL, skipper);
     },
 
     // News Home Feed
-    news: function () { start.fetch_news(start.conf.techmemeURL, "All News") },
+    news: () => { start.fetch_news(start.conf.techmemeURL, "All News") },
 
     // NYT Home Feed
-    nyt: function () { start.fetch_news(start.conf.nytURL, "New York Times") },
+    nyt: () => { start.fetch_news(start.conf.nytURL, "New York Times") },
 
     // Reddit Home Feed
-    reddit: function () { start.fetch_news(start.conf.redditURL, "Reddit") },
+    reddit: () => { start.fetch_news(start.conf.redditURL, "Reddit") },
 
     // NFTs Home Feed
-    nfts: function () { start.fetch_news(start.conf.alchemyURL, "NFTs") },
+    nfts: () => { start.fetch_news(start.conf.alchemyURL, "NFTs") },
 
     // Lexichronic Home Feed
-    lexichronic: function () { start.fetch_news(start.conf.lexiURL, "Lexichronic") },
+    lexichronic: () => { start.fetch_news(start.conf.lexiURL, "Lexichronic") },
 
     // Path of Exile Home Feed
-    poe: function () { start.fetch_news(start.conf.poeURL, "Path of Exile") },
+    poe: () => { start.fetch_news(start.conf.poeURL, "Path of Exile") },
 
     // Podcasts Home Feed
-    podcasts: function () {
+    podcasts: () => {
       start.fetch_news(start.conf.podURL, "Podcasts");
       start.play_audio();
     },
 
     // Music Home Feed
-    music: function () {
+    music: () => {
       start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
       start.play_audio();
     },
 
     // YouTube Home Feed
-    yt: function () {
+    yt: () => {
       start.fetch_news(start.conf.youTubeURL, "YouTube");
       start.yt_click();
     },
@@ -812,8 +772,8 @@
     },
 
     // Audio: Pause on Click of Timer
-    timer_media_toggle: function () {
-      $(document).on(start.touch, ".podcasts", function (e) {
+    timer_media_toggle: () => {
+      $(document).on(start.touch, ".podcasts", e => {
         e.preventDefault();
         start.media_toggle();
       });
@@ -870,12 +830,12 @@
           if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
             elapsed = start.video.getDuration() - start.video.getCurrentTime();
             tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = start.video.getCurrentTime() / start.video.getDuration();
+            start.progress_bar = parseInt(start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
           }
           if (!start.audio.paused) {
             elapsed = start.audio.duration - start.audio.currentTime;
             tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = start.audio.currentTime / start.audio.duration;
+            start.progress_bar = parseInt(start.audio.currentTime / start.audio.duration).toFixed(3);
           }
           start.timer = {
             minutes: Math.floor(tr / 60),
@@ -886,7 +846,10 @@
           if (start.timer.seconds && last_second > start.timer.seconds) {
             if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
             $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
-            start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
+            if (Number.isInteger(parseInt(start.progress_bar))) {
+              start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
+            }
+            console.log(start.progress_bar, 'start.progress_bar');
             $(".progress").css('width', start.progress_bar + '%');
             last_second = start.timer.seconds;
           }
@@ -944,9 +907,7 @@
     // Page View Counter
     pageview_counter: function () {
       fetch(start.conf.counterURL + '?t=' + start.timestamp)
-        .then(res => {
-          return res.text();
-        })
+        .then(res => { return res.text() })
         .then(number => {
           if (number) {
             setTimeout(() => {
@@ -963,37 +924,30 @@
     },
 
     // Primary Wallet Status
-    wallet: function () {
+    wallet: () => {
       fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
-        .then(res => {
-          return res.json();
-        })
+        .then(res => { return res.json() })
         .then(res => {
           start.balance = res["ETH"]["totalIn"].toString();
           var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
           var balance_diff = res["ETH"]["price"]["diff"];
           var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
           if (start.balance) {
-            setTimeout(() => {
-              $(".wallet-replace").text((balance_formatted + formatted).toString());
-              $(".wallet").addClass(start.s);
-            }, start.animation_time);
-            start.nfts_collection = response['ETH']['price'];
+            $(".wallet-replace").text((balance_formatted + formatted).toString());
+            $(".wallet").addClass(start.s);
+            start.nfts_collection = res['ETH']['price'];
           }
-        })
-        .catch(err => {
-          $(".wallet").remove();
         });
     },
 
     // Console Log Wallet Status
-    console_wallet: function () {
+    console_wallet: () => {
       console.log(start.nfts_collection)
       start.notifications("Console.log <span>Wallet</span> Stats");
     },
 
     // Change Search on Click
-    change_search: function () {
+    change_search: () => {
       $("#searchform label").on(start.touch, function () {
         start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
         start.search_switcher(start.searches[start.count]);
@@ -1001,9 +955,9 @@
     },
 
     // Focus Search if Clicking Anything Not a Link or Input
-    click_focus_search: function () {
+    click_focus_search: () => {
       if (window.matchMedia("(min-width: 40em)").matches) {
-        $(document).on(start.touch, function (e) {
+        $(document).on(start.touch, e => {
           if (e.target.tagName !== "A" &&
             e.target.tagName !== "INPUT" &&
             e.target.className !== "menu-toggle"
@@ -1013,23 +967,19 @@
     },
 
     // Reset Mouse Cursor
-    toggle_cursor: function () {
+    toggle_cursor: () => {
       $("body").toggleClass("vaal");
       const status = ($("body").hasClass("vaal")) ? " On" : " Off";
       start.notifications(`<span>Cursor Toggled</span>${status}`);
     },
 
     // Animation on Leave & Alert Check if Media is Playing
-    bye_bye: function () {
+    bye_bye: () => {
       $(window).on("beforeunload", function () {
         const media_playing = !start.audio.paused || start.video && start.video.getPlayerState() === 1;
         if (media_playing) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
-          if (result) {
-            $("body").css("opacity", 0);
-          } else {
-            return false;
-          }
+          result ? $("body").css("opacity", 0) : false;
         } else {
           $("body").css("opacity", 0);
         }
@@ -1037,7 +987,7 @@
     },
 
     // Console Log Attribution
-    console_log: function () {
+    console_log: () => {
       console.log(
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
@@ -1045,12 +995,12 @@
     },
 
     // Version
-    version_number: function () {
+    version_number: () => {
       // fetch request
       let commits = "";
       fetch(start.conf.githubURL + "&t=" + start.timestamp)
         .then(res => { return res.json() })
-        .then(res => { commits = " (" + res[0].contributions + ")" });
+        .then(res => { if (res[0]) commits = " (" + res[0].contributions + ")" });
       setTimeout(() => {
         $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
       }, start.animation_time * 4);
