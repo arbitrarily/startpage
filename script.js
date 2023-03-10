@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.31",
+    version: "1.16.32",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -286,7 +286,7 @@
           if (start.down[39] || start.down[37]) start.slide_menu();
           // Close Fullscreen Video                       ("esc")
           if (start.down[27]) {
-            if ($(".container__content").hasClass("fullscreen")) start.fullscreen_video();
+            if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
           }
         }
         // Alt/Option
@@ -579,6 +579,7 @@
             start.yt();
             start.media_ended();
             start.notifications("<span>Video</span> Finished Playing");
+            if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PAUSED) {
