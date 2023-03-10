@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.21",
+    version: "1.16.23",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -231,6 +231,7 @@
 
       // Add Event Listeners
       this.media_events();
+      this.timer_media_toggle();
 
       // IP
       this.ip();
@@ -250,30 +251,24 @@
           // Init
           start.init();
         })
-        .catch(() => {
-          $(".feed-links").addClass(start.s);
-        });
+        .catch(() => { $(".feed-links").addClass(start.s) });
     },
 
     // Random Number in a Range
-    random_numb: function (min, max) {
+    random_numb: (min, max) => {
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
     // Prettify Numbers
-    format_numb: function (numb) {
+    format_numb: (numb) => {
       return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
 
     // Focus Search
-    focus_search: function () {
-      $(document).find("#search").focus().addClass("focus");
-    },
+    focus_search: () => { $(document).find("#search").focus().addClass("focus") },
 
     // Remove Source HTML
-    remove_html: function () {
-      $(".menu-links-source").remove();
-    },
+    remove_html: () => { $(".menu-links-source").remove() },
 
     // Function Triggers by Keyboard Combos
     key_listener: function () {
@@ -383,9 +378,7 @@
     },
 
     // Slide Menu Toggle
-    slide_menu: function () {
-      $(".container__overflow").toggleClass(start.s);
-    },
+    slide_menu: () => { $(".container__overflow").toggleClass(start.s) },
 
     // Menu
     menu: function () {
@@ -415,9 +408,7 @@
       const noti = $(".notifications");
       if (noti.hasClass(start.h)) noti.removeClass(start.h);
       noti.find(".notifications__inner").html(text);
-      const timeout_id = setTimeout(function () {
-        noti.addClass(start.h);
-      }, start.animation_time * 6);
+      const timeout_id = setTimeout( () => { noti.addClass(start.h) }, start.animation_time * 6);
       if (timeout_id) clearTimeout(start.timeout_id);
     },
 
@@ -426,11 +417,11 @@
       const bg = $(".background-image");
       if (!num) start.art_num = start.random_numb(1, 291).toString().padStart(4, "0").toString();
       bg.addClass(start.h);
-      setTimeout(function () {
+      setTimeout(() => {
         bg.attr("src", start.art_url + start.art_num + ".png");
-        bg.one("load", function () {
+        bg.one("load", () => {
           bg.removeClass(start.h);
-        }).each(function () {
+        }).each(() => {
           if (this.complete) $(this).trigger('load');
         });
       }, start.animation_time * 3);
@@ -476,8 +467,8 @@
           .then(song => {
             var count = song["recenttracks"]["@attr"]["total"];
             if (count) {
-              $.when(start.pageviews).then(function () {
-                setTimeout(function () {
+              $.when(start.pageviews).then(() => {
+                setTimeout(() => {
                   $(".songs-replace").text(start.format_numb(count).trim().toString());
                   $(".songs").addClass(start.s);
                 }, start.animation_time * 3);
@@ -501,28 +492,25 @@
           }).catch(error => {
             $(".nowplaying__container").hide();
           });
-        // Format Output
-        function _map_it(song) {
-          return {
-            id: song.mbid,
-            name: song.name,
-            album: song.album["#text"],
-            artist: song.artist["#text"],
-            image: song.image[3]["#text"],
-            link: song.url
-          }
-        }
+        const _map_it = song => ({
+          id: song.mbid,
+          name: song.name,
+          album: song.album["#text"],
+          artist: song.artist["#text"],
+          image: song.image[3]["#text"],
+          link: song.url
+        });
       });
     },
 
     // Change Now Playing Artwork
     now_playing: function (data, source = false) {
       const artist = $(".nowplaying__artist"),
-            song = $(".nowplaying__song"),
-            album = $(".nowplaying__album"),
-            image = $(".nowplaying__image"),
-            container = $(".nowplaying__container"),
-            url = $(".nowplaying__url");
+        song = $(".nowplaying__song"),
+        album = $(".nowplaying__album"),
+        image = $(".nowplaying__image"),
+        container = $(".nowplaying__container"),
+        url = $(".nowplaying__url");
       artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
       song.text(data.name).attr("title", `Song: ${data.name}`);
       album.text(data.album ? ` - ${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
@@ -535,11 +523,11 @@
     // Search Switcher
     search_switcher: function (search) {
       const action = search['action'],
-            logo = search['logo'],
-            name = search['name'],
-            type = search['type'];
+        logo = search['logo'],
+        name = search['name'],
+        type = search['type'],
+        is_mobile = window.matchMedia("(max-width: 30em)").matches;
       let text = search['text'];
-      const is_mobile = window.matchMedia("(max-width: 30em)").matches;
       const search_text = is_mobile ? text.replace("Search ", "") : text;
       $("#searchform").attr("action", action);
       $(".search").attr("src", logo);
@@ -552,14 +540,10 @@
     },
 
     // Feed Toggle Animation
-    feed_toggle: function (html, source) {
+    feed_toggle: (html, source) => {
       if (start.video === YT.PlayerState.PLAYING) start.media_stop();
-      setTimeout(function () {
-        $(".feed-links").replaceWith(html);
-      }, 600);
-      setTimeout(function () {
-        $(".feed-links").addClass(start.s);
-      }, 1000);
+      setTimeout(() => { $(".feed-links").replaceWith(html) }, 600);
+      setTimeout(() => { $(".feed-links").addClass(start.s) }, 1000);
       if (source) {
         start.notifications(`<span>Feed Switched to</span> ${source}`);
         if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();
@@ -567,18 +551,14 @@
     },
 
     // Replace News
-    fetch_news: function (url, source) {
+    fetch_news: (url, source) => {
       fetch(url + '?t=' + start.timestamp)
-        .then(function (response) {
+        .then(response => {
           $(".feed-links").removeClass(start.s);
           return response.text();
         })
-        .then(function (html) {
-          if (html) start.feed_toggle(html, source);
-        })
-        .catch(function (err) {
-          $(".feed-links").addClass(start.s);
-        });
+        .then(html => { if (html) start.feed_toggle(html, source) })
+        .catch(err => { $(".feed-links").addClass(start.s) });
       start.feed_count = false;
       if (!$(".feed-links").hasClass("video-links")) start.video = false;
     },
@@ -590,34 +570,22 @@
     },
 
     // News Home Feed
-    news: function () {
-      start.fetch_news(start.conf.techmemeURL, "All News");
-    },
+    news: function () { start.fetch_news(start.conf.techmemeURL, "All News") },
 
     // NYT Home Feed
-    nyt: function () {
-      start.fetch_news(start.conf.nytURL, "New York Times");
-    },
+    nyt: function () { start.fetch_news(start.conf.nytURL, "New York Times") },
 
     // Reddit Home Feed
-    reddit: function () {
-      start.fetch_news(start.conf.redditURL, "Reddit");
-    },
+    reddit: function () { start.fetch_news(start.conf.redditURL, "Reddit") },
 
     // NFTs Home Feed
-    nfts: function () {
-      start.fetch_news(start.conf.alchemyURL, "NFTs");
-    },
+    nfts: function () { start.fetch_news(start.conf.alchemyURL, "NFTs") },
 
     // Lexichronic Home Feed
-    lexichronic: function () {
-      start.fetch_news(start.conf.lexiURL, "Lexichronic");
-    },
+    lexichronic: function () { start.fetch_news(start.conf.lexiURL, "Lexichronic") },
 
     // Path of Exile Home Feed
-    poe: function () {
-      start.fetch_news(start.conf.poeURL, "Path of Exile");
-    },
+    poe: function () { start.fetch_news(start.conf.poeURL, "Path of Exile") },
 
     // Podcasts Home Feed
     podcasts: function () {
@@ -639,19 +607,19 @@
 
     // Media Based Event Listeners
     media_events: function () {
-      start.audio.addEventListener("play", function () {
+      // Audio Events
+      start.audio.addEventListener("play", () => {
         if (start.video) start.video.pauseVideo();
       });
-      start.audio.addEventListener("ended", function () {
+      start.audio.addEventListener("ended", () => {
         start.media_ended();
         start.notifications("<span>Audio</span> Finished Playing");
-        // Reset Audio
         start.audio = new Audio();
         start.timer = {};
       });
+      // Video Events
       if (start.video) {
-        start.video.addEventListener('onStateChange', function (event) {
-          // if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
+        start.video.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
             start.timer = {};
             start.yt();
@@ -659,11 +627,22 @@
             start.notifications("<span>Video</span> Finished Playing");
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
-        })
+          if (event.data === YT.PlayerState.PAUSED) {
+            start.notifications("<span>Video</span> Paused");
+            $(".podcasts img").attr("src", "icons/icon__pause.svg");
+            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+            if (!$(".feed-links").hasClass("video-links")) start.video = false;
+          }
+          if (event.data === YT.PlayerState.PLAYING) {
+            start.notifications("<span>Video</span> Playing");
+            $(".podcasts img").attr("src", "icons/icon__play.svg");
+            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+          }
+        });
       }
     },
 
-    // Reset Timer & Progress Bar
+    // Media: Reset Timer & Progress Bar
     media_ended: function () {
       start.timer = {};
       $(".podcasts").removeClass(start.s);
@@ -691,9 +670,7 @@
       if (start.video && start.video === YT.PlayerState.PLAYING) {
         start.video.pauseVideo();
       }
-      if (!start.audio.paused) {
-        start.audio.pause();
-      }
+      if (!start.audio.paused) start.audio.pause();
     },
 
     // Media: Play
@@ -701,9 +678,7 @@
       if (start.video && start.video === YT.PlayerState.PAUSED) {
         start.video.playVideo();
       }
-      if (!start.audio.paused) {
-        start.audio.play();
-      }
+      if (!start.audio.paused) start.audio.play();
       if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
     },
 
@@ -749,15 +724,11 @@
     // Video: Fullscreen Toggle
     fullscreen_video: function () {
       const v = $(".video-links .feed-list, .container__overflow"),
-            vl = $(".video-links"),
-            fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
+        vl = $(".video-links"),
+        fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
-      setTimeout(function () {
-        v.toggleClass("fullscreen");
-      }, 600);
-      setTimeout(function () {
-        vl.addClass(start.s);
-      }, 1000);
+      setTimeout(() => { v.toggleClass("fullscreen") }, 600);
+      setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.notifications(`Video <span>${fs}</span>`);
     },
 
@@ -791,10 +762,8 @@
     play_playlist: function () {
       start.media_stop();
       fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (x) {
+        .then(res => { return res.json() })
+        .then(x => {
           for (let i = x.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [x[i], x[j]] = [x[j], x[i]];
@@ -804,7 +773,7 @@
               for (var i = 0; i < 20; i++) {
                 start.play_single(x[i]);
                 await new Promise(resolve => {
-                  start.audio.addEventListener('ended', function () {
+                  start.audio.addEventListener('ended', () => {
                     resolve();
                   });
                 });
@@ -813,7 +782,7 @@
             x_pl();
           }
         })
-        .catch(function (err) {
+        .catch(err => {
           start.media_stop();
         });
     },
@@ -832,7 +801,7 @@
         const song_data = {
           id: '',
           name: a.data('title'),
-          album:'',
+          album: '',
           artist: a.data('feed'),
           image: a.find("img").attr('src'),
           link: a.attr('href')
@@ -879,7 +848,7 @@
     audio_more_speed: function () {
       if (!start.audio.paused) {
         start.audio.playbackRate += 0.1;
-        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2) }x</span>`);
+        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
     },
 
@@ -887,7 +856,7 @@
     audio_less_speed: function () {
       if (!start.audio.paused) {
         start.audio.playbackRate -= 0.1;
-        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2) }x</span>`);
+        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
     },
 
@@ -958,10 +927,14 @@
       try {
         if (start.video && start.video.getPlayerState() === 1) {
           start.video.pauseVideo();
+          $(".podcasts img").attr("src", "icons/icon__pause.svg");
+          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
           start.notifications("<span>Video</span> Paused");
         } else {
-          start.video.playVideo();
+          $(".podcasts img").attr("src", "icons/icon__play.svg");
+          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
           start.notifications("<span>Video</span> Playing");
+          start.video.playVideo();
         }
       } catch (e) {
         return;
@@ -971,19 +944,19 @@
     // Page View Counter
     pageview_counter: function () {
       fetch(start.conf.counterURL + '?t=' + start.timestamp)
-        .then(function (res) {
+        .then(res => {
           return res.text();
         })
-        .then(function (number) {
+        .then(number => {
           if (number) {
-            setTimeout(function () {
+            setTimeout(() => {
               start.pageviews = number.trim().toString().slice(0, 10);
               $(".counter-replace").text(start.pageviews);
               $(".counter").addClass(start.s);
             }, start.animation_time * 2);
           }
         })
-        .catch(function (err) {
+        .catch(err => {
           $(".counter").remove();
           start.pageviews = true;
         });
@@ -992,23 +965,23 @@
     // Primary Wallet Status
     wallet: function () {
       fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
-        .then(function (response) {
-          return response.json();
+        .then(res => {
+          return res.json();
         })
-        .then(function (response) {
-          start.balance = response["ETH"]["totalIn"].toString();
-          var balance_formatted = (response["ETH"]["totalIn"]).toFixed(3);
-          var balance_diff = response["ETH"]["price"]["diff"];
+        .then(res => {
+          start.balance = res["ETH"]["totalIn"].toString();
+          var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
+          var balance_diff = res["ETH"]["price"]["diff"];
           var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
           if (start.balance) {
-            setTimeout(function () {
+            setTimeout(() => {
               $(".wallet-replace").text((balance_formatted + formatted).toString());
               $(".wallet").addClass(start.s);
             }, start.animation_time);
             start.nfts_collection = response['ETH']['price'];
           }
         })
-        .catch(function (err) {
+        .catch(err => {
           $(".wallet").remove();
         });
     },
@@ -1032,8 +1005,8 @@
       if (window.matchMedia("(min-width: 40em)").matches) {
         $(document).on(start.touch, function (e) {
           if (e.target.tagName !== "A" &&
-              e.target.tagName !== "INPUT" &&
-              e.target.className !== "menu-toggle"
+            e.target.tagName !== "INPUT" &&
+            e.target.className !== "menu-toggle"
           ) start.focus_search();
         });
       }
@@ -1076,12 +1049,9 @@
       // fetch request
       let commits = "";
       fetch(start.conf.githubURL + "&t=" + start.timestamp)
-        .then(function (res) {
-          if (res) return res.json();
-        }).then(function (res) {
-          if (res) commits = " (" + res[0].contributions + ")";
-        });
-      setTimeout(function () {
+        .then(res => { return res.json() })
+        .then(res => { commits = " (" + res[0].contributions + ")" });
+      setTimeout(() => {
         $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
       }, start.animation_time * 4);
     }

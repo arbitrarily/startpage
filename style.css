@@ -376,6 +376,7 @@ li {
     padding: 0 var(--foundation);
     opacity: var(--opacity-end);
 }
+
 .container__list--item:hover .menu-links__toggle--keys {
     opacity: 1;
 }
@@ -400,7 +401,7 @@ li {
 .container__list {
     display: flex;
     align-items: center;
-    padding: 8px 8px 8px 0;
+    padding: 8px 0;
 }
 
 .container__list span {
@@ -471,6 +472,7 @@ li {
 
 .container__list--item.menu-links__toggle img {
     object-fit: contain;
+    filter: brightness(180%) saturate(0);
 }
 
 .container__list--title {
@@ -689,7 +691,7 @@ li {
 
 @media screen and (max-width: 30em) {
     .container__list span {
-        font-size: 0.9725rem;
+        font-size: var(--foundation-large);
     }
 
     .menu-toggle {
