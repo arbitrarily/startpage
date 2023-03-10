@@ -4,13 +4,10 @@
   var start = {
 
     // Version Number
-    version: "1.16.28",
+    version: "1.16.30",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
-
-    // Timestamp for Breaking Cached URLs
-    timestamp: ~~(new Date().getTime() / 1000),
 
     // Animation Time
     animation_time: 333,
@@ -127,25 +124,25 @@
 
     // Feeds
     feeds: [
-      () => { start.instapaper() },
-      () => { start.news() },
-      () => { start.nyt() },
-      () => { start.reddit() },
-      () => { start.podcasts() },
-      () => { start.music() },
-      () => { start.yt() },
-      () => { start.poe() },
-      () => { start.nft_summaries() },
-      () => { start.nfts() },
-      () => { start.play_single() },
-      () => { start.play_playlist() },
-      () => { start.audio_rewind() },
-      () => { start.media_toggle() },
-      () => { start.audio_fast_forward() },
-      () => { start.audio_mute() },
-      () => { start.background() },
-      () => { start.toggle_blur() },
-      () => { start.change_art_source() }
+      () => start.instapaper(),
+      () => start.news(),
+      () => start.nyt(),
+      () => start.reddit(),
+      () => start.podcasts(),
+      () => start.music(),
+      () => start.yt(),
+      () => start.poe(),
+      () => start.nft_summaries(),
+      () => start.nfts(),
+      () => start.play_single(),
+      () => start.play_playlist(),
+      () => start.audio_rewind(),
+      () => start.media_toggle(),
+      () => start.audio_fast_forward(),
+      () => start.audio_mute(),
+      () => start.background(),
+      () => start.toggle_blur(),
+      () => start.change_art_source()
     ],
 
     // Init
@@ -165,7 +162,7 @@
 
       // Background Image
       this.background();
-      setInterval(start.background, 1000 * 60 * 10)
+      setInterval(start.background, 1000 * 60 * 5)
 
       // Remove Menu Source HTML
       this.remove_html();
@@ -214,24 +211,23 @@
           // Init
           start.init();
         })
-        .catch(() => { $(".feed-links").addClass(start.s) });
+        .catch(() => $(".feed-links").addClass(start.s));
     },
 
     // Random Number in a Range
-    random_numb: (min, max) => {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    },
+    random_numb: (min, max) => Math.floor(Math.random() * (max - min + 1) + min),
 
     // Prettify Numbers
-    format_numb: numb => {
-      return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    },
+    format_numb: numb => numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+
+    // Timestamp for Breaking Cached URLs
+    timestamp: () => ~~(new Date().getTime() / 1000),
 
     // Focus Search
-    focus_search: () => { $(document).find("#search").focus().addClass("focus") },
+    focus_search: () => $(document).find("#search").focus().addClass("focus"),
 
     // Remove Source HTML
-    remove_html: () => { $(".menu-links-source").remove() },
+    remove_html: () => $(".menu-links-source").remove(),
 
     // Function Triggers by Keyboard Combos
     key_listener: () => {
@@ -343,7 +339,7 @@
     },
 
     // Slide Menu Toggle
-    slide_menu: () => { $(".container__overflow").toggleClass(start.s) },
+    slide_menu: () => $(".container__overflow").toggleClass(start.s),
 
     // Menu
     menu: () => {
@@ -384,9 +380,7 @@
       bg.addClass(start.h);
       setTimeout(() => {
         bg.attr("src", start.art_url + start.art_num + ".png");
-        bg.one("load", () => {
-          bg.removeClass(start.h);
-        }).each(() => {
+        bg.one("load", () => bg.removeClass(start.h)).each(() => {
           if (this.complete) $(this).trigger('load');
         });
       }, start.animation_time * 3);
@@ -423,23 +417,19 @@
 
     // LastFM Song
     lastfm: () => {
-      $.when(start.conf).then(function () {
+      $.when(start.conf).then(() => {
         fetch(start.conf.lastFMURL)
           .then(res => res.json())
           .then(res => res)
           .then(song => {
-            var count = song["recenttracks"]["@attr"]["total"];
-            if (count) {
-              $.when(start.pageviews).then(() => {
-                setTimeout(() => {
-                  $(".songs-replace").text(start.format_numb(count).trim().toString());
-                  $(".songs").addClass(start.s);
-                }, start.animation_time * 3);
-              });
-            }
-            // Remap Data
-            var s = song["recenttracks"]["track"].map(_map_it)[0];
-            // Change Artwork
+            const count = song["recenttracks"]["@attr"]["total"];
+            $.when(count && start.pageviews).then(() => {
+              setTimeout(() => {
+                $(".songs-replace").text(start.format_numb(count).trim().toString());
+                $(".songs").addClass(start.s);
+              }, start.animation_time * 3);
+            });
+            const s = song["recenttracks"]["track"].map(_map_it)[0];
             const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
             if (!media_playing) {
               const song_data = {
@@ -452,9 +442,7 @@
               }
               start.now_playing(song_data, false);
             }
-          }).catch(error => {
-            $(".nowplaying__container").hide();
-          });
+          }).catch(error => $(".nowplaying__container").hide());
         const _map_it = song => ({
           id: song.mbid,
           name: song.name,
@@ -515,43 +503,42 @@
 
     // Replace News
     fetch_news: (url, source) => {
-      fetch(url + '?t=' + start.timestamp)
+      fetch(url + '?t=' + start.timestamp())
         .then(response => {
           $(".feed-links").removeClass(start.s);
           return response.text();
         })
-        .then(html => { if (html) start.feed_toggle(html, source) })
-        .catch(err => { $(".feed-links").addClass(start.s) });
+        .then(html => {
+          if (html) start.feed_toggle(html, source)
+        })
+        .catch(err => $(".feed-links").addClass(start.s));
       start.feed_count = false;
       if (!$(".feed-links").hasClass("video-links")) start.video = false;
     },
 
     // Instapaper Home Feed
-    instapaper: skip => {
-      const skipper = skip ? false : "Instapaper"
-      start.fetch_news(start.conf.instapaperURL, skipper);
-    },
+    instapaper: skip => start.fetch_news(start.conf.instapaperURL, skip ? false : "Instapaper"),
 
     // News Home Feed
-    news: () => { start.fetch_news(start.conf.techmemeURL, "All News") },
+    news: () => start.fetch_news(start.conf.techmemeURL, "All News"),
 
     // NYT Home Feed
-    nyt: () => { start.fetch_news(start.conf.nytURL, "New York Times") },
+    nyt: () => start.fetch_news(start.conf.nytURL, "New York Times"),
 
     // Reddit Home Feed
-    reddit: () => { start.fetch_news(start.conf.redditURL, "Reddit") },
+    reddit: () => start.fetch_news(start.conf.redditURL, "Reddit"),
 
     // NFTs Home Feed
-    nfts: () => { start.fetch_news(start.conf.alchemyURL, "NFTs") },
+    nfts: () => start.fetch_news(start.conf.alchemyURL, "NFTs"),
 
     // Lexichronic Home Feed
-    lexichronic: () => { start.fetch_news(start.conf.lexiURL, "Lexichronic") },
+    lexichronic: () => start.fetch_news(start.conf.lexiURL, "Lexichronic"),
 
     // NFT News Summaries
-    nft_summaries: () => { start.fetch_news(start.conf.nftNewsURL, "NFT News") },
+    nft_summaries: () => start.fetch_news(start.conf.nftNewsURL, "NFT News"),
 
     // Path of Exile Home Feed
-    poe: () => { start.fetch_news(start.conf.poeURL, "Path of Exile") },
+    poe: () => start.fetch_news(start.conf.poeURL, "Path of Exile"),
 
     // Podcasts Home Feed
     podcasts: () => {
@@ -729,8 +716,8 @@
     // Audio: Play X Playlist
     play_playlist: function () {
       start.media_stop();
-      fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
-        .then(res => { return res.json() })
+      fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
+        .then(res => res.json())
         .then(x => {
           for (let i = x.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -750,9 +737,7 @@
             x_pl();
           }
         })
-        .catch(err => {
-          start.media_stop();
-        });
+        .catch(err => start.media_stop());
     },
 
     // Audio: Play
@@ -907,8 +892,8 @@
 
     // Page View Counter
     pageview_counter: () => {
-      fetch(start.conf.counterURL + '?t=' + start.timestamp)
-        .then(res => { return res.text() })
+      fetch(start.conf.counterURL + '?t=' + start.timestamp())
+        .then(res => res.text() )
         .then(number => {
           if (number) {
             setTimeout(() => {
@@ -926,8 +911,8 @@
 
     // Primary Wallet Status
     wallet: () => {
-      fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
-        .then(res => { return res.json() })
+      fetch(start.conf.ethplorerURL + '?t=' + start.timestamp())
+        .then(res => res.json())
         .then(res => {
           start.balance = res["ETH"]["totalIn"].toString();
           var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
@@ -1003,8 +988,8 @@
     version_number: () => {
       // fetch request
       let commits = "";
-      fetch(start.conf.githubURL + "&t=" + start.timestamp)
-        .then(res => { return res.json() })
+      fetch(start.conf.githubURL + "&t=" + start.timestamp())
+        .then(res => res.json())
         .then(res => { if (res[0]) commits = " (" + res[0].contributions + ")" });
       setTimeout(() => {
         $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
