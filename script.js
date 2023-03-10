@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.33",
+    version: "1.16.34",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -367,11 +367,17 @@
 
     // Notifications
     notifications: text => {
-      const noti = $(".notifications");
-      if (noti.hasClass(start.h)) noti.removeClass(start.h);
-      noti.find(".notifications__inner").html(text);
-      const timeout_id = setTimeout( () => { noti.addClass(start.h) }, start.animation_time * 6);
-      if (timeout_id) clearTimeout(start.timeout_id);
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
+        first = () => {
+          $(".notifications__inner").html(text);
+          $(".notifications").removeClass(start.h);
+        },
+        last = async () => {
+          await wait(start.animation_time * 5);
+          $(".notifications").addClass(start.h);
+        };
+      first();
+      last();
     },
 
     // Load Background Image
@@ -789,21 +795,21 @@
     audio_rewind: (val = 5) => {
       if (!start.audio.paused) start.audio.currentTime -= val;
       if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() - val);
-      start.notifications(`<span>Audio</span> Rewind <span>-${val} seconds</span>`);
+      start.notifications(`Rewind <span>-${val} seconds</span>`);
     },
 
     // Audio: Fast Forward
     audio_fast_forward: (val = 15) => {
       if (!start.audio.paused) start.audio.currentTime += val;
       if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() + val);
-      start.notifications(`<span>Audio</span> Fast Forward <span>+${val} seconds</span>`);
+      start.notifications(`Fast Forward <span>+${val} seconds</span>`);
     },
 
     // Audio: Faster Playback
     audio_more_speed: () => {
       if (!start.audio.paused) {
         start.audio.playbackRate += 0.1;
-        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
+        start.notifications(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
     },
 
@@ -811,7 +817,7 @@
     audio_less_speed: () => {
       if (!start.audio.paused) {
         start.audio.playbackRate -= 0.1;
-        start.notifications(`<span>Audio</span> Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
+        start.notifications(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
     },
 
@@ -863,29 +869,33 @@
 
     // Audio: Play/Pause
     audio_toggle: () => {
-      if (!start.audio.paused) {
-        start.audio.pause();
-        $(".podcasts img").attr("src", "icons/icon__pause.svg");
-        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-        start.notifications("Paused");
-      } else {
-        start.audio.currentTime = start.audio.currentTime - 3;
-        $(".podcasts img").attr("src", "icons/icon__play.svg");
-        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
-        start.notifications("<span>Now</span> Playing");
-        start.audio.play();
+      try {
+        if (start.audio.paused) {
+          start.audio.currentTime = start.audio.currentTime - 3;
+          $(".podcasts img").attr("src", "icons/icon__play.svg");
+          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+          start.notifications("<span>Now</span> Playing");
+          start.audio.play();
+        } else {
+          start.audio.pause();
+          $(".podcasts img").attr("src", "icons/icon__pause.svg");
+          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+          start.notifications("Paused");
+        }
+      } catch (e) {
+        return;
       }
     },
 
     // Toggle Video Play / Pause
     video_toggle: () => {
       try {
-        if (start.video && start.video.getPlayerState() === 1) {
+        if (start.video && start.video.getPlayerState() === YT.PlayerState.PAUSED) {
+          start.notifications("<span>Now</span> Playing");
+          start.video.playVideo();
+        } else {
           start.video.pauseVideo();
           start.notifications("Paused");
-        } else {
-          start.notifications("Playing");
-          start.video.playVideo();
         }
       } catch (e) {
         return;
