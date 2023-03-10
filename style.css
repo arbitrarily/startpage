@@ -228,8 +228,8 @@ li {
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
-.video-links .feed-container,
-.video-links .feed-list {
+.video-links .feed-container.shown,
+.video-links .feed-list.shown {
     -webkit-mask-image: none;
     mask-image: none;
 }
@@ -415,6 +415,7 @@ li {
 .news-list .container__list img,
 .news-links .container__list img {
     background: var(--grey);
+    min-width: 80px;
 }
 
 .podcast-links .container__list span,

@@ -117,8 +117,9 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
 - Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `YouTube` latest videos feed.
 - Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle the `Path of Exile` character feed.
-- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Lexichronic` news feed.
+- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Crypto & NFT` news feed.
 - Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
+- Use <kbd>shift</kbd> + <kbd>-</kbd> to toggle the `Lexichronic` news feed.
 
 ### *<kbd>Shift</kbd>* Media Controls
 - Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` audio playback speed.
