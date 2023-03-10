@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.32",
+    version: "1.16.33",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -567,7 +567,7 @@
       });
       start.audio.addEventListener("ended", () => {
         start.media_ended();
-        start.notifications("<span>Audio</span> Finished Playing");
+        start.notifications("<span>Finished</span> Playing");
         start.audio = new Audio();
         start.timer = {};
       });
@@ -578,18 +578,18 @@
             start.timer = {};
             start.yt();
             start.media_ended();
-            start.notifications("<span>Video</span> Finished Playing");
+            start.notifications("<span>Finished</span> Playing");
             if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PAUSED) {
-            start.notifications("<span>Video</span> Paused");
+            start.notifications("Paused");
             $(".podcasts img").attr("src", "icons/icon__pause.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PLAYING) {
-            start.notifications("<span>Video</span> Playing");
+            start.notifications("<span>Now</span> Playing");
             $(".podcasts img").attr("src", "icons/icon__play.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
           }
@@ -867,12 +867,12 @@
         start.audio.pause();
         $(".podcasts img").attr("src", "icons/icon__pause.svg");
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-        start.notifications("<span>Audio</span> Paused");
+        start.notifications("Paused");
       } else {
         start.audio.currentTime = start.audio.currentTime - 3;
         $(".podcasts img").attr("src", "icons/icon__play.svg");
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
-        start.notifications("<span>Audio</span> Playing");
+        start.notifications("<span>Now</span> Playing");
         start.audio.play();
       }
     },
@@ -882,9 +882,9 @@
       try {
         if (start.video && start.video.getPlayerState() === 1) {
           start.video.pauseVideo();
-          start.notifications("<span>Video</span> Paused");
+          start.notifications("Paused");
         } else {
-          start.notifications("<span>Video</span> Playing");
+          start.notifications("Playing");
           start.video.playVideo();
         }
       } catch (e) {
