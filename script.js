@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.34",
+    version: "1.16.35",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -238,30 +238,22 @@
         // Left Shift
         if (start.down[16]) {
           e.preventDefault();
-          if (start.down[49]) { // Instapaper             (shift + 1️⃣)
-            start.feed_count = 0;
-          } else if (start.down[50]) { // News            (shift + 2️⃣)
-            start.feed_count = 1;
-          } else if (start.down[51]) { // New York Times  (shift + 3️⃣)
-            start.feed_count = 2;
-          } else if (start.down[52]) { // Reddit          (shift + 4️⃣)
-            start.feed_count = 3;
-          } else if (start.down[53]) { // Podcasts        (shift + 5️⃣)
-            start.feed_count = 4;
-          } else if (start.down[54]) { // NFT News        (shift + 6️⃣)
-            start.feed_count = 5;
-          } else if (start.down[55]) { // YouTube         (shift + 7️⃣)
-            start.feed_count = 6;
-          } else if (start.down[56]) { // Path of Exile   (shift + 8️⃣)
-            start.feed_count = 7;
-          } else if (start.down[57]) { // Music           (shift + 9️⃣)
-            start.feed_count = 8;
-          } else if (start.down[48]) { // NFTs            (shift + 0️⃣)
-            start.feed_count = 10;
-          } else if (start.down[173]) { // Lexichronic    (shift + "-")
-            start.feed_count = 9;
-          }
           // Switch Feed Source
+          const keys_map = {
+            49: 0, // Instapaper                          (shift + 1️⃣)
+            50: 1, // News                                (shift + 2️⃣)
+            51: 2, // New York Times                      (shift + 3️⃣)
+            52: 3, // Reddit                              (shift + 4️⃣)
+            53: 4, // Podcasts                            (shift + 5️⃣)
+            54: 5, // NFT News                            (shift + 6️⃣)
+            55: 6, // YouTube                             (shift + 7️⃣)
+            56: 7, // Path of Exile                       (shift + 8️⃣)
+            57: 8, // Music                               (shift + 9️⃣)
+            48: 10, // NFTs                               (shift + 0️⃣)
+            173: 9, // Lexichronic                        (shift + "-")
+          };
+          const kcc = Object.keys(keys_map).find(key => start.down[key]);
+          start.feed_count = keys_map ? keys_map[kcc] : start.feed_count;
           if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
           // Audio: Fast Forward                          (shift + ⏩)
           if (start.down[39]) start.audio_fast_forward();
@@ -292,28 +284,21 @@
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
-          if (start.down[49]) { // Path of Exile          (alt + 1️⃣)
-            start.count = 0;
-          } else if (start.down[50]) { // YouTube         (alt + 2️⃣)
-            start.count = 1;
-          } else if (start.down[51]) { // DuckDuckGo      (alt + 3️⃣)
-            start.count = 2;
-          } else if (start.down[52]) { // Apple Music     (alt + 4️⃣)
-            start.count = 3;
-          } else if (start.down[53]) { // LastFM          (alt + 5️⃣)
-            start.count = 4;
-          } else if (start.down[54]) { // Twitter         (alt + 6️⃣)
-            start.count = 5;
-          } else if (start.down[55]) { // Google News     (alt + 7️⃣)
-            start.count = 6;
-          } else if (start.down[56]) { // Github          (alt + 8️⃣)
-            start.count = 7;
-          } else if (start.down[57]) { // MidJourney      (alt + 9️⃣)
-            start.count = 8;
-          } else if (start.down[48]) { // Google          (alt + 0️⃣)
-            start.count = 9;
-          }
           // Switch Search Source
+          const keys_mapped = {
+            49: 0, // Path of Exile                       (alt + 1️⃣)
+            50: 1, // YouTube                             (alt + 2️⃣)
+            51: 2, // DuckDuckGo                          (alt + 3️⃣)
+            52: 3, // Apple Music                         (alt + 4️⃣)
+            53: 4, // LastFM                              (alt + 5️⃣)
+            54: 5, // Twitter                             (alt + 6️⃣)
+            55: 6, // Google News                         (alt + 7️⃣)
+            56: 7, // Github                              (alt + 8️⃣)
+            57: 8, // MidJourney                          (alt + 9️⃣)
+            48: 9, // Google                              (alt + 0️⃣)
+          };
+          const kc = Object.keys(keys_mapped).find(key => start.down[key]);
+          start.count = kc ? keys_mapped[kc] : start.count;
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           // Toggle Cursor                                (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
