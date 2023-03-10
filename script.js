@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.24",
+    version: "1.16.25",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -603,7 +603,7 @@
     },
 
     // Media: Reset Timer & Progress Bar
-    media_ended: function () {
+    media_ended: () => {
       start.timer = {};
       $(".podcasts").removeClass(start.s);
       $(".progress").css('width', '0%');
@@ -612,7 +612,7 @@
     },
 
     // Media: Stop
-    media_stop: function () {
+    media_stop: () => {
       start.media_ended();
       if (start.video) {
         start.video.pauseVideo();
@@ -626,7 +626,7 @@
     },
 
     // Media: Pause
-    media_pause: function () {
+    media_pause: () => {
       if (start.video && start.video === YT.PlayerState.PLAYING) {
         start.video.pauseVideo();
       }
@@ -634,7 +634,7 @@
     },
 
     // Media: Play
-    media_play: function () {
+    media_play: () => {
       if (start.video && start.video === YT.PlayerState.PAUSED) {
         start.video.playVideo();
       }
@@ -643,7 +643,7 @@
     },
 
     // Start YouTube Video
-    yt_start: function (video_id) {
+    yt_start: video_id => {
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -830,12 +830,12 @@
           if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
             elapsed = start.video.getDuration() - start.video.getCurrentTime();
             tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = parseInt(start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
+            start.progress_bar = (start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
           }
           if (!start.audio.paused) {
             elapsed = start.audio.duration - start.audio.currentTime;
             tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = parseInt(start.audio.currentTime / start.audio.duration).toFixed(3);
+            start.progress_bar = (start.audio.currentTime / start.audio.duration).toFixed(3);
           }
           start.timer = {
             minutes: Math.floor(tr / 60),
@@ -846,9 +846,7 @@
           if (start.timer.seconds && last_second > start.timer.seconds) {
             if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
             $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
-            if (Number.isInteger(parseInt(start.progress_bar))) {
-              start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
-            }
+            start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
             $(".progress").css('width', start.progress_bar + '%');
             last_second = start.timer.seconds;
           }
