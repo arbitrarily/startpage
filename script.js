@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.20",
+    version: "1.16.21",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -586,61 +586,55 @@
     // Instapaper Home Feed
     instapaper: function (skip) {
       const skipper = skip ? false : "Instapaper"
-      $.when(start.conf).then(start.fetch_news(start.conf.instapaperURL, skipper));
+      start.fetch_news(start.conf.instapaperURL, skipper);
     },
 
     // News Home Feed
     news: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.techmemeURL, "All News"));
+      start.fetch_news(start.conf.techmemeURL, "All News");
     },
 
     // NYT Home Feed
     nyt: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.nytURL, "New York Times"));
+      start.fetch_news(start.conf.nytURL, "New York Times");
     },
 
     // Reddit Home Feed
     reddit: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.redditURL, "Reddit"));
+      start.fetch_news(start.conf.redditURL, "Reddit");
     },
 
     // NFTs Home Feed
     nfts: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.alchemyURL, "NFTs"));
+      start.fetch_news(start.conf.alchemyURL, "NFTs");
     },
 
     // Lexichronic Home Feed
     lexichronic: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.lexiURL, "Lexichronic"));
+      start.fetch_news(start.conf.lexiURL, "Lexichronic");
     },
 
     // Path of Exile Home Feed
     poe: function () {
-      $.when(start.conf).then(start.fetch_news(start.conf.poeURL, "Path of Exile"));
+      start.fetch_news(start.conf.poeURL, "Path of Exile");
     },
 
     // Podcasts Home Feed
     podcasts: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.podURL, "Podcasts");
-        start.play_audio();
-      });
+      start.fetch_news(start.conf.podURL, "Podcasts");
+      start.play_audio();
     },
 
     // Music Home Feed
     music: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
-        start.play_audio();
-      });
+      start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
+      start.play_audio();
     },
 
     // YouTube Home Feed
     yt: function () {
-      $.when(start.conf).then(function () {
-        start.fetch_news(start.conf.youTubeURL, "YouTube");
-        start.yt_click();
-      });
+      start.fetch_news(start.conf.youTubeURL, "YouTube");
+      start.yt_click();
     },
 
     // Media Based Event Listeners
@@ -796,34 +790,32 @@
     // Audio: Play X Playlist
     play_playlist: function () {
       start.media_stop();
-      $.when(start.conf).then(function () {
-        fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (x) {
-            for (let i = x.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [x[i], x[j]] = [x[j], x[i]];
-            }
-            if (x) {
-              async function x_pl() {
-                for (var i = 0; i < 20; i++) {
-                  start.play_single(x[i]);
-                  await new Promise(resolve => {
-                    start.audio.addEventListener('ended', function () {
-                      resolve();
-                    });
+      fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (x) {
+          for (let i = x.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [x[i], x[j]] = [x[j], x[i]];
+          }
+          if (x) {
+            async function x_pl() {
+              for (var i = 0; i < 20; i++) {
+                start.play_single(x[i]);
+                await new Promise(resolve => {
+                  start.audio.addEventListener('ended', function () {
+                    resolve();
                   });
-                }
+                });
               }
-              x_pl();
             }
-          })
-          .catch(function (err) {
-            start.media_stop();
-          });
-      });
+            x_pl();
+          }
+        })
+        .catch(function (err) {
+          start.media_stop();
+        });
     },
 
     // Audio: Play
@@ -978,51 +970,47 @@
 
     // Page View Counter
     pageview_counter: function () {
-      $.when(start.conf).then(function () {
-        fetch(start.conf.counterURL + '?t=' + start.timestamp)
-          .then(function (res) {
-            return res.text();
-          })
-          .then(function (number) {
-            if (number) {
-              setTimeout(function () {
-                start.pageviews = number.trim().toString().slice(0, 10);
-                $(".counter-replace").text(start.pageviews);
-                $(".counter").addClass(start.s);
-              }, start.animation_time * 2);
-            }
-          })
-          .catch(function (err) {
-            $(".counter").remove();
-            start.pageviews = true;
-          });
-      });
+      fetch(start.conf.counterURL + '?t=' + start.timestamp)
+        .then(function (res) {
+          return res.text();
+        })
+        .then(function (number) {
+          if (number) {
+            setTimeout(function () {
+              start.pageviews = number.trim().toString().slice(0, 10);
+              $(".counter-replace").text(start.pageviews);
+              $(".counter").addClass(start.s);
+            }, start.animation_time * 2);
+          }
+        })
+        .catch(function (err) {
+          $(".counter").remove();
+          start.pageviews = true;
+        });
     },
 
     // Primary Wallet Status
     wallet: function () {
-      $.when(start.conf).then(function () {
-        fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (response) {
-            start.balance = response["ETH"]["totalIn"].toString();
-            var balance_formatted = (response["ETH"]["totalIn"]).toFixed(3);
-            var balance_diff = response["ETH"]["price"]["diff"];
-            var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
-            if (start.balance) {
-              setTimeout(function () {
-                $(".wallet-replace").text((balance_formatted + formatted).toString());
-                $(".wallet").addClass(start.s);
-              }, start.animation_time);
-              start.nfts_collection = response['ETH']['price'];
-            }
-          })
-          .catch(function (err) {
-            $(".wallet").remove();
-          });
-      });
+      fetch(start.conf.ethplorerURL + '?t=' + start.timestamp)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (response) {
+          start.balance = response["ETH"]["totalIn"].toString();
+          var balance_formatted = (response["ETH"]["totalIn"]).toFixed(3);
+          var balance_diff = response["ETH"]["price"]["diff"];
+          var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
+          if (start.balance) {
+            setTimeout(function () {
+              $(".wallet-replace").text((balance_formatted + formatted).toString());
+              $(".wallet").addClass(start.s);
+            }, start.animation_time);
+            start.nfts_collection = response['ETH']['price'];
+          }
+        })
+        .catch(function (err) {
+          $(".wallet").remove();
+        });
     },
 
     // Console Log Wallet Status
