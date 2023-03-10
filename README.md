@@ -133,7 +133,6 @@ surge . abstracted-war.surge.sh
 ```
 
 # TODOS
-* hide timer when video is hidden/removed on feed toggle
 * add more ways to exit fullscreen video mode
   * click outside video
   * stop video keyboard command

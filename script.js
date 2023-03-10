@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.8",
+    version: "1.16.11",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -24,7 +24,8 @@
     // Counts
     count: false,
     feed_count: false,
-    timer: false,
+    timer: {},
+    progress_bar: 0,
 
     // Pageviews
     pageviews: false,
@@ -649,13 +650,13 @@
         start.notifications("<span>Audio</span> Finished Playing");
         // Reset Audio
         start.audio = new Audio();
-        start.timer = 0;
+        start.timer = {};
       });
       if (start.video) {
         start.video.addEventListener('onStateChange', function (event) {
           // if (event.data === YT.PlayerState.PLAYING) start.audio.pause();
           if (event.data === YT.PlayerState.ENDED) {
-            start.timer = 0;
+            start.timer = {};
             start.yt();
             start.media_ended();
             start.notifications("<span>Video</span> Finished Playing");
@@ -667,25 +668,33 @@
 
     // Reset Timer & Progress Bar
     media_ended: function () {
-      start.timer = 0;
-      $(".podcasts-replace").text('0:00');
-      $(".progress").css('width', '0%');
+      start.timer = {};
       $(".podcasts").removeClass(start.s);
+      $(".progress").css('width', '0%');
       $("#search").removeClass("full");
+      $(".podcasts-replace").text('0:00');
     },
 
     // Media: Stop
     media_stop: function () {
       start.media_ended();
-      if (start.video && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
-      if (!start.audio.paused) start.audio.pause();
+      if (start.video) {
+        start.video.pauseVideo();
+        start.video = false;
+      }
+      if (start.audio) {
+        start.audio.pause();
+        start.audio.src = "";
+        start.audio = new Audio();
+      }
     },
 
     // Media: Pause
     media_pause: function () {
       if (start.video && start.video === YT.PlayerState.PLAYING) {
         start.video.pauseVideo();
-      } else if (!start.audio.paused) {
+      }
+      if (!start.audio.paused) {
         start.audio.pause();
       }
     },
@@ -694,7 +703,8 @@
     media_play: function () {
       if (start.video && start.video === YT.PlayerState.PAUSED) {
         start.video.playVideo();
-      } else if (!start.audio.paused) {
+      }
+      if (!start.audio.paused) {
         start.audio.play();
       }
       if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
@@ -809,7 +819,6 @@
           })
           .catch(function (err) {
             start.media_stop();
-            console.log(err);
           });
       });
     },
@@ -891,29 +900,38 @@
     media_timer: function () {
       let elapsed = 0;
       let tr = 0;
-      let width = 0;
       setInterval(function () {
-        if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
-          elapsed = start.video.getDuration() - start.video.getCurrentTime();
-          tr = elapsed > 0 ? elapsed : 0;
-          width = start.video.getCurrentTime() / start.video.getDuration();
+        let last_second = start.timer.seconds;
+        try {
+          if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
+            elapsed = start.video.getDuration() - start.video.getCurrentTime();
+            tr = elapsed > 0 ? elapsed : 0;
+            start.progress_bar = start.video.getCurrentTime() / start.video.getDuration();
+          }
+          if (!start.audio.paused) {
+            elapsed = start.audio.duration - start.audio.currentTime;
+            tr = elapsed > 0 ? elapsed : 0;
+            start.progress_bar = start.audio.currentTime / start.audio.duration;
+          }
+          start.timer = {
+            minutes: Math.floor(tr / 60),
+            seconds: Math.floor(tr % 60),
+            padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
+          }
+          // Update Time
+          if (start.timer.seconds && last_second > start.timer.seconds) {
+            if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
+            $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
+            start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
+            $(".progress").css('width', start.progress_bar + '%');
+            last_second = start.timer.seconds;
+          }
+        } catch (e) {
+          clearInterval();
         }
-        if (!start.audio.paused) {
-          elapsed = start.audio.duration - start.audio.currentTime;
-          tr = elapsed > 0 ? elapsed : 0;
-          width = start.audio.currentTime / start.audio.duration;
-        }
-        // Update Time
-        start.timer = {
-          minutes: Math.floor(tr / 60),
-          seconds: Math.floor(tr % 60),
-          padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
-        }
-        if (start.timer.seconds) {
-          if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
-          $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
-          width = Math.min(Math.max((width * 100).toFixed(3), 1), 100)
-          $(".progress").css('width', width + '%');
+        if (start.video && $(".feed-links iframe").length === 0) {
+          start.media_stop();
+          clearInterval();
         }
       }, 500);
     },
@@ -932,7 +950,6 @@
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
         start.notifications("<span>Audio</span> Paused");
       } else {
-        // Rewind 3 seconds
         start.audio.currentTime = start.audio.currentTime - 3;
         $(".podcasts img").attr("src", "icons/icon__play.svg");
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
