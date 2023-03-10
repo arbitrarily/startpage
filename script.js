@@ -849,7 +849,6 @@
             if (Number.isInteger(parseInt(start.progress_bar))) {
               start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
             }
-            console.log(start.progress_bar, 'start.progress_bar');
             $(".progress").css('width', start.progress_bar + '%');
             last_second = start.timer.seconds;
           }
