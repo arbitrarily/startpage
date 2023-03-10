@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.35",
+    version: "1.16.36",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -535,13 +535,13 @@
     // Podcasts Home Feed
     podcasts: () => {
       start.fetch_news(start.conf.podURL, "Podcasts");
-      start.play_audio();
+      start.play_audio_on_click();
     },
 
     // Music Home Feed
     music: () => {
       start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
-      start.play_audio();
+      start.play_audio_on_click();
     },
 
     // YouTube Home Feed
@@ -734,7 +734,7 @@
     },
 
     // Audio: Play
-    play_audio: function () {
+    play_audio_on_click: function () {
       $(document).on(start.touch, ".podcast-links li a", function (e) {
         e.preventDefault();
         const a = $(this);
