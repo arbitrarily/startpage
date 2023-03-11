@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.36",
+    version: "1.16.37",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -23,6 +23,7 @@
     feed_count: false,
     timer: {},
     progress_bar: 0,
+    playlist_length: 0,
 
     // Pageviews
     pageviews: false,
@@ -687,7 +688,7 @@
       if (!url) {
         start.audio.src = start.conf.xURL + number + ".mp3";
       } else {
-        number = start.random_numb(1, 268);
+        number = start.random_numb(1, start.playlist_length ? start.playlist_length : 400);
         start.audio.src = url;
       }
       start.audio.playbackRate = 1;
@@ -712,6 +713,7 @@
       fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
         .then(res => res.json())
         .then(x => {
+          start.playlist_length = x.length;
           for (let i = x.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [x[i], x[j]] = [x[j], x[i]];
