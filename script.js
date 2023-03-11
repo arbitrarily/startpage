@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.17.3",
+    version: "1.17.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -741,7 +741,7 @@
         async function play() {
           // 10 Songs
           for (var i = 0; i < limit; i++) {
-            const songs_left = limit - i;
+            const songs_left = limit - i > 0 ? limit - i : false;
             start.play_single(start.playlist_json[i], songs_left);
             await new Promise(resolve => {
               start.audio.addEventListener('ended', () => {
