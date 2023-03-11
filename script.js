@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.37",
+    version: "1.16.39",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -682,44 +682,54 @@
     },
 
     // Audio: Play Single Track
-    play_single: function (url) {
+    play_single: (song = false) => {
+      let song_data = {};
       start.media_stop();
-      let number = start.random_numb(1, 13);
-      if (!url) {
+      if (!song) {
+        const number = start.random_numb(1, 13);
+        song_data = {
+          id: "",
+          name: "Song #" + number,
+          album: "",
+          artist: "Lofi Girl",
+          image: "icons/icon__lofi-girl.jpg",
+          link: "https://www.youtube.com/@LofiGirl"
+        };
         start.audio.src = start.conf.xURL + number + ".mp3";
       } else {
-        number = start.random_numb(1, start.playlist_length ? start.playlist_length : 400);
-        start.audio.src = url;
+        song_data = {
+          id: song.id ? song.id : "",
+          name: song.title ? song.title : "Playlist",
+          album: "",
+          artist: song.channel ? song.channel : "YouTube",
+          image: song.image ? song.image : "icons/icon__lofi-girl.jpg",
+          link: song.url ? song.url : ""
+        }
+        start.audio.src = song.media;
       }
       start.audio.playbackRate = 1;
       start.audio.play();
       start.media_timer();
-      const song_data = {
-        id: "",
-        name: "Song #" + number,
-        album: "",
-        artist: "Lofi Girl",
-        image: "icons/icon__lofi-girl.jpg",
-        link: "https://www.youtube.com/@LofiGirl"
-      }
       start.now_playing(song_data, false);
-      start.notifications(`Now Playing <span>${start.conf.x}</span> #${number}`);
+      start.notifications(`Now Playing <span>${song_data.name}</span>`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
     // Audio: Play X Playlist
-    play_playlist: function () {
+    play_playlist: () => {
       start.media_stop();
       fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
         .then(res => res.json())
         .then(x => {
           start.playlist_length = x.length;
+          // Shuffle Array
           for (let i = x.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [x[i], x[j]] = [x[j], x[i]];
           }
           if (x) {
-            async function x_pl() {
+            async function play() {
+              // 20 Songs
               for (var i = 0; i < 20; i++) {
                 start.play_single(x[i]);
                 await new Promise(resolve => {
@@ -729,7 +739,7 @@
                 });
               }
             }
-            x_pl();
+            play();
           }
         })
         .catch(err => start.media_stop());
@@ -754,7 +764,7 @@
           image: a.find("img").attr('src'),
           link: a.attr('href')
         }
-        start.now_playing(song_data, `${a.text().trim().slice(0, 75) + "..."}`);
+        start.now_playing(song_data, `${a.text().trim().slice(0, 45) + "..."}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
@@ -867,7 +877,7 @@
           start.audio.pause();
           $(".podcasts img").attr("src", "icons/icon__pause.svg");
           $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-          start.notifications("Paused");
+          start.notifications("<span>Now</span> Paused");
         }
       } catch (e) {
         return;
@@ -882,7 +892,7 @@
           start.video.playVideo();
         } else {
           start.video.pauseVideo();
-          start.notifications("Paused");
+          start.notifications("<span>Now</span> Paused");
         }
       } catch (e) {
         return;
