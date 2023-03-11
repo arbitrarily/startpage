@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.18.3",
+    version: "1.18.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -468,7 +468,7 @@
         artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
         song.text(data.name).attr("title", `Song: ${data.name}`);
         album.text(data.album ? `${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
-        image.toggle(data.image != null).attr("src", data.image);
+        image.attr("src", data.image ? data.image : "fallback.png");
         url.attr("href", data.link ? data.link : "#").addClass(start.s);
         container.show();
         container.removeClass(start.h)
