@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.17.7",
+    version: "1.18.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -19,14 +19,17 @@
     conf: false,
 
     // Counts
+    timer: {},
     count: false,
     feed_count: false,
-    timer: {},
     progress_bar: 0,
     playlist_length: 0,
 
-    // Playlist JSON
+    // Playlist Content
     playlist_json: false,
+
+    // Cached HTML
+    cached_html: {},
 
     // Pageviews
     pageviews: false,
@@ -501,15 +504,28 @@
 
     // Replace News
     fetch_news: (url, source) => {
-      fetch(url + '?t=' + start.timestamp())
-        .then(response => {
-          $(".feed-links").removeClass(start.s);
-          return response.text();
-        })
-        .then(html => {
-          if (html) start.feed_toggle(html, source)
-        })
-        .catch(err => $(".feed-links").addClass(start.s));
+      $(".feed-links").removeClass(start.s);
+      if (start.cached_html[source]) {
+        start.feed_toggle(start.cached_html[source].html, source);
+        if (start.cached_html[source].time) {
+          if (new Date().getTime() - start.cached_html[source].time > 600000) {
+            start.cached_html[source] = null;
+          }
+        }
+      } else {
+        fetch(url + '?t=' + start.timestamp())
+          .then(response => response.text())
+          .then(html => {
+            if (html) {
+              start.feed_toggle(html, source);
+              start.cached_html[source] = {
+                html: html,
+                time: new Date().getTime()
+              };
+            }
+          })
+          .catch(err => $(".feed-links").addClass(start.s));
+      }
       start.feed_count = false;
       if (!$(".feed-links").hasClass("video-links")) start.video = false;
     },
@@ -533,7 +549,7 @@
     lexichronic: () => start.fetch_news(start.conf.lexiURL, "Lexichronic"),
 
     // NFT News Summaries
-    nft_summaries: () => start.fetch_news(start.conf.nftNewsURL, "NFT News"),
+    nft_summaries: () => start.fetch_news(start.conf.nftNewsURL, "Industry News"),
 
     // Path of Exile Home Feed
     poe: () => start.fetch_news(start.conf.poeURL, "Path of Exile"),
