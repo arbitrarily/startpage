@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.17.4",
+    version: "1.17.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -277,6 +277,8 @@
           if (start.down[123]) start.play_single();
           // Music: Randomized Playlist                   (shift + "f11")
           if (start.down[122]) start.play_playlist();
+          // Toggle Playlist Control Limit                (shift + "f10")
+          if (start.down[121]) start.play_playlist_input();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
@@ -285,15 +287,6 @@
             if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
           }
         }
-        // Toggle Playlist Control Limit                ("f10")
-        // if (start.down[121]) {
-        //   let num;
-        //   do {
-        //     num = prompt('How many songs?:', '');
-        //   } while (num !== null && (isNaN(parseInt(num)) || parseInt(num) != num));
-        //   start.play_playlist(parseInt(num));
-        //   start.down[121] = false;
-        // }
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
@@ -315,15 +308,15 @@
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           // Toggle Cursor                                (alt + 🔙)
           if (start.down[8]) start.toggle_cursor();
-          // Change Art Source To Full Resolution         (alt + "z")
-          if (start.down[90]) start.change_art_source();
+          // Toggle Menu                                  (alt + "z")
+          if (start.down[90]) start.menu();
           // Update LastFM                                (alt + "x")
           if (start.down[88]) {
             start.lastfm();
             start.notifications("Fetched <span>Last.fm</span>");
           }
-          // Toggle Menu                                  (alt + "c")
-          if (start.down[67]) start.menu();
+          // Change Art Source To Full Resolution         (alt + "c")
+          if (start.down[67]) start.change_art_source();
           // Refresh Background Image                     (alt + "v")
           if (start.down[86]) start.background();
           // Blur                                         (alt + "b")
@@ -747,6 +740,12 @@
               start.audio.addEventListener('ended', () => {
                 resolve();
               });
+              // Key Event Only When Playlist Playing
+              $(document).on("keydown", function (e) {
+                if (e.shiftKey && e.which === 83) {
+                  if (start.audio) resolve();
+                }
+              });
             });
           }
           $(".nowplaying__album").text("");
@@ -765,6 +764,17 @@
       } else {
         loop();
       }
+    },
+
+    // Audio: Play X Playlist via Prompt
+    play_playlist_input: () => {
+      let num;
+      do {
+        num = prompt('How many songs?:', '');
+      } while (num !== null && (isNaN(parseInt(num)) || parseInt(num) != num));
+      start.down[[16]] = false;
+      start.down[[121]] = false;
+      start.play_playlist(parseInt(num));
     },
 
     // Audio: Play

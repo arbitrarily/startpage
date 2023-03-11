@@ -86,12 +86,12 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 `Shift `  (KeyCode 16)
 
 #### *<kbd>Option</kbd>* Settings (reset on page refresh)
-- Use <kbd>option</kbd> + <kbd>z</kbd> to toggle the `Background Resolution` resolution (quality).
+- Use <kbd>option</kbd> + <kbd>z</kbd> to bring up the `Main Menu` toggles.
 - Use <kbd>option</kbd> + <kbd>x</kbd> to fetch the `latest Now Playing` song data from LastFM.
-- Use <kbd>option</kbd> + <kbd>c</kbd> to bring up the `Main Menu` toggles.
-- Use <kbd>option</kbd> + <kbd>v</kbd> to get refresh (<kbd>V</kbd>iew) `the background wallpaper`.
-- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) `background blur` to better view the background image.
-- Use <kbd>option</kbd> + <kbd>n</kbd> to toggle (co<kbd>N</kbd>sole.log) `Wallet` stats.
+- Use <kbd>option</kbd> + <kbd>c</kbd> to (<kbd>C</kbd>hange) the `Background Resolution` resolution (quality).
+- Use <kbd>option</kbd> + <kbd>v</kbd> to get a refresh (<kbd>V</kbd>iew) of the `background wallpaper`.
+- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) to better view the background image.
+- Use <kbd>option</kbd> + <kbd>n</kbd> to (co<kbd>N</kbd>sole.log) `Wallet` stats.
 - Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
 
 ### *<kbd>Option</kbd>* Search Toggles
@@ -116,7 +116,7 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
 - Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
 - Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `YouTube` latest videos feed.
-- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle the `Path of Exile` character feed.
+- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle my `Path of Exile` character feed.
 - Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Crypto & NFT` news feed.
 - Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 - Use <kbd>shift</kbd> + <kbd>-</kbd> to toggle the `Lexichronic` news feed.
@@ -127,11 +127,13 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` audio playback 15 seconds.
 - Use <kbd>shift</kbd> + <kbd>Left</kbd> to `rewind` audio playback 5 seconds.
 - Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
-- Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle `mute` for audio.
-- Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle `fullscreen` for video.
-- Use <kbd>esc</kbd> to exit `fullscreen` for video.
-- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
-- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a random song` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
+- Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle (<kbd>M</kbd>ute) for audio.
+- Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle (<kbd>F</kbd>ullscreen) for video.
+- Use <kbd>esc</kbd> to exit `fullscreen` for fullscreen video.
+- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a single random song` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
+- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` (songs from Music feed).
+- Use <kbd>shift</kbd> + <kbd>F10</kbd> to `play a shuffled playlist` set max playlist length (songs from Music feed).
+- Use <kbd>shift</kbd> + <kbd>s</kbd> if a playlist is playing, (<kbd>S</kbd>kip) to the next song.
 
 ### Publishing
 
@@ -140,8 +142,3 @@ Publishing to Surge for public viewing:
 ```
 surge . abstracted-war.surge.sh
 ```
-
-
-### TODOS
-
-* Determine How to Get around Prompts Preventing KeyUp Events
