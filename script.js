@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.16.39",
+    version: "1.17.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -24,6 +24,9 @@
     timer: {},
     progress_bar: 0,
     playlist_length: 0,
+
+    // Playlist JSON
+    playlist_json: false,
 
     // Pageviews
     pageviews: false,
@@ -270,10 +273,10 @@
           if (start.down[77]) start.audio_mute();
           // Video: Fullscreen Toggle                     (shift + "f")
           if (start.down[70]) start.fullscreen_video();
-          // Music: Randomized Playlist                   (alt + "f11")
-          if (start.down[122]) start.play_playlist();
-          // Music: Random Song                           (alt + "f12")
+          // Music: Random Song                           (shift + "f12")
           if (start.down[123]) start.play_single();
+          // Music: Randomized Playlist                   (shift + "f11")
+          if (start.down[122]) start.play_playlist();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
@@ -282,6 +285,15 @@
             if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
           }
         }
+        // Toggle Playlist Control Limit                ("f10")
+        // if (start.down[121]) {
+        //   let num;
+        //   do {
+        //     num = prompt('How many songs?:', '');
+        //   } while (num !== null && (isNaN(parseInt(num)) || parseInt(num) != num));
+        //   start.play_playlist(parseInt(num));
+        //   start.down[121] = false;
+        // }
         // Alt/Option
         if (start.down[18]) {
           e.preventDefault();
@@ -558,10 +570,9 @@
         if (start.video) start.video.pauseVideo();
       });
       start.audio.addEventListener("ended", () => {
-        start.media_ended();
+        start.media_stop();
+        start.media_events();
         start.notifications("<span>Finished</span> Playing");
-        start.audio = new Audio();
-        start.timer = {};
       });
       // Video Events
       if (start.video) {
@@ -600,16 +611,16 @@
 
     // Media: Stop
     media_stop: () => {
-      start.media_ended();
       if (start.video) {
         start.video.pauseVideo();
         start.video = false;
-      }
-      if (start.audio) {
+      } else {
         start.audio.pause();
         start.audio.src = "";
         start.audio = new Audio();
       }
+      start.media_ended();
+      start.media_events();
     },
 
     // Media: Pause
@@ -682,7 +693,8 @@
     },
 
     // Audio: Play Single Track
-    play_single: (song = false) => {
+    play_single: (song = false, songs_left = false) => {
+      const song_plural = songs_left === 1 ? "Last song " : songs_left.toString() + " songs left";
       let song_data = {};
       start.media_stop();
       if (!song) {
@@ -706,6 +718,7 @@
           link: song.url ? song.url : ""
         }
         start.audio.src = song.media;
+        song_data.album = songs_left ? song_plural : "";
       }
       start.audio.playbackRate = 1;
       start.audio.play();
@@ -716,33 +729,42 @@
     },
 
     // Audio: Play X Playlist
-    play_playlist: () => {
+    play_playlist: (limit = 10) => {
       start.media_stop();
-      fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
-        .then(res => res.json())
-        .then(x => {
-          start.playlist_length = x.length;
-          // Shuffle Array
-          for (let i = x.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [x[i], x[j]] = [x[j], x[i]];
+      const loop = () => {
+        const x = start.playlist_json;
+        // Shuffle Array
+        for (let i = x.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [x[i], x[j]] = [x[j], x[i]];
+        }
+        async function play() {
+          // 10 Songs
+          for (var i = 0; i < limit; i++) {
+            const songs_left = limit - i;
+            start.play_single(start.playlist_json[i], songs_left);
+            await new Promise(resolve => {
+              start.audio.addEventListener('ended', () => {
+                resolve();
+              });
+            });
           }
-          if (x) {
-            async function play() {
-              // 20 Songs
-              for (var i = 0; i < 20; i++) {
-                start.play_single(x[i]);
-                await new Promise(resolve => {
-                  start.audio.addEventListener('ended', () => {
-                    resolve();
-                  });
-                });
-              }
-            }
-            play();
-          }
-        })
-        .catch(err => start.media_stop());
+          $(".nowplaying__album").text("");
+        }
+        play();
+      }
+      if (!start.playlist_json) {
+        fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
+          .then(res => res.json())
+          .then(playlist => {
+            start.playlist_json = playlist;
+            start.playlist_length = playlist.length;
+            loop();
+          })
+          .catch(err => start.media_stop());
+      } else {
+        loop();
+      }
     },
 
     // Audio: Play
