@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.18.1",
+    version: "1.18.3",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -463,12 +463,16 @@
         image = $(".nowplaying__image"),
         container = $(".nowplaying__container"),
         url = $(".nowplaying__url");
-      artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
-      song.text(data.name).attr("title", `Song: ${data.name}`);
-      album.text(data.album ? ` - ${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
-      image.toggle(data.image != null).attr("src", data.image);
-      url.attr("href", data.link ? data.link : "#").addClass(start.s);
-      container.show();
+      container.addClass(start.h)
+      setTimeout(() => {
+        artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
+        song.text(data.name).attr("title", `Song: ${data.name}`);
+        album.text(data.album ? `${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
+        image.toggle(data.image != null).attr("src", data.image);
+        url.attr("href", data.link ? data.link : "#").addClass(start.s);
+        container.show();
+        container.removeClass(start.h)
+       }, start.animation_time * 2);
       if (source) start.notifications(`Now Playing <span>${source}</span>`);
     },
 
@@ -494,8 +498,8 @@
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
       if (start.video === YT.PlayerState.PLAYING) start.media_stop();
-      setTimeout(() => { $(".feed-links").replaceWith(html) }, 600);
-      setTimeout(() => { $(".feed-links").addClass(start.s) }, 1000);
+      setTimeout(() => { $(".feed-links").replaceWith(html) }, start.animation_time);
+      setTimeout(() => { $(".feed-links").addClass(start.s) }, start.animation_time * 2);
       if (source) {
         start.notifications(`<span>Feed Switched to</span> ${source}`);
         if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();

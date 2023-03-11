@@ -555,6 +555,11 @@ li {
     opacity: var(--opacity-end);
 }
 
+.nowplaying__container.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .nowplaying__url {
     display: flex;
     align-items: center;
@@ -581,18 +586,30 @@ li {
 }
 
 .nowplaying__song {
-    line-height: 1.1;
+    line-height: 1.05;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
+.nowplaying__album {
+    font-weight: var(--normal);
+    font-style: normal;
+    opacity: var(--opacity-start);
+}
+
 .nowplaying__album,
 .nowplaying__artist {
-    font-weight: var(--normal);
     font-size: 0.8rem;
     opacity: var(--opacity-start);
+}
+
+.nowplaying__overflow {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .stats,
