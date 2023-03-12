@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.19.3",
+    version: "1.19.4",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -1029,7 +1029,7 @@
       $(".shortcuts").toggleClass(start.s);
       $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
-      if (!$(".shortcuts").hasClass(start.s)) start.notifications("<span>Shortcuts</span> Menu");
+      if ($(".shortcuts").hasClass(start.s)) start.notifications("<span>Shortcuts</span> Menu");
     },
 
     // Reset Mouse Cursor
