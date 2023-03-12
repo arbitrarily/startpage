@@ -108,9 +108,7 @@ a:focus img {
     height: 100%;
 }
 
-.container__overflow {
-    overflow: hidden;
-}
+.container__overflow { overflow: hidden; }
 
 .background {
     opacity: 0.1;
@@ -198,13 +196,8 @@ a:focus img {
     margin-right: 6px;
 }
 
-.grid-container {
-    max-width: 90rem;
-}
-
-.container {
-    padding: var(--padding);
-}
+.grid-container { max-width: 90rem; }
+.container { padding: var(--padding); }
 
 .container,
 .container__inner {
@@ -216,13 +209,9 @@ ul {
     padding: 0;
 }
 
-li {
-    list-style: none;
-}
+li { list-style: none; }
 
-.feed-links {
-    opacity: 0;
-}
+.feed-links { opacity: 0; }
 
 .feed-container {
     -webkit-mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
@@ -245,9 +234,7 @@ li {
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
-.feed-list--padded {
-    padding: var(--foundation);
-}
+.feed-list--padded { padding: var(--foundation); }
 
 .menu-toggle {
     position: absolute;
@@ -265,10 +252,7 @@ li {
     align-items: center;
 }
 
-
-.menu-toggle:hover {
-    opacity: 1;
-}
+.menu-toggle:hover { opacity: 1; }
 
 .menu-toggle:active {
     transform: translate(0, 2px);
@@ -282,9 +266,7 @@ li {
     position: fixed;
 }
 
-.video-links iframe {
-    width: 100%;
-}
+.video-links iframe { width: 100%; }
 
 .video-links iframe.feed-list {
     background: black;
@@ -306,22 +288,17 @@ li {
     max-width: 100%;
     padding: calc(var(--padding) * 3);
     box-shadow: inset 0 0 30rem 5rem rgba(0, 0, 0, 0.8);
-    /* animation: shadow 4s infinite alternate; */
     border-radius: 0;
 }
 
-.feed-links ul:not(.feed-list) {
-    margin: 0;
-}
+.feed-links ul:not(.feed-list) { margin: 0; }
 
 .feed-links .container__list--title {
     display: flex;
     justify-content: space-between
 }
 
-.menu-links__toggle {
-    justify-content: space-between;
-}
+.menu-links__toggle { justify-content: space-between; }
 
 .menu-links__toggle .menu-links__toggle--content {
     width: 100%;
@@ -382,13 +359,8 @@ li {
     opacity: 1;
 }
 
-.menu-links__item:hover {
-    background: none;
-}
-
-.menu-links__item:hover img {
-    background: rgba(255, 255, 255, 0.3);
-}
+.menu-links__item:hover { background: none; }
+.menu-links__item:hover img { background: rgba(255, 255, 255, 0.3); }
 
 .container__list--item-title {
     display: -webkit-box;
@@ -422,9 +394,7 @@ li {
     min-width: 80px;
 }
 
-.container__list span.container__list--full-item {
-    line-height: 1.15;
-}
+.container__list span.container__list--full-item { line-height: 1.15; }
 
 .container__list span.container__list--description {
     font-size: 0.8rem;
@@ -503,9 +473,7 @@ li {
     transition: var(--animation);
 }
 
-.container form.focus {
-    opacity: var(--opacity-end);
-}
+.container form.focus { opacity: var(--opacity-end); }
 
 .container img.search {
     width: 100%;
@@ -543,9 +511,7 @@ li {
     transition: var(--animation);
 }
 
-.container input.full {
-    padding-right: 78px;
-}
+.container input.full { padding-right: 78px; }
 
 .container input:focus {
     background: rgba(255, 255, 255, 0.05);
@@ -624,9 +590,7 @@ li {
     font-weight: var(--bold);
 }
 
-.stats div {
-    padding: calc(var(--padding) / 2) 0;
-}
+.stats div { padding: calc(var(--padding) / 2) 0; }
 
 .ip div,
 .stats div {
@@ -685,9 +649,7 @@ li {
     -webkit-box-orient: vertical;
 }
 
-.notifications span {
-    color: var(--gray);
-}
+.notifications span { color: var(--gray); }
 
 .notifications.hidden,
 .background-image.hidden {
@@ -711,36 +673,21 @@ li {
 }
 
 @media screen and (max-width: 30em) {
-    .container__list span {
-        font-size: var(--foundation-large);
-    }
-
-    .menu-toggle {
-        opacity: 1;
-    }
+    .container__list span { font-size: var(--foundation-large); }
+    .menu-toggle { opacity: 1; }
 }
 
 @media screen and (max-width: 40em) {
-    .nowplaying__container {
-        margin-bottom: calc(var(--padding) * 2);
-    }
-
-    .container {
-        padding: calc(var(--padding) * 3) var(--padding);
-    }
+    .nowplaying__container { margin-bottom: calc(var(--padding) * 2); }
+    .container { padding: calc(var(--padding) * 3) var(--padding); }
 
     .nowplaying__url {
         text-align: left;
         justify-content: space-between;
     }
 
-    .container form {
-        margin-bottom: var(--padding);
-    }
-
-    .video-links iframe {
-        margin: 0 0 calc(var(--padding) * 1.5);
-    }
+    .container form { margin-bottom: var(--padding); }
+    .video-links iframe { margin: 0 0 calc(var(--padding) * 1.5); }
 
     .video-links .container__list:not(.container__list--title) {
         display: block;
@@ -758,18 +705,14 @@ li {
 }
 
 @media screen and (min-width: 40em) {
-    .container form {
-        margin-bottom: var(--padding);
-    }
+    .container form { margin-bottom: var(--padding); }
 
     .container__list--title {
         padding: 5px 0 10px 0;
         letter-spacing: 10px;
     }
 
-    .nowplaying__container {
-        padding-left: var(--padding);
-    }
+    .nowplaying__container { padding-left: var(--padding); }
 
     .stats {
         display: flex;
@@ -791,29 +734,25 @@ li {
         left: 0;
         padding: var(--foundation);
     }
+
+    .video-links .container__list img,
+    .video-links.podcast-links .container__list img {
+        min-width: 160px;
+        aspect-ratio: 16/9;
+    }
 }
 
 @media screen and (min-width: 64em) {
-    .feed-list {
-        height: 415px;
-    }
-
-    .grid-x > .large-5.feed-links {
-        width: 37.667%;
-    }
+    .feed-list { height: 415px; }
+    .grid-x > .large-5.feed-links { width: 37.667%; }
 
     .container__content {
         width: calc(131.33333% + calc(0.9375rem * 19.9375));
         transform: translate(-33.33333%);
     }
 
-    .container__overflow.shown .container__content {
-        transform: translate(0);
-    }
-
-    .container__overflow.fullscreen .container__content {
-        transform: none;
-    }
+    .container__overflow.shown .container__content { transform: translate(0); }
+    .container__overflow.fullscreen .container__content { transform: none; }
 
     .container__overflow.shown {
         -webkit-mask-image: linear-gradient(to right, transparent, black var(--foundation), black 87%, transparent 100%);
@@ -828,7 +767,5 @@ li {
 }
 
 @media screen and (max-width: 64em) {
-    .container__list {
-        padding: 10px 0;
-    }
+    .container__list { padding: 10px 0; }
 }
