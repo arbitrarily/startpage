@@ -92,6 +92,7 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>option</kbd> + <kbd>v</kbd> to get a refresh (<kbd>V</kbd>iew) of the `background wallpaper`.
 - Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) to better view the background image.
 - Use <kbd>option</kbd> + <kbd>n</kbd> to (co<kbd>N</kbd>sole.log) `Wallet` stats.
+- Use <kbd>option</kbd> + <kbd>m</kbd> help (<kbd>M</kbd>enu.
 - Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
 
 ### *<kbd>Option</kbd>* Search Toggles
@@ -113,10 +114,10 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 - Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `News` feed (aggregated news feed).
 - Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
 - Use <kbd>shift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
-- Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` character feed.
-- Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` news feed.
+- Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` feed.
+- Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` feed.
 - Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `YouTube` latest videos feed.
-- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle my `Path of Exile` character feed.
+- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle my `Path of Exile` characters feed.
 - Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Crypto & NFT` news feed.
 - Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
 - Use <kbd>shift</kbd> + <kbd>-</kbd> to toggle the `Lexichronic` news feed.

@@ -50,9 +50,8 @@ body {
     font-size: var(--body-size);
 }
 
-body.vaal * {
-    cursor: var(--cursor);
-}
+body.vaal * { cursor: var(--cursor); }
+body.lock { overflow: hidden; }
 
 * {
     -webkit-transition: var(--animation);
@@ -97,6 +96,8 @@ a:focus img {
     filter: grayscale(0);
     -webkit-filter: grayscale(0);
 }
+
+.everything.blur { filter: blur(20px); }
 
 .everywhere {
     position: fixed;
@@ -672,6 +673,86 @@ li { list-style: none; }
     aspect-ratio: 16/9;
 }
 
+.shortcuts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    color: var(--white);
+    padding: calc(var(--padding) * 3);
+    box-shadow: inset 0 0 50vw 5vw rgba(0, 0, 0, 0.8);
+    border-radius: 0;
+    z-index: -2;
+    display: flex;
+    align-items: center;
+    font-size: 90%;
+    overflow-y: scroll;
+    opacity: 0;
+    visibility: none;
+    mix-blend-mode: soft-light;
+    filter: brightness(120%);
+}
+
+.shortcuts.shown {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+}
+
+.shortcuts__inner {
+    background: rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 45vw 5vw rgba(0, 0, 0, 0.9),
+        inset 0 0 30vw -2rem rgba(0, 0, 0, 0.2);
+    padding: calc(var(--padding) * 2);
+    margin: auto;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 52rem;
+}
+
+.shortcuts kbd,
+.shortcuts code {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    border-radius: 6px;
+    background-color: var(--grey);
+}
+
+.shortcuts kbd {
+    display: inline-block;
+    padding: 3px 5px 5px;
+    font-size: 11px;
+    line-height: normal;
+    line-height: 10px;
+    vertical-align: middle;
+    border: solid 1px var(--gruy);
+    box-shadow: inset 0 -1px 0 var(--gruy);
+}
+
+.shortcuts code {
+    white-space: break-spaces;
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+}
+
+.shortcuts h4 {
+    margin-bottom: var(--foundation-large);
+}
+
+.shortcuts h4 em {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.shortcuts li {
+    margin-bottom: 3px;
+}
+
 @media screen and (max-width: 30em) {
     .container__list span { font-size: var(--foundation-large); }
     .menu-toggle { opacity: 1; }
@@ -701,6 +782,11 @@ li { list-style: none; }
         max-width: 100%;
         min-width: 100%;
         aspect-ratio: 16/9;
+    }
+
+    .shortcuts {
+        font-size: 80%;
+        padding: var(--foundation-large)
     }
 }
 

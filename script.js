@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.18.6",
+    version: "1.19.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -193,6 +193,7 @@
       // Menu
       this.menu_clicks();
       this.menu_toggle();
+      this.help_toggle();
 
       // Animation on Leave
       this.bye_bye();
@@ -326,6 +327,8 @@
           if (start.down[66]) start.toggle_blur();
           // Wallet Status                                (alt + "n")
           if (start.down[78]) start.console_wallet();
+          // Help Shortcuts                               (alt + "m")
+          if (start.down[77]) start.help_menu();
         }
       }).keyup( e => {
         // Reset Key on Key Up
@@ -356,6 +359,14 @@
       $(document).on(start.touch, ".menu-toggle", e => {
         e.preventDefault();
         start.menu();
+      });
+    },
+
+    help_toggle: () => {
+      $(document).on(start.touch, event => {
+        if (!$(event.target).closest('.shortcuts__inner').length && $(".shortcuts").hasClass(start.s)) {
+          start.help_menu();
+        }
       });
     },
 
@@ -1011,6 +1022,14 @@
           ) start.focus_search();
         });
       }
+    },
+
+    // Help Shortcuts
+    help_menu: () => {
+      $(".shortcuts").toggleClass(start.s);
+      $(".everything").toggleClass("blur");
+      $("body").toggleClass("lock");
+      if (!$(".shortcuts").hasClass(start.s)) start.notifications("<span>Shortcuts</span> Menu");
     },
 
     // Reset Mouse Cursor
