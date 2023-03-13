@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/899183/218527249-4ac6aa50-e1bc-4bde-b072-96a5306eea1b.png)
+![preview](https://user-images.githubusercontent.com/899183/224763555-049e5f8f-50a1-4366-aab4-ddef66e2febe.png)
 
 ### Live Preview
 
@@ -23,7 +23,8 @@ Some of the features:
 * View owned NFTs.
 * Listen to podcasts.
 * Listen to music.
-* Listen to shuffled music playlist from Lofi Girl.
+* Listen to shuffled music playlist.
+* Listen to shuffled music playlist with a set limit.
 * Watch subscribed YouTube Videos in line without leaving the site.
 * Fullscreen video toggle.
 * Media control (mute/unmute, play/pause, fast foward, rewind, faster/slower playback).
@@ -32,9 +33,10 @@ Some of the features:
 * See my public IP address.
 * See current total play count on LastFM.
 * See pageviews.
-* See commit count for this repo.
+* See version number & commit count for this repo.
 * Responsive design.
 * Mobile ready toggle menu.
+* Shortcuts help menu.
 
 ---
 
