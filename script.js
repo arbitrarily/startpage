@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.19.6",
+    version: "1.19.7",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -308,6 +308,7 @@
           // Close Fullscreen Video                       ("esc")
           if (start.down[27]) {
             if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
+            if ($(".shortcuts").hasClass(start.s)) start.help_menu();
           }
         }
         // Alt/Option
@@ -362,6 +363,7 @@
       });
     },
 
+    // Toggle Help Menu
     help_toggle: () => {
       $(document).on(start.touch, event => {
         if (!$(event.target).closest('.shortcuts__inner').length && $(".shortcuts").hasClass(start.s)) {

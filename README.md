@@ -87,15 +87,16 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 `Option` (KeyCode 18)
 `Shift `  (KeyCode 16)
 
-#### *<kbd>Option</kbd>* Settings (reset on page refresh)
-- Use <kbd>option</kbd> + <kbd>z</kbd> to bring up the `Main Menu` toggles.
-- Use <kbd>option</kbd> + <kbd>x</kbd> to fetch the `latest Now Playing` song data from LastFM.
-- Use <kbd>option</kbd> + <kbd>c</kbd> to (<kbd>C</kbd>hange) the `Background Resolution` resolution (quality).
-- Use <kbd>option</kbd> + <kbd>v</kbd> to get a refresh (<kbd>V</kbd>iew) of the `background wallpaper`.
-- Use <kbd>option</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) to better view the background image.
-- Use <kbd>option</kbd> + <kbd>n</kbd> to (co<kbd>N</kbd>sole.log) `Wallet` stats.
-- Use <kbd>option</kbd> + <kbd>m</kbd> help (<kbd>M</kbd>enu.
-- Use <kbd>option</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
+#### *<kbd>Shift</kbd>* Settings (reset on page refresh)
+- Use <kbd>shift</kbd> + <kbd>z</kbd> to bring up the `Main Menu` toggles.
+- Use <kbd>shift</kbd> + <kbd>x</kbd> to fetch the `latest Now Playing` song data from LastFM.
+- Use <kbd>shift</kbd> + <kbd>c</kbd> to (<kbd>C</kbd>hange) the `Background Resolution` resolution (quality).
+- Use <kbd>shift</kbd> + <kbd>v</kbd> to get a refresh (<kbd>V</kbd>iew) of the `background wallpaper`.
+- Use <kbd>shift</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) to better view the background image.
+- Use <kbd>shift</kbd> + <kbd>n</kbd> to (co<kbd>N</kbd>sole.log) `Wallet` stats.
+- Use <kbd>shift</kbd> + <kbd>h</kbd> help (<kbd>M</kbd>enu.
+- Use <kbd>esc</kbd> to exit `help menu`.
+- Use <kbd>shift</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
 
 ### *<kbd>Option</kbd>* Search Toggles
 - Use <kbd>option</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
