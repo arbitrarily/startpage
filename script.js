@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.19.5",
+    version: "1.19.6",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -283,6 +283,25 @@
           if (start.down[122]) start.play_playlist();
           // Toggle Playlist Control Limit                (shift + "f10")
           if (start.down[121]) start.play_playlist_input();
+          // Toggle Cursor                                (shift + 🔙)
+          if (start.down[8]) start.toggle_cursor();
+          // Toggle Menu                                  (shift + "z")
+          if (start.down[90]) start.menu();
+          // Update LastFM                                (shift + "x")
+          if (start.down[88]) {
+            start.lastfm();
+            start.notifications("Fetched <span>Last.fm</span>");
+          }
+          // Change Art Source To Full Resolution         (shift + "c")
+          if (start.down[67]) start.change_art_source();
+          // Refresh Background Image                     (shift + "v")
+          if (start.down[86]) start.background();
+          // Blur                                         (shift + "b")
+          if (start.down[66]) start.toggle_blur();
+          // Wallet Status                                (shift + "n")
+          if (start.down[78]) start.console_wallet();
+          // Help Shortcuts                               (shift + "h")
+          if (start.down[72]) start.help_menu();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
@@ -310,25 +329,6 @@
           const kc = Object.keys(keys_mapped).find(key => start.down[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
-          // Toggle Cursor                                (alt + 🔙)
-          if (start.down[8]) start.toggle_cursor();
-          // Toggle Menu                                  (alt + "z")
-          if (start.down[90]) start.menu();
-          // Update LastFM                                (alt + "x")
-          if (start.down[88]) {
-            start.lastfm();
-            start.notifications("Fetched <span>Last.fm</span>");
-          }
-          // Change Art Source To Full Resolution         (alt + "c")
-          if (start.down[67]) start.change_art_source();
-          // Refresh Background Image                     (alt + "v")
-          if (start.down[86]) start.background();
-          // Blur                                         (alt + "b")
-          if (start.down[66]) start.toggle_blur();
-          // Wallet Status                                (alt + "n")
-          if (start.down[78]) start.console_wallet();
-          // Help Shortcuts                               (alt + "m")
-          if (start.down[77]) start.help_menu();
         }
       }).keyup( e => {
         // Reset Key on Key Up
