@@ -760,7 +760,6 @@ li { list-style: none; }
 
 @media screen and (max-width: 40em) {
     .nowplaying__container { margin-bottom: calc(var(--padding) * 2); }
-    .container { padding: calc(var(--padding) * 3) var(--padding); }
 
     .nowplaying__url {
         text-align: left;
@@ -854,4 +853,8 @@ li { list-style: none; }
 
 @media screen and (max-width: 64em) {
     .container__list { padding: 10px 0; }
+
+    .container {
+        padding: calc(var(--padding) * 3) var(--padding);
+    }
 }
