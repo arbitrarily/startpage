@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.19.8",
+    version: "1.19.10",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -638,7 +638,6 @@
     // Media: Stop
     media_stop: () => {
       if (start.video) {
-        start.video.pauseVideo();
         start.video = false;
       } else {
         start.audio.pause();
@@ -668,6 +667,7 @@
 
     // Start YouTube Video
     yt_start: video_id => {
+      console.log(window.location.href.includes("https://") ? window.location.href : null);
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -677,7 +677,8 @@
           'controls': 1,
           'modestbranding': 1,
           'rel': 0,
-          'showinfo': 0
+          'showinfo': 0,
+          'origin': window.location.href.includes("https://") ? window.location.href : null
         },
         events: {
           'onReady': start.media_timer,
