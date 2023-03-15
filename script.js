@@ -667,7 +667,6 @@
 
     // Start YouTube Video
     yt_start: video_id => {
-      console.log(window.location.href.includes("https://") ? window.location.href : null);
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
