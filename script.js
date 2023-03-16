@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.21.5",
+    v: "1.21.6",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -201,7 +201,7 @@
       // Search
       this.focus_click();
       this.change_search();
-      this.focus_search();
+      this.focus();
 
       // Menu
       this.menu_clicks();
@@ -246,7 +246,7 @@
     timestamp: () => ~~(new Date().getTime() / 1000),
 
     // Focus Search
-    focus_search: () => $(document).find("#search").focus().addClass("focus"),
+    focus: () => $(document).find("#search").focus().addClass("focus"),
 
     // Remove Source HTML
     strip_menu: () => $(".menu-links-source").remove(),
@@ -275,7 +275,9 @@
           };
           const kcc = Object.keys(keys_map).find(key => start.down[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
-          if (Number.isInteger(start.fc)) start.feeds[start.fc]();
+          if (!$(".container__overflow").hasClass("fullscreen")) {
+            if (Number.isInteger(start.fc)) start.feeds[start.fc]();
+          }
           // Audio: Fast Forward                          (shift + ⏩)
           if (start.down[39]) start.audio_ff();
           // Audio: Rewind                                (shift + ⏪)
@@ -301,7 +303,9 @@
           // Toggle Cursor                                (shift + 🔙)
           if (start.down[8]) start.cursor();
           // Toggle Menu                                  (shift + "z")
-          if (start.down[90]) start.menu();
+          if (!$(".container__overflow").hasClass("fullscreen")) {
+            if (start.down[90]) start.menu();
+          }
           // Update LastFM                                (shift + "x")
           if (start.down[88]) {
             start.lastfm();
@@ -344,7 +348,9 @@
           };
           const kc = Object.keys(keys_mapped).find(key => start.down[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
-          if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
+          if (!$(".container__overflow").hasClass("fullscreen")) {
+            if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
+          }
         }
       }).keyup(e => {
         // Reset Key on Key Up
@@ -638,7 +644,7 @@
         start.video.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
             start.timer = {};
-            start.video();
+            start.play_video();
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
             if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
@@ -1174,7 +1180,7 @@
           if (e.target.tagName !== "A" &&
             e.target.tagName !== "INPUT" &&
             e.target.className !== "menu-toggle"
-          ) start.focus_search();
+          ) start.focus();
         });
       }
     },

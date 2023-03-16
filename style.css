@@ -138,6 +138,10 @@ a:focus img {
     height: 0;
     width: 0;
     overflow: hidden;
+    position: absolute;
+    z-index: -9999;
+    top: -9999px;
+    left: -9999px;
 }
 
 .search__input--container {
@@ -622,6 +626,9 @@ li { list-style: none; }
 }
 
 .nowplaying__image {
+    background-image: url(fallback.png);
+    background-size: cover;
+    background-position: center;
     width: 52px;
     height: 52px;
     margin-left: var(--padding);
