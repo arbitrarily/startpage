@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.21.8",
+    v: "1.21.9",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -1204,7 +1204,7 @@
     // Help Shortcuts
     shortcuts: () => {
       $(".shortcuts").toggleClass(start.s);
-      $(".evervideohing").toggleClass("blur");
+      $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
       if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
     },
