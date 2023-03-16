@@ -83,61 +83,7 @@ The background images are randomly chosen from a series of images I serve on my 
 ## Keyboard Commands
 
 There's some 'hidden power user' features in here in the form of keyboard commands:
-
-`Option` (KeyCode 18)
-`Shift `  (KeyCode 16)
-
-#### *<kbd>Shift</kbd>* Settings (reset on page refresh)
-- Use <kbd>shift</kbd> + <kbd>z</kbd> to bring up the `Main Menu` toggles.
-- Use <kbd>shift</kbd> + <kbd>x</kbd> to fetch the `latest Now Playing` song data from LastFM.
-- Use <kbd>shift</kbd> + <kbd>c</kbd> to (<kbd>C</kbd>hange) the `Background Resolution` resolution (quality).
-- Use <kbd>shift</kbd> + <kbd>v</kbd> to get a refresh (<kbd>V</kbd>iew) of the `background wallpaper`.
-- Use <kbd>shift</kbd> + <kbd>b</kbd> to toggle (<kbd>B</kbd>lur) to better view the background image.
-- Use <kbd>shift</kbd> + <kbd>n</kbd> to (co<kbd>N</kbd>sole.log) `Wallet` stats.
-- Use <kbd>shift</kbd> + <kbd>h</kbd> help (<kbd>M</kbd>enu.
-- Use <kbd>esc</kbd> to exit `help menu`.
-- Use <kbd>shift</kbd> + <kbd>Backspace</kbd> to toggle the custom `mouse cursor` on/off.
-
-### *<kbd>Option</kbd>* Search Toggles
-- Use <kbd>option</kbd> + <kbd>1</kbd> to toggle search bar to `PoE Wiki`.
-- Use <kbd>option</kbd> + <kbd>2</kbd> to toggle search bar to `YouTube`.
-- Use <kbd>option</kbd> + <kbd>3</kbd> to toggle search bar to `DuckDuckGo`.
-- Use <kbd>option</kbd> + <kbd>4</kbd> to toggle search bar to `Apple Music`.
-- Use <kbd>option</kbd> + <kbd>5</kbd> to toggle search bar to `LastFM`.
-- Use <kbd>option</kbd> + <kbd>6</kbd> to toggle search bar to `Twitter`.
-- Use <kbd>option</kbd> + <kbd>7</kbd> to toggle search bar to `Google News`.
-- Use <kbd>option</kbd> + <kbd>8</kbd> to toggle search bar to `Github`.
-- Use <kbd>option</kbd> + <kbd>9</kbd> to toggle search bar to `Google`.
-- Use <kbd>option</kbd> + <kbd>0</kbd> to toggle search bar to `MidJourney`.
-
-### *<kbd>Shift</kbd>* News Feed
-- Use <kbd>left arrow</kbd> to toggle feed view.
-- Use <kbd>right arrow</kbd> to toggle feed view.
-- Use <kbd>shift</kbd> + <kbd>1</kbd> to toggle my `Instapaper` bookmarks.
-- Use <kbd>shift</kbd> + <kbd>2</kbd> to toggle the `News` feed (aggregated news feed).
-- Use <kbd>shift</kbd> + <kbd>3</kbd> to toggle the `New York Times` news feed.
-- Use <kbd>shift</kbd> + <kbd>4</kbd> to toggle the `Reddit` news feed.
-- Use <kbd>shift</kbd> + <kbd>5</kbd> to toggle the `Podcasts` feed.
-- Use <kbd>shift</kbd> + <kbd>6</kbd> to toggle the `Music` feed.
-- Use <kbd>shift</kbd> + <kbd>7</kbd> to toggle the `YouTube` latest videos feed.
-- Use <kbd>shift</kbd> + <kbd>8</kbd> to toggle my `Path of Exile` characters feed.
-- Use <kbd>shift</kbd> + <kbd>9</kbd> to toggle the `Crypto & NFT` news feed.
-- Use <kbd>shift</kbd> + <kbd>0</kbd> to toggle the `NFT collection` feed (imperfect at the moment).
-- Use <kbd>shift</kbd> + <kbd>-</kbd> to toggle the `Lexichronic` news feed.
-
-### *<kbd>Shift</kbd>* Media Controls
-- Use <kbd>shift</kbd> + <kbd>Up</kbd> to `increase` audio playback speed.
-- Use <kbd>shift</kbd> + <kbd>Down</kbd> to `decrease` audio playback speed.
-- Use <kbd>shift</kbd> + <kbd>Right</kbd> to `fast forward` audio playback 15 seconds.
-- Use <kbd>shift</kbd> + <kbd>Left</kbd> to `rewind` audio playback 5 seconds.
-- Use <kbd>shift</kbd> + <kbd>space</kbd> to `play/pause` audio. (clicking timer also does this)
-- Use <kbd>shift</kbd> + <kbd>m</kbd> to toggle (<kbd>M</kbd>ute) for audio.
-- Use <kbd>shift</kbd> + <kbd>f</kbd> to toggle (<kbd>F</kbd>ullscreen) for video.
-- Use <kbd>esc</kbd> to exit `fullscreen` for fullscreen video.
-- Use <kbd>shift</kbd> + <kbd>F12</kbd> to `play a single random song` from [@LofiGirl](https://www.youtube.com/@LofiGirl).
-- Use <kbd>shift</kbd> + <kbd>F11</kbd> to `play a shuffled playlist` (songs from Music feed).
-- Use <kbd>shift</kbd> + <kbd>F10</kbd> to `play a shuffled playlist` set max playlist length (songs from Music feed).
-- Use <kbd>shift</kbd> + <kbd>s</kbd> if a playlist is playing, (<kbd>S</kbd>kip) to the next song.
+- Use <kbd>shift</kbd> + <kbd>h</kbd> help (<kbd>M</kbd>enu to display all keyboard commands.
 
 ### Publishing
 

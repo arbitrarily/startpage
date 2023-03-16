@@ -54,6 +54,7 @@
 								<li><kbd>Shift</kbd> + <kbd>Left</kbd> rewind <code>5</code> seconds.</li>
 								<li><kbd>Shift</kbd> + <kbd>space</kbd> play/pause.</li>
 								<li><kbd>Shift</kbd> + <kbd>m</kbd> mute audio.</li>
+								<li><kbd>Shift</kbd> + <kbd>v</kbd> audio volume.</li>
 								<li><kbd>Shift</kbd> + <kbd>F12</kbd> play one random song.</li>
 								<li><kbd>Shift</kbd> + <kbd>F11</kbd> play shuffled playlist.</li>
 								<li><kbd>Shift</kbd> + <kbd>F10</kbd> play limited shuffled playlist</li>
@@ -85,9 +86,9 @@
 								<li><kbd>Shift</kbd> + <kbd>z</kbd> <code>Main Menu</code> toggles.</li>
 								<li><kbd>Shift</kbd> + <kbd>x</kbd> fetch <code>LastFM</code> data.</li>
 								<li><kbd>Shift</kbd> + <kbd>c</kbd> change <code>background resolution</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>v</kbd> view <code>new background</code>.</li>
 								<li><kbd>Shift</kbd> + <kbd>b</kbd> blur <code>background</code>.</li>
 								<li><kbd>Shift</kbd> + <kbd>n</kbd> <code>Wallet</code> stats logged.</li>
+								<li><kbd>Shift</kbd> + <kbd>,</kbd> view <code>new background</code>.</li>
 								<li><kbd>Shift</kbd> + <kbd>h</kbd> help <code>shortcuts menu</code>.</li>
 								<li><kbd>Shift</kbd> + <kbd>Backspace</kbd> toggle custom cursor.</li>
 							</ul>
@@ -108,39 +109,6 @@
 			<div class="cell">
 				<div class="feed-container">
 					<ul class="feed-links feed-list feed-list--padded grid-x grid-padding-x align-center align-middle">
-						<li class="cell small-3 container__list--item menu-links__item" data-id="0">
-							<img src="icons/icon__instapaper.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="1">
-							<img src="icons/icon__news.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="2">
-							<img src="icons/icon__nyt.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="3">
-							<img src="icons/icon__reddit.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="4">
-							<img src="icons/icon__podcasts.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="5">
-							<img src="icons/icon__music.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="6">
-							<img src="icons/icon__youtube.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="7">
-							<img src="icons/icon__poe.png" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="8">
-							<img src="icons/icon__summaries.svg" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="9">
-							<img src="icons/icon__lexi.png" />
-						</li>
-						<li class="cell small-3 container__list--item menu-links__item" data-id="10">
-							<img src="icons/icon__nfts.svg" />
-						</li>
 						<li class="cell small-3 container__list--item menu-links__item menu-links__item-audio" data-id="11">
 							<img src="icons/icon__one.svg" />
 						</li>
@@ -182,6 +150,9 @@
 									<img class="search" src="icons/icon__search.svg" alt="" />
 								</label>
 								<div class="search__input--container">
+									<div class="search__input--container-volume">
+										<input type="range" min="0" max="100" value="100" class="volume">
+									</div>
 									<input id="search" placeholder="Search" type="text" name="q" autofocus autocomplete="off"
 										data-type="google" />
 									<div class="progress">
@@ -215,101 +186,114 @@
 									<div class="feed-links"></div>
 								</div>
 								<div class="cell small-12 large-auto">
-									<ul class="grid-x">
+									<ul class="grid-x container__list--title-list">
 										<li class="cell">
 											<span class="container__list container__list--title">Feeds</span>
 										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="0">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__instapaper.svg" />
-													<span>Instapaper</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 1</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="1">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-												<img src="icons/icon__news.svg" />
-												<span>News</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 2</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="2">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__nyt.svg" />
-													<span>New York Times</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 3</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="3">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__reddit.svg" />
-													<span>Reddit</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 4</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="4">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__podcasts.svg" />
-													<span>Podcasts</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 5</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="5">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__music.svg" />
-													<span>Music</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 6</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="6">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__youtube.svg" />
-													<span>YouTube</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 7</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="7">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__poe.png" />
-													<span>Path of Exile</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 8</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="8">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__summaries.svg" />
-													<span>Industry News</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 9</div>
-											</a>
-										</li>
-										<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="10">
-											<a href="#" class="container__list">
-												<div class="menu-links__toggle--content">
-													<img src="icons/icon__nfts.svg" />
-													<span>NFTs</span>
-												</div>
-												<div class="menu-links__toggle--keys">shft + 0</div>
-											</a>
-										</li>
 									</ul>
+									<div class="container__feed-list-container">
+										<ul class="grid-x container__feed-list">
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="0">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__instapaper.svg" />
+														<span>Instapaper</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 1</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="1">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+													<img src="icons/icon__news.svg" />
+													<span>News</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 2</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="2">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__nyt.svg" />
+														<span>New York Times</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 3</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="3">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__reddit.svg" />
+														<span>Reddit</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 4</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="4">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__podcasts.svg" />
+														<span>Podcasts</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 5</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="5">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__music.svg" />
+														<span>Music</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 6</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="6">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__youtube.svg" />
+														<span>YouTube</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 7</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="7">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__poe.png" />
+														<span>Path of Exile</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 8</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="8">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__summaries.svg" />
+														<span>Industry News</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 9</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="10">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__nfts.svg" />
+														<span>NFTs</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + 0</div>
+												</a>
+											</li>
+											<li class="cell small-12 medium-4 large-12 container__list--item menu-links__toggle" data-id="9">
+												<a href="#" class="container__list">
+													<div class="menu-links__toggle--content">
+														<img src="icons/icon__lexi.png" />
+														<span>Lexichronic</span>
+													</div>
+													<div class="menu-links__toggle--keys">shft + -</div>
+												</a>
+											</li>
+										</ul>
+									</div>
 								</div>
 								<div class="cell small-12 large-auto">
 									<ul class="grid-x">

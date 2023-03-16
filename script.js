@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.19.10",
+    version: "1.20.1",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -178,8 +178,8 @@
       // Wallet Value
       this.wallet();
 
-      // Instapaper
-      this.instapaper(true);
+      // Initial Feed
+      this.init_fetch();
 
       // Get Last FM Now Playing
       this.lastfm();
@@ -275,6 +275,8 @@
           if (start.down[32]) start.media_toggle();
           // Audio: Mute                                  (shift + "m")
           if (start.down[77]) start.audio_mute();
+          // Audio: Volume                                (shift + "v")
+          if (start.down[86]) start.audio_volume();
           // Video: Fullscreen Toggle                     (shift + "f")
           if (start.down[70]) start.fullscreen_video();
           // Music: Random Song                           (shift + "f12")
@@ -294,12 +296,12 @@
           }
           // Change Art Source To Full Resolution         (shift + "c")
           if (start.down[67]) start.change_art_source();
-          // Refresh Background Image                     (shift + "v")
-          if (start.down[86]) start.background();
           // Blur                                         (shift + "b")
           if (start.down[66]) start.toggle_blur();
           // Wallet Status                                (shift + "n")
           if (start.down[78]) start.console_wallet();
+          // Refresh Background Image                     (shift + ",")
+          if (start.down[188]) start.background();
           // Help Shortcuts                               (shift + "h")
           if (start.down[72]) start.help_menu();
         } else {
@@ -519,6 +521,23 @@
       }
     },
 
+    // Init Fetch
+    init_fetch: () => {
+      fetch(start.conf.instapaperURL + '?t=' + start.timestamp())
+        .then(response => response.text())
+        .then(html => {
+          if (html) {
+            $(".feed-links").replaceWith(html);
+            start.cached_html["Instapaper"] = {
+              html: html,
+              time: new Date().getTime()
+            };
+            $(".feed-links").addClass(start.s);
+          }
+        })
+        .catch(err => $(".feed-links").addClass(start.s));
+    },
+
     // Replace News
     fetch_news: (url, source) => {
       $(".feed-links").removeClass(start.s);
@@ -548,7 +567,7 @@
     },
 
     // Instapaper Home Feed
-    instapaper: skip => start.fetch_news(start.conf.instapaperURL, skip ? false : "Instapaper"),
+    instapaper: () => start.fetch_news(start.conf.instapaperURL, "Instapaper"),
 
     // News Home Feed
     news: () => start.fetch_news(start.conf.techmemeURL, "All News"),
@@ -840,6 +859,32 @@
         e.preventDefault();
         start.media_toggle();
       });
+    },
+
+    // Audio: Volume Slider
+    audio_volume: () => {
+      const slider = $(".search__input--container-volume"),
+        search = $("#search"),
+        placeholder = search.attr("placeholder"),
+        vol = slider.find("input.volume");
+      if (!start.audio.paused) {
+        slider.addClass(start.s);
+        search.attr("placeholder", vol.val());
+        vol.on("input", () => {
+          start.audio.volume = vol.val() / 100;
+          vol.value = start.audio.volume * 100;
+          search.attr("placeholder", (start.audio.volume * 100).toFixed(0));
+          vol.on("mouseup", () => {
+            setTimeout(() => {
+              slider.removeClass(start.s);
+              setTimeout(() => {
+                search.attr("placeholder", placeholder);
+              }, start.animation_time * 2);
+            }, start.animation_time * 4);
+          });
+        });
+      }
+
     },
 
     // Audio: Toggle Mute
