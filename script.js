@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    version: "1.20.1",
+    version: "1.20.2",
 
     // Touch Events
     touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -867,7 +867,8 @@
         search = $("#search"),
         placeholder = search.attr("placeholder"),
         vol = slider.find("input.volume");
-      if (!start.audio.paused) {
+      let locked = true;
+      if (locked && !start.audio.paused && !slider.hasClass(start.s)) {
         slider.addClass(start.s);
         search.attr("placeholder", vol.val());
         vol.on("input", () => {
@@ -879,12 +880,14 @@
               slider.removeClass(start.s);
               setTimeout(() => {
                 search.attr("placeholder", placeholder);
+                locked = false;
               }, start.animation_time * 2);
             }, start.animation_time * 4);
           });
         });
+      } else {
+        search.attr("placeholder", placeholder);
       }
-
     },
 
     // Audio: Toggle Mute
