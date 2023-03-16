@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.21.6",
+    v: "1.21.8",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -57,6 +57,9 @@
 
     // Audio
     audio: new Audio(),
+
+    // Audio Souce
+    as: false,
 
     // NFT Collection
     nc: false,
@@ -163,7 +166,10 @@
       () => start.audio_mute(),
       () => start.background(),
       () => start.blur(),
-      () => start.art_source()
+      () => start.art_source(),
+      () => start.play_playlist_input(),
+      () => start.audio_volume(),
+      () => start.lastfm()
     ],
 
     // Init
@@ -172,7 +178,7 @@
       // Version Number
       start.version();
 
-      // Background Image Number
+      // Background Image Number (Art Number)
       start.an = this.random_numb(1, 291).toString().padStart(4, "0");
 
       // Pageview Counter
@@ -321,6 +327,8 @@
           if (start.down[188]) start.background();
           // Help Shortcuts                               (shift + "h")
           if (start.down[72]) start.shortcuts();
+          // Toggle Audio Player                          (shift + "t")
+          if (start.down[84]) start.switch_audio_source();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
@@ -618,13 +626,20 @@
     // Music Home Feed
     play_music: () => {
       start.fetch_news(start.c.xPlaylistHTMLURL, "Music");
-      start.play_music_on_click();
+      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
     },
 
     // YouTube Home Feed
     play_video: () => {
       start.fetch_news(start.c.youTubeURL, "YouTube");
       start.video_click();
+    },
+
+    // Audio: Toggle Player Used
+    switch_audio_source: () => {
+      start.as = start.as === false ? true : false;
+      const msg = start.as ? "Switched to <span>YouTube</span> Player" : "Switched to <span>HTML5</span> Player";
+      start.notify(`${msg}`);
     },
 
     // Media Based Event Listeners
@@ -904,7 +919,8 @@
                 resolve();
               });
               // Key Event Only When Playlist Playing
-              $(document).on("keydown", function (e) {
+              $(document).on("keydown", (e) => {
+                // Skip (Shift + S)
                 if (e.shiftKey && e.which === 83) {
                   if (start.audio) resolve();
                 }
