@@ -83,7 +83,7 @@ The background images are randomly chosen from a series of images I serve on my 
 ## Keyboard Commands
 
 There's some 'hidden power user' features in here in the form of keyboard commands:
-- Use <kbd>shift</kbd> + <kbd>h</kbd> help (<kbd>M</kbd>enu to display all keyboard commands.
+- Use <kbd>shift</kbd> + <kbd>h</kbd> which brings up the Shortcuts Help <kbd>M</kbd>enu to display all keyboard commands.
 
 ### Publishing
 
@@ -92,3 +92,13 @@ Publishing to Surge for public viewing:
 ```
 surge . abstracted-war.surge.sh
 ```
+
+### TODOs:
+
+* Better Logic for pausuing audio/video/video as audio
+  * on launch of one of the 3, stop the other 2
+* redo audio functions
+* audio slider for yt audio player
+* redo play_playlist_input() function
+* refactor code to use shorter variable names
+* recomment js

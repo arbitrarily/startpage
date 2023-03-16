@@ -4,52 +4,65 @@
   var start = {
 
     // Version Number
-    version: "1.20.2",
+    v: "1.21.5",
 
     // Touch Events
-    touch: "onontouchend" in document.documentElement ? "ontouchend" : "click",
+    t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
 
     // Animation Time
-    animation_time: 333,
+    at: 333,
 
     // Keyboard Variable
     down: {},
 
     // Config
-    conf: false,
+    c: false,
 
     // Counts
     timer: {},
     count: false,
-    feed_count: false,
-    progress_bar: 0,
-    playlist_length: 0,
+
+    // Feed Count
+    fc: false,
+
+    // Progress Bar
+    pb: 0,
+
+    // Playlist Length
+    pll: 0,
 
     // Playlist Content
-    playlist_json: false,
+    pj: false,
 
     // Cached HTML
-    cached_html: {},
+    cache: {},
 
     // Pageviews
-    pageviews: false,
+    pv: false,
 
     // Wallet Balance
     balance: false,
 
-    // Art
-    art_url: false,
-    art_num: false,
+    // Art URL
+    au: false,
 
-    // Media
+    // Art Number
+    an: false,
+
+    // Video
     video: false,
+
+    // Video as Audio
+    vaa: false,
+
+    // Audio
     audio: new Audio(),
 
-    // NFTs
-    nfts_collection: false,
+    // NFT Collection
+    nc: false,
 
     // Menu HTML
-    menu_html: $(".menu-links-source").html(),
+    mh: $(".menu-links-source").html(),
 
     // Shared Class Names
     s: "shown",
@@ -136,31 +149,31 @@
       () => start.nyt(),
       () => start.reddit(),
       () => start.podcasts(),
-      () => start.music(),
-      () => start.yt(),
+      () => start.play_music(),
+      () => start.play_video(),
       () => start.poe(),
-      () => start.nft_summaries(),
-      () => start.lexichronic(),
+      () => start.industry_news(),
+      () => start.lexi(),
       () => start.nfts(),
       () => start.play_single(),
       () => start.play_playlist(),
       () => start.audio_rewind(),
       () => start.media_toggle(),
-      () => start.audio_fast_forward(),
+      () => start.audio_ff(),
       () => start.audio_mute(),
       () => start.background(),
-      () => start.toggle_blur(),
-      () => start.change_art_source()
+      () => start.blur(),
+      () => start.art_source()
     ],
 
     // Init
     init: function () {
 
       // Version Number
-      start.version_number();
+      start.version();
 
       // Background Image Number
-      start.art_num = this.random_numb(1, 291).toString().padStart(4, "0");
+      start.an = this.random_numb(1, 291).toString().padStart(4, "0");
 
       // Pageview Counter
       this.pageview_counter();
@@ -173,7 +186,7 @@
       setInterval(start.background, 1000 * 60 * 5)
 
       // Remove Menu Source HTML
-      this.remove_html();
+      this.strip_menu();
 
       // Wallet Value
       this.wallet();
@@ -186,7 +199,7 @@
       setInterval(start.lastfm, 1000 * 60 * 3)
 
       // Search
-      this.click_focus_search();
+      this.focus_click();
       this.change_search();
       this.focus_search();
 
@@ -196,7 +209,7 @@
       this.help_toggle();
 
       // Animation on Leave
-      this.bye_bye();
+      this.bye();
 
       // Add Event Listeners
       this.media_events();
@@ -206,17 +219,17 @@
       this.ip();
 
       // Output into Console
-      this.console_log();
+      this.log();
     },
 
     // Load Config, then Init
-    load_config: () => {
+    config: () => {
       fetch('./conf.json')
         .then(response => response.json())
         .then(conf => {
           // Store Config
-          start.conf = conf;
-          start.art_url = conf.artThumbURL;
+          start.c = conf;
+          start.au = conf.artThumbURL;
           // Init
           start.init();
         })
@@ -236,11 +249,11 @@
     focus_search: () => $(document).find("#search").focus().addClass("focus"),
 
     // Remove Source HTML
-    remove_html: () => $(".menu-links-source").remove(),
+    strip_menu: () => $(".menu-links-source").remove(),
 
     // Function Triggers by Keyboard Combos
     key_listener: () => {
-      $(document).keydown( e => {
+      $(document).keydown(e => {
         // Key Down
         start.down[e.keyCode] = true;
         // Left Shift
@@ -261,10 +274,10 @@
             173: 9, // Lexichronic                        (shift + "-")
           };
           const kcc = Object.keys(keys_map).find(key => start.down[key]);
-          start.feed_count = keys_map ? keys_map[kcc] : start.feed_count;
-          if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
+          start.fc = keys_map ? keys_map[kcc] : start.fc;
+          if (Number.isInteger(start.fc)) start.feeds[start.fc]();
           // Audio: Fast Forward                          (shift + ⏩)
-          if (start.down[39]) start.audio_fast_forward();
+          if (start.down[39]) start.audio_ff();
           // Audio: Rewind                                (shift + ⏪)
           if (start.down[37]) start.audio_rewind();
           // Audio: Increased Playback Speed              (shift + ⏫)
@@ -278,7 +291,7 @@
           // Audio: Volume                                (shift + "v")
           if (start.down[86]) start.audio_volume();
           // Video: Fullscreen Toggle                     (shift + "f")
-          if (start.down[70]) start.fullscreen_video();
+          if (start.down[70]) start.video_fullscreen();
           // Music: Random Song                           (shift + "f12")
           if (start.down[123]) start.play_single();
           // Music: Randomized Playlist                   (shift + "f11")
@@ -286,31 +299,31 @@
           // Toggle Playlist Control Limit                (shift + "f10")
           if (start.down[121]) start.play_playlist_input();
           // Toggle Cursor                                (shift + 🔙)
-          if (start.down[8]) start.toggle_cursor();
+          if (start.down[8]) start.cursor();
           // Toggle Menu                                  (shift + "z")
           if (start.down[90]) start.menu();
           // Update LastFM                                (shift + "x")
           if (start.down[88]) {
             start.lastfm();
-            start.notifications("Fetched <span>Last.fm</span>");
+            start.notify("Fetched <span>Last.fm</span>");
           }
           // Change Art Source To Full Resolution         (shift + "c")
-          if (start.down[67]) start.change_art_source();
+          if (start.down[67]) start.art_source();
           // Blur                                         (shift + "b")
-          if (start.down[66]) start.toggle_blur();
+          if (start.down[66]) start.blur();
           // Wallet Status                                (shift + "n")
-          if (start.down[78]) start.console_wallet();
+          if (start.down[78]) start.log_wallet();
           // Refresh Background Image                     (shift + ",")
           if (start.down[188]) start.background();
           // Help Shortcuts                               (shift + "h")
-          if (start.down[72]) start.help_menu();
+          if (start.down[72]) start.shortcuts();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.down[39] || start.down[37]) start.slide_menu();
           // Close Fullscreen Video                       ("esc")
           if (start.down[27]) {
-            if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
-            if ($(".shortcuts").hasClass(start.s)) start.help_menu();
+            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
+            if ($(".shortcuts").hasClass(start.s)) start.shortcuts();
           }
         }
         // Alt/Option
@@ -333,7 +346,7 @@
           start.count = kc ? keys_mapped[kc] : start.count;
           if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
         }
-      }).keyup( e => {
+      }).keyup(e => {
         // Reset Key on Key Up
         start.down[e.keyCode] = false;
       });
@@ -345,21 +358,21 @@
     // Menu
     menu: () => {
       $(".feed-links").removeClass(start.s);
-      start.feed_toggle(start.menu_html, "Menu Toggles");
+      start.feed_toggle(start.mh, "Menu Toggles");
     },
 
     // Menu Click Events
     menu_clicks: function () {
-      $(document).on(start.touch, ".menu-links__item, .menu-links__toggle", function (e) {
+      $(document).on(start.t, ".menu-links__item, .menu-links__toggle", function (e) {
         e.preventDefault();
-        start.feed_count = $(this).data("id");
-        if (Number.isInteger(start.feed_count)) start.feeds[start.feed_count]();
+        start.fc = $(this).data("id");
+        if (Number.isInteger(start.fc)) start.feeds[start.fc]();
       });
     },
 
     // Trigger Menu on Hambuger Click
     menu_toggle: () => {
-      $(document).on(start.touch, ".menu-toggle", e => {
+      $(document).on(start.t, ".menu-toggle", e => {
         e.preventDefault();
         start.menu();
       });
@@ -367,22 +380,22 @@
 
     // Toggle Help Menu
     help_toggle: () => {
-      $(document).on(start.touch, event => {
+      $(document).on(start.t, event => {
         if (!$(event.target).closest('.shortcuts__inner').length && $(".shortcuts").hasClass(start.s)) {
-          start.help_menu();
+          start.shortcuts();
         }
       });
     },
 
     // Notifications
-    notifications: text => {
+    notify: text => {
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
           $(".notifications__inner").html(text);
           $(".notifications").removeClass(start.h);
         },
         last = async () => {
-          await wait(start.animation_time * 5);
+          await wait(start.at * 5);
           $(".notifications").addClass(start.h);
         };
       first();
@@ -392,35 +405,35 @@
     // Load Background Image
     background: function (num = false) {
       const bg = $(".background-image");
-      if (!num) start.art_num = start.random_numb(1, 291).toString().padStart(4, "0").toString();
+      if (!num) start.an = start.random_numb(1, 291).toString().padStart(4, "0").toString();
       bg.addClass(start.h);
       setTimeout(() => {
-        bg.attr("src", start.art_url + start.art_num + ".png");
+        bg.attr("src", start.au + start.an + ".png");
         bg.one("load", () => bg.removeClass(start.h)).each(() => {
           if (this.complete) $(this).trigger('load');
         });
-      }, start.animation_time * 3);
-      if (!num) start.notifications(`<span>New Background</span> #${start.art_num} <span>Loaded</span>`);
+      }, start.at * 3);
+      if (!num) start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
     },
 
     // Change Background Art Resolution
-    change_art_source: () => {
-      start.art_url = start.art_url === start.conf.artThumbURL ? start.conf.artURL : start.conf.artThumbURL;
-      const message = start.art_url.replace("https://marko.tech/", "").replace(/\/$/, "");
+    art_source: () => {
+      start.au = start.au === start.c.artThumbURL ? start.c.artURL : start.c.artThumbURL;
+      const message = start.au.replace("https://marko.tech/", "").replace(/\/$/, "");
       start.background(true);
-      start.notifications(`<span>Background Source Changed To</span> ${message}`);
+      start.notify(`<span>Background Source Changed To</span> ${message}`);
     },
 
     // Toggle Blur on Background Image
-    toggle_blur: () => {
+    blur: () => {
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
-      start.notifications(`<span>Blurred Background</span>${status}`);
+      start.notify(`<span>Blurred Background</span>${status}`);
     },
 
     // IP
     ip: () => {
-      fetch('https://ipinfo.io/json?token=' + start.conf.ipKey)
+      fetch('https://ipinfo.io/json?token=' + start.c.ipKey)
         .then(res => res.json())
         .then(res => res)
         .then(ip => {
@@ -433,20 +446,20 @@
 
     // LastFM Song
     lastfm: () => {
-      $.when(start.conf).then(() => {
-        fetch(start.conf.lastFMURL)
+      $.when(start.c).then(() => {
+        fetch(start.c.lastFMURL)
           .then(res => res.json())
           .then(res => res)
           .then(song => {
             const count = song["recenttracks"]["@attr"]["total"];
-            $.when(count && start.pageviews).then(() => {
+            $.when(count && start.pv).then(() => {
               setTimeout(() => {
                 $(".songs-replace").text(start.format_numb(count).trim().toString());
                 $(".songs").addClass(start.s);
-              }, start.animation_time * 3);
+              }, start.at * 3);
             });
             const s = song["recenttracks"]["track"].map(_map_it)[0];
-            const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1;
+            const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1 || start.vaa && start.vaa.getPlayerState() === 1;
             if (!media_playing) {
               const song_data = {
                 id: s.id,
@@ -487,8 +500,8 @@
         url.attr("href", data.link ? data.link : "#").addClass(start.s);
         container.show();
         container.removeClass(start.h)
-       }, start.animation_time * 2);
-      if (source) start.notifications(`Now Playing <span>${source}</span>`);
+      }, start.at * 2);
+      if (source) start.notify(`Now Playing <span>${source}</span>`);
     },
 
     // Search Switcher
@@ -507,28 +520,28 @@
         "name": name,
         "data-type": type
       }).focus();
-      start.notifications(`<span>Search Switched to </span> ${type}`);
+      start.notify(`<span>Search Switched to </span> ${type}`);
     },
 
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
       if (start.video === YT.PlayerState.PLAYING) start.media_stop();
-      setTimeout(() => { $(".feed-links").replaceWith(html) }, start.animation_time);
-      setTimeout(() => { $(".feed-links").addClass(start.s) }, start.animation_time * 2);
+      setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
+      setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
       if (source) {
-        start.notifications(`<span>Feed Switched to</span> ${source}`);
+        start.notify(`<span>Feed Switched to</span> ${source}`);
         if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();
       }
     },
 
     // Init Fetch
     init_fetch: () => {
-      fetch(start.conf.instapaperURL + '?t=' + start.timestamp())
+      fetch(start.c.instapaperURL + '?t=' + start.timestamp())
         .then(response => response.text())
         .then(html => {
           if (html) {
             $(".feed-links").replaceWith(html);
-            start.cached_html["Instapaper"] = {
+            start.cache["Instapaper"] = {
               html: html,
               time: new Date().getTime()
             };
@@ -541,11 +554,11 @@
     // Replace News
     fetch_news: (url, source) => {
       $(".feed-links").removeClass(start.s);
-      if (start.cached_html[source]) {
-        start.feed_toggle(start.cached_html[source].html, source);
-        if (start.cached_html[source].time) {
-          if (new Date().getTime() - start.cached_html[source].time > 600000) {
-            start.cached_html[source] = null;
+      if (start.cache[source]) {
+        start.feed_toggle(start.cache[source].html, source);
+        if (start.cache[source].time) {
+          if (new Date().getTime() - start.cache[source].time > 600000) {
+            start.cache[source] = null;
           }
         }
       } else {
@@ -554,7 +567,7 @@
           .then(html => {
             if (html) {
               start.feed_toggle(html, source);
-              start.cached_html[source] = {
+              start.cache[source] = {
                 html: html,
                 time: new Date().getTime()
               };
@@ -562,50 +575,50 @@
           })
           .catch(err => $(".feed-links").addClass(start.s));
       }
-      start.feed_count = false;
+      start.fc = false;
       if (!$(".feed-links").hasClass("video-links")) start.video = false;
     },
 
     // Instapaper Home Feed
-    instapaper: () => start.fetch_news(start.conf.instapaperURL, "Instapaper"),
+    instapaper: () => start.fetch_news(start.c.instapaperURL, "Instapaper"),
 
     // News Home Feed
-    news: () => start.fetch_news(start.conf.techmemeURL, "All News"),
+    news: () => start.fetch_news(start.c.techmemeURL, "All News"),
 
     // NYT Home Feed
-    nyt: () => start.fetch_news(start.conf.nytURL, "New York Times"),
+    nyt: () => start.fetch_news(start.c.nytURL, "New York Times"),
 
     // Reddit Home Feed
-    reddit: () => start.fetch_news(start.conf.redditURL, "Reddit"),
+    reddit: () => start.fetch_news(start.c.redditURL, "Reddit"),
 
     // NFTs Home Feed
-    nfts: () => start.fetch_news(start.conf.alchemyURL, "NFTs"),
+    nfts: () => start.fetch_news(start.c.alchemyURL, "NFTs"),
 
     // Lexichronic Home Feed
-    lexichronic: () => start.fetch_news(start.conf.lexiURL, "Lexichronic"),
+    lexi: () => start.fetch_news(start.c.lexiURL, "Lexichronic"),
 
     // NFT News Summaries
-    nft_summaries: () => start.fetch_news(start.conf.nftNewsURL, "Industry News"),
+    industry_news: () => start.fetch_news(start.c.nftNewsURL, "Industry News"),
 
     // Path of Exile Home Feed
-    poe: () => start.fetch_news(start.conf.poeURL, "Path of Exile"),
+    poe: () => start.fetch_news(start.c.poeURL, "Path of Exile"),
 
     // Podcasts Home Feed
     podcasts: () => {
-      start.fetch_news(start.conf.podURL, "Podcasts");
+      start.fetch_news(start.c.podURL, "Podcasts");
       start.play_audio_on_click();
     },
 
     // Music Home Feed
-    music: () => {
-      start.fetch_news(start.conf.xPlaylistHTMLURL, "Music");
-      start.play_audio_on_click();
+    play_music: () => {
+      start.fetch_news(start.c.xPlaylistHTMLURL, "Music");
+      start.play_music_on_click();
     },
 
     // YouTube Home Feed
-    yt: () => {
-      start.fetch_news(start.conf.youTubeURL, "YouTube");
-      start.yt_click();
+    play_video: () => {
+      start.fetch_news(start.c.youTubeURL, "YouTube");
+      start.video_click();
     },
 
     // Media Based Event Listeners
@@ -613,31 +626,55 @@
       // Audio Events
       start.audio.addEventListener("play", () => {
         if (start.video) start.video.pauseVideo();
+        if (start.vaa) start.vaa.pauseVideo();
       });
       start.audio.addEventListener("ended", () => {
         start.media_stop();
         start.media_events();
-        start.notifications("<span>Finished</span> Playing");
+        start.notify("<span>Finished</span> Playing");
       });
       // Video Events
       if (start.video) {
         start.video.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
             start.timer = {};
-            start.yt();
+            start.video();
             start.media_ended();
-            start.notifications("<span>Finished</span> Playing");
-            if ($(".container__overflow").hasClass("fullscreen")) start.fullscreen_video();
+            start.notify("<span>Finished</span> Playing");
+            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PAUSED) {
-            start.notifications("Paused");
+            start.notify("Paused");
             $(".podcasts img").attr("src", "icons/icon__pause.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PLAYING) {
-            start.notifications("<span>Now</span> Playing");
+            start.notify("<span>Now</span> Playing");
+            $(".podcasts img").attr("src", "icons/icon__play.svg");
+            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+          }
+        });
+      }
+      // Video as Audio
+      if (start.vaa) {
+        start.vaa.addEventListener('onStateChange', event => {
+          if (event.data === YT.PlayerState.ENDED) {
+            start.timer = {};
+            start.media_ended();
+            start.notify("<span>Finished</span> Playing");
+            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
+            start.vaa = false;
+          }
+          if (event.data === YT.PlayerState.PAUSED) {
+            start.notify("Paused");
+            $(".podcasts img").attr("src", "icons/icon__pause.svg");
+            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+            // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa = false;
+          }
+          if (event.data === YT.PlayerState.PLAYING) {
+            start.notify("<span>Now</span> Playing");
             $(".podcasts img").attr("src", "icons/icon__play.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
           }
@@ -656,9 +693,9 @@
 
     // Media: Stop
     media_stop: () => {
-      if (start.video) {
-        start.video = false;
-      } else {
+      if (start.video) start.video = false;
+      if (start.vaa) start.vaa = false;
+      if (!start.audio.paused) {
         start.audio.pause();
         start.audio.src = "";
         start.audio = new Audio();
@@ -672,20 +709,83 @@
       if (start.video && start.video === YT.PlayerState.PLAYING) {
         start.video.pauseVideo();
       }
+      if (start.vaa && start.vaa === YT.PlayerState.PLAYING) {
+        start.vaa.pauseVideo();
+      }
       if (!start.audio.paused) start.audio.pause();
     },
 
     // Media: Play
     media_play: () => {
+      // TODO: THESE SHOULD PAUSE EACH OTHER
       if (start.video && start.video === YT.PlayerState.PAUSED) {
         start.video.playVideo();
+      }
+      if (start.vaa && start.vaa === YT.PlayerState.PAUSED) {
+        start.vaa.playVideo();
       }
       if (!start.audio.paused) start.audio.play();
       if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
     },
 
+
+    // Media: Timer
+    media_timer: () => {
+      let elapsed = 0;
+      let tr = 0;
+      setInterval(() => {
+        let last_second = start.timer.seconds;
+        try {
+          if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
+            elapsed = start.video.getDuration() - start.video.getCurrentTime();
+            tr = elapsed > 0 ? elapsed : 0;
+            start.pb = (start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
+          }
+          if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.PLAYING) {
+            elapsed = start.vaa.getDuration() - start.vaa.getCurrentTime();
+            tr = elapsed > 0 ? elapsed : 0;
+            start.pb = (start.vaa.getCurrentTime() / start.vaa.getDuration()).toFixed(3);
+          }
+          if (!start.audio.paused) {
+            elapsed = start.audio.duration - start.audio.currentTime;
+            tr = elapsed > 0 ? elapsed : 0;
+            start.pb = (start.audio.currentTime / start.audio.duration).toFixed(3);
+          }
+          start.timer = {
+            minutes: Math.floor(tr / 60),
+            seconds: Math.floor(tr % 60),
+            padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
+          }
+          // Update Time
+          if (start.timer.seconds && last_second > start.timer.seconds) {
+            if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
+            $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
+            start.pb = Math.min(Math.max((start.pb * 100).toFixed(3), 1), 100);
+            $(".progress").css('width', start.pb + '%');
+            last_second = start.timer.seconds;
+          }
+        } catch (e) {
+          clearInterval();
+        }
+        if (start.video && $(".feed-links iframe").length === 0) {
+          start.media_stop();
+          clearInterval();
+        }
+        if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.ENDED) {
+          start.media_stop();
+          clearInterval();
+        }
+      }, 500);
+    },
+
+    // Media: Play / Pause
+    media_toggle: () => {
+      start.audio_toggle();
+      start.video_toggle();
+    },
+
     // Start YouTube Video
-    yt_start: video_id => {
+    video_start: video_id => {
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -705,36 +805,41 @@
       start.media_events();
     },
 
-    // Open Youtube Video in Modal
-    yt_click: function () {
-      $(document).on(start.touch, ".video-links a", function (e) {
-        e.preventDefault();
-        const that = $(this),
-          targets = $(".feed-container, .feed-list");
-        if (!targets.hasClass(start.s)) targets.addClass(start.s);
-        start.media_stop();
-        start.yt_start(that.data("id"));
-        const vid_data = {
-          id: that.data("id"),
-          name: that.data("title"),
-          album: "",
-          artist: that.data("feed"),
-          image: that.find("img").attr("src"),
-          link: that.attr("href")
+    // Start YouTube Video as Audio
+    video_as_audio_start: video_id => {
+      start.vaa = new YT.Player('audio-player', {
+        height: '0',
+        width: '0',
+        videoId: video_id ? video_id : "jfKfPfyJRdk",
+        playerVars: {
+          'autoplay': 1,
+          'controls': 0,
+          'disablekb': 1,
+          'iv_load_policy': 3,
+          'modestbranding': 1,
+          'playsinline': 1,
+          'rel': 0,
+          'showinfo': 0,
+          'start': 0,
+          'audio': 1
+        },
+        events: {
+          'onReady': start.media_timer
         }
-        start.now_playing(vid_data, vid_data.name);
       });
+      start.media_events();
+      console.log(start.vaa);
     },
 
     // Video: Fullscreen Toggle
-    fullscreen_video: function () {
+    video_fullscreen: function () {
       const v = $(".video-links .feed-list, .container__overflow"),
         vl = $(".video-links"),
         fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
       setTimeout(() => { v.toggleClass("fullscreen") }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
-      start.notifications(`Video <span>${fs}</span>`);
+      start.notify(`Video <span>${fs}</span>`);
     },
 
     // Audio: Play Single Track
@@ -752,7 +857,7 @@
           image: "icons/icon__lofi-girl.jpg",
           link: "https://www.youtube.com/@LofiGirl"
         };
-        start.audio.src = start.conf.xURL + number + ".mp3";
+        start.audio.src = start.c.xURL + number + ".mp3";
       } else {
         song_data = {
           id: song.id ? song.id : "",
@@ -769,7 +874,7 @@
       start.audio.play();
       start.media_timer();
       start.now_playing(song_data, false);
-      start.notifications(`Now Playing <span>${song_data.name}</span>`);
+      start.notify(`Now Playing <span>${song_data.name}</span>`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
@@ -777,7 +882,7 @@
     play_playlist: (limit = 10) => {
       start.media_stop();
       const loop = () => {
-        const x = start.playlist_json;
+        const x = start.pj;
         // Shuffle Array
         for (let i = x.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -787,7 +892,7 @@
           // 10 Songs
           for (var i = 0; i < limit; i++) {
             const songs_left = limit - i > 0 ? limit - i : false;
-            start.play_single(start.playlist_json[i], songs_left);
+            start.play_single(start.pj[i], songs_left);
             await new Promise(resolve => {
               start.audio.addEventListener('ended', () => {
                 resolve();
@@ -804,12 +909,12 @@
         }
         play();
       }
-      if (!start.playlist_json) {
-        fetch(start.conf.xPlaylistJSONURL + '?t=' + start.timestamp())
+      if (!start.pj) {
+        fetch(start.c.xPlaylistJSONURL + '?t=' + start.timestamp())
           .then(res => res.json())
           .then(playlist => {
-            start.playlist_json = playlist;
-            start.playlist_length = playlist.length;
+            start.pj = playlist;
+            start.pll = playlist.length;
             loop();
           })
           .catch(err => start.media_stop());
@@ -829,9 +934,51 @@
       start.play_playlist(parseInt(num));
     },
 
+    // Open Youtube Video in Modal
+    video_click: function () {
+      $(document).on(start.t, ".video-links a", function (e) {
+        e.preventDefault();
+        const that = $(this),
+          targets = $(".feed-container, .feed-list");
+        if (!targets.hasClass(start.s)) targets.addClass(start.s);
+        start.media_stop();
+        start.video_start(that.data("id"));
+        const vid_data = {
+          id: that.data("id"),
+          name: that.data("title"),
+          album: "",
+          artist: that.data("feed"),
+          image: that.find("img").attr("src"),
+          link: that.attr("href")
+        }
+        start.now_playing(vid_data, vid_data.name);
+      });
+    },
+
+    // Audio: Play Music on Click
+    play_music_on_click: function () {
+      $(document).on(start.t, ".music-links li a", function (e) {
+        e.preventDefault();
+        const a = $(this);
+        $(".podcasts").addClass(start.s);
+        start.media_stop();
+        start.video_as_audio_start(a.data('id'));
+        const song_data = {
+          id: a.data('id'),
+          name: a.data('title'),
+          album: '',
+          artist: a.data('feed'),
+          image: a.find("img").attr('src'),
+          link: a.attr('href')
+        }
+        start.now_playing(song_data, `${a.text().trim().slice(0, 45) + "..."}`);
+        if (!$("#search").hasClass("full")) $("#search").addClass("full");
+      });
+    },
+
     // Audio: Play
     play_audio_on_click: function () {
-      $(document).on(start.touch, ".podcast-links li a", function (e) {
+      $(document).on(start.t, ".podcast-links li a", function (e) {
         e.preventDefault();
         const a = $(this);
         start.media_stop();
@@ -855,7 +1002,7 @@
 
     // Audio: Pause on Click of Timer
     timer_media_toggle: () => {
-      $(document).on(start.touch, ".podcasts", e => {
+      $(document).on(start.t, ".podcasts", e => {
         e.preventDefault();
         start.media_toggle();
       });
@@ -881,8 +1028,8 @@
               setTimeout(() => {
                 search.attr("placeholder", placeholder);
                 locked = false;
-              }, start.animation_time * 2);
-            }, start.animation_time * 4);
+              }, start.at * 2);
+            }, start.at * 4);
           });
         });
       } else {
@@ -898,28 +1045,31 @@
       $(".feed-links .menu-links__item-mute img").attr("src", "icons/icon__" + icon + ".svg");
       start.audio.muted ? $(".mute").addClass(start.s) : $(".mute").removeClass(start.s);
       if (start.video) start.video.isMuted() ? start.video.unMute() : start.video.mute();
-      start.notifications(`<span>Audio</span> ${status}`);
+      if (start.vaa) start.vaa.isMuted() ? start.vaa.unMute() : start.vaa.mute();
+      start.notify(`<span>Audio</span> ${status}`);
     },
 
     // Audio: Rewind
     audio_rewind: (val = 5) => {
       if (!start.audio.paused) start.audio.currentTime -= val;
       if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() - val);
-      start.notifications(`Rewind <span>-${val} seconds</span>`);
+      if (start.vaa && start.vaa.getPlayerState() === 1) start.vaa.seekTo(start.vaa.getCurrentTime() - val);
+      start.notify(`Rewind <span>-${val} seconds</span>`);
     },
 
     // Audio: Fast Forward
-    audio_fast_forward: (val = 15) => {
+    audio_ff: (val = 15) => {
       if (!start.audio.paused) start.audio.currentTime += val;
       if (start.video && start.video.getPlayerState() === 1) start.video.seekTo(start.video.getCurrentTime() + val);
-      start.notifications(`Fast Forward <span>+${val} seconds</span>`);
+      if (start.vaa && start.vaa.getPlayerState() === 1) start.vaa.seekTo(start.vaa.getCurrentTime() + val);
+      start.notify(`Fast Forward <span>+${val} seconds</span>`);
     },
 
     // Audio: Faster Playback
     audio_more_speed: () => {
       if (!start.audio.paused) {
         start.audio.playbackRate += 0.1;
-        start.notifications(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
+        start.notify(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
     },
 
@@ -927,70 +1077,31 @@
     audio_less_speed: () => {
       if (!start.audio.paused) {
         start.audio.playbackRate -= 0.1;
-        start.notifications(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
+        start.notify(`Playback Rate <span>${start.audio.playbackRate.toFixed(2)}x</span>`);
       }
-    },
-
-    // Media: Timer
-    media_timer: () => {
-      let elapsed = 0;
-      let tr = 0;
-      setInterval(() => {
-        let last_second = start.timer.seconds;
-        try {
-          if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
-            elapsed = start.video.getDuration() - start.video.getCurrentTime();
-            tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = (start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
-          }
-          if (!start.audio.paused) {
-            elapsed = start.audio.duration - start.audio.currentTime;
-            tr = elapsed > 0 ? elapsed : 0;
-            start.progress_bar = (start.audio.currentTime / start.audio.duration).toFixed(3);
-          }
-          start.timer = {
-            minutes: Math.floor(tr / 60),
-            seconds: Math.floor(tr % 60),
-            padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
-          }
-          // Update Time
-          if (start.timer.seconds && last_second > start.timer.seconds) {
-            if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
-            $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
-            start.progress_bar = Math.min(Math.max((start.progress_bar * 100).toFixed(3), 1), 100);
-            $(".progress").css('width', start.progress_bar + '%');
-            last_second = start.timer.seconds;
-          }
-        } catch (e) {
-          clearInterval();
-        }
-        if (start.video && $(".feed-links iframe").length === 0) {
-          start.media_stop();
-          clearInterval();
-        }
-      }, 500);
-    },
-
-    // Media: Play / Pause
-    media_toggle: () => {
-      start.audio_toggle();
-      start.video_toggle();
     },
 
     // Audio: Play/Pause
     audio_toggle: () => {
+      if (start.audio.paused) {
+        start.audio.currentTime = start.audio.currentTime - 3;
+        $(".podcasts img").attr("src", "icons/icon__play.svg");
+        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+        start.notify("<span>Now</span> Playing");
+        start.audio.play();
+      } else {
+        start.audio.pause();
+        $(".podcasts img").attr("src", "icons/icon__pause.svg");
+        $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+        start.notify("<span>Now</span> Paused");
+      }
       try {
-        if (start.audio.paused) {
-          start.audio.currentTime = start.audio.currentTime - 3;
-          $(".podcasts img").attr("src", "icons/icon__play.svg");
-          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
-          start.notifications("<span>Now</span> Playing");
-          start.audio.play();
+        if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.PAUSED) {
+          start.notify("<span>Now</span> Playing");
+          start.vaa.playVideo();
         } else {
-          start.audio.pause();
-          $(".podcasts img").attr("src", "icons/icon__pause.svg");
-          $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-          start.notifications("<span>Now</span> Paused");
+          start.vaa.pauseVideo();
+          start.notify("<span>Now</span> Paused");
         }
       } catch (e) {
         return;
@@ -1001,11 +1112,11 @@
     video_toggle: () => {
       try {
         if (start.video && start.video.getPlayerState() === YT.PlayerState.PAUSED) {
-          start.notifications("<span>Now</span> Playing");
+          start.notify("<span>Now</span> Playing");
           start.video.playVideo();
         } else {
           start.video.pauseVideo();
-          start.notifications("<span>Now</span> Paused");
+          start.notify("<span>Now</span> Paused");
         }
       } catch (e) {
         return;
@@ -1014,26 +1125,26 @@
 
     // Page View Counter
     pageview_counter: () => {
-      fetch(start.conf.counterURL + '?t=' + start.timestamp())
-        .then(res => res.text() )
+      fetch(start.c.counterURL + '?t=' + start.timestamp())
+        .then(res => res.text())
         .then(number => {
           if (number) {
             setTimeout(() => {
-              start.pageviews = number.trim().toString().slice(0, 10);
-              $(".counter-replace").text(start.pageviews);
+              start.pv = number.trim().toString().slice(0, 10);
+              $(".counter-replace").text(start.pv);
               $(".counter").addClass(start.s);
-            }, start.animation_time * 2);
+            }, start.at * 2);
           }
         })
         .catch(err => {
           $(".counter").remove();
-          start.pageviews = true;
+          start.pv = true;
         });
     },
 
     // Primary Wallet Status
     wallet: () => {
-      fetch(start.conf.ethplorerURL + '?t=' + start.timestamp())
+      fetch(start.c.ethplorerURL + '?t=' + start.timestamp())
         .then(res => res.json())
         .then(res => {
           start.balance = res["ETH"]["totalIn"].toString();
@@ -1043,29 +1154,23 @@
           if (start.balance) {
             $(".wallet-replace").text((balance_formatted + formatted).toString());
             $(".wallet").addClass(start.s);
-            start.nfts_collection = res['ETH']['price'];
+            start.nc = res['ETH']['price'];
           }
         });
     },
 
-    // Console Log Wallet Status
-    console_wallet: () => {
-      console.log(start.nfts_collection)
-      start.notifications("Console.log <span>Wallet</span> Stats");
-    },
-
     // Change Search on Click
     change_search: () => {
-      $("#searchform label").on(start.touch, function () {
+      $("#searchform label").on(start.t, function () {
         start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
         start.search_switcher(start.searches[start.count]);
       });
     },
 
     // Focus Search if Clicking Anything Not a Link or Input
-    click_focus_search: () => {
+    focus_click: () => {
       if (window.matchMedia("(min-width: 40em)").matches) {
-        $(document).on(start.touch, e => {
+        $(document).on(start.t, e => {
           if (e.target.tagName !== "A" &&
             e.target.tagName !== "INPUT" &&
             e.target.className !== "menu-toggle"
@@ -1075,24 +1180,26 @@
     },
 
     // Help Shortcuts
-    help_menu: () => {
+    shortcuts: () => {
       $(".shortcuts").toggleClass(start.s);
-      $(".everything").toggleClass("blur");
+      $(".evervideohing").toggleClass("blur");
       $("body").toggleClass("lock");
-      if ($(".shortcuts").hasClass(start.s)) start.notifications("<span>Shortcuts</span> Menu");
+      if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
     },
 
     // Reset Mouse Cursor
-    toggle_cursor: () => {
+    cursor: () => {
       $("body").toggleClass("vaal");
       const status = ($("body").hasClass("vaal")) ? " On" : " Off";
-      start.notifications(`<span>Cursor Toggled</span>${status}`);
+      start.notify(`<span>Cursor Toggled</span>${status}`);
     },
 
     // Animation on Leave & Alert Check if Media is Playing
-    bye_bye: () => {
+    bye: () => {
       $(window).on("beforeunload", function () {
-        const media_playing = !start.audio.paused || start.video && start.video.getPlayerState() === 1;
+        const media_playing = !start.audio.paused ||
+          start.video && start.video.getPlayerState() === 1 ||
+          start.vaa && start.vaa.getPlayerState() === 1;
         if (media_playing) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
           if (result) {
@@ -1106,8 +1213,14 @@
       });
     },
 
+    // Console Log Wallet Status
+    log_wallet: () => {
+      console.log(start.nc)
+      start.notify("Console.log <span>Wallet</span> Stats");
+    },
+
     // Console Log Attribution
-    console_log: () => {
+    log: () => {
       console.log(
         "%cMarko Bajlovic",
         "background-color:#fff;color:#0b0b0b;padding:0.85em 0.5em;font-weight:900;line-height:1.5em;font-size:2em;"
@@ -1115,20 +1228,20 @@
     },
 
     // Version
-    version_number: () => {
+    version: () => {
       // fetch request
       let commits = "";
-      fetch(start.conf.githubURL + "&t=" + start.timestamp())
+      fetch(start.c.githubURL + "&t=" + start.timestamp())
         .then(res => res.json())
         .then(res => { if (res[0]) commits = " (" + res[0].contributions + ")" });
       setTimeout(() => {
-        $(".version-target").text(start.version.toString() + commits).parent().addClass(start.s);
-      }, start.animation_time * 6);
+        $(".version-target").text(start.v.toString() + commits).parent().addClass(start.s);
+      }, start.at * 6);
     }
 
   };
 
   // Init
-  start.load_config();
+  start.config();
 
 })(this, jQuery);

@@ -132,6 +132,14 @@ a:focus img {
     opacity: 1;
 }
 
+.player.hidden {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+}
+
 .search__input--container {
     position: relative;
     width: 100%;
