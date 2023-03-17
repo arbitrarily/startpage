@@ -303,12 +303,29 @@ li { list-style: none; }
     mask-image: none;
 }
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: var(--gray);
+    box-shadow: 0 0 1px var(--gruy);
+}
+
+.feed-list::-webkit-scrollbar,
+.container__feed-list::-webkit-scrollbar {
+    display: none;
+}
+
 .feed-list,
 .container__feed-list {
+    transition: all 0ms ease;
     overflow: hidden;
     overflow-y: scroll;
-    scrollbar-color: var(--grey) transparent;
-    scrollbar-width: thin;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
     -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
