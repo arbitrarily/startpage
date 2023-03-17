@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.4",
+    v: "1.22.6",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -145,8 +145,8 @@
       }
     ],
 
-    // Feeds
-    feeds: [
+    // Mapped Functions
+    mf: [
       () => start.instapaper(),
       () => start.news(),
       () => start.nyt(),
@@ -171,6 +171,7 @@
       () => start.audio_volume(),
       () => start.lastfm(),
       () => start.dev_news(),
+      () => start.resize_feed_images()
     ],
 
     // Init
@@ -284,7 +285,7 @@
           const kcc = Object.keys(keys_map).find(key => start.down[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
           if (!$(".container__overflow").hasClass("fullscreen")) {
-            if (Number.isInteger(start.fc)) start.feeds[start.fc]();
+            if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
           // Audio: Fast Forward                          (shift + ⏩)
           if (start.down[39]) start.audio_ff();
@@ -327,6 +328,8 @@
           if (start.down[78]) start.log_wallet();
           // Refresh Background Image                     (shift + ",")
           if (start.down[188]) start.background();
+          // Refresh Background Image                     (shift + ".")
+          if (start.down[190]) start.resize_feed_images();
           // Help Shortcuts                               (shift + "h")
           if (start.down[72]) start.shortcuts();
           // Toggle Audio Player                          (shift + "t")
@@ -382,7 +385,7 @@
       $(document).on(start.t, ".menu-links__item, .menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
-        if (Number.isInteger(start.fc)) start.feeds[start.fc]();
+        if (Number.isInteger(start.fc)) start.mf[start.fc]();
       });
     },
 
@@ -1212,6 +1215,12 @@
       $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
       if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
+    },
+
+    // Resize Feed Images
+    resize_feed_images: () => {
+      $(".container__content").toggleClass("large");
+      start.notify(`<span>Feed Images</span> Resized`);
     },
 
     // Reset Mouse Cursor

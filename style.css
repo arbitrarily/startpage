@@ -495,6 +495,24 @@ li { list-style: none; }
 .news-links .container__list img {
     background: var(--grey);
     min-width: 80px;
+    max-width: 80px;
+    width: 80px;
+    max-height: inherit;
+}
+
+.poe-links .container__list img {
+    aspect-ratio: 4/3;
+    max-width: 100px;
+    min-width: 100px;
+    max-height: inherit;
+}
+
+.container__content.large .podcast-links .container__list img,
+.container__content.large .news-list .container__list img,
+.container__content.large .news-links .container__list img,
+.container__content.large .poe-links .container__list img {
+    min-width: 33%;
+    aspect-ratio: 16/9;
 }
 
 .container__list span.container__list--full-item { line-height: 1.15; }

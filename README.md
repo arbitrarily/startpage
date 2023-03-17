@@ -35,6 +35,7 @@ Some of the features:
 * See pageviews.
 * See version number & commit count for this repo.
 * Responsive design.
+* Resize images.
 * Mobile ready toggle menu.
 * Shortcuts help menu.
 
@@ -72,7 +73,7 @@ It should look like this or similar, keeping what you want and removing what you
 }
 ```
 
-The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL`, `podURL` are websites where I render the html/rss into an HTML column.
+The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL`, `podURL` are websites where I render the html/rss into an HTML column. There are others not mentioned above.
 
 `counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
 
@@ -98,7 +99,5 @@ surge . abstracted-war.surge.sh
 * Better Logic for pausuing audio/video/video as audio
   * on launch of one of the 3, stop the other 2
 * redo audio functions
-* audio slider for yt audio player
-* redo play_playlist_input() function
 * refactor code to use shorter variable names
 * recomment js
