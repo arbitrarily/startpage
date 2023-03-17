@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.21.11",
+    v: "1.22.1",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -169,7 +169,8 @@
       () => start.art_source(),
       () => start.play_playlist_input(),
       () => start.audio_volume(),
-      () => start.lastfm()
+      () => start.lastfm(),
+      () => start.dev_news(),
     ],
 
     // Init
@@ -278,6 +279,7 @@
             57: 8, // Music                               (shift + 9️⃣)
             48: 10, // NFTs                               (shift + 0️⃣)
             173: 9, // Lexichronic                        (shift + "-")
+            61: 23, // Dev News                          (shift + "=")
           };
           const kcc = Object.keys(keys_map).find(key => start.down[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
@@ -616,6 +618,9 @@
 
     // Path of Exile Home Feed
     poe: () => start.fetch_news(start.c.poeURL, "Path of Exile"),
+
+    // Path of Exile Home Feed
+    dev_news: () => start.fetch_news(start.c.devURL, "Developer News"),
 
     // Podcasts Home Feed
     podcasts: () => {
