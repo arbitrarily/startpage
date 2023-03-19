@@ -412,10 +412,8 @@
     fullscreen_toggle: () => {
       $(document).on(start.t, event => {
         const t = $(".video-links .feed-container.fullscreen .feed-list");
-        // console.log($(event.target).closest(t.length && $(".feed-container").hasClass("fullscreen")));
         if ($(".feed-container").hasClass("fullscreen")) {
           if (t.is(event.target) && t.has(event.target).length > 0) return;
-          console.log(event.target);
           start.video_fullscreen();
         }
       });
