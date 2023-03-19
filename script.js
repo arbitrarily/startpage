@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.7",
+    v: "1.22.9",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -284,7 +284,7 @@
           };
           const kcc = Object.keys(keys_map).find(key => start.down[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
-          if (!$(".container__overflow").hasClass("fullscreen")) {
+          if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
           // Audio: Fast Forward                          (shift + ⏩)
@@ -312,7 +312,7 @@
           // Toggle Cursor                                (shift + 🔙)
           if (start.down[8]) start.cursor();
           // Toggle Menu                                  (shift + "z")
-          if (!$(".container__overflow").hasClass("fullscreen")) {
+          if (!$(".feed-container").hasClass("fullscreen")) {
             if (start.down[90]) start.menu();
           }
           // Update LastFM                                (shift + "x")
@@ -341,7 +341,7 @@
           if (start.down[39] || start.down[37]) start.slide_menu();
           // Close Fullscreen Video                       ("esc")
           if (start.down[27]) {
-            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
+            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
             if ($(".shortcuts").hasClass(start.s)) start.shortcuts();
           }
         }
@@ -363,7 +363,7 @@
           };
           const kc = Object.keys(keys_mapped).find(key => start.down[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
-          if (!$(".container__overflow").hasClass("fullscreen")) {
+          if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           }
         }
@@ -402,8 +402,21 @@
     // Toggle Help Menu
     help_toggle: () => {
       $(document).on(start.t, event => {
-        if (!$(event.target).closest('.shortcuts__inner').length && $(".shortcuts").hasClass(start.s)) {
+        if (!$(event.target).closest(".shortcuts__inner").length && $(".shortcuts").hasClass(start.s)) {
           start.shortcuts();
+        }
+      });
+    },
+
+    // Toggle Video Fullscreen on Click
+    fullscreen_toggle: () => {
+      $(document).on(start.t, event => {
+        const t = $(".video-links .feed-container.fullscreen .feed-list");
+        // console.log($(event.target).closest(t.length && $(".feed-container").hasClass("fullscreen")));
+        if ($(".feed-container").hasClass("fullscreen")) {
+          if (t.is(event.target) && t.has(event.target).length > 0) return;
+          console.log(event.target);
+          start.video_fullscreen();
         }
       });
     },
@@ -672,7 +685,7 @@
             start.play_video();
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
-            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
+            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
             if (!$(".feed-links").hasClass("video-links")) start.video = false;
           }
           if (event.data === YT.PlayerState.PAUSED) {
@@ -695,7 +708,7 @@
             start.timer = {};
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
-            if ($(".container__overflow").hasClass("fullscreen")) start.video_fullscreen();
+            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
             start.vaa = false;
           }
           if (event.data === YT.PlayerState.PAUSED) {
@@ -863,12 +876,13 @@
 
     // Video: Fullscreen Toggle
     video_fullscreen: function () {
-      const v = $(".video-links .feed-list, .container__overflow"),
+      const v = $(".video-links .feed-list, .feed-container, .container__overflow"),
         vl = $(".video-links"),
         fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
       setTimeout(() => { v.toggleClass("fullscreen") }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
+      start.fullscreen_toggle();
       start.notify(`Video <span>${fs}</span>`);
     },
 
