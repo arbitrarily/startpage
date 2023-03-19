@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.6",
+    v: "1.22.7",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -328,8 +328,10 @@
           if (start.down[78]) start.log_wallet();
           // Refresh Background Image                     (shift + ",")
           if (start.down[188]) start.background();
-          // Refresh Background Image                     (shift + ".")
+          // Resize Feed Images                           (shift + ".")
           if (start.down[190]) start.resize_feed_images();
+          // Resize Container                             (shift + "/")
+          if (start.down[191]) start.resize_container();
           // Help Shortcuts                               (shift + "h")
           if (start.down[72]) start.shortcuts();
           // Toggle Audio Player                          (shift + "t")
@@ -857,7 +859,6 @@
         }
       });
       start.media_events();
-      console.log(start.vaa);
     },
 
     // Video: Fullscreen Toggle
@@ -1221,6 +1222,12 @@
     resize_feed_images: () => {
       $(".container__content").toggleClass("large");
       start.notify(`<span>Feed Images</span> Resized`);
+    },
+
+    // Resize Container
+    resize_container: () => {
+      $(".everything").toggleClass("fluid");
+      start.notify(`<span>Container</span> Resized`);
     },
 
     // Reset Mouse Cursor

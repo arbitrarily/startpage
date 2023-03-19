@@ -346,6 +346,7 @@ li { list-style: none; }
     width: 50px;
     height: 50px;
     padding: var(--foundation-large);
+    margin: var(--foundation-large);
     z-index: 2;
     outline: none;
     border: none;
@@ -960,6 +961,11 @@ li { list-style: none; }
         transform: translate(calc(100% / -3));
     }
 
+    .everything.fluid .container__content {
+        width: calc(100% + calc(100% / 3) + calc(0.9375rem * 26.75));
+        transform: translate(calc(100% / -3));
+    }
+
     .container__overflow.shown .container__content { transform: translate(0); }
     .container__overflow.fullscreen .container__content { transform: none; }
 
@@ -979,6 +985,6 @@ li { list-style: none; }
     .container__list { padding: 10px 0; }
 
     .container {
-        padding: calc(var(--padding) * 3) var(--padding);
+        padding: calc(var(--padding) * 4) var(--padding);
     }
 }
