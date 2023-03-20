@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.23.7", // Version Number
+    v: "1.24.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1217,6 +1217,16 @@
       $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
       if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
+      start.shortcuts_slider();
+    },
+
+    // Shortcuts Slider
+    shortcuts_slider: () => {
+      $(document).on(start.t, ".shortcuts__menu li", function() {
+        const target = $(this);
+        target.toggleClass("active").siblings().removeClass("active");
+        $(".shortcuts__feed-container").css("transform", `translateX(-${target.data("id") * (100 / 3)}%`);
+      });
     },
 
     // Resize Feed Images

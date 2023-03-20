@@ -997,6 +997,49 @@ li {
 
 .shortcuts li {
     margin-bottom: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.shortcuts__menu {
+    display: flex;
+}
+
+.shortcuts__menu li {
+    background: var(--grey);
+    box-shadow: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    border-radius: 8px;
+    padding: var(--foundation) calc(var(--foundation) * 1.5) calc(var(--foundation) * 0.8);
+    opacity: var(--opacity-end);
+    margin-right: var(--foundation);
+    line-height: 1;
+}
+
+.shortcuts__menu li.active {
+    background: var(--gruy);
+}
+
+.shortcuts__menu li:hover {
+    background: var(--gray);
+}
+
+.shortcuts__feed-container {
+    display: flex;
+    width: 300%;
+}
+
+.shortcuts__feed {
+    width: calc(100% / 3);
+    max-height: 600px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.shortcuts__feed-grid-container {
+    overflow: hidden;
 }
 
 /* Small screens */

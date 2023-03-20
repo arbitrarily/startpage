@@ -22,82 +22,447 @@
 	<body class="vaal">
 		<div class="shortcuts">
 			<div class="shortcuts__inner">
-				<div class="grid-container">
-					<div class="grid-x">
-						<div class="cell">
-							<h3>Keyboard Commands</h3>
-						</div>
+				<div class="grid-x grid-padding-x">
+					<div class="cell">
+						<h3>Keyboard Commands</h3>
+						<ul class="shortcuts__menu">
+							<li class="active" data-id="0">Startpage</li>
+							<li data-id="1">Figma</li>
+							<li data-id="2">Visual Studio Code</li>
+						</ul>
 					</div>
-					<div class="grid-x grid-padding-x">
-						<div class="cell small-12 large-auto">
-							<h4>Feeds <kbd>Shift</kbd></h4>
-							<ul>
-								<li><kbd>left arrow</kbd> toggle feed view.</li>
-								<li><kbd>right arrow</kbd> toggle feed view.</li>
-								<li><kbd>Shift</kbd> + <kbd>1</kbd> my <code>Instapaper</code> bookmarks.</li>
-								<li><kbd>Shift</kbd> + <kbd>2</kbd> <code>News</code> feed (aggregated news).</li>
-								<li><kbd>Shift</kbd> + <kbd>3</kbd> <code>New York Times</code> news.</li>
-								<li><kbd>Shift</kbd> + <kbd>4</kbd> <code>Reddit</code> news.</li>
-								<li><kbd>Shift</kbd> + <kbd>5</kbd> <code>Podcasts</code></li>
-								<li><kbd>Shift</kbd> + <kbd>6</kbd> <code>Music</code></li>
-								<li><kbd>Shift</kbd> + <kbd>7</kbd> <code>YouTube</code> latest videos.</li>
-								<li><kbd>Shift</kbd> + <kbd>8</kbd> my <code>Path of Exile</code> characters.</li>
-								<li><kbd>Shift</kbd> + <kbd>9</kbd> <code>Web3</code> news.</li>
-								<li><kbd>Shift</kbd> + <kbd>0</kbd> <code>Developer</code> news.</li>
-								<li><kbd>Shift</kbd> + <kbd>-</kbd> <code>Lexichronic</code> news.</li>
-								<li><kbd>Shift</kbd> + <kbd>=</kbd> <code>NFT collection</code>.</li>
-							</ul>
+				</div>
+				<div class="shortcuts__feed-grid-container">
+					<div class="shortcuts__feed-container">
+						<div class="grid-x shortcuts__feed">
+							<div class="cell">
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Feeds <kbd>Shft</kbd></h4>
+										<ul>
+											<li><span>Toggle feed view</span><kbd>left arrow</kbd></li>
+											<li><span>Toggle feed view</span><kbd>right arrow</kbd></li>
+											<li><span>Instapaper bookmarks</span><div><kbd>Shft</kbd> + <kbd>1</kbd></div></li>
+											<li><span>News feed (aggregated news)</span><div><kbd>Shft</kbd> + <kbd>2</kbd></div></li>
+											<li><span>New York Times news</span><div><kbd>Shft</kbd> + <kbd>3</kbd></div></li>
+											<li><span>Reddit news</span><div><kbd>Shft</kbd> + <kbd>4</kbd></div></li>
+											<li><span>Podcasts</span><div><kbd>Shft</kbd> + <kbd>5</kbd></div></li>
+											<li><span>Music</span><div><kbd>Shft</kbd> + <kbd>6</kbd></div></li>
+											<li><span>YouTube latest videos</span><div><kbd>Shft</kbd> + <kbd>7</kbd></div></li>
+											<li><span>My Path of Exile characters</span><div><kbd>Shft</kbd> + <kbd>8</kbd></div></li>
+											<li><span>Web3 news</span><div><kbd>Shft</kbd> + <kbd>9</kbd></div></li>
+											<li><span>Developer news</span><div><kbd>Shft</kbd> + <kbd>0</kbd></div></li>
+											<li><span>Lexichronic news</span><div><kbd>Shft</kbd> + <kbd>-</kbd></div></li>
+											<li><span>NFT collection</span><div><kbd>Shft</kbd> + <kbd>=</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Media Controls <kbd>Shft</kbd></h4>
+										<ul>
+											<li><span>increase audio speed</span><div><kbd>Shft</kbd> + <kbd>Up</kbd></div></li>
+											<li><span>decrease audio speed</span><div><kbd>Shft</kbd> + <kbd>Down</kbd></div></li>
+											<li><span>fast forward <code>15</code> seconds</span><div><kbd>Shft</kbd> + <kbd>Right</kbd></div></li>
+											<li><span>rewind <code>5</code> seconds</span><div><kbd>Shft</kbd> + <kbd>Left</kbd></div></li>
+											<li><span>play/pause</span><div><kbd>Shft</kbd> + <kbd>space</kbd></div></li>
+											<li><span>mute audio</span><div><kbd>Shft</kbd> + <kbd>m</kbd></div></li>
+											<li><span>audio volume</span><div><kbd>Shft</kbd> + <kbd>v</kbd></div></li>
+											<li><span>play one random song</span><div><kbd>Shft</kbd> + <kbd>f12</kbd></div></li>
+											<li><span>play shuffled playlist</span><div><kbd>Shft</kbd> + <kbd>f11</kbd></div></li>
+											<li><span>play limited shuffled playlist</span><div><kbd>Shft</kbd> + <kbd>f10</kbd></div></li>
+											<li><span>play 5 hours of ambience</span><div><kbd>Shft</kbd> + <kbd>f9</kbd></div></li>
+											<li><span>skip song</span><div><kbd>Shft</kbd> + <kbd>s</kbd></div></li>
+											<li><span>fullscreen video</span><div><kbd>Shft</kbd> + <kbd>f</kbd></div></li>
+											<li><span>change music player</span><div><kbd>Shft</kbd> + <kbd>t</kbd></div></li>
+											<li><span>exit fullscreen video.</span><div><kbd>esc</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Search Toggles <kbd>Opt</kbd></h4>
+										<ul>
+											<li><span><code>PoE Wiki</code></span><div><kbd>Opt</kbd> + <kbd>1</kbd></div></li>
+											<li><span><code>YouTube</code></span><div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
+											<li><span><code>DuckDuckGo</code></span><div><kbd>Opt</kbd> + <kbd>3</kbd></div></li>
+											<li><span><code>Apple Music</code></span><div><kbd>Opt</kbd> + <kbd>4</kbd></div></li>
+											<li><span><code>LastFM</code></span><div><kbd>Opt</kbd> + <kbd>5</kbd></div></li>
+											<li><span><code>Twitter</code></span><div><kbd>Opt</kbd> + <kbd>6</kbd></div></li>
+											<li><span><code>Google News</code></span><div><kbd>Opt</kbd> + <kbd>7</kbd></div></li>
+											<li><span><code>Github</code></span><div><kbd>Opt</kbd> + <kbd>8</kbd></div></li>
+											<li><span><code>Google</code></span><div><kbd>Opt</kbd> + <kbd>9</kbd></div></li>
+											<li><span><code>MidJourney</code></span><div><kbd>Opt</kbd> + <kbd>0</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Settings <kbd>Shft</kbd> <em>resets on refresh</em></h4>
+										<ul>
+											<li><span>Main Menu toggles</span><div><kbd>Shft</kbd> + <kbd>z</kbd></div></li>
+											<li><span>Fetch LastFM data</span><div><kbd>Shft</kbd> + <kbd>x</kbd></div></li>
+											<li><span>Change background image</span><div><kbd>Shft</kbd> + <kbd>c</kbd></div></li>
+											<li><span>Deblur background</span><div><kbd>Shft</kbd> + <kbd>b</kbd></div></li>
+											<li><span>Wallet stats logged</span><div><kbd>Shft</kbd> + <kbd>n</kbd></div></li>
+											<li><span>Toggle resized feed images</span><div><kbd>Shft</kbd> + <kbd>.</kbd> </div></li>
+											<li><span>Toggle resized container</span><div><kbd>Shft</kbd> + <kbd>/</kbd> </div></li>
+											<li><span>Help shortcuts menu</span><div><kbd>Shft</kbd> + <kbd>h</kbd></div></li>
+											<li><span>Toggle custom cursor</span><div><kbd>Shft</kbd> + <kbd>Backspace</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="cell small-12 large-auto">
-							<h4>Media Controls <kbd>Shift</kbd></h4>
-							<ul>
-								<li><kbd>Shift</kbd> + <kbd>Up</kbd> increase audio speed.</li>
-								<li><kbd>Shift</kbd> + <kbd>Down</kbd> decrease audio speed.</li>
-								<li><kbd>Shift</kbd> + <kbd>Right</kbd> fast forward <code>15</code> seconds.</li>
-								<li><kbd>Shift</kbd> + <kbd>Left</kbd> rewind <code>5</code> seconds.</li>
-								<li><kbd>Shift</kbd> + <kbd>space</kbd> play/pause.</li>
-								<li><kbd>Shift</kbd> + <kbd>m</kbd> mute audio.</li>
-								<li><kbd>Shift</kbd> + <kbd>v</kbd> audio volume.</li>
-								<li><kbd>Shift</kbd> + <kbd>f12</kbd> play one random song.</li>
-								<li><kbd>Shift</kbd> + <kbd>f11</kbd> play shuffled playlist.</li>
-								<li><kbd>Shift</kbd> + <kbd>f10</kbd> play limited shuffled playlist.</li>
-								<li><kbd>Shift</kbd> + <kbd>f9</kbd> play 5 hours of ambience.</li>
-								<li><kbd>Shift</kbd> + <kbd>s</kbd> skip song.</li>
-								<li><kbd>Shift</kbd> + <kbd>f</kbd> fullscreen video.</li>
-								<li><kbd>Shift</kbd> + <kbd>t</kbd> change music player.</li>
-								<li><kbd>esc</kbd> exit fullscreen video.</li>
-							</ul>
+						<div class="grid-x shortcuts__feed">
+							<div class="cell">
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Essentials</h4>
+										<ul>
+											<li><span>Show / Hide UI</span><div><kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
+											<li><span>Pick color</span><div><kbd>⌃</kbd> + <kbd>C</kbd></div></li>
+											<li><span>Quick actions</span><div><kbd>Cmd</kbd> + <kbd>/</kbd> or <kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
+											<li><span>Fullscreen</span><kbd>F</kbd></li>
+											<li><span>Scale view</span><kbd>Z</kbd></li>
+											<li><span>Restart prototype</span><kbd>R</kbd></li>
+											<li><span>Comment</span><kbd>C</kbd></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Tools</h4>
+										<ul>
+											<li><span>Move tool</span>
+												<div><kbd>V</kbd></div>
+											</li>
+											<li><span>Frame tool</span>
+												<div><kbd>F</kbd></div>
+											</li>
+											<li><span>Pen tool</span>
+												<div><kbd>P</kbd></div>
+											</li>
+											<li><span>Pencil tool</span>
+												<div><kbd>Shft</kbd> + <kbd>P</kbd></div>
+											</li>
+											<li><span>Text tool</span>
+												<div><kbd>T</kbd></div>
+											</li>
+											<li><span>Rectangle tool</span>
+												<div><kbd>R</kbd></div>
+											</li>
+											<li><span>Ellipse tool</span>
+												<div><kbd>O</kbd></div>
+											</li>
+											<li><span>Line tool</span>
+												<div><kbd>L</kbd></div>
+											</li>
+											<li><span>Arrow tool</span>
+												<div><kbd>Shft</kbd> + <kbd>L</kbd></div>
+											</li>
+											<li><span>Add comment</span>
+												<div><kbd>C</kbd></div>
+											</li>
+											<li><span>Pick color</span>
+												<div><kbd>⌃</kbd> + <kbd>C</kbd></div>
+											</li>
+											<li><span>Slice tool</span>
+												<div><kbd>S</kbd></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>View</h4>
+										<ul>
+											<li><span>Show / Hide UI</span><div><kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
+											<li><span>Multiplayer cursors</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
+											<li><span>Rulers</span><div><kbd>Shft</kbd> + <kbd>R</kbd></div></li>
+											<li><span>Outlines</span><div><kbd>Shft</kbd> + <kbd>O</kbd></div></li>
+											<li><span>Pixel preview</span><div><kbd>Cmd</kbd> + <kbd>Shft</kbd> + <kbd>P</kbd></div></li>
+											<li><span>Layout grids</span><div><kbd>Shft</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Pixel grid</span><div><kbd>Shft</kbd> + <kbd>`</kbd></div></li>
+											<li><span>Open layers panel</span><div><kbd>Opt</kbd> + <kbd>1</kbd></div></li>
+											<li><span>Open assets panel</span><div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
+											<li><span>Open design panel</span><div><kbd>Opt</kbd> + <kbd>8</kbd></div></li>
+											<li><span>Open prototype panel</span><div><kbd>Opt</kbd> + <kbd>9</kbd></div></li>
+											<li><span>Open inspect panel</span><div><kbd>Opt</kbd> + <kbd>0</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Zoom</h4>
+										<ul>
+											<li><span>Zoom</span><div><kbd>Space</kbd> drag</div></li>
+											<li><span>Zoom in</span><div><kbd>+</kbd></div></li>
+											<li><span>Zoom out</span><div><kbd>-</kbd></div></li>
+											<li><span>Zoom to 100%</span><div><kbd>Shft</kbd> + <kbd>0</kbd></div></li>
+											<li><span>Zoom to fit</span><div><kbd>Shft</kbd> + <kbd>1</kbd></div></li>
+											<li><span>Zoom to selection</span><div><kbd>Shft</kbd> + <kbd>2</kbd></div></li>
+											<li><span>Zoom to previous frame</span><div><kbd>Shft</kbd> + <kbd>N</kbd></div></li>
+											<li><span>Zoom to next frame</span><div><kbd>N</kbd></div></li>
+											<li><span>Previous page</span><div><kbd>Page Up</kbd></div></li>
+											<li><span>Next page</span><div><kbd>Page Down</kbd></div></li>
+											<li><span>Find previous frame</span><div><kbd>Home</kbd></div></li>
+											<li><span>Find next frame</span><div><kbd>End</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Text</h4>
+										<ul>
+											<li><span>Bold</span><div><kbd>Cmd</kbd> + <kbd>B</kbd></div></li>
+											<li><span>Italic</span><div><kbd>Cmd</kbd> + <kbd>I</kbd></div></li>
+											<li><span>Underline</span><div><kbd>Cmd</kbd> + <kbd>U</kbd></div></li>
+											<li><span>Create link</span><div><kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
+											<li><span>Strikethrough</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>X</kbd></div></li>
+											<li><span>Turn into a list</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>7</kbd></div></li>
+											<li><span>Text align left</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div></li>
+											<li><span>Text align center</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>T</kbd></div></li>
+											<li><span>Text align right</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>R</kbd></div></li>
+											<li><span>Text align justified</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
+											<li><span>Adjust font size</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div></li>
+											<li><span>Adjust font weight</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div></li>
+											<li><span>Adjust letter spacing</span><div><kbd>Opt</kbd> + <kbd>&gt;</kbd></div></li>
+											<li><span>Adjust line height</span><div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>&gt;</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Shape</h4>
+										<ul>
+											<li><span>Pen</span><div><kbd>P</kbd></div></li>
+											<li><span>Pencil</span><div><kbd>Shft</kbd> + <kbd>P</kbd></div></li>
+											<li><span>Paint bucket</span><div><kbd>B</kbd></div></li>
+											<li><span>Bend tool</span><div><kbd>Cmd</kbd></div></li>
+											<li><span>Remove fill</span><div><kbd>Opt</kbd> + <kbd>/</kbd></div></li>
+											<li><span>Remove stroke</span><div><kbd>/</kbd></div></li>
+											<li><span>Swap fill and stroke</span><div><kbd>Shft</kbd> + <kbd>X</kbd></div></li>
+											<li><span>Outline stroke</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
+											<li><span>Flatten selection</span><div><kbd>Cmd</kbd> + <kbd>E</kbd></div></li>
+											<li><span>Join selection</span><div><kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
+											<li><span>Smooth join selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
+											<li><span>Delete and heal selection</span><div><kbd>Shft</kbd> + <kbd>Delete</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Selection</h4>
+										<ul>
+											<li><span>Select all</span><div><kbd>Cmd</kbd> + <kbd>A</kbd></div></li>
+											<li><span>Select inverse</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>A</kbd></div></li>
+											<li><span>Select none</span><div><kbd>Esc</kbd></div></li>
+											<li><span>Deep select</span><div><kbd>Cmd</kbd> + Click</div></li>
+											<li><span>Select layer menu</span><div><kbd>Cmd</kbd> + right-click</div></li>
+											<li><span>Select children</span><div><kbd>Return</kbd></div></li>
+											<li><span>Select parent</span><div><kbd>Shft</kbd> + <kbd>Return</kbd></div></li>
+											<li><span>Select next sibling</span><div><kbd>Tab</kbd></div></li>
+											<li><span>Select previous sibling</span><div><kbd>Shft</kbd> + <kbd>Tab</kbd></div></li>
+											<li><span>Group selections</span><div><kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Ungroup selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Frame selection</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Show / Hide selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>H</kbd></div></li>
+											<li><span>Lock / Unlock selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Cursor</h4>
+										<ul>
+											<li>
+												<span>Description</span>
+												<div><kbd>Opt</kbd></div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Opt</kbd></div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Cmd</kbd> + Click</div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Cmd</kbd> + Right-click</div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Cmd</kbd> + Drag</div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Opt</kbd></div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Shft</kbd></div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Space</kbd></div>
+											</li>
+											<li>
+												<span>Description</span>
+												<div><kbd>Cmd</kbd></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Edit</h4>
+										<ul>
+												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
+												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>X</kbd></div></li>
+												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
+												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
+												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>D</kbd></div></li>
+												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>R</kbd></div></li>
+												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>E</kbd></div></li>
+												<li><span>Description</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
+												<li><span>Description</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
+												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Transform</h4>
+										<ul>
+											<li><span>Flip horizontal</span><div><kbd>Shft</kbd> + <kbd>H</kbd></div></li>
+											<li><span>Flip vertical</span><div><kbd>Shft</kbd> + <kbd>V</kbd></div></li>
+											<li><span>Use a mask</span><div><kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div></li>
+											<li><span>Edit shape or image</span><div><kbd>Return</kbd></div></li>
+											<li><span>Place image</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
+											<li><span>Crop image</span><div><kbd>Opt</kbd> Double-click</div></li>
+											<li><span>Set opacity to 10</span><div><kbd>1</kbd></div></li>
+											<li><span>Set opacity to 50</span><div><kbd>5</kbd></div></li>
+											<li><span>Set opacity to 100</span><div><kbd>0</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Arrange</h4>
+										<ul>
+											<li><span>Bring forward</span><div><kbd>Cmd</kbd> + <kbd>]</kbd></div></li>
+											<li><span>Send backward</span><div><kbd>Cmd</kbd> + <kbd>[</kbd></div></li>
+											<li><span>Bring to front</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div></li>
+											<li><span>Send to back</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>]</kbd></div></li>
+											<li><span>Align left</span><div><kbd>Opt</kbd> + <kbd>A</kbd></div></li>
+											<li><span>Align right</span><div><kbd>Opt</kbd> + <kbd>D</kbd></div></li>
+											<li><span>Align top</span><div><kbd>Opt</kbd> + <kbd>W</kbd></div></li>
+											<li><span>Align bottom</span><div><kbd>Opt</kbd> + <kbd>S</kbd></div></li>
+											<li><span>Align centers</span><div><kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div></li>
+											<li><span>Distribute spacing</span><div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div></li>
+											<li><span>Tidy up</span><div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>T</kbd></div></li>
+											<li><span>Add auto layout</span><div><kbd>Shft</kbd> + <kbd>A</kbd></div></li>
+											<li><span>Remove auto layout</span><div><kbd>Opt</kbd> + <kbd>Shft</kbd> + <kbd>A</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Components</h4>
+										<ul>
+											<li>Show assets<div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
+											<li>Team library<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
+											<li>Create component<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
+											<li>Detach instance<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>B</kbd></div></li>
+											<li>Swap component instance<div><kbd>Opt</kbd> + <kbd>Shft</kbd></div></li>
+											<li>Show components menu<div><kbd>Shft</kbd> + <kbd>I</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="grid-x grid-padding-x">
-						<div class="cell small-12 large-auto">
-							<h4>Search Toggles <kbd>Option</kbd></h4>
-							<ul>
-								<li><kbd>Option</kbd> + <kbd>1</kbd> <code>PoE Wiki</code></li>
-								<li><kbd>Option</kbd> + <kbd>2</kbd> <code>YouTube</code></li>
-								<li><kbd>Option</kbd> + <kbd>3</kbd> <code>DuckDuckGo</code></li>
-								<li><kbd>Option</kbd> + <kbd>4</kbd> <code>Apple Music</code></li>
-								<li><kbd>Option</kbd> + <kbd>5</kbd> <code>LastFM</code></li>
-								<li><kbd>Option</kbd> + <kbd>6</kbd> <code>Twitter</code></li>
-								<li><kbd>Option</kbd> + <kbd>7</kbd> <code>Google News</code></li>
-								<li><kbd>Option</kbd> + <kbd>8</kbd> <code>Github</code></li>
-								<li><kbd>Option</kbd> + <kbd>9</kbd> <code>Google</code></li>
-								<li><kbd>Option</kbd> + <kbd>0</kbd> <code>MidJourney</code></li>
-							</ul>
-						</div>
-						<div class="cell small-12 large-auto">
-							<h4>Settings <kbd>Shift</kbd> <em>resets on refresh</em></h4>
-							<ul>
-								<li><kbd>Shift</kbd> + <kbd>z</kbd> <code>Main Menu</code> toggles.</li>
-								<li><kbd>Shift</kbd> + <kbd>x</kbd> fetch <code>LastFM</code> data.</li>
-								<li><kbd>Shift</kbd> + <kbd>c</kbd> change <code>background image</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>b</kbd> blur <code>background</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>n</kbd> <code>Wallet</code> stats logged.</li>
-								<li><kbd>Shift</kbd> + <kbd>.</kbd> toggle <code>resized feed images</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>/</kbd> toggle <code>resized container</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>h</kbd> help <code>shortcuts menu</code>.</li>
-								<li><kbd>Shift</kbd> + <kbd>Backspace</kbd> toggle custom cursor.</li>
-							</ul>
+						<div class="grid-x shortcuts__feed">
+							<div class="cell">
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>General</h4>
+										<ul>
+											<li><span>Show Command Palette</span><div><kbd>Shift</kbd> + <kbd>Cmd</kbd> + <kbd>P</kbd>/div></li>
+											<li><span>Quick Open, Go to File…</span><div><kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
+											<li><span>New window/instance</span><div><kbd>Shift</kbd> + <kbd>Cmd</kbd> + <kbd>N</kbd></div></li>
+											<li><span>Close window/instance</span><div><kbd>Cmd</kbd> + <kbd>W</kbd></div></li>
+											<li><span>User Settings</span><div><kbd>Cmd</kbd> + <kbd>,</kbd></div></li>
+											<li><span>Keyboard Shortcuts</span><div><kbd>Cmd</kbd> + <kbd>Opt</kbd> + <kbd>K</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Basic editing</h4>
+										<ul>
+											<li><span>Cut line (empty selection)</span>
+												<div><kbd>Cmd</kbd> + <kbd>X</kbd></div>
+											</li>
+											<li><span>Copy line (empty selection)</span>
+												<div><kbd>Cmd</kbd> + <kbd>C</kbd></div>
+											</li>
+											<li><span>Move line down/up</span>
+												<div><kbd>Opt</kbd> + <kbd>↓</kbd> / <kbd>Opt</kbd> + <kbd>↑</kbd></div>
+											</li>
+											<li><span>Copy line down/up</span>
+												<div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>↓</kbd> or <kbd>↑</kbd></div>
+											</li>
+											<li><span>Delete line</span>
+												<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div>
+											</li>
+											<li><span>Insert line below/above</span>
+												<div><kbd>Cmd</kbd> + <kbd>↩</kbd></div>
+											</li>
+											<li><span>Jump to matching bracket</span>
+												<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div>
+											</li>
+											<li><span>Indent/outdent line</span>
+												<div><kbd>Cmd</kbd> + <kbd>]</kbd> or <kbd>[</kbd></div>
+											</li>
+											<li><span>Go to beginning/end of line</span>
+												<div><kbd>Home</kbd> or <kbd>End</kbd></div>
+											</li>
+											<li><span>Go to beginning/end of file</span>
+												<div><kbd>Cmd</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></div>
+											</li>
+											<li><span>Scroll line up/down</span>
+												<div><kbd>Ctrl</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
+											</li>
+											<li><span>Scroll page up/down</span>
+												<div><kbd>Cmd</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
+											</li>
+											<li><span>Fold/unfold region</span>
+												<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
+											</li>
+											<li><span>Fold/unfold all subregions</span>
+												<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
+											</li>
+											<li><span>Fold/unfold all regions</span>
+												<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>0</kbd></div>
+											</li>
+											<li><span>Toggle word wrap</span>
+												<div><kbd>Opt</kbd> + <kbd>Z</kbd></div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="grid-x grid-padding-x">
+									<div class="cell small-12 large-auto">
+										<h4>Navigation</h4>
+										<ul>
+											<li><span>Show all Symbols</span><div><kbd>Cmd</kbd> + <kbd>T</kbd></div></li>
+											<li><span>Go to Line...</span><div><kbd>Ctrl</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Go to File...</span><div><kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
+											<li><span>Go to Symbol...</span><div><kbd>Shift</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
+											<li><span>Show Problems</span><div><kbd>Shift</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div></li>
+											<li><span>Go to next error</span><div><kbd>F8</kbd></div></li>
+											<li><span>Navigate history</span><div><kbd>Ctrl</kbd> + <kbd>-</kbd> or <kbd>-</kbd></div></li>
+											<li><span>Go back/forward</span><div><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd></div></li>
+											<li><span>Toggle Tab moves focus</span><div><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd></div></li>
+										</ul>
+									</div>
+									<div class="cell small-12 large-auto">
+										<h4>Search and replace</h4>
+										<ul>
+											<li><span>Find</span><div><kbd>Cmd</kbd> + <kbd>F</kbd></div></li>
+											<li><span>Replace</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>F</kbd></div></li>
+											<li><span>Find next/previous</span><div><kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Select all Find match</span><div><kbd>Shift</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
+											<li><span>Add to next Find</span><div><kbd>Opt</kbd> + <kbd>Return</kbd></div></li>
+											<li><span>Find next match</span><div><kbd>Cmd</kbd> + <kbd>D</kbd></div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
