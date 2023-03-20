@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.9",
+    v: "1.22.11",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -220,7 +220,6 @@
       this.bye();
 
       // Add Event Listeners
-      this.media_events();
       this.timer_media_toggle();
 
       // IP
@@ -608,7 +607,7 @@
           .catch(err => $(".feed-links").addClass(start.s));
       }
       start.fc = false;
-      if (!$(".feed-links").hasClass("video-links")) start.video = false;
+      if (!$(".feed-links").hasClass("video-links") && start.video) start.video.pauseVideo();
     },
 
     // Instapaper Home Feed
@@ -672,25 +671,23 @@
       });
       start.audio.addEventListener("ended", () => {
         start.media_stop();
-        start.media_events();
         start.notify("<span>Finished</span> Playing");
       });
       // Video Events
       if (start.video) {
         start.video.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
-            start.timer = {};
             start.play_video();
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            if (!$(".feed-links").hasClass("video-links")) start.video = false;
+            if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
           }
           if (event.data === YT.PlayerState.PAUSED) {
             start.notify("Paused");
             $(".podcasts img").attr("src", "icons/icon__pause.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-            if (!$(".feed-links").hasClass("video-links")) start.video = false;
+            if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
           }
           if (event.data === YT.PlayerState.PLAYING) {
             start.notify("<span>Now</span> Playing");
@@ -703,17 +700,16 @@
       if (start.vaa) {
         start.vaa.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
-            start.timer = {};
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            start.vaa = false;
+            start.vaa.stopVideo();
           }
           if (event.data === YT.PlayerState.PAUSED) {
             start.notify("Paused");
             $(".podcasts img").attr("src", "icons/icon__pause.svg");
             $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-            // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa = false;
+            // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa.pauseVideo();
           }
           if (event.data === YT.PlayerState.PLAYING) {
             start.notify("<span>Now</span> Playing");
@@ -726,24 +722,24 @@
 
     // Media: Reset Timer & Progress Bar
     media_ended: () => {
-      start.timer = {};
       $(".podcasts").removeClass(start.s);
       $(".progress").css('width', '0%');
       $("#search").removeClass("full");
-      $(".podcasts-replace").text('0:00');
+      setTimeout(() => {
+        $(".podcasts-replace").text('0:00');
+      }, start.at * 2);
     },
 
     // Media: Stop
     media_stop: () => {
-      if (start.video) start.video = false;
-      if (start.vaa) start.vaa = false;
+      if (start.video) start.video.pauseVideo();
+      if (start.vaa) start.vaa.stopVideo();
       if (!start.audio.paused) {
         start.audio.pause();
         start.audio.src = "";
         start.audio = new Audio();
       }
       start.media_ended();
-      start.media_events();
     },
 
     // Media: Pause
@@ -759,7 +755,6 @@
 
     // Media: Play
     media_play: () => {
-      // TODO: THESE SHOULD PAUSE EACH OTHER
       if (start.video && start.video === YT.PlayerState.PAUSED) {
         start.video.playVideo();
       }
@@ -770,9 +765,11 @@
       if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
     },
 
-
     // Media: Timer
     media_timer: () => {
+      // Start Events
+      start.media_events();
+      // Timer
       let elapsed = 0;
       let tr = 0;
       setInterval(() => {
@@ -793,12 +790,12 @@
             tr = elapsed > 0 ? elapsed : 0;
             start.pb = (start.audio.currentTime / start.audio.duration).toFixed(3);
           }
+          // Update Time
           start.timer = {
             minutes: Math.floor(tr / 60),
             seconds: Math.floor(tr % 60),
             padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
           }
-          // Update Time
           if (start.timer.seconds && last_second > start.timer.seconds) {
             if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
             $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
@@ -844,7 +841,6 @@
           'onReady': start.media_timer,
         }
       });
-      start.media_events();
     },
 
     // Start YouTube Video as Audio
@@ -869,7 +865,6 @@
           'onReady': start.media_timer
         }
       });
-      start.media_events();
     },
 
     // Video: Fullscreen Toggle
@@ -966,7 +961,7 @@
       }
     },
 
-    // Audio: Play X Playlist via Prompt
+    // Audio: Play Playlist via Prompt
     play_playlist_input: () => {
       let num;
       do {
@@ -986,6 +981,7 @@
         if (!targets.hasClass(start.s)) targets.addClass(start.s);
         start.media_stop();
         start.video_start(that.data("id"));
+        start.media_timer();
         const vid_data = {
           id: that.data("id"),
           name: that.data("title"),
@@ -993,7 +989,7 @@
           artist: that.data("feed"),
           image: that.find("img").attr("src"),
           link: that.attr("href")
-        }
+        };
         start.now_playing(vid_data, vid_data.name);
       });
     },
@@ -1057,14 +1053,25 @@
         search = $("#search"),
         placeholder = search.attr("placeholder"),
         vol = slider.find("input.volume");
+      const media_playing = !start.audio.paused ||
+        start.video && start.video.getPlayerState() === 1 ||
+        start.vaa && start.vaa.getPlayerState() === 1;
       let locked = true;
-      if (locked && !start.audio.paused && !slider.hasClass(start.s)) {
+      if (locked && media_playing && !slider.hasClass(start.s)) {
         slider.addClass(start.s);
         search.attr("placeholder", vol.val());
         vol.on("input", () => {
-          start.audio.volume = vol.val() / 100;
-          vol.value = start.audio.volume * 100;
-          search.attr("placeholder", (start.audio.volume * 100).toFixed(0));
+          if (!start.audio.paused) {
+            start.audio.volume = vol.val() / 100;
+            vol.value = start.audio.volume * 100;
+          } else if (start.video && start.video.getPlayerState() === 1) {
+            start.video.setVolume(vol.val());
+            vol.value = start.video.getVolume();
+          } else if (start.vaa && start.vaa.getPlayerState() === 1) {
+            start.vaa.setVolume(vol.val());
+            vol.value = start.vaa.getVolume();
+          }
+          search.attr("placeholder", vol.val());
           vol.on("mouseup", () => {
             setTimeout(() => {
               slider.removeClass(start.s);
