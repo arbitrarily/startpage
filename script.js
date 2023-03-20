@@ -2,30 +2,30 @@
   "use strict";
 
   var start = {
-    v: "1.22.13", // Version Number
-    t: "onontouchend" in document.documentElement ? "ontouchend" : "click", // Touch Events
-    at: 333, // Animation Time
-    down: {}, // Keyboard Variable
-    c: false, // Config
-    timer: {}, // Timer Count
-    count: false, //
-    fc: false, // Feed Count
-    pb: 0, // Progress Bar
-    pll: 0,// Playlist Length
-    pj: false, // Playlist Content,
-    cache: {}, // Cached HTML
-    pv: false, // Pageviews
-    balance: false, // Wallet Balance,
-    au: false, // Art URL
     an: false, // Art Number
-    video: false, // Video,
-    vaa: false, // Video as Audio
+    as: false, // Audio Source
+    at: 333, // Animation Time
     audio: new Audio(), // Audio
-    as: false, // Audio Souce
-    nc: false, // NFT Collection
-    mh: $(".menu-links-source").html(), // Menu HTML
-    s: "shown", // Shared Class Names
+    au: false, // Art URL
+    balance: false, // Wallet Balance
+    cache: {}, // Cached HTML
+    c: false, // Config
+    count: false, //
+    d: {}, // Keyboard Variable
+    fc: false, // Feed Count
     h: "hidden", // Shared Class Names
+    mh: $(".menu-links-source").html(), // Menu HTML
+    nc: false, // NFT Collection
+    pb: 0, // Progress Bar
+    pj: false, // Playlist Content
+    pll: 0, // Playlist Length
+    pv: false, // Pageviews
+    s: "shown", // Shared Class Names
+    t: "ontouchend" in document.documentElement || "click", // Touch Events
+    timer: {}, // Timer Count
+    v: "1.22.14", // Version Number
+    vaa: false, // Video as Audio
+    video: false, // Video
 
     // Search Inputs
     searches: [
@@ -186,9 +186,9 @@
     key_listener: () => {
       $(document).keydown(e => {
         // Key Down
-        start.down[e.keyCode] = true;
+        start.d[e.keyCode] = true;
         // Left Shift
-        if (start.down[16]) {
+        if (start.d[16]) {
           e.preventDefault();
           // Switch Feed Source
           const keys_map = {
@@ -205,71 +205,71 @@
             173: 9, // Lexichronic                        (shift + "-")
             61: 10, // NFTs                               (shift + "=")
           };
-          const kcc = Object.keys(keys_map).find(key => start.down[key]);
+          const kcc = Object.keys(keys_map).find(key => start.d[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
           if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
           // Audio: Fast Forward                          (shift + ⏩)
-          if (start.down[39]) start.audio_ff();
+          if (start.d[39]) start.audio_ff();
           // Audio: Rewind                                (shift + ⏪)
-          if (start.down[37]) start.audio_rewind();
+          if (start.d[37]) start.audio_rewind();
           // Audio: Increased Playback Speed              (shift + ⏫)
-          if (start.down[38]) start.audio_more_speed();
+          if (start.d[38]) start.audio_more_speed();
           // Audio: Decreased Playback Speed              (shift + ⏬)
-          if (start.down[40]) start.audio_less_speed();
+          if (start.d[40]) start.audio_less_speed();
           // Audio: Play/Pause                            (shift + "space")
-          if (start.down[32]) start.media_toggle();
+          if (start.d[32]) start.media_toggle();
           // Audio: Mute                                  (shift + "m")
-          if (start.down[77]) start.audio_mute();
+          if (start.d[77]) start.audio_mute();
           // Audio: Volume                                (shift + "v")
-          if (start.down[86]) start.audio_volume();
+          if (start.d[86]) start.audio_volume();
           // Video: Fullscreen Toggle                     (shift + "f")
-          if (start.down[70]) start.video_fullscreen();
+          if (start.d[70]) start.video_fullscreen();
           // Music: Random Song                           (shift + "f12")
-          if (start.down[123]) start.play_single();
+          if (start.d[123]) start.play_single();
           // Music: Randomized Playlist                   (shift + "f11")
-          if (start.down[122]) start.play_playlist();
+          if (start.d[122]) start.play_playlist();
           // Toggle Playlist Control Limit                (shift + "f10")
-          if (start.down[121]) start.play_playlist_input();
+          if (start.d[121]) start.play_playlist_input();
           // Toggle Cursor                                (shift + 🔙)
-          if (start.down[8]) start.cursor();
+          if (start.d[8]) start.cursor();
           // Toggle Menu                                  (shift + "z")
           if (!$(".feed-container").hasClass("fullscreen")) {
-            if (start.down[90]) start.menu();
+            if (start.d[90]) start.menu();
           }
           // Update LastFM                                (shift + "x")
-          if (start.down[88]) {
+          if (start.d[88]) {
             start.lastfm();
             start.notify("Fetched <span>Last.fm</span>");
           }
           // Change Art Source To Full Resolution         (shift + "c")
-          if (start.down[67]) start.art_source();
+          if (start.d[67]) start.art_source();
           // Blur                                         (shift + "b")
-          if (start.down[66]) start.blur();
+          if (start.d[66]) start.blur();
           // Wallet Status                                (shift + "n")
-          if (start.down[78]) start.log_wallet();
+          if (start.d[78]) start.log_wallet();
           // Refresh Background Image                     (shift + ",")
-          if (start.down[188]) start.background();
+          if (start.d[188]) start.background();
           // Resize Feed Images                           (shift + ".")
-          if (start.down[190]) start.resize_feed_images();
+          if (start.d[190]) start.resize_feed_images();
           // Resize Container                             (shift + "/")
-          if (start.down[191]) start.resize_container();
+          if (start.d[191]) start.resize_container();
           // Help Shortcuts                               (shift + "h")
-          if (start.down[72]) start.shortcuts();
+          if (start.d[72]) start.shortcuts();
           // Toggle Audio Player                          (shift + "t")
-          if (start.down[84]) start.switch_audio_source();
+          if (start.d[84]) start.switch_audio_source();
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
-          if (start.down[39] || start.down[37]) start.slide_menu();
+          if (start.d[39] || start.d[37]) start.slide_menu();
           // Close Fullscreen Video                       ("esc")
-          if (start.down[27]) {
+          if (start.d[27]) {
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
             if ($(".shortcuts").hasClass(start.s)) start.shortcuts();
           }
         }
         // Alt/Option
-        if (start.down[18]) {
+        if (start.d[18]) {
           e.preventDefault();
           // Switch Search Source
           const keys_mapped = {
@@ -284,7 +284,7 @@
             57: 8, // MidJourney                          (alt + 9️⃣)
             48: 9, // Google                              (alt + 0️⃣)
           };
-          const kc = Object.keys(keys_mapped).find(key => start.down[key]);
+          const kc = Object.keys(keys_mapped).find(key => start.d[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
           if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
@@ -292,7 +292,7 @@
         }
       }).keyup(e => {
         // Reset Key on Key Up
-        start.down[e.keyCode] = false;
+        start.d[e.keyCode] = false;
       });
     },
 
@@ -416,8 +416,7 @@
               }, start.at * 3);
             });
             const s = song["recenttracks"]["track"].map(_map_it)[0];
-            const media_playing = start.audio && !start.audio.paused || start.video && start.video.getPlayerState() === 1 || start.vaa && start.vaa.getPlayerState() === 1;
-            if (!media_playing) {
+            if (!start.media_is_playing()) {
               const song_data = {
                 id: s.id,
                 name: s.name,
@@ -591,6 +590,13 @@
       start.notify(`${msg}`);
     },
 
+    // Media: Is Any Media Playing?
+    media_is_playing: () => {
+      return !start.audio.paused ||
+        start.video && start.video.getPlayerState() === 1 ||
+        start.vaa && start.vaa.getPlayerState() === 1;
+    },
+
     // Media Based Event Listeners
     media_events: function () {
       // Audio Events
@@ -661,10 +667,8 @@
 
     // Media: Stop
     media_stop: () => {
-      if (start.video) start.video.pauseVideo();
-      if (start.vaa) start.vaa.stopVideo();
+      start.media_pause();
       if (!start.audio.paused) {
-        start.audio.pause();
         start.audio.src = "";
         start.audio = new Audio();
       }
@@ -680,18 +684,6 @@
         start.vaa.pauseVideo();
       }
       if (!start.audio.paused) start.audio.pause();
-    },
-
-    // Media: Play
-    media_play: () => {
-      if (start.video && start.video === YT.PlayerState.PAUSED) {
-        start.video.playVideo();
-      }
-      if (start.vaa && start.vaa === YT.PlayerState.PAUSED) {
-        start.vaa.playVideo();
-      }
-      if (!start.audio.paused) start.audio.play();
-      if (!$(".podcasts").hasClass(start.s)) $(".podcasts").addClass(start.s);
     },
 
     // Media: Timer
@@ -897,8 +889,8 @@
       do {
         num = prompt('How many songs?:', '');
       } while (num !== null && (isNaN(parseInt(num)) || parseInt(num) != num));
-      start.down[[16]] = false;
-      start.down[[121]] = false;
+      start.d[[16]] = false;
+      start.d[[121]] = false;
       start.play_playlist(parseInt(num));
     },
 
@@ -983,11 +975,8 @@
         search = $("#search"),
         placeholder = search.attr("placeholder"),
         vol = slider.find("input.volume");
-      const media_playing = !start.audio.paused ||
-        start.video && start.video.getPlayerState() === 1 ||
-        start.vaa && start.vaa.getPlayerState() === 1;
       let locked = true;
-      if (locked && media_playing && !slider.hasClass(start.s)) {
+      if (locked && start.media_is_playing() && !slider.hasClass(start.s)) {
         slider.addClass(start.s);
         search.attr("placeholder", vol.val());
         vol.on("input", () => {
@@ -1182,17 +1171,14 @@
     // Reset Mouse Cursor
     cursor: () => {
       $("body").toggleClass("vaal");
-      const status = ($("body").hasClass("vaal")) ? " On" : " Off";
+      const status = $("body").hasClass("vaal") ? " On" : " Off";
       start.notify(`<span>Cursor Toggled</span>${status}`);
     },
 
     // Animation on Leave & Alert Check if Media is Playing
     bye: () => {
       $(window).on("beforeunload", function () {
-        const media_playing = !start.audio.paused ||
-          start.video && start.video.getPlayerState() === 1 ||
-          start.vaa && start.vaa.getPlayerState() === 1;
-        if (media_playing) {
+        if (start.media_is_playing()) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
           if (result) {
             $("body").css("opacity", 0);
