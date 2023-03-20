@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.11",
+    v: "1.22.12",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -876,6 +876,7 @@
       setTimeout(() => { v.toggleClass("fullscreen") }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
+      $("body").toggleClass("lock");
       start.notify(`Video <span>${fs}</span>`);
     },
 
