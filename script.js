@@ -2,74 +2,30 @@
   "use strict";
 
   var start = {
-
-    // Version Number
-    v: "1.22.13",
-
-    // Touch Events
-    t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
-
-    // Animation Time
-    at: 333,
-
-    // Keyboard Variable
-    down: {},
-
-    // Config
-    c: false,
-
-    // Counts
-    timer: {},
-    count: false,
-
-    // Feed Count
-    fc: false,
-
-    // Progress Bar
-    pb: 0,
-
-    // Playlist Length
-    pll: 0,
-
-    // Playlist Content
-    pj: false,
-
-    // Cached HTML
-    cache: {},
-
-    // Pageviews
-    pv: false,
-
-    // Wallet Balance
-    balance: false,
-
-    // Art URL
-    au: false,
-
-    // Art Number
-    an: false,
-
-    // Video
-    video: false,
-
-    // Video as Audio
-    vaa: false,
-
-    // Audio
-    audio: new Audio(),
-
-    // Audio Souce
-    as: false,
-
-    // NFT Collection
-    nc: false,
-
-    // Menu HTML
-    mh: $(".menu-links-source").html(),
-
-    // Shared Class Names
-    s: "shown",
-    h: "hidden",
+    v: "1.22.13", // Version Number
+    t: "onontouchend" in document.documentElement ? "ontouchend" : "click", // Touch Events
+    at: 333, // Animation Time
+    down: {}, // Keyboard Variable
+    c: false, // Config
+    timer: {}, // Timer Count
+    count: false, //
+    fc: false, // Feed Count
+    pb: 0, // Progress Bar
+    pll: 0,// Playlist Length
+    pj: false, // Playlist Content,
+    cache: {}, // Cached HTML
+    pv: false, // Pageviews
+    balance: false, // Wallet Balance,
+    au: false, // Art URL
+    an: false, // Art Number
+    video: false, // Video,
+    vaa: false, // Video as Audio
+    audio: new Audio(), // Audio
+    as: false, // Audio Souce
+    nc: false, // NFT Collection
+    mh: $(".menu-links-source").html(), // Menu HTML
+    s: "shown", // Shared Class Names
+    h: "hidden", // Shared Class Names
 
     // Search Inputs
     searches: [
@@ -176,57 +132,25 @@
 
     // Init
     init: function () {
-
-      // Version Number
-      start.version();
-
-      // Background Image Number (Art Number)
-      start.an = this.random_numb(1, 291).toString().padStart(4, "0");
-
-      // Pageview Counter
-      this.pageview_counter();
-
-      // Key Listeners
-      this.key_listener();
-
-      // Background Image
-      this.background();
-      setInterval(start.background, 1000 * 60 * 5)
-
-      // Remove Menu Source HTML
-      this.strip_menu();
-
-      // Wallet Value
-      this.wallet();
-
-      // Initial Feed
-      this.init_fetch();
-
-      // Get Last FM Now Playing
-      this.lastfm();
-      setInterval(start.lastfm, 1000 * 60 * 3)
-
-      // Search
-      this.focus_click();
-      this.change_search();
-      this.focus();
-
-      // Menu
-      this.menu_clicks();
-      this.menu_toggle();
-      this.help_toggle();
-
-      // Animation on Leave
-      this.bye();
-
-      // Add Event Listeners
-      this.timer_media_toggle();
-
-      // IP
-      this.ip();
-
-      // Output into Console
-      this.log();
+      start.version(); // Version Number
+      start.an = this.random_numb(1, 291).toString().padStart(4, "0"); // Background Image Number (Art Number)
+      this.pageview_counter(); // Pageview Counter
+      this.key_listener(); // Key Listeners
+      this.background(); // Background Image
+      this.strip_menu(); // Remove Menu Source HTML
+      this.wallet(); // Wallet Value
+      this.init_fetch(); // Initial Feed
+      this.lastfm(); // Get Last FM Now Playing
+      this.focus_click(); // Search Focus
+      this.change_search();  // Search Change
+      this.focus(); // Focus on Search
+      this.menu_clicks(); // Menu Clicks
+      this.menu_toggle(); // Menu Toggle
+      this.help_toggle(); // Help Toggle
+      this.bye(); // Run Before Leaving Page
+      this.timer_media_toggle(); // Add Event Listeners
+      this.ip(); // IP
+      this.log(); // Output into Console
     },
 
     // Load Config, then Init
@@ -445,6 +369,8 @@
         });
       }, start.at * 3);
       if (!num) start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
+      // Change Background Every 5 Minutes
+      setInterval(start.background, 1000 * 60 * 5)
     },
 
     // Change Background Art Resolution
@@ -512,6 +438,8 @@
           link: song.url
         });
       });
+      // Update Every 3 Minutes
+      setInterval(start.lastfm, 1000 * 60 * 3)
     },
 
     // Change Now Playing Artwork
