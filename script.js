@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.22.19", // Version Number
+    v: "1.22.20", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -151,6 +151,7 @@
       this.timer_media_toggle(); // Add Event Listeners
       this.ip(); // IP
       this.log(); // Output into Console
+      this.rerun_functions(); // Cron Functions
     },
 
     // Load Config, then Init
@@ -408,9 +409,7 @@
         bg.one("load", () => bg.removeClass(start.h)).each(() => {
           if (this.complete) $(this).trigger('load');
         });
-      }, start.at * 3);
-      // Change Background Every 5 Minutes
-      setInterval(start.background, 1000 * 60 * 5);
+      }, start.at * 6);
     },
 
     // Change Background Art Resolution
@@ -479,8 +478,6 @@
             }
           }).catch(error => $(".nowplaying__container").hide());
       });
-      // Update Every 3 Minutes
-      setInterval(start.lastfm, 1000 * 60 * 3)
     },
 
     // Change Now Playing Artwork
@@ -1169,6 +1166,14 @@
             start.nc = res['ETH']['price'];
           }
         });
+    },
+
+    // "Cron" Functions
+    rerun_functions: () => {
+      // Update Every 3 Minutes
+      setInterval(start.lastfm, 1000 * 60 * 3)
+      // Change Background Every 5 Minutes
+      setInterval(start.background, 1000 * 60 * 5);
     },
 
     // Change Search on Click
