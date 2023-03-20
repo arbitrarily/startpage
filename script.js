@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.22.20", // Version Number
+    v: "1.23.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -152,6 +152,7 @@
       this.ip(); // IP
       this.log(); // Output into Console
       this.rerun_functions(); // Cron Functions
+      this.marquee_title(); // Marquee Title
     },
 
     // Load Config, then Init
@@ -1221,6 +1222,16 @@
       $("body").toggleClass("vaal");
       const status = $("body").hasClass("vaal") ? " On" : " Off";
       start.notify(`<span>Cursor Toggled</span>${status}`);
+    },
+
+    // Marquee Title Animation
+    marquee_title: () => {
+      var title = $("title");
+      var text = "Startpage ".repeat(15);
+      setInterval(function () {
+        text = text.substring(1) + text.charAt(0);
+        title.text("⭐ " + text.toUpperCase());
+      }, 200);
     },
 
     // Animation on Leave & Alert Check if Media is Playing
