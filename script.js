@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.22.14", // Version Number
+    v: "1.22.16", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -176,6 +176,14 @@
     // Timestamp for Breaking Cached URLs
     timestamp: () => ~~(new Date().getTime() / 1000),
 
+    // Shuffle Array
+    shuffle_array: arr => {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    },
+
     // Focus Search
     focus: () => $(document).find("#search").focus().addClass("focus"),
 
@@ -210,58 +218,83 @@
           if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
-          // Audio: Fast Forward                          (shift + ⏩)
+          // Audio Controls
+          // Fast Forward: shift + ⏩
           if (start.d[39]) start.audio_ff();
-          // Audio: Rewind                                (shift + ⏪)
+
+          // Rewind: shift + ⏪
           if (start.d[37]) start.audio_rewind();
-          // Audio: Increased Playback Speed              (shift + ⏫)
+
+          // Increase Playback Speed: shift + ⏫
           if (start.d[38]) start.audio_more_speed();
-          // Audio: Decreased Playback Speed              (shift + ⏬)
+
+          // Decrease Playback Speed: shift + ⏬
           if (start.d[40]) start.audio_less_speed();
-          // Audio: Play/Pause                            (shift + "space")
+
+          // Play/Pause: shift + "space"
           if (start.d[32]) start.media_toggle();
-          // Audio: Mute                                  (shift + "m")
+
+          // Mute: shift + "m"
           if (start.d[77]) start.audio_mute();
-          // Audio: Volume                                (shift + "v")
+
+          // Volume: shift + "v"
           if (start.d[86]) start.audio_volume();
-          // Video: Fullscreen Toggle                     (shift + "f")
+
+          // Video Controls
+          // Fullscreen Toggle: shift + "f"
           if (start.d[70]) start.video_fullscreen();
-          // Music: Random Song                           (shift + "f12")
+
+          // Music Controls
+          // Random Song: shift + "f12"
           if (start.d[123]) start.play_single();
-          // Music: Randomized Playlist                   (shift + "f11")
+
+          // Randomized Playlist: shift + "f11"
           if (start.d[122]) start.play_playlist();
-          // Toggle Playlist Control Limit                (shift + "f10")
+
+          // Toggle Playlist Control Limit: shift + "f10"
           if (start.d[121]) start.play_playlist_input();
-          // Toggle Cursor                                (shift + 🔙)
+
+          // Other Controls
+          // Toggle Cursor: shift + 🔙
           if (start.d[8]) start.cursor();
-          // Toggle Menu                                  (shift + "z")
-          if (!$(".feed-container").hasClass("fullscreen")) {
-            if (start.d[90]) start.menu();
-          }
-          // Update LastFM                                (shift + "x")
+
+          // Toggle Menu: shift + "z"
+          if (!$(".feed-container").hasClass("fullscreen") && start.d[90]) start.menu();
+
+          // Update LastFM: shift + "x"
           if (start.d[88]) {
             start.lastfm();
             start.notify("Fetched <span>Last.fm</span>");
           }
-          // Change Art Source To Full Resolution         (shift + "c")
+
+          // Change Art Source To Full Resolution: shift + "c"
           if (start.d[67]) start.art_source();
-          // Blur                                         (shift + "b")
+
+          // Blur: shift + "b"
           if (start.d[66]) start.blur();
-          // Wallet Status                                (shift + "n")
+
+          // Wallet Status: shift + "n"
           if (start.d[78]) start.log_wallet();
-          // Refresh Background Image                     (shift + ",")
+
+          // Refresh Background Image: shift + ","
           if (start.d[188]) start.background();
-          // Resize Feed Images                           (shift + ".")
+
+          // Resize Feed Images: shift + "."
           if (start.d[190]) start.resize_feed_images();
-          // Resize Container                             (shift + "/")
+
+          // Resize Container: shift + "/"
           if (start.d[191]) start.resize_container();
-          // Help Shortcuts                               (shift + "h")
+
+          // Help Shortcuts: shift + "h"
           if (start.d[72]) start.shortcuts();
-          // Toggle Audio Player                          (shift + "t")
+
+          // Toggle Audio Player: shift + "t"
           if (start.d[84]) start.switch_audio_source();
+
         } else {
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.d[39] || start.d[37]) start.slide_menu();
+
           // Close Fullscreen Video                       ("esc")
           if (start.d[27]) {
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
@@ -360,7 +393,10 @@
     // Load Background Image
     background: function (num = false) {
       const bg = $(".background-image");
-      if (!num) start.an = start.random_numb(1, 291).toString().padStart(4, "0").toString();
+      if (!num) {
+        start.an = start.random_numb(1, 291).toString().padStart(4, "0").toString();
+        start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
+      }
       bg.addClass(start.h);
       setTimeout(() => {
         bg.attr("src", start.au + start.an + ".png");
@@ -368,9 +404,8 @@
           if (this.complete) $(this).trigger('load');
         });
       }, start.at * 3);
-      if (!num) start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
       // Change Background Every 5 Minutes
-      setInterval(start.background, 1000 * 60 * 5)
+      setInterval(start.background, 1000 * 60 * 5);
     },
 
     // Change Background Art Resolution
@@ -401,6 +436,16 @@
         }).catch(error => { $(".ip").hide() });
     },
 
+    // Remap Song Data
+    remap_song_data: song => ({
+      id: song.mbid,
+      name: song.name,
+      album: song.album["#text"],
+      artist: song.artist["#text"],
+      image: song.image[3]["#text"],
+      link: song.url
+    }),
+
     // LastFM Song
     lastfm: () => {
       $.when(start.c).then(() => {
@@ -415,7 +460,7 @@
                 $(".songs").addClass(start.s);
               }, start.at * 3);
             });
-            const s = song["recenttracks"]["track"].map(_map_it)[0];
+            const s = song["recenttracks"]["track"].map(start.remap_song_data)[0];
             if (!start.media_is_playing()) {
               const song_data = {
                 id: s.id,
@@ -428,14 +473,6 @@
               start.now_playing(song_data, false);
             }
           }).catch(error => $(".nowplaying__container").hide());
-        const _map_it = song => ({
-          id: song.mbid,
-          name: song.name,
-          album: song.album["#text"],
-          artist: song.artist["#text"],
-          image: song.image[3]["#text"],
-          link: song.url
-        });
       });
       // Update Every 3 Minutes
       setInterval(start.lastfm, 1000 * 60 * 3)
@@ -511,31 +548,33 @@
     },
 
     // Replace News
-    fetch_news: (url, source) => {
+    fetch_news: async (url, source) => {
       $(".feed-links").removeClass(start.s);
       if (start.cache[source]) {
-        start.feed_toggle(start.cache[source].html, source);
-        if (start.cache[source].time) {
-          if (new Date().getTime() - start.cache[source].time > 600000) {
-            start.cache[source] = null;
-          }
+        const cn = start.cache[source];
+        start.feed_toggle(cn.html, source);
+        if (cn.time && new Date().getTime() - cn.time > 600000) {
+          start.cache[source] = null;
         }
       } else {
-        fetch(url + '?t=' + start.timestamp())
-          .then(response => response.text())
-          .then(html => {
-            if (html) {
-              start.feed_toggle(html, source);
-              start.cache[source] = {
-                html: html,
-                time: new Date().getTime()
-              };
-            }
-          })
-          .catch(err => $(".feed-links").addClass(start.s));
+        try {
+          const response = await fetch(`${url}?t=${start.timestamp()}`);
+          const html = await response.text();
+          if (html) {
+            start.feed_toggle(html, source);
+            start.cache[source] = {
+              html,
+              time: new Date().getTime()
+            };
+          }
+        } catch (err) {
+          $(".feed-links").addClass(start.s);
+        }
       }
       start.fc = false;
-      if (!$(".feed-links").hasClass("video-links") && start.video) start.video.pauseVideo();
+      if (!$(".feed-links").hasClass("video-links") && start.video) {
+        start.media_stop();
+      }
     },
 
     // Instapaper Home Feed
@@ -601,8 +640,8 @@
     media_events: function () {
       // Audio Events
       start.audio.addEventListener("play", () => {
-        if (start.video) start.video.pauseVideo();
-        if (start.vaa) start.vaa.pauseVideo();
+        if (start.video && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
+        if (start.vaa && start.vaa === YT.PlayerState.PLAYING) start.vaa.pauseVideo();
       });
       start.audio.addEventListener("ended", () => {
         start.media_stop();
@@ -638,7 +677,6 @@
             start.media_ended();
             start.notify("<span>Finished</span> Playing");
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            start.vaa.stopVideo();
           }
           if (event.data === YT.PlayerState.PAUSED) {
             start.notify("Paused");
@@ -803,9 +841,12 @@
 
     // Audio: Play Single Track
     play_single: (song = false, songs_left = false) => {
-      const song_plural = songs_left === 1 ? "Last song " : songs_left.toString() + " songs left";
       let song_data = {};
-      start.media_stop();
+      let song_title = song ? song.title : "Playlist";
+      let song_artist = song ? song.channel : "YouTube";
+      let song_image = song ? (song.image ? song.image : "icons/icon__lofi-girl.jpg") : "icons/icon__lofi-girl.jpg";
+      let song_link = song ? song.url : "";
+      let song_album = "";
       if (!song) {
         const number = start.random_numb(1, 13);
         song_data = {
@@ -820,66 +861,63 @@
       } else {
         song_data = {
           id: song.id ? song.id : "",
-          name: song.title ? song.title : "Playlist",
-          album: "",
-          artist: song.channel ? song.channel : "YouTube",
-          image: song.image ? song.image : "icons/icon__lofi-girl.jpg",
-          link: song.url ? song.url : ""
+          name: song_title,
+          album: song_album,
+          artist: song_artist,
+          image: song_image,
+          link: song_link
         }
         start.audio.src = song.media;
-        song_data.album = songs_left ? song_plural : "";
+        song_data.album = songs_left ? (songs_left === 1 ? "Last song" : `${songs_left} songs left`) : "";
       }
+      // Play audio and display information
+      start.media_stop();
       start.audio.playbackRate = 1;
       start.audio.play();
       start.media_timer();
       start.now_playing(song_data, false);
       start.notify(`Now Playing <span>${song_data.name}</span>`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
+
     },
 
-    // Audio: Play X Playlist
+    // Audio: Play Playlist
     play_playlist: (limit = 10) => {
+      // Stop current media
       start.media_stop();
-      const loop = () => {
-        const x = start.pj;
-        // Shuffle Array
-        for (let i = x.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [x[i], x[j]] = [x[j], x[i]];
-        }
-        async function play() {
-          // 10 Songs
-          for (var i = 0; i < limit; i++) {
-            const songs_left = limit - i > 0 ? limit - i : false;
-            start.play_single(start.pj[i], songs_left);
-            await new Promise(resolve => {
-              start.audio.addEventListener('ended', () => {
-                resolve();
-              });
-              // Key Event Only When Playlist Playing
-              $(document).on("keydown", (e) => {
-                // Skip (Shift + S)
-                if (e.shiftKey && e.which === 83) {
-                  if (start.audio) resolve();
-                }
-              });
+      // Play playlist
+      const play_playlist = async (playlist, limit) => {
+        for (let i = 0; i < limit; i++) {
+          const song = playlist[i];
+          const songs_left = limit - i > 0 ? limit - i : false;
+          start.play_single(song, songs_left);
+          await new Promise(resolve => {
+            start.audio.addEventListener('ended', resolve, { once: true });
+            $(document).on("keydown", e => {
+              // Skip (Shift + S)
+              if (e.shiftKey && e.which === 83) {
+                if (start.audio) resolve();
+              }
             });
-          }
-          $(".nowplaying__album").text("");
+          });
         }
-        play();
-      }
+        $(".nowplaying__album").text("");
+      };
+      // Fetch playlist if not available
       if (!start.pj) {
         fetch(start.c.xPlaylistJSONURL + '?t=' + start.timestamp())
           .then(res => res.json())
           .then(playlist => {
             start.pj = playlist;
             start.pll = playlist.length;
-            loop();
+            start.shuffle_array(start.pj);
+            play_playlist(start.pj, limit);
           })
           .catch(err => start.media_stop());
       } else {
-        loop();
+        // Otherwise shuffle and play
+        start.shuffle_array(start.pj);
+        play_playlist(start.pj, limit);
       }
     },
 
@@ -1180,14 +1218,9 @@
       $(window).on("beforeunload", function () {
         if (start.media_is_playing()) {
           const result = window.confirm("Media is still playing, sure you want to leave?");
-          if (result) {
-            $("body").css("opacity", 0);
-          } else {
-            return false;
-          };
-        } else {
-          $("body").css("opacity", 0);
+          if (!result) return false;
         }
+        $("body").css("opacity", 0);
       });
     },
 
