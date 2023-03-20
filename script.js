@@ -10,7 +10,7 @@
     balance: false, // Wallet Balance
     cache: {}, // Cached HTML
     c: false, // Config
-    count: false, //
+    count: false, // Search Count
     d: {}, // Keyboard Variable
     fc: false, // Feed Count
     h: "hidden", // Shared Class Names
@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.23.2", // Version Number
+    v: "1.23.3", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 

@@ -674,6 +674,24 @@ li {
     padding: 10px 0;
 }
 
+.container__list--media {
+    position: relative;
+}
+
+.container__list--time {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+    margin: 3px;
+    line-height: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: calc(var(--border-radius) / 2);
+    padding: 3px 5px 1px;
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 900;
+}
+
 .container form {
     position: relative;
     display: flex;
