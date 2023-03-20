@@ -4,7 +4,7 @@
   var start = {
 
     // Version Number
-    v: "1.22.12",
+    v: "1.22.13",
 
     // Touch Events
     t: "onontouchend" in document.documentElement ? "ontouchend" : "click",
@@ -563,6 +563,7 @@
         start.notify(`<span>Feed Switched to</span> ${source}`);
         if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();
       }
+      $("body").removeClass("lock");
     },
 
     // Init Fetch
