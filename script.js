@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.23.1", // Version Number
+    v: "1.23.2", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1231,7 +1231,7 @@
       setInterval(function () {
         text = text.substring(1) + text.charAt(0);
         title.text("⭐ " + text.toUpperCase());
-      }, 200);
+      }, start.at);
     },
 
     // Animation on Leave & Alert Check if Media is Playing
