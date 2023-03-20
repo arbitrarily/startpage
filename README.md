@@ -98,6 +98,8 @@ surge . abstracted-war.surge.sh
 
 * Better Logic for pausuing audio/video/video as audio
   * on launch of one of the 3, stop the other 2
+  * make ambient song stop when other media plays
 * redo audio functions
-* refactor code to use shorter variable names
-* recomment js
+* add shortcuts for commonly used programs to shortcuts menu
+  * make it a slider
+  * tabs on top

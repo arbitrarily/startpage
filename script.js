@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.23.6", // Version Number
+    v: "1.23.7", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -133,7 +133,7 @@
     // Init
     init: function () {
       start.version(); // Version Number
-      start.an = this.random_numb(1, 291).toString().padStart(4, "0"); // Background Image Number (Art Number)
+      start.an = this.random_numb(1, 243).toString().padStart(4, "0"); // Background Art Number
       this.pageview_counter(); // Pageview Counter
       this.key_listener(); // Key Listeners
       this.background(); // Background Image
@@ -274,8 +274,8 @@
             start.notify("Fetched <span>Last.fm</span>");
           }
 
-          // Change Art Source To Full Resolution: shift + "c"
-          if (start.d[67]) start.art_source();
+          // Refresh Background Image: shift + "c"
+          if (start.d[67]) start.background();
 
           // Blur: shift + "b"
           if (start.d[66]) start.blur();
@@ -283,8 +283,6 @@
           // Wallet Status: shift + "n"
           if (start.d[78]) start.log_wallet();
 
-          // Refresh Background Image: shift + ","
-          if (start.d[188]) start.background();
 
           // Resize Feed Images: shift + "."
           if (start.d[190]) start.resize_feed_images();
@@ -404,12 +402,12 @@
     background: function (num = false) {
       const bg = $(".background-image");
       if (!num) {
-        start.an = start.random_numb(1, 291).toString().padStart(4, "0").toString();
+        start.an = start.random_numb(1, 243).toString().padStart(4, "0").toString();
         start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
       }
       bg.addClass(start.h);
       setTimeout(() => {
-        bg.attr("src", start.au + start.an + ".png");
+        bg.attr("src", start.au + start.an + ".jpg");
         bg.one("load", () => bg.removeClass(start.h)).each(() => {
           if (this.complete) $(this).trigger('load');
         });
@@ -417,15 +415,16 @@
     },
 
     // Change Background Art Resolution
-    art_source: () => {
+    art_source: (notfy = true) => {
       start.au = start.au === start.c.artThumbURL ? start.c.artURL : start.c.artThumbURL;
       const message = start.au.replace("https://marko.tech/", "").replace(/\/$/, "");
       start.background(true);
-      start.notify(`<span>Background Source Changed To</span> ${message}`);
+      if (notfy) start.notify(`<span>Background Source Changed To</span> ${message}`);
     },
 
     // Toggle Blur on Background Image
     blur: () => {
+      if (start.au !== start.c.artURL) start.art_source(false);
       $(".background-image").toggleClass("deblur");
       const status = ($(".background-image").hasClass("deblur")) ? " Off" : " On";
       start.notify(`<span>Blurred Background</span>${status}`);
@@ -844,7 +843,7 @@
     // Play The 5 Hour Ambient Song I Made
     play_ambient_song: () => {
       let song_data = {
-        id: "",
+        id: start.c.ambientSongID,
         name: "5 Hours of Uplifting Ambient Music for 🛌 Sleep",
         album: "",
         artist: "Marko Bajlovic",
@@ -852,7 +851,8 @@
         link: `https://www.youtube.com/watch?v=${start.c.ambientSongID}`
       };
       start.now_playing(song_data, false);
-      start.video_as_audio_start(start.c.ambientSongID);
+      start.media_stop();
+      start.video_as_audio_start(song_data.id);
       start.notify(`Now Playing <span>${song_data.name}</span>`);
     },
 

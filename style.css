@@ -793,6 +793,7 @@ li {
     -webkit-filter: grayscale(0.75);
     aspect-ratio: 1/1;
     object-fit: cover;
+    overflow: hidden;
 }
 
 .nowplaying__song {
