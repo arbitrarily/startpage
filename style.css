@@ -685,7 +685,7 @@ li {
     margin: 3px;
     line-height: 1;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: calc(var(--border-radius) / 2);
+    border-radius: calc(var(--border-radius) / 4);
     padding: 3px 5px 1px;
     color: var(--white);
     font-size: 11px;
