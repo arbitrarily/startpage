@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.23.5", // Version Number
+    v: "1.23.6", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -257,6 +257,9 @@
 
           // Toggle Playlist Control Limit: shift + "f10"
           if (start.d[121]) start.play_playlist_input();
+
+          // Play the Ambient Song: shift + "f10"
+          if (start.d[120]) start.play_ambient_song();
 
           // Other Controls
           // Toggle Cursor: shift + 🔙
@@ -772,10 +775,6 @@
           start.media_stop();
           clearInterval();
         }
-        if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.ENDED) {
-          start.media_stop();
-          clearInterval();
-        }
       }, 500);
     },
 
@@ -840,6 +839,21 @@
       start.fullscreen_toggle();
       $("body").toggleClass("lock");
       start.notify(`Video <span>${fs}</span>`);
+    },
+
+    // Play The 5 Hour Ambient Song I Made
+    play_ambient_song: () => {
+      let song_data = {
+        id: "",
+        name: "5 Hours of Uplifting Ambient Music for 🛌 Sleep",
+        album: "",
+        artist: "Marko Bajlovic",
+        image: "https://pbs.twimg.com/profile_images/745022860889034752/dHcllPsL_400x400.jpg",
+        link: `https://www.youtube.com/watch?v=${start.c.ambientSongID}`
+      };
+      start.now_playing(song_data, false);
+      start.video_as_audio_start(start.c.ambientSongID);
+      start.notify(`Now Playing <span>${song_data.name}</span>`);
     },
 
     // Audio: Play Single Track
