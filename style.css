@@ -602,7 +602,7 @@ li {
 .container__content.large .news-list .container__list img,
 .container__content.large .news-links .container__list img,
 .container__content.large .poe-links .container__list img {
-    min-width: 33%;
+    min-width: 220px;
     aspect-ratio: 16/9;
 }
 
@@ -684,7 +684,7 @@ li {
     bottom: 0;
     margin: 3px;
     line-height: 1;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.85);
     border-radius: calc(var(--border-radius) / 4);
     padding: 3px 5px 1px;
     color: var(--white);
