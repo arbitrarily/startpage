@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.22.16", // Version Number
+    v: "1.22.17", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -198,6 +198,7 @@
         // Left Shift
         if (start.d[16]) {
           e.preventDefault();
+
           // Switch Feed Source
           const keys_map = {
             49: 0, // Instapaper                          (shift + 1️⃣)
@@ -218,6 +219,7 @@
           if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
+
           // Audio Controls
           // Fast Forward: shift + ⏩
           if (start.d[39]) start.audio_ff();
@@ -292,6 +294,7 @@
           if (start.d[84]) start.switch_audio_source();
 
         } else {
+
           // Menu: Toggle                                 (⏪ or ⏩)
           if (start.d[39] || start.d[37]) start.slide_menu();
 
@@ -301,9 +304,11 @@
             if ($(".shortcuts").hasClass(start.s)) start.shortcuts();
           }
         }
+
         // Alt/Option
         if (start.d[18]) {
           e.preventDefault();
+
           // Switch Search Source
           const keys_mapped = {
             49: 0, // Path of Exile                       (alt + 1️⃣)
