@@ -684,17 +684,18 @@ li {
     bottom: 0;
     margin: 3px;
     line-height: 1;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.7);
     border-radius: calc(var(--border-radius) / 4);
     padding: 3px 5px 1px;
     color: var(--white);
     font-size: 11px;
     font-weight: 900;
     z-index: 2;
+    opacity: 0;
 }
 
 .container__list--item:hover .container__list--time {
-    background: rgba(0, 0, 0, 0.7);
+    opacity: var(--opacity-end);
 }
 
 .container form {
