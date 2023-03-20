@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.22.18", // Version Number
+    v: "1.22.19", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1207,7 +1207,7 @@
 
     // Resize Container
     resize_container: () => {
-      $(".everything").toggleClass("fluid");
+      $(".everything, #video-container, .video-links").toggleClass("fluid");
       start.notify(`<span>Container</span> Resized`);
     },
 

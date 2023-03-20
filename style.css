@@ -1074,6 +1074,13 @@ li {
     .video-links,
     .container__feed-list {
         height: 415px;
+        aspect-ratio: auto;
+    }
+
+    #video-container.fluid,
+    .video-links.fluid {
+        height: auto;
+        aspect-ratio: 16/9;
     }
 
     .grid-x>.large-5.feed-links {
