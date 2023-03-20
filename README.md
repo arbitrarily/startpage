@@ -13,7 +13,6 @@ Some of the features:
 * Background image resolution can be changed.
 * Background animation with CSS/SVG.
 * Background image can be refreshed.
-* Mouse cursor can be toggled on/off.
 * Click anywhere on page (except links) to focus search.
 * Rapidly search the web with a search bar.
 * Search bar can be toggled to different search engines.
@@ -100,6 +99,3 @@ surge . abstracted-war.surge.sh
   * on launch of one of the 3, stop the other 2
   * make ambient song stop when other media plays
 * redo audio functions
-* add shortcuts for commonly used programs to shortcuts menu
-  * make it a slider
-  * tabs on top

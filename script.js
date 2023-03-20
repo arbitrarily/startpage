@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.1", // Version Number
+    v: "1.24.2", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -262,9 +262,6 @@
           if (start.d[120]) start.play_ambient_song();
 
           // Other Controls
-          // Toggle Cursor: shift + 🔙
-          if (start.d[8]) start.cursor();
-
           // Toggle Menu: shift + "z"
           if (!$(".feed-container").hasClass("fullscreen") && start.d[90]) start.menu();
 
@@ -1239,13 +1236,6 @@
     resize_container: () => {
       $(".everything, #video-container, .video-links").toggleClass("fluid");
       start.notify(`<span>Container</span> Resized`);
-    },
-
-    // Reset Mouse Cursor
-    cursor: () => {
-      $("body").toggleClass("vaal");
-      const status = $("body").hasClass("vaal") ? " On" : " Off";
-      start.notify(`<span>Cursor Toggled</span>${status}`);
     },
 
     // Marquee Title Animation
