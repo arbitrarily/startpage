@@ -693,6 +693,10 @@ li {
     z-index: 2;
 }
 
+.container__list--item:hover .container__list--time {
+    background: rgba(0, 0, 0, 0.7);
+}
+
 .container form {
     position: relative;
     display: flex;
