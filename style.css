@@ -657,6 +657,7 @@ li {
     -webkit-filter: grayscale(0.75);
     aspect-ratio: 1/1;
     object-fit: cover;
+    overflow: hidden;
 }
 
 .container__list--item.menu-links__toggle img {
@@ -1095,6 +1096,10 @@ li {
         font-size: 80%;
         padding: var(--foundation-large);
     }
+
+    .menu-links__toggle--keys {
+        display: none;
+    }
 }
 
 /* Large screens */
@@ -1187,5 +1192,12 @@ li {
         -webkit-mask-image: none;
         mask-image: none;
         overflow: inherit;
+    }
+}
+
+/* Small screens */
+@media screen and (max-width: 64em) {
+    .container {
+        padding: calc(var(--padding) * 5) var(--padding);
     }
 }

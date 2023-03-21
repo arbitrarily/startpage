@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.5", // Version Number
+    v: "1.24.7", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -644,8 +644,8 @@
     media_events: function () {
       // Audio Events
       start.audio.addEventListener("play", () => {
-        if (start.video && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
-        if (start.vaa && start.vaa === YT.PlayerState.PLAYING) start.vaa.pauseVideo();
+        if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
+        if (start.vaa && start.vaa.pauseVideo && start.vaa === YT.PlayerState.PLAYING) start.vaa.pauseVideo();
       });
       start.audio.addEventListener("ended", () => {
         start.media_stop();
@@ -719,10 +719,10 @@
 
     // Media: Pause
     media_pause: () => {
-      if (start.video && start.video === YT.PlayerState.PLAYING) {
+      if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) {
         start.video.pauseVideo();
       }
-      if (start.vaa && start.vaa === YT.PlayerState.PLAYING) {
+      if (start.vaa && start.vaa.pauseVideo && start.vaa === YT.PlayerState.PLAYING) {
         start.vaa.pauseVideo();
       }
       if (!start.audio.paused) start.audio.pause();
