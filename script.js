@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.4", // Version Number
+    v: "1.24.5", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -279,7 +279,6 @@
 
           // Wallet Status: shift + "n"
           if (start.d[78]) start.log_wallet();
-
 
           // Resize Feed Images: shift + "."
           if (start.d[190]) start.resize_feed_images();

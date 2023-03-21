@@ -1037,10 +1037,14 @@ li {
     max-height: 600px;
     overflow: hidden;
     overflow-y: scroll;
+    -webkit-mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
+    mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
 
 .shortcuts__feed-grid-container {
     overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
+    mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
 /* Small screens */
