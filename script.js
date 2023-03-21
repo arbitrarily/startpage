@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.3", // Version Number
+    v: "1.24.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -300,8 +300,11 @@
 
           // Close Fullscreen Video                       ("esc")
           if (start.d[27]) {
-            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            if ($(".shortcuts").hasClass(start.s)) start.shortcuts();
+            if ($(".shortcuts").hasClass(start.s)) {
+              start.shortcuts();
+            } else {
+              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+            }
           }
         }
 
