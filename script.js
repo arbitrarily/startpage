@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.7", // Version Number
+    v: "1.24.8", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1010,7 +1010,7 @@
           image: a.find("img").attr('src'),
           link: a.attr('href')
         }
-        start.now_playing(song_data, `${a.text().trim().slice(0, 45) + "..."}`);
+        start.now_playing(song_data, `${a.find(".container__list--item-title").text().trim().slice(0, 45) + "..."}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
