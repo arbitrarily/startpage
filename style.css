@@ -785,8 +785,9 @@ li {
     background-image: url(fallback.png);
     background-size: cover;
     background-position: center;
-    width: 52px;
     height: 52px;
+    width: 52px;
+    min-width: 52px;
     margin-left: var(--padding);
     border-radius: calc(var(--border-radius) / 2);
     filter: grayscale(0.75);
