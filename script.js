@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.26.3", // Version Number
+    v: "1.26.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -204,7 +204,7 @@
           e.preventDefault();
 
           // Switch Feed Source
-          const keys_map = {
+          const shift_keys_map = {
             49: 0, // Instapaper                          (shift + 1️⃣)
             50: 1, // News                                (shift + 2️⃣)
             51: 2, // New York Times                      (shift + 3️⃣)
@@ -219,81 +219,37 @@
             61: 10, // NFTs                               (shift + "=")
             8: 25, // Metal Music                         (shift + Bakcspace)
           };
-          const kcc = Object.keys(keys_map).find(key => start.d[key]);
-          start.fc = keys_map ? keys_map[kcc] : start.fc;
+          const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
+          start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
           if (!$(".feed-container").hasClass("fullscreen")) {
             if (Number.isInteger(start.fc)) start.mf[start.fc]();
           }
 
-          // Audio Controls
-          // Fast Forward: shift + ⏩
-          if (start.d[39]) start.audio_ff();
-
-          // Rewind: shift + ⏪
-          if (start.d[37]) start.audio_rewind();
-
-          // Increase Playback Speed: shift + ⏫
-          if (start.d[38]) start.audio_more_speed();
-
-          // Decrease Playback Speed: shift + ⏬
-          if (start.d[40]) start.audio_less_speed();
-
-          // Play/Pause: shift + "space"
-          if (start.d[32]) start.media_toggle();
-
-          // Mute: shift + "m"
-          if (start.d[77]) start.audio_mute();
-
-          // Volume: shift + "v"
-          if (start.d[86]) start.audio_volume();
-
-          // Video Controls
-          // Fullscreen Toggle: shift + "f"
-          if (start.d[70]) start.video_fullscreen();
-
-          // Music Controls
-          // Random Song: shift + "f12"
-          if (start.d[123]) start.play_single();
-
-          // Randomized Playlist: shift + "f11"
-          if (start.d[122]) start.play_playlist();
-
-          // Toggle Playlist Control Limit: shift + "f10"
-          if (start.d[121]) start.play_playlist_input();
-
-          // Play the Ambient Song: shift + "f10"
-          if (start.d[120]) start.play_ambient_song();
-
-          // Other Controls
-          // Toggle Menu: shift + "z"
-          if (!$(".feed-container").hasClass("fullscreen") && start.d[90]) start.menu();
-
-          // Update LastFM: shift + "x"
-          if (start.d[88]) {
-            start.lastfm();
-            start.notify("Fetched <span>Last.fm</span>");
-          }
-
-          // Refresh Background Image: shift + "c"
-          if (start.d[67]) start.background();
-
-          // Blur: shift + "b"
-          if (start.d[66]) start.blur();
-
-          // Wallet Status: shift + "n"
-          if (start.d[78]) start.log_wallet();
-
-          // Resize Feed Images: shift + "."
-          if (start.d[190]) start.resize_feed_images();
-
-          // Resize Container: shift + "/"
-          if (start.d[191]) start.resize_container();
-
-          // Help Shortcuts: shift + "h"
-          if (start.d[72]) start.shortcuts();
-
-          // Toggle Audio Player: shift + "t"
-          if (start.d[84]) start.switch_audio_source();
+          // Functions Mapped to Keys
+          const shift_functions_mapped = {
+            39: start.audio_ff, // Fast Forward: shift + ⏩
+            37: start.audio_rewind, // Rewind: shift + ⏪
+            38: start.audio_more_speed, // Increase Playback Speed: shift + ⏫
+            40: start.audio_less_speed, // Decrease Playback Speed: shift + ⏬
+            32: start.media_toggle, // Play/Pause: shift + "space"
+            77: start.audio_mute, // Mute: shift + "m"
+            86: start.audio_volume, // Volume: shift + "v"
+            70: start.video_fullscreen, // Fullscreen Toggle: shift + "f"
+            123: start.play_single, // Random Song: shift + "f12"
+            122: start.play_playlist, // Randomized Playlist: shift + "f11"
+            121: start.play_playlist_input, // Toggle Playlist Control Limit: shift + "f10"
+            120: start.play_ambient_song, // Play the Ambient Song: shift + "f10"
+            90: start.menu, // Toggle Menu: shift + "z"
+            88: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
+            67: start.background, // Refresh Background Image: shift + "c"
+            66: start.blur, // Blur: shift + "b"
+            78: start.log_wallet, // Wallet Status: shift + "n"
+            190: start.resize_feed_images, // Resize Feed Images: shift + "."
+            191: start.resize_container, // Resize Container: shift + "/"
+            72: start.shortcuts, // Help Shortcuts: shift + "h"
+            84: start.switch_audio_source // Toggle Audio Player: shift + "t"
+          };
+          shift_functions_mapped[e.keyCode]();
 
         } else {
 
