@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.24.8", // Version Number
+    v: "1.25.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -127,7 +127,8 @@
       () => start.audio_volume(),
       () => start.lastfm(),
       () => start.dev_news(),
-      () => start.resize_feed_images()
+      () => start.resize_feed_images(),
+      () => start.play_metal(),
     ],
 
     // Init
@@ -215,6 +216,7 @@
             48: 23, // Dev News                           (shift + 0️⃣)
             173: 9, // Lexichronic                        (shift + "-")
             61: 10, // NFTs                               (shift + "=")
+            8: 25, // Metal Music                         (shift + Bakcspace)
           };
           const kcc = Object.keys(keys_map).find(key => start.d[key]);
           start.fc = keys_map ? keys_map[kcc] : start.fc;
@@ -617,6 +619,12 @@
     // Music Home Feed
     play_music: () => {
       start.fetch_news(start.c.xPlaylistHTMLURL, "Music");
+      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+    },
+
+    // Metal Music Home Feed
+    play_metal: () => {
+      start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music");
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
     },
 
