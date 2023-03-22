@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.26.2", // Version Number
+    v: "1.26.3", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -668,7 +668,7 @@
         start.video.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
             start.play_video();
-            start.media_ended();
+            start.media_stop();
             start.notify("<span>Finished</span> Playing");
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
             if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
@@ -690,7 +690,7 @@
       if (start.vaa) {
         start.vaa.addEventListener('onStateChange', event => {
           if (event.data === YT.PlayerState.ENDED) {
-            start.media_ended();
+            start.media_stop();
             start.notify("<span>Finished</span> Playing");
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
           }
@@ -709,6 +709,17 @@
       }
     },
 
+    // Media: Stop
+    media_stop: () => {
+      if (!start.audio.paused) {
+        start.audio.src = "";
+        start.audio = new Audio();
+      }
+      if (start.vaa) start.vaa.destroy();
+      if (start.video) start.video.destroy();
+      start.media_ended();
+    },
+
     // Media: Reset Timer & Progress Bar
     media_ended: () => {
       $(".podcasts").removeClass(start.s);
@@ -717,27 +728,6 @@
       setTimeout(() => {
         $(".podcasts-replace").text('0:00');
       }, start.at * 2);
-    },
-
-    // Media: Stop
-    media_stop: () => {
-      start.media_pause();
-      if (!start.audio.paused) {
-        start.audio.src = "";
-        start.audio = new Audio();
-      }
-      start.media_ended();
-    },
-
-    // Media: Pause
-    media_pause: () => {
-      if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) {
-        start.video.pauseVideo();
-      }
-      if (start.vaa && start.vaa.pauseVideo && start.vaa === YT.PlayerState.PLAYING) {
-        start.vaa.pauseVideo();
-      }
-      if (!start.audio.paused) start.audio.pause();
     },
 
     // Media: Timer
@@ -797,6 +787,7 @@
     // Start YouTube Video
     video_start: video_id => {
      if (start.video) start.video.destroy();
+     if (start.vaa) start.vaa.destroy();
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -818,6 +809,7 @@
     // Start YouTube Video as Audio
     video_as_audio_start: video_id => {
       if (start.vaa) start.vaa.destroy();
+      if (start.video) start.video.destroy();
       start.vaa = new YT.Player('audio-player', {
         height: '0',
         width: '0',
