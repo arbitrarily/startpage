@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.26.1", // Version Number
+    v: "1.26.2", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -796,6 +796,7 @@
 
     // Start YouTube Video
     video_start: video_id => {
+     if (start.video) start.video.destroy();
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -816,6 +817,7 @@
 
     // Start YouTube Video as Audio
     video_as_audio_start: video_id => {
+      if (start.vaa) start.vaa.destroy();
       start.vaa = new YT.Player('audio-player', {
         height: '0',
         width: '0',
