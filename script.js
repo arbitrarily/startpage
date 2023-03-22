@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.25.1", // Version Number
+    v: "1.26.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -129,6 +129,7 @@
       () => start.dev_news(),
       () => start.resize_feed_images(),
       () => start.play_metal(),
+      () => start.twitter_news()
     ],
 
     // Init
@@ -609,6 +610,9 @@
 
     // Path of Exile Home Feed
     dev_news: () => start.fetch_news(start.c.devURL, "Developer News"),
+
+    // Twitter
+    twitter_news: () => start.fetch_news(start.c.twitterURL, "Twitter"),
 
     // Podcasts Home Feed
     podcasts: () => {
