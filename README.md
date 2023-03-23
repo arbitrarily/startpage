@@ -2,7 +2,7 @@
 
 ### Live Preview
 
-[Preview: Startpage & New Tab Page](https://abstracted-war.surge.sh/)
+[Preview: Startpage & New Tab Page](https://arbitrarily.me)
 
 This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
@@ -20,6 +20,7 @@ Some of the features:
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
 * View owned NFTs.
+* View my twitter feed.
 * Listen to podcasts.
 * Listen to music.
 * Listen to shuffled music playlist.
@@ -48,27 +49,34 @@ It should look like this or similar, keeping what you want and removing what you
 
 ```
 {
-  "ethplorerURL": "https://api.ethplorer.io/getAddressInfo/X?apiKey=X&showETHTotals=true",
-  "etherscanURL": "https://api.etherscan.io/api?module=account&action=balance&address=X&tag=latest&apikey=X",
-  "alchemyURL": "X",
-  "techmemeURL": "X",
-  "nytURL": "X",
-  "redditURL": "X",
-  "instapaperURL": "X",
-  "lexiURL": "X",
-  "poeURL": "X",
-  "podURL": "X",
-  "counterURL": "X",
-  "githubURL": "X",
-  "artURL": "X",
-  "artThumbURL": "X",
-  "lastFMURL": "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=X&api_key=X&format=json&limit=1",
-  "ipKey" : "X",
-  "x" : "X",
-  "xURL" : "X",
-  "xPlaylistJSONURL": "X/X.json",
-  "xPlaylistHTMLURL": "X",
-  "youTubeURL": "X",
+  "alchemyURL": "<https://website.domain>",
+  "ambientSongID": "youtubeID",
+  "artThumbURL": "<https://website.domain/media/thumb/>",
+  "artURL": "<https://website.domain/media/art/>",
+  "counterURL": "<https://website.domain>",
+  "devURL": "<https://website.domain>",
+  "etherscanURL": "https://api.etherscan.io/api?module=account&action=balance&address=<address>&tag=latest&apikey=<api_key>",
+  "ethplorerURL": "https://api.ethplorer.io/getAddressInfo/<address>?apiKey=<api_key>&showETHTotals=true",
+  "gameURL": "<https://website.domain>",
+  "githubURL": "https://api.github.com/repos/<username>/<repo>/contributors?page=1&per_page=1&anon=true",
+  "instapaperURL": "<https://website.domain>",
+  "ipKey": "<api_key>",
+  "ipRemove": "<ip_address>",
+  "lastFMAPIKey": "<api_key>",
+  "lastFMAPISecret": "<api_secret>",
+  "lastFMURL": "<https://website.com/2.0/?method=user.getrecenttracks&user=x&api_key=<api_key>&format=json&limit=1>",
+  "lexiURL": "<https://website.domain>",
+  "nftNewsURL": "<https://website.domain>",
+  "nytURL": "<https://website.domain>",
+  "poeURL": "<https://website.domain>",
+  "podURL": "<https://website.domain>",
+  "redditURL": "<https://website.domain>",
+  "techmemeURL": "<https://website.domain>",
+  "twitterURL": "<https://website.domain>",
+  "xPlaylistHTMLURL": "<https://website.domain>",
+  "xPlaylistJSONURL": "<https://website.domain/x.json>",
+  "xPlaylistMetalHTMLURL": "<https://website.domain>",
+  "youTubeURL": "<https://website.domain>"
 }
 ```
 
@@ -90,12 +98,5 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 Publishing to Surge for public viewing:
 
 ```
-surge . abstracted-war.surge.sh
+surge . arbitrarily.me
 ```
-
-### TODOs:
-
-* Better Logic for pausuing audio/video/video as audio
-  * on launch of one of the 3, stop the other 2
-  * make ambient song stop when other media plays
-* redo audio functions

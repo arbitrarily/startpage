@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.26.4", // Version Number
+    v: "1.26.5", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -249,7 +249,7 @@
             72: start.shortcuts, // Help Shortcuts: shift + "h"
             84: start.switch_audio_source // Toggle Audio Player: shift + "t"
           };
-          shift_functions_mapped[e.keyCode]();
+          if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
         } else {
 
