@@ -608,6 +608,7 @@ li {
 
 .container__list span.container__list--full-item {
     line-height: 1.15;
+    color: var(--white);
 }
 
 .container__list span.container__list--description {

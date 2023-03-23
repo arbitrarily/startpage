@@ -71,6 +71,7 @@ It should look like this or similar, keeping what you want and removing what you
   "poeURL": "<https://website.domain>",
   "podURL": "<https://website.domain>",
   "redditURL": "<https://website.domain>",
+  "summaryURL": "<https://website.domain>",
   "techmemeURL": "<https://website.domain>",
   "twitterURL": "<https://website.domain>",
   "xPlaylistHTMLURL": "<https://website.domain>",

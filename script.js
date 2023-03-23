@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.26.5", // Version Number
+    v: "1.27.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -129,7 +129,8 @@
       () => start.dev_news(),
       () => start.resize_feed_images(),
       () => start.play_metal(),
-      () => start.twitter_news()
+      () => start.twitter_news(),
+      () => start.summaries_news()
     ],
 
     // Init
@@ -569,6 +570,9 @@
 
     // Twitter
     twitter_news: () => start.fetch_news(start.c.twitterURL, "Twitter"),
+
+    // Summaries
+    summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
 
     // Podcasts Home Feed
     podcasts: () => {
