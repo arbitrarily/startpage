@@ -661,7 +661,7 @@ li {
     overflow: hidden;
 }
 
-.container__list--item.menu-links__toggle img {
+.container__list--item.menu-links__toggle .container__list img {
     object-fit: contain;
     filter: brightness(180%) saturate(0);
 }
@@ -923,6 +923,11 @@ li {
     max-width: 100%;
     min-width: 100%;
     aspect-ratio: 16/9;
+}
+
+.summary-links .container__list img {
+    border-radius: 0;
+    object-fit: contain;
 }
 
 .shortcuts {
