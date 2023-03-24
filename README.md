@@ -2,7 +2,7 @@
 
 ### Live Preview
 
-[Preview: Startpage & New Tab Page](https://arbitrarily.me)
+[Preview: Startpage & New Tab Page](https://abstracted-war.surge.sh)
 
 This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
@@ -99,5 +99,5 @@ There's some 'hidden power user' features in here in the form of keyboard comman
 Publishing to Surge for public viewing:
 
 ```
-surge . arbitrarily.me
+surge . abstracted-war.surge.sh
 ```
