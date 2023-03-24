@@ -2,7 +2,7 @@
 
 ### Live Preview
 
-[Preview: Startpage & New Tab Page](https://abstracted-war.surge.sh)
+[Preview: Startpage & New Tab Page](https://s.marko.tech)
 
 This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
@@ -94,11 +94,3 @@ The background images are randomly chosen from a series of images I serve on my 
 
 There's some 'hidden power user' features in here in the form of keyboard commands:
 - <kbd>shift</kbd> + <kbd>h</kbd> brings up the `Shortcuts Help Menu` to display all available keyboard commands.
-
-### Publishing
-
-Publishing to Surge for public viewing:
-
-```
-surge . abstracted-war.surge.sh
-```
