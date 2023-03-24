@@ -2,12 +2,14 @@ name: Git Pull on Master Push
 on:
   push:
     branches:
-      - [master, main]
+      - master
 jobs:
   pull:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: master
       - name: Pull latest changes
-        run: git pull
+        run: git pull origin master
