@@ -12,4 +12,4 @@ jobs:
         with:
           ref: master
       - name: Pull latest changes
-        run: git pull
+        run: git pull origin master
