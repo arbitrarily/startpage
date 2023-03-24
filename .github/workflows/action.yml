@@ -6,5 +6,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Git Pull
-      run: git pull
+
+    - name: Git Pull from Master
+      run: git pull origin master
+
+    - name: Output message
+    - run: echo "🎉 The deploy was triggered ${{ github.event_name }}."
