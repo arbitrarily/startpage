@@ -4,8 +4,5 @@ jobs:
   git-pull:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "🎉 Deploy triggered ${{ github.event_name }}."
-    - name: Checkout
-      uses: actions/checkout@v2
     - name: Git Pull
       run: git pull
