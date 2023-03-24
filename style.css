@@ -30,6 +30,9 @@
     --opacity-start: 0.666;
     --opacity-end: 1;
 
+    /* Shortcut Feeds */
+    --shortcut-feeds: 4;
+
     /* Cursor */
     --cursor: url('icons/icon__cursor.png'), auto;
 }
@@ -936,7 +939,7 @@ li {
     max-height: 100%;
     max-width: 100%;
     color: var(--white);
-    padding: calc(var(--padding) * 3);
+    padding: calc(var(--padding) * 4);
     box-shadow: inset 0 0 50vw 5vw rgba(0, 0, 0, 0.8);
     border-radius: 0;
     z-index: -2;
@@ -1031,11 +1034,11 @@ li {
 
 .shortcuts__feed-container {
     display: flex;
-    width: 300%;
+    width: calc(100% * var(--shortcut-feeds));
 }
 
 .shortcuts__feed {
-    width: calc(100% / 3);
+    width: calc(100% / var(--shortcut-feeds));
     max-height: 600px;
     overflow: hidden;
     overflow-y: scroll;
