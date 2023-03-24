@@ -19,6 +19,7 @@ Some of the features:
 * News feed can be toggled to different up-to-date feeds.
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
+* View Twitter (list) feed.
 * View owned NFTs.
 * View my twitter feed.
 * Listen to podcasts.
@@ -27,7 +28,7 @@ Some of the features:
 * Listen to shuffled music playlist with a set limit.
 * Watch subscribed YouTube Videos in line without leaving the site.
 * Fullscreen video toggle.
-* Media control (mute/unmute, play/pause, fast foward, rewind, faster/slower playback).
+* Media control (mute/unmute, volume control, play/pause, fast foward, rewind, faster/slower playback).
 * See what music I'm currently listening to.
 * See how my MetaMask wallet is doing.
 * See my public IP address.
@@ -92,7 +93,7 @@ The background images are randomly chosen from a series of images I serve on my 
 ## Keyboard Commands
 
 There's some 'hidden power user' features in here in the form of keyboard commands:
-- Use <kbd>shift</kbd> + <kbd>h</kbd> which brings up the Shortcuts Help <kbd>M</kbd>enu to display all keyboard commands.
+- <kbd>shift</kbd> + <kbd>h</kbd> brings up the `Shortcuts Help Menu` to display all available keyboard commands.
 
 ### Publishing
 

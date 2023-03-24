@@ -172,11 +172,6 @@ a:focus img {
     overflow: hidden;
 }
 
-.background {
-    opacity: 0.1;
-    z-index: -1;
-}
-
 .background-image {
     z-index: -2;
     opacity: 0.44;

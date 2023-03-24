@@ -9,11 +9,6 @@ body {
   margin: 0
 }
 
-h1 {
-  font-size: 2em;
-  margin: .67em 0
-}
-
 a {
   background-color: transparent
 }
@@ -41,46 +36,6 @@ input {
   overflow: visible
 }
 
-legend {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
-  white-space: normal
-}
-
-[type=search] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px
-}
-
-[type=search]::-webkit-search-decoration {
-  -webkit-appearance: none
-}
-
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit
-}
-
-details {
-  display: block
-}
-
-summary {
-  display: list-item
-}
-
-template {
-  display: none
-}
-
-[hidden] {
-  display: none
-}
-
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -98,7 +53,6 @@ body {
   margin: 0;
   padding: 0;
   background: #fefefe;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.5;
   color: #0a0a0a;
@@ -112,35 +66,6 @@ img {
   max-width: 100%;
   height: auto;
   -ms-interpolation-mode: bicubic
-}
-
-button,
-input,
-optgroup {
-  font-family: inherit
-}
-
-input:disabled,
-input[readonly] {
-  background-color: #e6e6e6;
-  cursor: not-allowed
-}
-
-[type=button] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0
-}
-
-input[type=search] {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box
-}
-
-[type=checkbox]+label[for],
-[type=radio]+label[for] {
-  cursor: pointer
 }
 
 label {
@@ -193,7 +118,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   color: inherit;
