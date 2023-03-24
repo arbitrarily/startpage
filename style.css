@@ -1084,12 +1084,14 @@ li {
         margin: 0 0 calc(var(--padding) * 1.5);
     }
 
+    .reddit-links .container__list:not(.container__list--title),
     .video-links .container__list:not(.container__list--title) {
         display: block;
         padding: 10px 0;
     }
 
-    .video-links .container__list img {
+    .video-links .container__list img,
+    .reddit-links .container__list img {
         margin-bottom: var(--foundation);
         margin-right: 0;
         max-height: inherit;
@@ -1145,6 +1147,7 @@ li {
     }
 
     .video-links .container__list img,
+    .reddit-links .container__list img,
     .video-links.podcast-links .container__list img {
         min-width: 160px;
         aspect-ratio: 16/9;
