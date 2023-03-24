@@ -4,5 +4,7 @@ jobs:
   git-pull:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Git Pull
       run: git pull
