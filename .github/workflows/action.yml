@@ -11,4 +11,4 @@ jobs:
       run: git pull origin master
 
     - name: Output message
-    - run: echo "🎉 The deploy was triggered ${{ github.event_name }}."
+    - run: echo "🎉 The deploy was triggered."
