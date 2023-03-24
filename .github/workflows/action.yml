@@ -1,11 +1,15 @@
 name: Git Pull on Master Push
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
-  git-pull:
+  pull:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Git Pull from Master
-      run: git pull
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Pull latest changes
+        run: git pull
