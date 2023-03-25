@@ -170,18 +170,6 @@
           start.init();
         })
         .catch(() => $(".feed-links").addClass(start.s) );
-      if (!start.c) {
-        fetch('./conf_fallback.json')
-          .then(response => response.json())
-          .then(conf => {
-            // Store Config
-            start.c = conf;
-            start.au = conf.artThumbURL;
-            // Init
-            start.init();
-          })
-          .catch(() => $(".feed-links").addClass(start.s) );
-      }
     },
 
     // Random Number in a Range
