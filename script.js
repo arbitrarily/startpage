@@ -169,40 +169,19 @@
           // Init
           start.init();
         })
-        .catch(() => {
-          $(".feed-links").addClass(start.s);
-          start.c = {
-            "alchemyURL": $alchemyURL,
-            "ambientSongID": $ambientSongID,
-            "artThumbURL": $artThumbURL,
-            "artURL": $artURL,
-            "counterURL": $counterURL,
-            "devURL": $devURL,
-            "etherscanURL": $etherscanURL,
-            "ethplorerURL": $ethplorerURL,
-            "gameURL": $gameURL,
-            "githubURL": $githubURL,
-            "instapaperURL": $instapaperURL,
-            "ipKey": $ipKey,
-            "ipRemove": $ipRemove,
-            "lastFMAPIKey": $lastFMAPIKey,
-            "lastFMAPISecret": $lastFMAPISecret,
-            "lastFMURL": $lastFMURL,
-            "lexiURL": $lexiURL,
-            "nftNewsURL": $nftNewsURL,
-            "nytURL": $nytURL,
-            "poeURL": $poeURL,
-            "podURL": $podURL,
-            "redditURL": $redditURL,
-            "summaryURL": $summaryURL,
-            "techmemeURL": $techmemeURL,
-            "twitterURL": $twitterURL,
-            "xPlaylistHTMLURL": $xPlaylistHTMLURL,
-            "xPlaylistJSONURL": $xPlaylistJSONURL,
-            "xPlaylistMetalHTMLURL": $xPlaylistMetalHTMLURL,
-            "youTubeURL": $youTubeURL
-          };
-        });
+        .catch(() => $(".feed-links").addClass(start.s) );
+      if (!start.c) {
+        fetch('./config.json')
+          .then(response => response.json())
+          .then(conf => {
+            // Store Config
+            start.c = conf;
+            start.au = conf.artThumbURL;
+            // Init
+            start.init();
+          })
+          .catch(() => $(".feed-links").addClass(start.s) );
+      }
     },
 
     // Random Number in a Range
