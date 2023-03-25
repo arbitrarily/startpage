@@ -909,18 +909,30 @@ li {
 
 .nft-links .container__list:not(.container__list--title) {
     display: block;
-    padding: 10px 0;
+    margin-bottom: var(--foundation-large);
 }
 
 .nft-links .container__list img {
     background-image: url(fallback.png);
+    background-position: center;
     background-size: cover;
     margin-bottom: calc(var(--foundation) / 2);
     margin-right: 0;
     max-height: inherit;
     max-width: 100%;
     min-width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
+    filter: none;
+    opacity: 1;
+}
+
+.nft-links .container__list--item:hover {
+    background: transparent;
+    padding: 0 var(--foundation-large);
+}
+
+.nft-links .grid-container.feed-container {
+    padding: 0;
 }
 
 .summary-links .container__list img {
