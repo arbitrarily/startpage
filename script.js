@@ -171,7 +171,7 @@
         })
         .catch(() => $(".feed-links").addClass(start.s) );
       if (!start.c) {
-        fetch('./config.json')
+        fetch('./conf_fallback.json')
           .then(response => response.json())
           .then(conf => {
             // Store Config
