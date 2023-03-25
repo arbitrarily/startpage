@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.29.4", // Version Number
+    v: "1.29.5", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 

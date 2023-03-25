@@ -908,7 +908,8 @@ li {
 }
 
 .nft-links .container__list:not(.container__list--title) {
-    display: block;
+    display: grid;
+    height: 100%;
     margin-bottom: var(--foundation-large);
 }
 
@@ -920,11 +921,15 @@ li {
     margin-bottom: calc(var(--foundation) / 2);
     margin-right: 0;
     max-height: inherit;
+    height: 100%;
     max-width: 100%;
     min-width: 100%;
     aspect-ratio: 1/1;
     filter: none;
     opacity: 1;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: var(--border-radius);
 }
 
 .nft-links .container__list--item:hover {
