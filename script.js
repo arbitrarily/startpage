@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.29.1", // Version Number
+    v: "1.29.2", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -169,8 +169,8 @@
           // Init
           start.init();
         })
-        .catch(() => $(".feed-links").addClass(start.s))
-        .error(() => {
+        .catch(() => {
+          $(".feed-links").addClass(start.s);
           start.c = {
             "alchemyURL": $alchemyURL,
             "ambientSongID": $ambientSongID,
