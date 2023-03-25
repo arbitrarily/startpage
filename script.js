@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.28.10", // Version Number
+    v: "1.29.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -169,7 +169,40 @@
           // Init
           start.init();
         })
-        .catch(() => $(".feed-links").addClass(start.s));
+        .catch(() => $(".feed-links").addClass(start.s))
+        .error(() => {
+          start.c = {
+            "alchemyURL": $alchemyURL,
+            "ambientSongID": $ambientSongID,
+            "artThumbURL": $artThumbURL,
+            "artURL": $artURL,
+            "counterURL": $counterURL,
+            "devURL": $devURL,
+            "etherscanURL": $etherscanURL,
+            "ethplorerURL": $ethplorerURL,
+            "gameURL": $gameURL,
+            "githubURL": $githubURL,
+            "instapaperURL": $instapaperURL,
+            "ipKey": $ipKey,
+            "ipRemove": $ipRemove,
+            "lastFMAPIKey": $lastFMAPIKey,
+            "lastFMAPISecret": $lastFMAPISecret,
+            "lastFMURL": $lastFMURL,
+            "lexiURL": $lexiURL,
+            "nftNewsURL": $nftNewsURL,
+            "nytURL": $nytURL,
+            "poeURL": $poeURL,
+            "podURL": $podURL,
+            "redditURL": $redditURL,
+            "summaryURL": $summaryURL,
+            "techmemeURL": $techmemeURL,
+            "twitterURL": $twitterURL,
+            "xPlaylistHTMLURL": $xPlaylistHTMLURL,
+            "xPlaylistJSONURL": $xPlaylistJSONURL,
+            "xPlaylistMetalHTMLURL": $xPlaylistMetalHTMLURL,
+            "youTubeURL": $youTubeURL
+          };
+        });
     },
 
     // Random Number in a Range
