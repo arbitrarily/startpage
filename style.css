@@ -359,8 +359,7 @@ li {
     opacity: 0;
 }
 
-.feed-container,
-.container__feed-list-container {
+.feed-container {
     -webkit-mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
     mask-image: linear-gradient(to top, black calc(100% - 0.625rem), transparent 100%);
 }
@@ -376,13 +375,11 @@ li {
     box-shadow: 0 0 1px var(--gruy);
 }
 
-.feed-list::-webkit-scrollbar,
-.container__feed-list::-webkit-scrollbar {
+.feed-list::-webkit-scrollbar {
     display: none;
 }
 
-.feed-list,
-.container__feed-list {
+.feed-list {
     transition: all 0ms ease;
     overflow: hidden;
     overflow-y: scroll;
