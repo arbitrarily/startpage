@@ -20,8 +20,8 @@ Some of the features:
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
 * View Twitter (list) feed.
+* View Github stars feed.
 * View owned NFTs.
-* View my twitter feed.
 * Listen to podcasts.
 * Listen to music.
 * Listen to shuffled music playlist.
