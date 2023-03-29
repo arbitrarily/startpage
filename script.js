@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.30.6", // Version Number
+    v: "1.31.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -131,7 +131,8 @@
       () => start.play_metal(),
       () => start.twitter_news(),
       () => start.summaries_news(),
-      () => start.github_news()
+      () => start.github_news(),
+      () => start.trakt_news()
     ],
 
     // Init
@@ -574,6 +575,9 @@
 
     // Github
     github_news: () => start.fetch_news(start.c.githubFeedURL, "Github"),
+
+    // Trakt
+    trakt_news: () => start.fetch_news(start.c.traktURL, "Trakt"),
 
     // Summaries
     summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
