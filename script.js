@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.32.1", // Version Number
+    v: "1.33.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -133,7 +133,8 @@
       () => start.summaries_news(),
       () => start.github_news(),
       () => start.trakt_news(),
-      () => start.twitch_news()
+      () => start.twitch_news(),
+      () => start.play_vibes()
     ],
 
     // Init
@@ -601,6 +602,12 @@
     // Metal Music Home Feed
     play_metal: () => {
       start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music");
+      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+    },
+
+    // Vibes Music Home Feed
+    play_vibes: () => {
+      start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music");
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
     },
 
