@@ -674,11 +674,11 @@ li {
 .container__list--title {
     font-family: var(--font-family);
     text-transform: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: var(--foundation);
     font-size: 0.9rem;
     font-weight: var(--bold);
     color: var(--grey);
-    padding: 10px 0;
+    padding: var(--foundation-large) 0;
 }
 
 .container__list--media {
@@ -1110,7 +1110,7 @@ li {
     .reddit-links .container__list:not(.container__list--title),
     .video-links .container__list:not(.container__list--title) {
         display: block;
-        padding: 10px 0;
+        padding: var(--foundation-large) 0;
     }
 
     .video-links .container__list img,
@@ -1140,12 +1140,30 @@ li {
     }
 
     .container__list--title {
-        padding: 5px 0 10px 0;
-        letter-spacing: 10px;
+        padding: var(--foundation) 0 var(--foundation-large) 0;
+        letter-spacing: var(--foundation);
     }
 
     .nowplaying__container {
         padding-left: var(--padding);
+    }
+
+    .video-links .container__list img,
+    .reddit-links .container__list img,
+    .video-links.podcast-links .container__list img {
+        min-width: 160px;
+        aspect-ratio: 16/9;
+    }
+}
+
+/* Extra large screens */
+@media screen and (min-width: 64em) {
+
+    .feed-list,
+    .video-links,
+    .container__feed-list {
+        height: 373.5px;
+        aspect-ratio: auto;
     }
 
     .stats {
@@ -1167,24 +1185,6 @@ li {
         bottom: 0;
         left: 0;
         padding: var(--foundation);
-    }
-
-    .video-links .container__list img,
-    .reddit-links .container__list img,
-    .video-links.podcast-links .container__list img {
-        min-width: 160px;
-        aspect-ratio: 16/9;
-    }
-}
-
-/* Extra large screens */
-@media screen and (min-width: 64em) {
-
-    .feed-list,
-    .video-links,
-    .container__feed-list {
-        height: 373.5px;
-        aspect-ratio: auto;
     }
 
     .cell.small-12.large-3.container__list--padding-override {
