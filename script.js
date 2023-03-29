@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.31.1", // Version Number
+    v: "1.32.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -132,7 +132,8 @@
       () => start.twitter_news(),
       () => start.summaries_news(),
       () => start.github_news(),
-      () => start.trakt_news()
+      () => start.trakt_news(),
+      () => start.twitch_news()
     ],
 
     // Init
@@ -578,6 +579,9 @@
 
     // Trakt
     trakt_news: () => start.fetch_news(start.c.traktURL, "Trakt"),
+
+    // Twitch
+    twitch_news: () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
 
     // Summaries
     summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),

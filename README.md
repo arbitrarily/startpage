@@ -23,6 +23,7 @@ Some of the features:
 * View Github stars feed.
 * View owned NFTs.
 * View upcoming tv show calendar.
+* View who's online on Twitch.
 * Listen to podcasts.
 * Listen to music.
 * Listen to shuffled music playlist.
@@ -77,6 +78,7 @@ It should look like this or similar, keeping what you want and removing what you
   "techmemeURL": "<https://website.domain>",
   "traktURL": "<https://website.domain>",
   "twitterURL": "<https://website.domain>",
+  "twitchURL": "<https://website.domain>",
   "xPlaylistHTMLURL": "<https://website.domain>",
   "xPlaylistJSONURL": "<https://website.domain/x.json>",
   "xPlaylistMetalHTMLURL": "<https://website.domain>",

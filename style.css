@@ -954,6 +954,10 @@ li {
     object-fit: contain;
 }
 
+.container__list--item--faded {
+  opacity: 0.25;
+}
+
 .shortcuts {
     position: fixed;
     top: 0;
@@ -1109,12 +1113,14 @@ li {
     }
 
     .reddit-links .container__list:not(.container__list--title),
+    .twitch-links .container__list:not(.container__list--title),
     .video-links .container__list:not(.container__list--title) {
         display: block;
         padding: var(--foundation-large) 0;
     }
 
     .video-links .container__list img,
+    .twitch-links .container__list--item--video .container__list img,
     .reddit-links .container__list img {
         margin-bottom: var(--foundation);
         margin-right: 0;
@@ -1150,6 +1156,7 @@ li {
     }
 
     .video-links .container__list img,
+    .twitch-links .container__list--item--video .container__list img,
     .reddit-links .container__list img,
     .video-links.podcast-links .container__list img {
         min-width: 160px;
