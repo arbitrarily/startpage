@@ -113,12 +113,17 @@ body {
     box-shadow: none;
     border: none;
     outline: none;
-    color: var(--white);
+    color: var(--grey);
     border-radius: 8px;
     padding: calc(var(--foundation) /1.5) var(--foundation);
     opacity: var(--opacity-end);
     line-height: 1;
     transform: translate(0, -50%);
+    -webkit-animation: fadein 666ms;
+    -moz-animation: fadein 666ms;
+    -ms-animation: fadein 666ms;
+    -o-animation: fadein 666ms;
+    animation: fadein 666ms;
 }
 
 *,
