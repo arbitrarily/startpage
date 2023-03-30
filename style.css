@@ -97,7 +97,36 @@ body {
     font-size: var(--body-size);
 }
 
-* {
+[title] {
+  position: relative;
+}
+
+[title]:hover::before {
+    content: attr(title);
+    position: absolute;
+    top: 50%;
+    right: calc(100% + var(--foundation));
+    white-space: nowrap;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    background: rgba(255, 255, 255, 0.033);
+    box-shadow: none;
+    border: none;
+    outline: none;
+    color: var(--white);
+    border-radius: 8px;
+    padding: calc(var(--foundation) /1.5) var(--foundation);
+    opacity: var(--opacity-end);
+    line-height: 1;
+    transform: translate(0, -50%);
+}
+
+*,
+*:before,
+*:after,
+*:hover,
+*:focus,
+*:active {
     cursor: var(--cursor);
 }
 
@@ -480,6 +509,10 @@ li {
 .feed-links .container__list--title {
     display: flex;
     justify-content: space-between
+}
+
+.feed-links .container__list--title span {
+    overflow: revert;
 }
 
 .menu-links__toggle {
