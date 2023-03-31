@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.34.2", // Version Number
+    v: "1.35.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -112,7 +112,7 @@
       () => start.play_video(),
       () => start.poe(),
       () => start.industry_news(),
-      () => start.lexi(),
+      () => start.steam_games(),
       () => start.nfts(),
       () => start.play_single(),
       () => start.play_playlist(),
@@ -220,7 +220,7 @@
             56: 7, // Path of Exile                       (shift + 8️⃣)
             57: 8, // Music                               (shift + 9️⃣)
             48: 23, // Dev News                           (shift + 0️⃣)
-            173: 9, // Lexichronic                        (shift + "-")
+            173: 9, // Steam Games                        (shift + "-")
             61: 10, // NFTs                               (shift + "=")
             8: 25, // Metal Music                         (shift + Bakcspace)
           };
@@ -588,8 +588,8 @@
     // NFTs Home Feed
     nfts: () => start.fetch_news(start.c.alchemyURL, "NFTs"),
 
-    // Lexichronic Home Feed
-    lexi: () => start.fetch_news(start.c.lexiURL, "Lexichronic"),
+    // Steam Games Home Feed
+    steam_games: () => start.fetch_news(start.c.steamURL, "Steam Games"),
 
     // NFT News Summaries
     industry_news: () => start.fetch_news(start.c.nftNewsURL, "Industry News"),
