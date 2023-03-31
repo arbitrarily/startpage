@@ -22,6 +22,7 @@ Some of the features:
 * View Twitter (list) feed.
 * View Github stars feed.
 * View owned NFTs.
+* View Steam game library.
 * View upcoming tv show calendar.
 * View who's online on Twitch.
 * Listen to podcasts.
@@ -68,13 +69,13 @@ It should look like this or similar, keeping what you want and removing what you
   "lastFMAPIKey": "<api_key>",
   "lastFMAPISecret": "<api_secret>",
   "lastFMURL": "<https://website.com/2.0/?method=user.getrecenttracks&user=x&api_key=<api_key>&format=json&limit=1>",
-  "lexiURL": "<https://website.domain>",
   "nftNewsURL": "<https://website.domain>",
   "nytURL": "<https://website.domain>",
   "poeURL": "<https://website.domain>",
   "podURL": "<https://website.domain>",
   "redditURL": "<https://website.domain>",
   "summaryURL": "<https://website.domain>",
+  "steamURL": "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=<api_key>&steamid=<steam_id>&include_appinfo=1&include_played_free_games=1",
   "techmemeURL": "<https://website.domain>",
   "traktURL": "<https://website.domain>",
   "twitterURL": "<https://website.domain>",
