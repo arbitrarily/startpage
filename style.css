@@ -225,6 +225,11 @@ a:focus img {
     opacity: 1;
 }
 
+.background-image.cloned {
+    z-index: -3;
+    mix-blend-mode: overlay;
+}
+
 .player.hidden {
     display: none;
     visibility: hidden;

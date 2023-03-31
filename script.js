@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.33.3", // Version Number
+    v: "1.34.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -249,6 +249,7 @@
             67: start.background, // Refresh Background Image: shift + "c"
             66: start.blur, // Blur: shift + "b"
             78: start.log_wallet, // Wallet Status: shift + "n"
+            188: start.overlay, // Toggle Background Overlay: shift + ","
             190: start.resize_feed_images, // Resize Feed Images: shift + "."
             191: start.resize_container, // Resize Container: shift + "/"
             72: start.shortcuts, // Help Shortcuts: shift + "h"
@@ -375,6 +376,33 @@
           if (this.complete) $(this).trigger('load');
         });
       }, start.at * 6);
+    },
+
+    // Overlay Background Image
+    overlay: () => {
+      const bg = $(".background-image");
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+      if (!$(".cloned").length) {
+        const first = () => {
+          const clone = bg.clone().insertAfter(bg).addClass("hidden deblur cloned");
+          start.art_source(false);
+          return clone;
+        };
+        const last = async (clone) => {
+          if (clone.hasClass("cloned")) {
+            clone.toggleClass(start.h);
+            await wait(start.at * 5);
+            clone.toggleClass("hidden");
+          }
+        };
+        const clone = first();
+        last(clone);
+      } else {
+        const clone = $(".cloned");
+        clone.toggleClass("hidden");
+      }
+      const status = ($(".cloned").hasClass(start.h)) ? " Off" : " On";
+      start.notify(`Background <span>Overlay</span> ${status}`);
     },
 
     // Change Background Art Resolution
