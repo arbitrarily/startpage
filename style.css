@@ -107,15 +107,15 @@ body {
     top: 50%;
     right: calc(100% + var(--foundation));
     white-space: nowrap;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
     background: rgba(255, 255, 255, 0.033);
     box-shadow: none;
     border: none;
     outline: none;
     color: var(--grey);
     border-radius: 8px;
-    padding: calc(var(--foundation) /1.5) var(--foundation);
+    padding: calc(var(--foundation) / 2) calc(var(--foundation) / 1.5);
     opacity: var(--opacity-end);
     line-height: 1;
     transform: translate(0, -50%);
