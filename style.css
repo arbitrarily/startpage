@@ -965,7 +965,8 @@ li {
 }
 
 .nft-links .container__list img,
-.nft-links .container__list video {
+.nft-links .container__list video,
+.nft-links .container__list iframe {
     background-image: url(fallback.png);
     background-position: center;
     background-size: cover;
@@ -980,6 +981,8 @@ li {
     opacity: 1;
     object-fit: cover;
     overflow: hidden;
+    border: none;
+    outline: none;
     border-radius: var(--border-radius);
 }
 
