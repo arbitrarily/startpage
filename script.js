@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.35.4", // Version Number
+    v: "1.35.5", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1267,10 +1267,13 @@
     // Launch Steam Games
     steam_links: () => {
       $(document).on(start.t, ".feed-links a", function(e) {
-        console.log($(this).attr("data-launcher"));
         if (e.shiftKey && $(this).attr("data-launcher")) {
           e.preventDefault();
-          window.open($(this).attr("data-launcher"), '_blank');
+          $("<iframe></iframe>")
+            .css("display", "none")
+            .css("visibility", "hidden")
+            .attr("src", $(this).attr("data-launcher"))
+            .appendTo("body");
         }
       });
     },
