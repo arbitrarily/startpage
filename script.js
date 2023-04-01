@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.35.3", // Version Number
+    v: "1.35.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -160,6 +160,7 @@
       this.log(); // Output into Console
       this.rerun_functions(); // Cron Functions
       this.marquee_title(); // Marquee Title
+      this.steam_links(); // Launch Games on Windows
     },
 
     // Load Config, then Init
@@ -1261,6 +1262,17 @@
         text = text.substring(1) + text.charAt(0);
         title.text("⭐ " + text.toUpperCase());
       }, start.at);
+    },
+
+    // Launch Steam Games
+    steam_links: () => {
+      $(document).on(start.t, ".feed-links a", function(e) {
+        console.log($(this).attr("data-launcher"));
+        if (e.shiftKey && $(this).attr("data-launcher")) {
+          e.preventDefault();
+          window.open($(this).attr("data-launcher"), '_blank');
+        }
+      });
     },
 
     // Animation on Leave & Alert Check if Media is Playing

@@ -20,13 +20,14 @@ Some of the features:
 * News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
 * View Twitter (list) feed.
-* View Github stars feed.
+* View starred Github activity feed.
 * View owned NFTs.
 * View Steam game library.
-* View upcoming tv show calendar.
+* Launch Steam games.
+* View upcoming TV show calendar.
 * View who's online on Twitch.
 * Listen to podcasts.
-* Listen to music.
+* Listen to several different music playlists/libraries.
 * Listen to shuffled music playlist.
 * Listen to shuffled music playlist with a set limit.
 * Watch subscribed YouTube Videos in line without leaving the site.
@@ -34,7 +35,7 @@ Some of the features:
 * Media control (mute/unmute, volume control, play/pause, fast foward, rewind, faster/slower playback).
 * See what music I'm currently listening to.
 * See how my MetaMask wallet is doing.
-* See my public IP address.
+* See current public IP address and city.
 * See current total play count on LastFM.
 * See pageviews.
 * See version number & commit count for this repo.
@@ -42,6 +43,10 @@ Some of the features:
 * Resize images.
 * Mobile ready toggle menu.
 * Shortcuts help menu.
+* * Site
+* * Figma
+* * Visual Studio Code
+* * skhd
 
 ---
 
