@@ -300,9 +300,11 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
-      $(document).on("click", ".menu-links__toggle", function (e) {
+      $(document).on(start.t, ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
+        console.log(start.fc, 'start.fc');
+        console.log(e, 'e');
         $(this).addClass(start.s).siblings().removeClass(start.s);
         if (Number.isInteger(start.fc)) start.mf[start.fc]();
       });
