@@ -958,10 +958,44 @@ li {
     opacity: 0;
 }
 
-.nft-links .container__list:not(.container__list--title) {
+.nft-links .container__list:not(.container__list--title),
+.games-links .container__list:not(.container__list--title) {
     display: grid;
     height: 100%;
     margin-bottom: var(--foundation-large);
+}
+
+.games-links .container__list img {
+    background-image: url(fallback.png);
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    max-height: inherit;
+    height: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    aspect-ratio: 2/1;
+    filter: none;
+    opacity: 1;
+    object-fit: cover;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    border-radius: var(--border-radius);
+}
+
+.games-links .container__list .container__list--time {
+    right: 0.25rem;
+    bottom: 0.25rem;
+}
+
+.games-links .container__list span.container__list--description {
+    font-size: 0.8rem;
+    color: var(--gruy);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .nft-links .container__list img,
@@ -986,12 +1020,14 @@ li {
     border-radius: var(--border-radius);
 }
 
-.nft-links .container__list--item:hover {
+.nft-links .container__list--item:hover,
+.games-links .container__list--item:hover {
     background: transparent;
     padding: 0 var(--foundation-large);
 }
 
-.nft-links .grid-container.feed-container {
+.nft-links .grid-container.feed-container,
+.games-links .grid-container.feed-container {
     padding: 0;
 }
 

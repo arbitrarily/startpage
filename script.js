@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.35.5", // Version Number
+    v: "1.35.6", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1269,11 +1269,13 @@
       $(document).on(start.t, ".feed-links a", function(e) {
         if (e.shiftKey && $(this).attr("data-launcher")) {
           e.preventDefault();
+          const game_name = $(this).find(".container__list--item-title").html();
           $("<iframe></iframe>")
             .css("display", "none")
             .css("visibility", "hidden")
             .attr("src", $(this).attr("data-launcher"))
             .appendTo("body");
+          start.notify(`<span>Launching</span> ${game_name}`);
         }
       });
     },
