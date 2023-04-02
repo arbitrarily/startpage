@@ -22,7 +22,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.37.2", // Version Number
+    v: "1.37.3", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -300,7 +300,7 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
-      $(document).on(start.t, ".menu-links__toggle", function (e) {
+      $(document).on("click", ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
         $(this).addClass(start.s).siblings().removeClass(start.s);
