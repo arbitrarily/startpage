@@ -301,7 +301,7 @@
     // Feed Menu Click Events
     menu_clicks: function () {
       console.log('asd');
-      $(document).on(start.t, ".menu-links__toggle", function (e) {
+      $(".menu-links__toggle").on(start.t, function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
         console.log(start.fc, 'start.fc');
