@@ -22,7 +22,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.37.5", // Version Number
+    v: "1.37.6", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -300,12 +300,9 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
-      console.log('asd');
       $(document).on(start.t, ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
-        console.log(start.fc, 'start.fc');
-        console.log(e, 'e');
         $(this).addClass(start.s).siblings().removeClass(start.s);
         if (Number.isInteger(start.fc)) start.mf[start.fc]();
       });
