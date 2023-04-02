@@ -1,1054 +1,1519 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>⭐ STARTPAGE</title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-		<meta http-equiv="Cache-Control" content="max-age=3600">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;900&display=swap" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="foundation.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-		<link rel="manifest" href="/site.webmanifest">
-		<link rel="mask-icon" href="/icons/icon__safari-pinned-tab.svg" color="#5bbad5">
-		<meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
-		<meta name="msapplication-TileColor" content="#ffffff">
-		<meta name="theme-color" content="#ffffff">
-		<link rel="import" href="https://i.marko.tech/file.html">
-	</head>
-	<body class="vaal">
-		<div class="shortcuts hide-for-small-only">
-			<div class="shortcuts__inner">
-				<div class="grid-x grid-padding-x">
-					<div class="cell">
-						<h3>Keyboard Commands</h3>
-						<ul class="shortcuts__menu">
-							<li class="active" data-id="0">Startpage</li>
-							<li data-id="1">Figma</li>
-							<li data-id="2">Visual Studio Code</li>
-							<li data-id="3">skhd</li>
-						</ul>
-					</div>
-				</div>
-				<div class="shortcuts__feed-grid-container">
-					<div class="shortcuts__feed-container">
-						<div class="grid-x shortcuts__feed">
-							<div class="cell">
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Feeds <kbd>Shft</kbd></h4>
-										<ul>
-											<li><span>Toggle feed view</span><kbd>left arrow</kbd></li>
-											<li><span>Toggle feed view</span><kbd>right arrow</kbd></li>
-											<li><span>Instapaper bookmarks</span><div><kbd>Shft</kbd> + <kbd>1</kbd></div></li>
-											<li><span>News feed (aggregated news)</span><div><kbd>Shft</kbd> + <kbd>2</kbd></div></li>
-											<li><span>New York Times news</span><div><kbd>Shft</kbd> + <kbd>3</kbd></div></li>
-											<li><span>Reddit news</span><div><kbd>Shft</kbd> + <kbd>4</kbd></div></li>
-											<li><span>Podcasts</span><div><kbd>Shft</kbd> + <kbd>5</kbd></div></li>
-											<li><span>Music</span><div><kbd>Shft</kbd> + <kbd>6</kbd></div></li>
-											<li><span>YouTube latest videos</span><div><kbd>Shft</kbd> + <kbd>7</kbd></div></li>
-											<li><span>My Path of Exile characters</span><div><kbd>Shft</kbd> + <kbd>8</kbd></div></li>
-											<li><span>Web3 news</span><div><kbd>Shft</kbd> + <kbd>9</kbd></div></li>
-											<li><span>Developer news</span><div><kbd>Shft</kbd> + <kbd>0</kbd></div></li>
-											<li><span>Steam Games</span><div><kbd>Shft</kbd> + <kbd>-</kbd></div></li>
-											<li><span>NFT collection</span><div><kbd>Shft</kbd> + <kbd>=</kbd></div></li>
-											<li><span>Metal Music</span><div><kbd>Shft</kbd> + <kbd>Backspace</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Media Controls <kbd>Shft</kbd></h4>
-										<ul>
-											<li><span>increase audio speed</span><div><kbd>Shft</kbd> + <kbd>Up</kbd></div></li>
-											<li><span>decrease audio speed</span><div><kbd>Shft</kbd> + <kbd>Down</kbd></div></li>
-											<li><span>fast forward <code>15</code> seconds</span><div><kbd>Shft</kbd> + <kbd>Right</kbd></div></li>
-											<li><span>rewind <code>5</code> seconds</span><div><kbd>Shft</kbd> + <kbd>Left</kbd></div></li>
-											<li><span>play/pause</span><div><kbd>Shft</kbd> + <kbd>space</kbd></div></li>
-											<li><span>mute audio</span><div><kbd>Shft</kbd> + <kbd>m</kbd></div></li>
-											<li><span>audio volume</span><div><kbd>Shft</kbd> + <kbd>v</kbd></div></li>
-											<li><span>play one random song</span><div><kbd>Shft</kbd> + <kbd>f12</kbd></div></li>
-											<li><span>play shuffled playlist</span><div><kbd>Shft</kbd> + <kbd>f11</kbd></div></li>
-											<li><span>play limited shuffled playlist</span><div><kbd>Shft</kbd> + <kbd>f10</kbd></div></li>
-											<li><span>play 5 hours of ambience</span><div><kbd>Shft</kbd> + <kbd>f9</kbd></div></li>
-											<li><span>skip song</span><div><kbd>Shft</kbd> + <kbd>s</kbd></div></li>
-											<li><span>fullscreen video</span><div><kbd>Shft</kbd> + <kbd>f</kbd></div></li>
-											<li><span>change music player</span><div><kbd>Shft</kbd> + <kbd>t</kbd></div></li>
-											<li><span>exit fullscreen video.</span><div><kbd>esc</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Search Toggles <kbd>Opt</kbd></h4>
-										<ul>
-											<li><span><code>PoE Wiki</code></span><div><kbd>Opt</kbd> + <kbd>1</kbd></div></li>
-											<li><span><code>YouTube</code></span><div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
-											<li><span><code>DuckDuckGo</code></span><div><kbd>Opt</kbd> + <kbd>3</kbd></div></li>
-											<li><span><code>Apple Music</code></span><div><kbd>Opt</kbd> + <kbd>4</kbd></div></li>
-											<li><span><code>LastFM</code></span><div><kbd>Opt</kbd> + <kbd>5</kbd></div></li>
-											<li><span><code>Twitter</code></span><div><kbd>Opt</kbd> + <kbd>6</kbd></div></li>
-											<li><span><code>Google News</code></span><div><kbd>Opt</kbd> + <kbd>7</kbd></div></li>
-											<li><span><code>Github</code></span><div><kbd>Opt</kbd> + <kbd>8</kbd></div></li>
-											<li><span><code>Google</code></span><div><kbd>Opt</kbd> + <kbd>9</kbd></div></li>
-											<li><span><code>MidJourney</code></span><div><kbd>Opt</kbd> + <kbd>0</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Settings <kbd>Shft</kbd> <em>resets on refresh</em></h4>
-										<ul>
-											<li><span>Fetch LastFM data</span><div><kbd>Shft</kbd> + <kbd>x</kbd></div></li>
-											<li><span>Change background image</span><div><kbd>Shft</kbd> + <kbd>c</kbd></div></li>
-											<li><span>Toggle Background blue</span><div><kbd>Shft</kbd> + <kbd>b</kbd></div></li>
-											<li><span>Wallet stats logged</span><div><kbd>Shft</kbd> + <kbd>n</kbd></div></li>
-											<li><span>Toggle Background Overlay</span><div><kbd>Shft</kbd> + <kbd>,</kbd></div></li>
-											<li><span>Toggle resized feed images</span><div><kbd>Shft</kbd> + <kbd>.</kbd> </div></li>
-											<li><span>Help shortcuts menu</span><div><kbd>Shft</kbd> + <kbd>h</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="grid-x shortcuts__feed">
-							<div class="cell">
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Essentials</h4>
-										<ul>
-											<li><span>Show / Hide UI</span><div><kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
-											<li><span>Pick color</span><div><kbd>⌃</kbd> + <kbd>C</kbd></div></li>
-											<li><span>Quick actions</span><div><kbd>Cmd</kbd> + <kbd>/</kbd> or <kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
-											<li><span>Fullscreen</span><kbd>F</kbd></li>
-											<li><span>Scale view</span><kbd>Z</kbd></li>
-											<li><span>Restart prototype</span><kbd>R</kbd></li>
-											<li><span>Comment</span><kbd>C</kbd></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Tools</h4>
-										<ul>
-											<li><span>Move tool</span>
-												<div><kbd>V</kbd></div>
-											</li>
-											<li><span>Frame tool</span>
-												<div><kbd>F</kbd></div>
-											</li>
-											<li><span>Pen tool</span>
-												<div><kbd>P</kbd></div>
-											</li>
-											<li><span>Pencil tool</span>
-												<div><kbd>Shft</kbd> + <kbd>P</kbd></div>
-											</li>
-											<li><span>Text tool</span>
-												<div><kbd>T</kbd></div>
-											</li>
-											<li><span>Rectangle tool</span>
-												<div><kbd>R</kbd></div>
-											</li>
-											<li><span>Ellipse tool</span>
-												<div><kbd>O</kbd></div>
-											</li>
-											<li><span>Line tool</span>
-												<div><kbd>L</kbd></div>
-											</li>
-											<li><span>Arrow tool</span>
-												<div><kbd>Shft</kbd> + <kbd>L</kbd></div>
-											</li>
-											<li><span>Pick color</span>
-												<div><kbd>⌃</kbd> + <kbd>C</kbd></div>
-											</li>
-											<li><span>Slice tool</span>
-												<div><kbd>S</kbd></div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>View</h4>
-										<ul>
-											<li><span>Show / Hide UI</span><div><kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
-											<li><span>Multi cursors</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div></li>
-											<li><span>Rulers</span><div><kbd>Shft</kbd> + <kbd>R</kbd></div></li>
-											<li><span>Outlines</span><div><kbd>Shft</kbd> + <kbd>O</kbd></div></li>
-											<li><span>Pixel preview</span><div><kbd>Cmd</kbd> + <kbd>Shft</kbd> + <kbd>P</kbd></div></li>
-											<li><span>Layout grids</span><div><kbd>Shft</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Pixel grid</span><div><kbd>Shft</kbd> + <kbd>`</kbd></div></li>
-											<li><span>Open layers panel</span><div><kbd>Opt</kbd> + <kbd>1</kbd></div></li>
-											<li><span>Open assets panel</span><div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
-											<li><span>Open design panel</span><div><kbd>Opt</kbd> + <kbd>8</kbd></div></li>
-											<li><span>Open prototype panel</span><div><kbd>Opt</kbd> + <kbd>9</kbd></div></li>
-											<li><span>Open inspect panel</span><div><kbd>Opt</kbd> + <kbd>0</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Zoom</h4>
-										<ul>
-											<li><span>Zoom</span><div><kbd>Space</kbd> drag</div></li>
-											<li><span>Zoom in</span><div><kbd>+</kbd></div></li>
-											<li><span>Zoom out</span><div><kbd>-</kbd></div></li>
-											<li><span>Zoom to 100%</span><div><kbd>Shft</kbd> + <kbd>0</kbd></div></li>
-											<li><span>Zoom to fit</span><div><kbd>Shft</kbd> + <kbd>1</kbd></div></li>
-											<li><span>Zoom to selection</span><div><kbd>Shft</kbd> + <kbd>2</kbd></div></li>
-											<li><span>Zoom to previous frame</span><div><kbd>Shft</kbd> + <kbd>N</kbd></div></li>
-											<li><span>Zoom to next frame</span><div><kbd>N</kbd></div></li>
-											<li><span>Previous page</span><div><kbd>Page Up</kbd></div></li>
-											<li><span>Next page</span><div><kbd>Page Down</kbd></div></li>
-											<li><span>Find previous frame</span><div><kbd>Home</kbd></div></li>
-											<li><span>Find next frame</span><div><kbd>End</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Text</h4>
-										<ul>
-											<li><span>Bold</span><div><kbd>Cmd</kbd> + <kbd>B</kbd></div></li>
-											<li><span>Italic</span><div><kbd>Cmd</kbd> + <kbd>I</kbd></div></li>
-											<li><span>Underline</span><div><kbd>Cmd</kbd> + <kbd>U</kbd></div></li>
-											<li><span>Create link</span><div><kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
-											<li><span>Strikethrough</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>X</kbd></div></li>
-											<li><span>Turn into a list</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>7</kbd></div></li>
-											<li><span>Text align left</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div></li>
-											<li><span>Text align center</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>T</kbd></div></li>
-											<li><span>Text align right</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>R</kbd></div></li>
-											<li><span>Text align justified</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
-											<li><span>Adjust font size</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div></li>
-											<li><span>Adjust font weight</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div></li>
-											<li><span>Adjust letter spacing</span><div><kbd>Opt</kbd> + <kbd>&gt;</kbd></div></li>
-											<li><span>Adjust line height</span><div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>&gt;</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Shape</h4>
-										<ul>
-											<li><span>Pen</span><div><kbd>P</kbd></div></li>
-											<li><span>Pencil</span><div><kbd>Shft</kbd> + <kbd>P</kbd></div></li>
-											<li><span>Paint bucket</span><div><kbd>B</kbd></div></li>
-											<li><span>Bend tool</span><div><kbd>Cmd</kbd></div></li>
-											<li><span>Remove fill</span><div><kbd>Opt</kbd> + <kbd>/</kbd></div></li>
-											<li><span>Remove stroke</span><div><kbd>/</kbd></div></li>
-											<li><span>Swap fill and stroke</span><div><kbd>Shft</kbd> + <kbd>X</kbd></div></li>
-											<li><span>Outline stroke</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
-											<li><span>Flatten selection</span><div><kbd>Cmd</kbd> + <kbd>E</kbd></div></li>
-											<li><span>Join selection</span><div><kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
-											<li><span>Smooth join selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div></li>
-											<li><span>Delete and heal selection</span><div><kbd>Shft</kbd> + <kbd>Delete</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Selection</h4>
-										<ul>
-											<li><span>Select all</span><div><kbd>Cmd</kbd> + <kbd>A</kbd></div></li>
-											<li><span>Select inverse</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>A</kbd></div></li>
-											<li><span>Select none</span><div><kbd>Esc</kbd></div></li>
-											<li><span>Deep select</span><div><kbd>Cmd</kbd> + Click</div></li>
-											<li><span>Select layer menu</span><div><kbd>Cmd</kbd> + right-click</div></li>
-											<li><span>Select children</span><div><kbd>Return</kbd></div></li>
-											<li><span>Select parent</span><div><kbd>Shft</kbd> + <kbd>Return</kbd></div></li>
-											<li><span>Select next sibling</span><div><kbd>Tab</kbd></div></li>
-											<li><span>Select previous sibling</span><div><kbd>Shft</kbd> + <kbd>Tab</kbd></div></li>
-											<li><span>Group selections</span><div><kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Ungroup selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Frame selection</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Show / Hide selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>H</kbd></div></li>
-											<li><span>Lock / Unlock selection</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Cursor</h4>
-										<ul>
-											<li>
-												<span>Description</span>
-												<div><kbd>Opt</kbd></div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Opt</kbd></div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Cmd</kbd> + Click</div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Cmd</kbd> + Right-click</div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Cmd</kbd> + Drag</div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Opt</kbd></div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Shft</kbd></div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Space</kbd></div>
-											</li>
-											<li>
-												<span>Description</span>
-												<div><kbd>Cmd</kbd></div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Edit</h4>
-										<ul>
-												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
-												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>X</kbd></div></li>
-												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
-												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
-												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>D</kbd></div></li>
-												<li><span>Description</span><div><kbd>Cmd</kbd> + <kbd>R</kbd></div></li>
-												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>E</kbd></div></li>
-												<li><span>Description</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
-												<li><span>Description</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div></li>
-												<li><span>Description</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Transform</h4>
-										<ul>
-											<li><span>Flip horizontal</span><div><kbd>Shft</kbd> + <kbd>H</kbd></div></li>
-											<li><span>Flip vertical</span><div><kbd>Shft</kbd> + <kbd>V</kbd></div></li>
-											<li><span>Use a mask</span><div><kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div></li>
-											<li><span>Edit shape or image</span><div><kbd>Return</kbd></div></li>
-											<li><span>Place image</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
-											<li><span>Crop image</span><div><kbd>Opt</kbd> Double-click</div></li>
-											<li><span>Set opacity to 10</span><div><kbd>1</kbd></div></li>
-											<li><span>Set opacity to 50</span><div><kbd>5</kbd></div></li>
-											<li><span>Set opacity to 100</span><div><kbd>0</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Arrange</h4>
-										<ul>
-											<li><span>Bring forward</span><div><kbd>Cmd</kbd> + <kbd>]</kbd></div></li>
-											<li><span>Send backward</span><div><kbd>Cmd</kbd> + <kbd>[</kbd></div></li>
-											<li><span>Bring to front</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div></li>
-											<li><span>Send to back</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>]</kbd></div></li>
-											<li><span>Align left</span><div><kbd>Opt</kbd> + <kbd>A</kbd></div></li>
-											<li><span>Align right</span><div><kbd>Opt</kbd> + <kbd>D</kbd></div></li>
-											<li><span>Align top</span><div><kbd>Opt</kbd> + <kbd>W</kbd></div></li>
-											<li><span>Align bottom</span><div><kbd>Opt</kbd> + <kbd>S</kbd></div></li>
-											<li><span>Align centers</span><div><kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div></li>
-											<li><span>Distribute spacing</span><div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div></li>
-											<li><span>Tidy up</span><div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>T</kbd></div></li>
-											<li><span>Add auto layout</span><div><kbd>Shft</kbd> + <kbd>A</kbd></div></li>
-											<li><span>Remove auto layout</span><div><kbd>Opt</kbd> + <kbd>Shft</kbd> + <kbd>A</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Components</h4>
-										<ul>
-											<li>Show assets<div><kbd>Opt</kbd> + <kbd>2</kbd></div></li>
-											<li>Team library<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
-											<li>Create component<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div></li>
-											<li>Detach instance<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>B</kbd></div></li>
-											<li>Swap component instance<div><kbd>Opt</kbd> + <kbd>Shft</kbd></div></li>
-											<li>Show components menu<div><kbd>Shft</kbd> + <kbd>I</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="grid-x shortcuts__feed">
-							<div class="cell">
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>General</h4>
-										<ul>
-											<li><span>Show Command Palette</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
-											<li><span>Quick Open, Go to File…</span><div><kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
-											<li><span>New window/instance</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>N</kbd></div></li>
-											<li><span>Close window/instance</span><div><kbd>Cmd</kbd> + <kbd>W</kbd></div></li>
-											<li><span>User Settings</span><div><kbd>Cmd</kbd> + <kbd>,</kbd></div></li>
-											<li><span>Keyboard Shortcuts</span><div><kbd>Cmd</kbd> + <kbd>Opt</kbd> + <kbd>K</kbd></div></li>
-											<li><span>Debug Continue</span><kbd>F5</kbd></li>
-											<li><span>Debug Stop</span><div><kbd>Shft</kbd> + <kbd>F5</kbd></div></li>
-											<li><span>Debug Breakpoint</span><kbd>F9</kbd></li>
-											<li><span>Debug Stepover</span><kbd>F10</kbd></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Basic editing</h4>
-										<ul>
-											<li><span>Move line down/up</span>
-												<div><kbd>Opt</kbd> + <kbd>↓</kbd> / <kbd>Opt</kbd> + <kbd>↑</kbd></div>
-											</li>
-											<li><span>Copy line down/up</span>
-												<div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>↓</kbd> or <kbd>↑</kbd></div>
-											</li>
-											<li><span>Delete line</span>
-												<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div>
-											</li>
-											<li><span>Jump to matching bracket</span>
-												<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div>
-											</li>
-											<li><span>Indent/outdent line</span>
-												<div><kbd>Cmd</kbd> + <kbd>]</kbd> or <kbd>[</kbd></div>
-											</li>
-											<li><span>Go to start/end of line</span>
-												<div><kbd>Home</kbd> or <kbd>End</kbd></div>
-											</li>
-											<li><span>Go to start/end of file</span>
-												<div><kbd>Cmd</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></div>
-											</li>
-											<li><span>Scroll line up/down</span>
-												<div><kbd>Ctrl</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
-											</li>
-											<li><span>Scroll page up/down</span>
-												<div><kbd>Cmd</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
-											</li>
-											<li><span>Fold/unfold region</span>
-												<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
-											</li>
-											<li><span>Fold/unfold all subregions</span>
-												<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
-											</li>
-											<li><span>Fold/unfold all regions</span>
-												<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>0</kbd></div>
-											</li>
-											<li><span>Toggle word wrap</span>
-												<div><kbd>Opt</kbd> + <kbd>Z</kbd></div>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Navigation</h4>
-										<ul>
-											<li><span>Show all Symbols</span><div><kbd>Cmd</kbd> + <kbd>T</kbd></div></li>
-											<li><span>Go to Line...</span><div><kbd>Ctrl</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Go to File...</span><div><kbd>Cmd</kbd> + <kbd>P</kbd></div></li>
-											<li><span>Go to Symbol...</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div></li>
-											<li><span>Show Problems</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div></li>
-											<li><span>Go to next error</span><div><kbd>F8</kbd></div></li>
-											<li><span>Navigate history</span><div><kbd>Ctrl</kbd> + <kbd>-</kbd> or <kbd>-</kbd></div></li>
-											<li><span>Go back/forward</span><div><kbd>Ctrl</kbd> + <kbd>Shft</kbd> + <kbd>Tab</kbd></div></li>
-											<li><span>Toggle Tab moves focus</span><div><kbd>Ctrl</kbd> + <kbd>Shft</kbd> + <kbd>M</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Search and replace</h4>
-										<ul>
-											<li><span>Find</span><div><kbd>Cmd</kbd> + <kbd>F</kbd></div></li>
-											<li><span>Replace</span><div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>F</kbd></div></li>
-											<li><span>Find next/previous</span><div><kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Select all Find match</span><div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div></li>
-											<li><span>Add to next Find</span><div><kbd>Opt</kbd> + <kbd>Return</kbd></div></li>
-											<li><span>Find next match</span><div><kbd>Cmd</kbd> + <kbd>D</kbd></div></li>
-											<li><span>Toggle case-sensitive</span><div><kbd>Alt</kbd> + <kbd>C</kbd></div></li>
-											<li><span>Toggle regex</span><div><kbd>Alt</kbd> + <kbd>R</kbd></div></li>
-											<li><span>Toggle whole word</span><div><kbd>Alt</kbd> + <kbd>W</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="grid-x shortcuts__feed">
-							<div class="cell">
-								<div class="grid-x grid-padding-x">
-									<div class="cell small-12 large-auto">
-										<h4>Windows</h4>
-										<ul>
-											<li><span>Equalize windows</span><div><kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>e</kbd></div></li>
-											<li><span>Toggle Split</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>LCtrl</kbd> + <kbd>e</kbd></div></li>
-											<li><span>Toggle gaps</span><div><kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>g</kbd></div></li>
-											<li><span>Rotate windows</span><div><kbd>Alt</kbd> + <kbd>r</kbd></div></li>
-											<li><span>Rotate windows 🔄</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>r</kbd></div></li>
-											<li><span>Float / Unfloat window</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>space</kbd></div></li>
-											<li><span>Focus window West</span><div><kbd>Alt</kbd> + <kbd>h</kbd></div></li>
-											<li><span>Focus window South</span><div><kbd>Alt</kbd> + <kbd>j</kbd></div></li>
-											<li><span>Focus window North</span><div><kbd>Alt</kbd> + <kbd>k</kbd></div></li>
-											<li><span>Focus window East</span><div><kbd>Alt</kbd> + <kbd>l</kbd></div></li>
-											<li><span>Move window to West</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>h</kbd></div></li>
-											<li><span>Move window to South</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>j</kbd></div></li>
-											<li><span>Move window to North</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>k</kbd></div></li>
-											<li><span>Move window to East</span><div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>l</kbd></div></li>
-											<li><span>Focus workspace 1-9</span><div><kbd>Shft</kbd> + <kbd>LCtrl</kbd> + <kbd>1</kbd> - <kbd>9</kbd></div></li>
-										</ul>
-									</div>
-									<div class="cell small-12 large-auto">
-										<h4>Others</h4>
-										<ul>
-											<li><span>Opens iTerm2</span><div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>Return</kbd></div></li>
-											<li><span>New Firefox Window</span><div><kbd>Alt</kbd> + <kbd>Return</kbd></div></li>
-											<li><span>Restart Yabai</span><div><kbd>Shft</kbd> + <kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>r</kbd></div></li>
-											<li><span>Switch Display</span><div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>z</kbd></div></li>
-											<li><span>Switch To Other Display</span><div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>x</kbd></div></li>
-											<li><span>Make window native fullscreen</span><div><kbd>Alt</kbd> + <kbd>f</kbd></div></li>
-											<li><span>Volume Muted</span><div><kbd>F13</kbd></div></li>
-											<li><span>Decrease Volume</span><div><kbd>F14</kbd></div></li>
-											<li><span>Increase Volume</span><div><kbd>F15</kbd></div></li>
-											<li><span>Lock Screen</span><div><kbd>LCtrl</kbd> + <kbd>F15</kbd></div></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="notifications hidden">
-			<div class="notifications__inner">
-			</div>
-		</div>
-		<img class="background-image everywhere hidden" alt="Background Image" />
-		<div class="grid-container container everything">
-			<div class="grid-x align-middle container__inner">
+
+<head>
+	<title>⭐ STARTPAGE</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta http-equiv="Cache-Control" content="max-age=3600">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="foundation.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/icons/icon__safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+	<link rel="import" href="https://i.marko.tech/file.html">
+</head>
+
+<body class="vaal">
+	<div class="shortcuts hide-for-small-only">
+		<div class="shortcuts__inner">
+			<div class="grid-x grid-padding-x">
 				<div class="cell">
-					<div class="grid-x grid-padding-x">
-						<div class="cell medium-6">
-							<form id="searchform" action="https://www.google.com/search" method="get">
-								<label for="search">
-									<img class="search" src="icons/icon__search.svg" alt="Search" />
-								</label>
-								<div class="search__input--container">
-									<div class="search__input--container-volume">
-										<input type="range" min="0" max="100" value="100" class="volume">
-									</div>
-									<input id="search" placeholder="Search" type="text" name="q" autofocus autocomplete="off"
-										data-type="google" />
-									<div class="progress">
-										<div class="progress__inner"></div>
-									</div>
-									<div class="podcasts">
-										<img src="icons/icon__play.svg" alt="Play/Pause" />
-										<span class="podcasts-replace"></span>
-									</div>
+					<h3>Keyboard Commands</h3>
+					<ul class="shortcuts__menu">
+						<li class="active" data-id="0">Startpage</li>
+						<li data-id="1">Figma</li>
+						<li data-id="2">Visual Studio Code</li>
+						<li data-id="3">skhd</li>
+					</ul>
+				</div>
+			</div>
+			<div class="shortcuts__feed-grid-container">
+				<div class="shortcuts__feed-container">
+					<div class="grid-x shortcuts__feed">
+						<div class="cell">
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Feeds <kbd>Shft</kbd></h4>
+									<ul>
+										<li><span>Toggle feed view</span><kbd>left arrow</kbd></li>
+										<li><span>Toggle feed view</span><kbd>right arrow</kbd></li>
+										<li><span>Instapaper bookmarks</span>
+											<div><kbd>Shft</kbd> + <kbd>1</kbd></div>
+										</li>
+										<li><span>News feed (aggregated news)</span>
+											<div><kbd>Shft</kbd> + <kbd>2</kbd></div>
+										</li>
+										<li><span>New York Times news</span>
+											<div><kbd>Shft</kbd> + <kbd>3</kbd></div>
+										</li>
+										<li><span>Reddit news</span>
+											<div><kbd>Shft</kbd> + <kbd>4</kbd></div>
+										</li>
+										<li><span>Podcasts</span>
+											<div><kbd>Shft</kbd> + <kbd>5</kbd></div>
+										</li>
+										<li><span>Music</span>
+											<div><kbd>Shft</kbd> + <kbd>6</kbd></div>
+										</li>
+										<li><span>YouTube latest videos</span>
+											<div><kbd>Shft</kbd> + <kbd>7</kbd></div>
+										</li>
+										<li><span>My Path of Exile characters</span>
+											<div><kbd>Shft</kbd> + <kbd>8</kbd></div>
+										</li>
+										<li><span>Web3 news</span>
+											<div><kbd>Shft</kbd> + <kbd>9</kbd></div>
+										</li>
+										<li><span>Developer news</span>
+											<div><kbd>Shft</kbd> + <kbd>0</kbd></div>
+										</li>
+										<li><span>Steam Games</span>
+											<div><kbd>Shft</kbd> + <kbd>-</kbd></div>
+										</li>
+										<li><span>NFT collection</span>
+											<div><kbd>Shft</kbd> + <kbd>=</kbd></div>
+										</li>
+										<li><span>Metal Music</span>
+											<div><kbd>Shft</kbd> + <kbd>Backspace</kbd></div>
+										</li>
+									</ul>
 								</div>
-							</form>
-						</div>
-						<div class="cell medium-6 large-auto large-offset-2 nowplaying__container">
-							<div>
-								<a href="" class="nowplaying__url" target="_blank" rel="noopener noreferrer">
-									<div class="nowplaying__song-name">
-										<span class="nowplaying__song" title=""></span>
-										<div class="nowplaying__overflow">
-											<strong class="nowplaying__artist" title=""></strong> <span class="nowplaying__album" title=""></span>
-										</div>
-									</div>
-									<img src="" class="nowplaying__image" alt="" />
-								</a>
+								<div class="cell small-12 large-auto">
+									<h4>Media Controls <kbd>Shft</kbd></h4>
+									<ul>
+										<li><span>increase audio speed</span>
+											<div><kbd>Shft</kbd> + <kbd>Up</kbd></div>
+										</li>
+										<li><span>decrease audio speed</span>
+											<div><kbd>Shft</kbd> + <kbd>Down</kbd></div>
+										</li>
+										<li><span>fast forward <code>15</code> seconds</span>
+											<div><kbd>Shft</kbd> + <kbd>Right</kbd></div>
+										</li>
+										<li><span>rewind <code>5</code> seconds</span>
+											<div><kbd>Shft</kbd> + <kbd>Left</kbd></div>
+										</li>
+										<li><span>play/pause</span>
+											<div><kbd>Shft</kbd> + <kbd>space</kbd></div>
+										</li>
+										<li><span>mute audio</span>
+											<div><kbd>Shft</kbd> + <kbd>m</kbd></div>
+										</li>
+										<li><span>audio volume</span>
+											<div><kbd>Shft</kbd> + <kbd>v</kbd></div>
+										</li>
+										<li><span>play one random song</span>
+											<div><kbd>Shft</kbd> + <kbd>f12</kbd></div>
+										</li>
+										<li><span>play shuffled playlist</span>
+											<div><kbd>Shft</kbd> + <kbd>f11</kbd></div>
+										</li>
+										<li><span>play limited shuffled playlist</span>
+											<div><kbd>Shft</kbd> + <kbd>f10</kbd></div>
+										</li>
+										<li><span>play 5 hours of ambience</span>
+											<div><kbd>Shft</kbd> + <kbd>f9</kbd></div>
+										</li>
+										<li><span>skip song</span>
+											<div><kbd>Shft</kbd> + <kbd>s</kbd></div>
+										</li>
+										<li><span>fullscreen video</span>
+											<div><kbd>Shft</kbd> + <kbd>f</kbd></div>
+										</li>
+										<li><span>change music player</span>
+											<div><kbd>Shft</kbd> + <kbd>t</kbd></div>
+										</li>
+										<li><span>exit fullscreen video.</span>
+											<div><kbd>esc</kbd></div>
+										</li>
+									</ul>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="grid-x grid-padding-x container__overflow">
-						<div class="cell container__overflow">
-							<div class="grid-x grid-padding-x container__content">
-								<div class="cell small-12 large-4">
-									<div class="feed-links"></div>
-								</div>
-								<div class="cell small-12 large-3 container__list--padding-override">
-									<div class="grid-container">
-										<ul class="grid-x grid-padding-x container__list--title-list">
-											<li class="cell">
-												<span class="container__list container__list--title">Feeds</span>
-											</li>
-										</ul>
-									</div>
-									<div class="grid-container container__feed-list-container">
-										<ul class="grid-x grid-padding-x container__feed-list">
-											<li class="cell menu-links__item menu-links__toggle" data-id="0">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__instapaper.svg" alt="Instapaper" />
-														</div>
-														<span>Instapaper</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="4">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__podcasts.svg" alt="Podcasts" />
-														</div>
-														<span>Podcasts</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="5">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__lofi--alt.svg" alt="Lofi Music" />
-														</div>
-														<span>Lofi</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="25">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__metal.svg" alt="Metal Music" />
-														</div>
-														<span>Metal</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="31">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__peace.svg" alt="Vibes" />
-														</div>
-														<span>Vibes</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="3">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__reddit.svg" alt="Reddit" />
-														</div>
-														<span>Reddit</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="1">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__news.svg" alt="News" />
-														</div>
-														<span>News</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="2">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__nyt.svg" alt="New York Times" />
-														</div>
-														<span>NYTimes</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="8">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__summaries.svg" alt="Web3 News" />
-														</div>
-														<span>Web3</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="23">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__code.svg" alt="Dev News" />
-														</div>
-														<span>Dev</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="9">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__steam.svg" alt="Steam Games" />
-														</div>
-														<span>Steam</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="10">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__nfts.svg" alt="NFTs" />
-														</div>
-														<span>NFTs</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="26">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__twitter.svg" alt="Twitter" />
-														</div>
-														<span>Twitter</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="28">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__github.svg" alt="Github" />
-														</div>
-														<span>Github</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="7">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__chaos.png" alt="Path of Exile" />
-														</div>
-														<span>PoE</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="30">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__twitch.svg" alt="Twitch" />
-														</div>
-														<span>Twitch</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="6">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__youtube.svg" alt="YouTube" />
-														</div>
-														<span>YouTube</span>
-													</div>
-												</a>
-											</li>
-											<li class="cell menu-links__item menu-links__toggle" data-id="29">
-												<a href="#" class="container__list">
-													<div class="menu-links__toggle--content">
-														<div class="menu-links__toggle--image-container">
-															<img src="icons/icon__trakt.svg" alt="Trakt" />
-														</div>
-														<span>Trakt</span>
-													</div>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
+							<div class="grid-x grid-padding-x">
 								<div class="cell small-12 large-auto">
-									<ul class="grid-x">
-										<li class="cell">
-											<span class="container__list container__list--title">Reading</span>
+									<h4>Search Toggles <kbd>Opt</kbd></h4>
+									<ul>
+										<li><span><code>PoE Wiki</code></span>
+											<div><kbd>Opt</kbd> + <kbd>1</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.instapaper.com/u" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://instapaper.com&sz=128" alt="Instapaper" />
-												<span>Instapaper</span>
-											</a>
+										<li><span><code>YouTube</code></span>
+											<div><kbd>Opt</kbd> + <kbd>2</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://reddit.com&sz=128" alt="Reddit" />
-												<span>Reddit</span>
-											</a>
+										<li><span><code>DuckDuckGo</code></span>
+											<div><kbd>Opt</kbd> + <kbd>3</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://twitter.com/desmosthenes" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://twitter.com&sz=128" alt="Twitter" />
-												<span>Twitter</span>
-											</a>
+										<li><span><code>Apple Music</code></span>
+											<div><kbd>Opt</kbd> + <kbd>4</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.techmeme.com/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://techmeme.com&sz=128" alt="TechMeme" />
-												<span>TechMeme</span>
-											</a>
+										<li><span><code>LastFM</code></span>
+											<div><kbd>Opt</kbd> + <kbd>5</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://news.ycombinator.com&sz=128" alt="Hacker News" />
-												<span>Hacker News</span>
-											</a>
+										<li><span><code>Twitter</code></span>
+											<div><kbd>Opt</kbd> + <kbd>6</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://news.google.com/news/headlines?ned=us&hl=en" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://news.google.com&sz=128" alt="Google News" />
-												<span>Google News</span>
-											</a>
+										<li><span><code>Google News</code></span>
+											<div><kbd>Opt</kbd> + <kbd>7</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://nytimes.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://nytimes.com&sz=128" alt="New York Times" />
-												<span>New York Times</span>
-											</a>
+										<li><span><code>Github</code></span>
+											<div><kbd>Opt</kbd> + <kbd>8</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.elnuevodia.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://www.elnuevodia.com&sz=128" alt="El Nuevo Día" />
-												<span>El Nuevo Día</span>
-											</a>
+										<li><span><code>Google</code></span>
+											<div><kbd>Opt</kbd> + <kbd>9</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://twitter.com/opmreddit" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://twitter.com/&sz=128" alt="One Punch Man" />
-												<span>One Punch Man</span>
-											</a>
+										<li><span><code>MidJourney</code></span>
+											<div><kbd>Opt</kbd> + <kbd>0</kbd></div>
 										</li>
 									</ul>
 								</div>
 								<div class="cell small-12 large-auto">
-									<ul class="grid-x">
-										<li class="cell">
-											<span class="container__list container__list--title">Work</span>
+									<h4>Settings <kbd>Shft</kbd> <em>resets on refresh</em></h4>
+									<ul>
+										<li><span>Fetch LastFM data</span>
+											<div><kbd>Shft</kbd> + <kbd>x</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://nftnow.monday.com/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://monday.com&sz=128" alt="Monday" />
-												<span>Monday</span>
-											</a>
+										<li><span>Change background image</span>
+											<div><kbd>Shft</kbd> + <kbd>c</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://github.com/arbitrarily" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://github.com&sz=128" alt="Github" />
-												<span>Github</span>
-											</a>
+										<li><span>Toggle Background blue</span>
+											<div><kbd>Shft</kbd> + <kbd>b</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://bitbucket.org/dashboard/repositories" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://bitbucket.org&sz=128" alt="Bitbucket" />
-												<span>Bitbucket</span>
-											</a>
+										<li><span>Wallet stats logged</span>
+											<div><kbd>Shft</kbd> + <kbd>n</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list"
-												href="https://one.newrelic.com/dashboards/detail/MzYxMDY4OHxWSVp8REFTSEJPQVJEfGRhOjI1NjkzMzU?account=3610688&duration=604800000&state=9689e8d3-7f59-f58d-c96e-e02ccb5a8ac6"
-												target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://newrelic.com&sz=128" alt="New Relic" />
-												<span>New Relic</span>
-											</a>
+										<li><span>Toggle Background Overlay</span>
+											<div><kbd>Shft</kbd> + <kbd>,</kbd></div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://mail.google.com/mail/u/0/h/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://mail.google.com&sz=128" alt="Gmail" />
-												<span>Gmail</span>
-											</a>
+										<li><span>Toggle resized feed images</span>
+											<div><kbd>Shft</kbd> + <kbd>.</kbd> </div>
 										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://drive.google.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://drive.google.com&sz=128" alt="Drive" />
-												<span>Drive</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://dropbox.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://dropbox.com&sz=128" alt="Dropbox" />
-												<span>Dropbox</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://cloud.digitalocean.com/login" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://digitalocean.com&sz=128" alt="Digital Ocean" />
-												<span>Digital Ocean</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.name.com/account" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://www.name.com/&sz=128" alt="Name.com" />
-												<span>Name.com</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="cell small-12 large-auto">
-									<ul class="grid-x">
-										<li class="cell">
-											<span class="container__list container__list--title">Media</span>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://chat.openai.com&sz=128" alt="ChatGPT" />
-												<span>ChatGPT</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.midjourney.com/app/users/383432442448576517/?sort=new"
-												target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://www.midjourney.com&sz=128" alt="MidJourney" />
-												<span>MidJourney</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.youtube.com/playlist?list=WL" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://youtube.com&sz=128" alt="YouTube" />
-												<span>YouTube</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://studio.youtube.com/channel/UC41pdbLjbeT4dwEJd4bJhtA" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://youtube.com&sz=128" alt="Studio" />
-												<span>Studio</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://play.hbomax.com/" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://play.hbomax.com&sz=128" alt="HBO Max" />
-												<span>HBO Max</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://beta.music.apple.com/for-you" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://beta.music.apple.com&sz=128" alt="Apple Music" />
-												<span>Apple Music</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.last.fm/user/desmosthenes" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://last.fm&sz=128" alt="LastFM" />
-												<span>LastFM</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.tumblr.com/dashboard" target="_blank" rel="noopener noreferrer">
-												<img src="https://assets.tumblr.com/pop/manifest/apple-touch-icon-873b11b4.png" alt="Tumblr" />
-												<span>Tumblr</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://opensea.io/desmosthenes" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://opensea.io&sz=128" alt="OpenSea" />
-												<span>OpenSea</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="cell small-12 large-auto">
-									<ul class="grid-x">
-										<li class="cell">
-											<span class="container__list container__list--title">Games</span>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://discord.com&sz=128" alt="Discord" />
-												<span>Discord</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://steamcommunity.com/id/desmosthenes/" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://steamcommunity.com/&sz=128" alt="Steam" />
-												<span>Steam</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://pathofexile.com/trade" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://pathofexile.com/trade&sz=128" alt="Trade" />
-												<span>Trade</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://poe.ninja/challenge/builds" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://poe.ninja&sz=128" alt="PoE Ninja" />
-												<span>PoE Ninja</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://filterblade.xyz" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://filterblade.xyz/&sz=128" alt="FilterBlade" />
-												<span>FilterBlade</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://poe-leveling.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://poe-leveling.com/&sz=128" alt="Leveling" />
-												<span>Leveling</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://craftofexile.com" target="_blank" rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://craftofexile.com&sz=128" alt="Craft of Exile" />
-												<span>Craft of Exile</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.grinding.zone/" target="_blank" rel="noopener noreferrer">
-												<img src="icons/icon__grindingzone.png" alt="Grinding.Zone" />
-												<span>Grinding.Zone</span>
-											</a>
-										</li>
-										<li class="cell small-6 medium-4 large-12 container__list--item">
-											<a class="container__list" href="https://www.pathofexile.com/account/view-profile/desmosthenes2" target="_blank"
-												rel="noopener noreferrer">
-												<img src="https://www.google.com/s2/favicons?domain=https://www.pathofexile.com/&sz=128" alt="My Profile" />
-												<span>Profile</span>
-											</a>
+										<li><span>Help shortcuts menu</span>
+											<div><kbd>Shft</kbd> + <kbd>h</kbd></div>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="ip">
-				<div>
-					<img src="icons/icon__signal.svg" alt="Signal" />
-					<span class="ip-replace"></span>
-				</div>
-			</div>
-			<div class="stats">
-				<div class="mute show-for-large-only">
-					<img src="icons/icon__mute.svg" alt="Mute" />
-				</div>
-				<div class="version">
-					<img src="icons/icon__version.svg" alt="Version" />
-					<span class="version-target"></span>
-				</div>
-				<div class="songs">
-					<img src="icons/icon__lastfm.svg" alt="Song Play Count" />
-					<span class="songs-replace"></span>
-				</div>
-				<div class="counter">
-					<img src="icons/icon__eye.svg" alt="Pageview Count" />
-					<span class="counter-replace"></span>
-				</div>
-				<div class="wallet">
-					<img src="icons/icon__coin.svg" alt="Wallet Status" />
-					<span class="wallet-replace"></span>
+					<div class="grid-x shortcuts__feed">
+						<div class="cell">
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Essentials</h4>
+									<ul>
+										<li><span>Show / Hide UI</span>
+											<div><kbd>Cmd</kbd> + <kbd>\</kbd></div>
+										</li>
+										<li><span>Pick color</span>
+											<div><kbd>⌃</kbd> + <kbd>C</kbd></div>
+										</li>
+										<li><span>Quick actions</span>
+											<div><kbd>Cmd</kbd> + <kbd>/</kbd> or <kbd>Cmd</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Fullscreen</span><kbd>F</kbd></li>
+										<li><span>Scale view</span><kbd>Z</kbd></li>
+										<li><span>Restart prototype</span><kbd>R</kbd></li>
+										<li><span>Comment</span><kbd>C</kbd></li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Tools</h4>
+									<ul>
+										<li><span>Move tool</span>
+											<div><kbd>V</kbd></div>
+										</li>
+										<li><span>Frame tool</span>
+											<div><kbd>F</kbd></div>
+										</li>
+										<li><span>Pen tool</span>
+											<div><kbd>P</kbd></div>
+										</li>
+										<li><span>Pencil tool</span>
+											<div><kbd>Shft</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Text tool</span>
+											<div><kbd>T</kbd></div>
+										</li>
+										<li><span>Rectangle tool</span>
+											<div><kbd>R</kbd></div>
+										</li>
+										<li><span>Ellipse tool</span>
+											<div><kbd>O</kbd></div>
+										</li>
+										<li><span>Line tool</span>
+											<div><kbd>L</kbd></div>
+										</li>
+										<li><span>Arrow tool</span>
+											<div><kbd>Shft</kbd> + <kbd>L</kbd></div>
+										</li>
+										<li><span>Pick color</span>
+											<div><kbd>⌃</kbd> + <kbd>C</kbd></div>
+										</li>
+										<li><span>Slice tool</span>
+											<div><kbd>S</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>View</h4>
+									<ul>
+										<li><span>Show / Hide UI</span>
+											<div><kbd>Cmd</kbd> + <kbd>\</kbd></div>
+										</li>
+										<li><span>Multi cursors</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div>
+										</li>
+										<li><span>Rulers</span>
+											<div><kbd>Shft</kbd> + <kbd>R</kbd></div>
+										</li>
+										<li><span>Outlines</span>
+											<div><kbd>Shft</kbd> + <kbd>O</kbd></div>
+										</li>
+										<li><span>Pixel preview</span>
+											<div><kbd>Cmd</kbd> + <kbd>Shft</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Layout grids</span>
+											<div><kbd>Shft</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Pixel grid</span>
+											<div><kbd>Shft</kbd> + <kbd>`</kbd></div>
+										</li>
+										<li><span>Open layers panel</span>
+											<div><kbd>Opt</kbd> + <kbd>1</kbd></div>
+										</li>
+										<li><span>Open assets panel</span>
+											<div><kbd>Opt</kbd> + <kbd>2</kbd></div>
+										</li>
+										<li><span>Open design panel</span>
+											<div><kbd>Opt</kbd> + <kbd>8</kbd></div>
+										</li>
+										<li><span>Open prototype panel</span>
+											<div><kbd>Opt</kbd> + <kbd>9</kbd></div>
+										</li>
+										<li><span>Open inspect panel</span>
+											<div><kbd>Opt</kbd> + <kbd>0</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Zoom</h4>
+									<ul>
+										<li><span>Zoom</span>
+											<div><kbd>Space</kbd> drag</div>
+										</li>
+										<li><span>Zoom in</span>
+											<div><kbd>+</kbd></div>
+										</li>
+										<li><span>Zoom out</span>
+											<div><kbd>-</kbd></div>
+										</li>
+										<li><span>Zoom to 100%</span>
+											<div><kbd>Shft</kbd> + <kbd>0</kbd></div>
+										</li>
+										<li><span>Zoom to fit</span>
+											<div><kbd>Shft</kbd> + <kbd>1</kbd></div>
+										</li>
+										<li><span>Zoom to selection</span>
+											<div><kbd>Shft</kbd> + <kbd>2</kbd></div>
+										</li>
+										<li><span>Zoom to previous frame</span>
+											<div><kbd>Shft</kbd> + <kbd>N</kbd></div>
+										</li>
+										<li><span>Zoom to next frame</span>
+											<div><kbd>N</kbd></div>
+										</li>
+										<li><span>Previous page</span>
+											<div><kbd>Page Up</kbd></div>
+										</li>
+										<li><span>Next page</span>
+											<div><kbd>Page Down</kbd></div>
+										</li>
+										<li><span>Find previous frame</span>
+											<div><kbd>Home</kbd></div>
+										</li>
+										<li><span>Find next frame</span>
+											<div><kbd>End</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Text</h4>
+									<ul>
+										<li><span>Bold</span>
+											<div><kbd>Cmd</kbd> + <kbd>B</kbd></div>
+										</li>
+										<li><span>Italic</span>
+											<div><kbd>Cmd</kbd> + <kbd>I</kbd></div>
+										</li>
+										<li><span>Underline</span>
+											<div><kbd>Cmd</kbd> + <kbd>U</kbd></div>
+										</li>
+										<li><span>Create link</span>
+											<div><kbd>Cmd</kbd> + <kbd>K</kbd></div>
+										</li>
+										<li><span>Strikethrough</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>X</kbd></div>
+										</li>
+										<li><span>Turn into a list</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>7</kbd></div>
+										</li>
+										<li><span>Text align left</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div>
+										</li>
+										<li><span>Text align center</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>T</kbd></div>
+										</li>
+										<li><span>Text align right</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>R</kbd></div>
+										</li>
+										<li><span>Text align justified</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div>
+										</li>
+										<li><span>Adjust font size</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div>
+										</li>
+										<li><span>Adjust font weight</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>&gt;</kbd></div>
+										</li>
+										<li><span>Adjust letter spacing</span>
+											<div><kbd>Opt</kbd> + <kbd>&gt;</kbd></div>
+										</li>
+										<li><span>Adjust line height</span>
+											<div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>&gt;</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Shape</h4>
+									<ul>
+										<li><span>Pen</span>
+											<div><kbd>P</kbd></div>
+										</li>
+										<li><span>Pencil</span>
+											<div><kbd>Shft</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Paint bucket</span>
+											<div><kbd>B</kbd></div>
+										</li>
+										<li><span>Bend tool</span>
+											<div><kbd>Cmd</kbd></div>
+										</li>
+										<li><span>Remove fill</span>
+											<div><kbd>Opt</kbd> + <kbd>/</kbd></div>
+										</li>
+										<li><span>Remove stroke</span>
+											<div><kbd>/</kbd></div>
+										</li>
+										<li><span>Swap fill and stroke</span>
+											<div><kbd>Shft</kbd> + <kbd>X</kbd></div>
+										</li>
+										<li><span>Outline stroke</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div>
+										</li>
+										<li><span>Flatten selection</span>
+											<div><kbd>Cmd</kbd> + <kbd>E</kbd></div>
+										</li>
+										<li><span>Join selection</span>
+											<div><kbd>Cmd</kbd> + <kbd>J</kbd></div>
+										</li>
+										<li><span>Smooth join selection</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>J</kbd></div>
+										</li>
+										<li><span>Delete and heal selection</span>
+											<div><kbd>Shft</kbd> + <kbd>Delete</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Selection</h4>
+									<ul>
+										<li><span>Select all</span>
+											<div><kbd>Cmd</kbd> + <kbd>A</kbd></div>
+										</li>
+										<li><span>Select inverse</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>A</kbd></div>
+										</li>
+										<li><span>Select none</span>
+											<div><kbd>Esc</kbd></div>
+										</li>
+										<li><span>Deep select</span>
+											<div><kbd>Cmd</kbd> + Click</div>
+										</li>
+										<li><span>Select layer menu</span>
+											<div><kbd>Cmd</kbd> + right-click</div>
+										</li>
+										<li><span>Select children</span>
+											<div><kbd>Return</kbd></div>
+										</li>
+										<li><span>Select parent</span>
+											<div><kbd>Shft</kbd> + <kbd>Return</kbd></div>
+										</li>
+										<li><span>Select next sibling</span>
+											<div><kbd>Tab</kbd></div>
+										</li>
+										<li><span>Select previous sibling</span>
+											<div><kbd>Shft</kbd> + <kbd>Tab</kbd></div>
+										</li>
+										<li><span>Group selections</span>
+											<div><kbd>Cmd</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Ungroup selection</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Frame selection</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Show / Hide selection</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>H</kbd></div>
+										</li>
+										<li><span>Lock / Unlock selection</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>L</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Cursor</h4>
+									<ul>
+										<li>
+											<span>Description</span>
+											<div><kbd>Opt</kbd></div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Opt</kbd></div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Cmd</kbd> + Click</div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Cmd</kbd> + Right-click</div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Cmd</kbd> + Drag</div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Opt</kbd></div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Shft</kbd></div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Space</kbd></div>
+										</li>
+										<li>
+											<span>Description</span>
+											<div><kbd>Cmd</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Edit</h4>
+									<ul>
+										<li><span>Description</span>
+											<div><kbd>Cmd</kbd> + <kbd>C</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Cmd</kbd> + <kbd>X</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Cmd</kbd> + <kbd>V</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Cmd</kbd> + <kbd>D</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Cmd</kbd> + <kbd>R</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>E</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>V</kbd></div>
+										</li>
+										<li><span>Description</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>C</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Transform</h4>
+									<ul>
+										<li><span>Flip horizontal</span>
+											<div><kbd>Shft</kbd> + <kbd>H</kbd></div>
+										</li>
+										<li><span>Flip vertical</span>
+											<div><kbd>Shft</kbd> + <kbd>V</kbd></div>
+										</li>
+										<li><span>Use a mask</span>
+											<div><kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div>
+										</li>
+										<li><span>Edit shape or image</span>
+											<div><kbd>Return</kbd></div>
+										</li>
+										<li><span>Place image</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div>
+										</li>
+										<li><span>Crop image</span>
+											<div><kbd>Opt</kbd> Double-click</div>
+										</li>
+										<li><span>Set opacity to 10</span>
+											<div><kbd>1</kbd></div>
+										</li>
+										<li><span>Set opacity to 50</span>
+											<div><kbd>5</kbd></div>
+										</li>
+										<li><span>Set opacity to 100</span>
+											<div><kbd>0</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Arrange</h4>
+									<ul>
+										<li><span>Bring forward</span>
+											<div><kbd>Cmd</kbd> + <kbd>]</kbd></div>
+										</li>
+										<li><span>Send backward</span>
+											<div><kbd>Cmd</kbd> + <kbd>[</kbd></div>
+										</li>
+										<li><span>Bring to front</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
+										</li>
+										<li><span>Send to back</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>]</kbd></div>
+										</li>
+										<li><span>Align left</span>
+											<div><kbd>Opt</kbd> + <kbd>A</kbd></div>
+										</li>
+										<li><span>Align right</span>
+											<div><kbd>Opt</kbd> + <kbd>D</kbd></div>
+										</li>
+										<li><span>Align top</span>
+											<div><kbd>Opt</kbd> + <kbd>W</kbd></div>
+										</li>
+										<li><span>Align bottom</span>
+											<div><kbd>Opt</kbd> + <kbd>S</kbd></div>
+										</li>
+										<li><span>Align centers</span>
+											<div><kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div>
+										</li>
+										<li><span>Distribute spacing</span>
+											<div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>H</kbd> or <kbd>V</kbd></div>
+										</li>
+										<li><span>Tidy up</span>
+											<div><kbd>Ctrl</kbd> + <kbd>Opt</kbd> + <kbd>T</kbd></div>
+										</li>
+										<li><span>Add auto layout</span>
+											<div><kbd>Shft</kbd> + <kbd>A</kbd></div>
+										</li>
+										<li><span>Remove auto layout</span>
+											<div><kbd>Opt</kbd> + <kbd>Shft</kbd> + <kbd>A</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Components</h4>
+									<ul>
+										<li>Show assets<div><kbd>Opt</kbd> + <kbd>2</kbd></div>
+										</li>
+										<li>Team library<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div>
+										</li>
+										<li>Create component<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div>
+										</li>
+										<li>Detach instance<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>B</kbd></div>
+										</li>
+										<li>Swap component instance<div><kbd>Opt</kbd> + <kbd>Shft</kbd></div>
+										</li>
+										<li>Show components menu<div><kbd>Shft</kbd> + <kbd>I</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="grid-x shortcuts__feed">
+						<div class="cell">
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>General</h4>
+									<ul>
+										<li><span>Show Command Palette</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Quick Open, Go to File…</span>
+											<div><kbd>Cmd</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>New window/instance</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>N</kbd></div>
+										</li>
+										<li><span>Close window/instance</span>
+											<div><kbd>Cmd</kbd> + <kbd>W</kbd></div>
+										</li>
+										<li><span>User Settings</span>
+											<div><kbd>Cmd</kbd> + <kbd>,</kbd></div>
+										</li>
+										<li><span>Keyboard Shortcuts</span>
+											<div><kbd>Cmd</kbd> + <kbd>Opt</kbd> + <kbd>K</kbd></div>
+										</li>
+										<li><span>Debug Continue</span><kbd>F5</kbd></li>
+										<li><span>Debug Stop</span>
+											<div><kbd>Shft</kbd> + <kbd>F5</kbd></div>
+										</li>
+										<li><span>Debug Breakpoint</span><kbd>F9</kbd></li>
+										<li><span>Debug Stepover</span><kbd>F10</kbd></li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Basic editing</h4>
+									<ul>
+										<li><span>Move line down/up</span>
+											<div><kbd>Opt</kbd> + <kbd>↓</kbd> / <kbd>Opt</kbd> + <kbd>↑</kbd></div>
+										</li>
+										<li><span>Copy line down/up</span>
+											<div><kbd>Shft</kbd> + <kbd>Opt</kbd> + <kbd>↓</kbd> or <kbd>↑</kbd></div>
+										</li>
+										<li><span>Delete line</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>K</kbd></div>
+										</li>
+										<li><span>Jump to matching bracket</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>\</kbd></div>
+										</li>
+										<li><span>Indent/outdent line</span>
+											<div><kbd>Cmd</kbd> + <kbd>]</kbd> or <kbd>[</kbd></div>
+										</li>
+										<li><span>Go to start/end of line</span>
+											<div><kbd>Home</kbd> or <kbd>End</kbd></div>
+										</li>
+										<li><span>Go to start/end of file</span>
+											<div><kbd>Cmd</kbd> + <kbd>↑</kbd> or <kbd>↓</kbd></div>
+										</li>
+										<li><span>Scroll line up/down</span>
+											<div><kbd>Ctrl</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
+										</li>
+										<li><span>Scroll page up/down</span>
+											<div><kbd>Cmd</kbd> + <kbd>PgUp</kbd> or <kbd>PgDn</kbd></div>
+										</li>
+										<li><span>Fold/unfold region</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
+										</li>
+										<li><span>Fold/unfold all subregions</span>
+											<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>[</kbd></div>
+										</li>
+										<li><span>Fold/unfold all regions</span>
+											<div><kbd>Cmd</kbd> + <kbd>K</kbd> + <kbd>Cmd</kbd> + <kbd>0</kbd></div>
+										</li>
+										<li><span>Toggle word wrap</span>
+											<div><kbd>Opt</kbd> + <kbd>Z</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Navigation</h4>
+									<ul>
+										<li><span>Show all Symbols</span>
+											<div><kbd>Cmd</kbd> + <kbd>T</kbd></div>
+										</li>
+										<li><span>Go to Line...</span>
+											<div><kbd>Ctrl</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Go to File...</span>
+											<div><kbd>Cmd</kbd> + <kbd>P</kbd></div>
+										</li>
+										<li><span>Go to Symbol...</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>O</kbd></div>
+										</li>
+										<li><span>Show Problems</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>M</kbd></div>
+										</li>
+										<li><span>Go to next error</span>
+											<div><kbd>F8</kbd></div>
+										</li>
+										<li><span>Navigate history</span>
+											<div><kbd>Ctrl</kbd> + <kbd>-</kbd> or <kbd>-</kbd></div>
+										</li>
+										<li><span>Go back/forward</span>
+											<div><kbd>Ctrl</kbd> + <kbd>Shft</kbd> + <kbd>Tab</kbd></div>
+										</li>
+										<li><span>Toggle Tab moves focus</span>
+											<div><kbd>Ctrl</kbd> + <kbd>Shft</kbd> + <kbd>M</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Search and replace</h4>
+									<ul>
+										<li><span>Find</span>
+											<div><kbd>Cmd</kbd> + <kbd>F</kbd></div>
+										</li>
+										<li><span>Replace</span>
+											<div><kbd>Opt</kbd> + <kbd>Cmd</kbd> + <kbd>F</kbd></div>
+										</li>
+										<li><span>Find next/previous</span>
+											<div><kbd>Cmd</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Select all Find match</span>
+											<div><kbd>Shft</kbd> + <kbd>Cmd</kbd> + <kbd>G</kbd></div>
+										</li>
+										<li><span>Add to next Find</span>
+											<div><kbd>Opt</kbd> + <kbd>Return</kbd></div>
+										</li>
+										<li><span>Find next match</span>
+											<div><kbd>Cmd</kbd> + <kbd>D</kbd></div>
+										</li>
+										<li><span>Toggle case-sensitive</span>
+											<div><kbd>Alt</kbd> + <kbd>C</kbd></div>
+										</li>
+										<li><span>Toggle regex</span>
+											<div><kbd>Alt</kbd> + <kbd>R</kbd></div>
+										</li>
+										<li><span>Toggle whole word</span>
+											<div><kbd>Alt</kbd> + <kbd>W</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="grid-x shortcuts__feed">
+						<div class="cell">
+							<div class="grid-x grid-padding-x">
+								<div class="cell small-12 large-auto">
+									<h4>Windows</h4>
+									<ul>
+										<li><span>Equalize windows</span>
+											<div><kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>e</kbd></div>
+										</li>
+										<li><span>Toggle Split</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>LCtrl</kbd> + <kbd>e</kbd></div>
+										</li>
+										<li><span>Toggle gaps</span>
+											<div><kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>g</kbd></div>
+										</li>
+										<li><span>Rotate windows</span>
+											<div><kbd>Alt</kbd> + <kbd>r</kbd></div>
+										</li>
+										<li><span>Rotate windows 🔄</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>r</kbd></div>
+										</li>
+										<li><span>Float / Unfloat window</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>space</kbd></div>
+										</li>
+										<li><span>Focus window West</span>
+											<div><kbd>Alt</kbd> + <kbd>h</kbd></div>
+										</li>
+										<li><span>Focus window South</span>
+											<div><kbd>Alt</kbd> + <kbd>j</kbd></div>
+										</li>
+										<li><span>Focus window North</span>
+											<div><kbd>Alt</kbd> + <kbd>k</kbd></div>
+										</li>
+										<li><span>Focus window East</span>
+											<div><kbd>Alt</kbd> + <kbd>l</kbd></div>
+										</li>
+										<li><span>Move window to West</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>h</kbd></div>
+										</li>
+										<li><span>Move window to South</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>j</kbd></div>
+										</li>
+										<li><span>Move window to North</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>k</kbd></div>
+										</li>
+										<li><span>Move window to East</span>
+											<div><kbd>Shft</kbd> + <kbd>Alt</kbd> + <kbd>l</kbd></div>
+										</li>
+										<li><span>Focus workspace 1-9</span>
+											<div><kbd>Shft</kbd> + <kbd>LCtrl</kbd> + <kbd>1</kbd> - <kbd>9</kbd></div>
+										</li>
+									</ul>
+								</div>
+								<div class="cell small-12 large-auto">
+									<h4>Others</h4>
+									<ul>
+										<li><span>Opens iTerm2</span>
+											<div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>Return</kbd></div>
+										</li>
+										<li><span>New Firefox Window</span>
+											<div><kbd>Alt</kbd> + <kbd>Return</kbd></div>
+										</li>
+										<li><span>Restart Yabai</span>
+											<div><kbd>Shft</kbd> + <kbd>LCtrl</kbd> + <kbd>Alt</kbd> + <kbd>r</kbd></div>
+										</li>
+										<li><span>Switch Display</span>
+											<div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>z</kbd></div>
+										</li>
+										<li><span>Switch To Other Display</span>
+											<div><kbd>Alt</kbd> + <kbd>Shft</kbd> + <kbd>x</kbd></div>
+										</li>
+										<li><span>Make window native fullscreen</span>
+											<div><kbd>Alt</kbd> + <kbd>f</kbd></div>
+										</li>
+										<li><span>Volume Muted</span>
+											<div><kbd>F13</kbd></div>
+										</li>
+										<li><span>Decrease Volume</span>
+											<div><kbd>F14</kbd></div>
+										</li>
+										<li><span>Increase Volume</span>
+											<div><kbd>F15</kbd></div>
+										</li>
+										<li><span>Lock Screen</span>
+											<div><kbd>LCtrl</kbd> + <kbd>F15</kbd></div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div id="audio-player" class="player hidden"></div>
-		<script src="jquery-3.6.3.min.js"></script>
-		<script>
-			function loadPlayerAPI() {
-				var tag = document.createElement('script');
-				tag.src = 'https://www.youtube.com/player_api';
-				var firstScriptTag = document.getElementsByTagName('script')[0];
-				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-			}
-			window.onload = loadPlayerAPI;
-		</script>
-		<script type="text/javascript" src="script.js"></script>
-	</body>
+	</div>
+	<div class="notifications hidden">
+		<div class="notifications__inner">
+		</div>
+	</div>
+	<img class="background-image everywhere hidden" alt="Background Image" />
+	<div class="grid-container container everything">
+		<div class="grid-x align-middle container__inner">
+			<div class="cell">
+				<div class="grid-x grid-padding-x">
+					<div class="cell medium-6">
+						<form id="searchform" action="https://www.google.com/search" method="get">
+							<label for="search">
+								<img class="search" src="icons/icon__search.svg" alt="Search" />
+							</label>
+							<div class="search__input--container">
+								<div class="search__input--container-volume">
+									<input type="range" min="0" max="100" value="100" class="volume">
+								</div>
+								<input id="search" placeholder="Search" type="text" name="q" autofocus autocomplete="off"
+									data-type="google" />
+								<div class="progress">
+									<div class="progress__inner"></div>
+								</div>
+								<div class="podcasts">
+									<img src="icons/icon__play.svg" alt="Play/Pause" />
+									<span class="podcasts-replace"></span>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="cell medium-6 large-auto large-offset-2 nowplaying__container">
+						<div>
+							<a href="" class="nowplaying__url" target="_blank" rel="noopener noreferrer">
+								<div class="nowplaying__song-name">
+									<span class="nowplaying__song" title=""></span>
+									<div class="nowplaying__overflow">
+										<strong class="nowplaying__artist" title=""></strong> <span class="nowplaying__album"
+											title=""></span>
+									</div>
+								</div>
+								<img src="" class="nowplaying__image" alt="" />
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="grid-x grid-padding-x">
+					<div class="cell container__overflow">
+						<div class="grid-x grid-padding-x container__content">
+							<div class="cell small-12 large-6 container__links">
+								<div class="grid-x grid-padding-x container__links--overflow">
+									<div class="cell container__links--section">
+										<div class="feed-links"></div>
+									</div>
+									<div class="cell small-12 medium-6 container__links--section">
+										<ul class="grid-x">
+											<li class="cell">
+												<span class="container__list container__list--title">Work</span>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://nftnow.monday.com/" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://monday.com&sz=128"
+														alt="Monday" />
+													<span>Monday</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://github.com/arbitrarily" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://github.com&sz=128"
+														alt="Github" />
+													<span>Github</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://bitbucket.org/dashboard/repositories" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://bitbucket.org&sz=128"
+														alt="Bitbucket" />
+													<span>Bitbucket</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list"
+													href="https://one.newrelic.com/dashboards/detail/MzYxMDY4OHxWSVp8REFTSEJPQVJEfGRhOjI1NjkzMzU?account=3610688&duration=604800000&state=9689e8d3-7f59-f58d-c96e-e02ccb5a8ac6"
+													target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://newrelic.com&sz=128"
+														alt="New Relic" />
+													<span>New Relic</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://mail.google.com/mail/u/0/h/" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://mail.google.com&sz=128"
+														alt="Gmail" />
+													<span>Gmail</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://drive.google.com" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://drive.google.com&sz=128"
+														alt="Drive" />
+													<span>Drive</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://dropbox.com" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://dropbox.com&sz=128"
+														alt="Dropbox" />
+													<span>Dropbox</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://cloud.digitalocean.com/login" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://digitalocean.com&sz=128"
+														alt="Digital Ocean" />
+													<span>Digital Ocean</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.name.com/account" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://www.name.com/&sz=128"
+														alt="Name.com" />
+													<span>Name.com</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="cell small-12 medium-6 container__links--section">
+										<ul class="grid-x">
+											<li class="cell">
+												<span class="container__list container__list--title">Media</span>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://chat.openai.com" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://chat.openai.com&sz=128"
+														alt="ChatGPT" />
+													<span>ChatGPT</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list"
+													href="https://www.midjourney.com/app/users/383432442448576517/?sort=new" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://www.midjourney.com&sz=128"
+														alt="MidJourney" />
+													<span>MidJourney</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.youtube.com/playlist?list=WL" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://youtube.com&sz=128"
+														alt="YouTube" />
+													<span>YouTube</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://studio.youtube.com/channel/UC41pdbLjbeT4dwEJd4bJhtA"
+													target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://youtube.com&sz=128"
+														alt="Studio" />
+													<span>Studio</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://play.hbomax.com/" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://play.hbomax.com&sz=128"
+														alt="HBO Max" />
+													<span>HBO Max</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://beta.music.apple.com/for-you" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://beta.music.apple.com&sz=128"
+														alt="Apple Music" />
+													<span>Apple Music</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.last.fm/user/desmosthenes" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://last.fm&sz=128" alt="LastFM" />
+													<span>LastFM</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.tumblr.com/dashboard" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://assets.tumblr.com/pop/manifest/apple-touch-icon-873b11b4.png"
+														alt="Tumblr" />
+													<span>Tumblr</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://opensea.io/desmosthenes" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://opensea.io&sz=128"
+														alt="OpenSea" />
+													<span>OpenSea</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="cell small-12 medium-6 container__links--section">
+										<ul class="grid-x">
+											<li class="cell">
+												<span class="container__list container__list--title">Reading</span>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.instapaper.com/u" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://instapaper.com&sz=128" alt="Instapaper" />
+													<span>Instapaper</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://reddit.com&sz=128" alt="Reddit" />
+													<span>Reddit</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://twitter.com/desmosthenes" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://twitter.com&sz=128" alt="Twitter" />
+													<span>Twitter</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.techmeme.com/" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://techmeme.com&sz=128" alt="TechMeme" />
+													<span>TechMeme</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://news.ycombinator.com/" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://news.ycombinator.com&sz=128" alt="Hacker News" />
+													<span>Hacker News</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://news.google.com/news/headlines?ned=us&hl=en" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://news.google.com&sz=128" alt="Google News" />
+													<span>Google News</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://nytimes.com" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://nytimes.com&sz=128" alt="New York Times" />
+													<span>New York Times</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.elnuevodia.com" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://www.elnuevodia.com&sz=128" alt="El Nuevo Día" />
+													<span>El Nuevo Día</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://twitter.com/opmreddit" target="_blank" rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://twitter.com/&sz=128" alt="One Punch Man" />
+													<span>One Punch Man</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="cell small-12 medium-6 container__links--section">
+										<ul class="grid-x">
+											<li class="cell">
+												<span class="container__list container__list--title">Games</span>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://discord.com/channels/@me" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://discord.com&sz=128"
+														alt="Discord" />
+													<span>Discord</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://steamcommunity.com/id/desmosthenes/" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://steamcommunity.com/&sz=128"
+														alt="Steam" />
+													<span>Steam</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://pathofexile.com/trade" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://pathofexile.com/trade&sz=128"
+														alt="Trade" />
+													<span>Trade</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://poe.ninja/challenge/builds" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://poe.ninja&sz=128"
+														alt="PoE Ninja" />
+													<span>PoE Ninja</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://filterblade.xyz" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://filterblade.xyz/&sz=128"
+														alt="FilterBlade" />
+													<span>FilterBlade</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://poe-leveling.com" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://poe-leveling.com/&sz=128"
+														alt="Leveling" />
+													<span>Leveling</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://craftofexile.com" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://craftofexile.com&sz=128"
+														alt="Craft of Exile" />
+													<span>Craft of Exile</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list" href="https://www.grinding.zone/" target="_blank"
+													rel="noopener noreferrer">
+													<img src="icons/icon__grindingzone.png" alt="Grinding Zone" />
+													<span>Grinding Zone</span>
+												</a>
+											</li>
+											<li class="cell small-6 medium-4 large-12 container__list--item">
+												<a class="container__list"
+													href="https://www.pathofexile.com/account/view-profile/desmosthenes2" target="_blank"
+													rel="noopener noreferrer">
+													<img src="https://www.google.com/s2/favicons?domain=https://www.pathofexile.com/&sz=128"
+														alt="My Profile" />
+													<span>Profile</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="cell small-12 large-auto container__list--padding-override">
+								<div class="grid-container">
+									<ul class="grid-x grid-padding-x container__list--title-list">
+										<li class="cell">
+											<span class="container__list container__list--title">Feeds</span>
+										</li>
+									</ul>
+								</div>
+								<div class="grid-container container__feed-list-container">
+									<ul class="grid-x container__feed-list">
+										<li class="cell menu-links__item menu-links__toggle shown" data-id="0">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__instapaper.svg" alt="Instapaper" />
+													</div>
+													<span>Instapaper</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="32">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__link.svg" alt="Links" />
+													</div>
+													<span>Links</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="4">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__podcasts.svg" alt="Podcasts" />
+													</div>
+													<span>Podcasts</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="5">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__lofi--alt.svg" alt="Lofi Music" />
+													</div>
+													<span>Lofi</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="25">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__metal.svg" alt="Metal Music" />
+													</div>
+													<span>Metal</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="31">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__peace.svg" alt="Vibes" />
+													</div>
+													<span>Vibes</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="3">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__reddit.svg" alt="Reddit" />
+													</div>
+													<span>Reddit</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="1">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__news.svg" alt="News" />
+													</div>
+													<span>News</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="2">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__nyt.svg" alt="New York Times" />
+													</div>
+													<span>NYTimes</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="8">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__summaries.svg" alt="Web3 News" />
+													</div>
+													<span>Web3</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="23">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__code.svg" alt="Dev News" />
+													</div>
+													<span>Dev</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="9">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__steam.svg" alt="Steam Games" />
+													</div>
+													<span>Steam</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="10">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__nfts.svg" alt="NFTs" />
+													</div>
+													<span>NFTs</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="26">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__twitter.svg" alt="Twitter" />
+													</div>
+													<span>Twitter</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="28">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__github.svg" alt="Github" />
+													</div>
+													<span>Github</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="7">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__chaos.png" alt="Path of Exile" />
+													</div>
+													<span>PoE</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="30">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__twitch.svg" alt="Twitch" />
+													</div>
+													<span>Twitch</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="6">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__youtube.svg" alt="YouTube" />
+													</div>
+													<span>YouTube</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="29">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__trakt.svg" alt="Trakt" />
+													</div>
+													<span>Trakt</span>
+												</div>
+											</a>
+										</li>
+										<li class="cell menu-links__item menu-links__toggle" data-id="33">
+											<a href="#" class="container__list">
+												<div class="menu-links__toggle--content">
+													<div class="menu-links__toggle--image-container">
+														<img src="icons/icon__help.svg" alt="Help" />
+													</div>
+													<span>Help</span>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ip">
+			<div>
+				<img src="icons/icon__signal.svg" alt="Signal" />
+				<span class="ip-replace"></span>
+			</div>
+		</div>
+		<div class="stats">
+			<div class="mute show-for-large-only">
+				<img src="icons/icon__mute.svg" alt="Mute" />
+			</div>
+			<div class="version">
+				<img src="icons/icon__version.svg" alt="Version" />
+				<span class="version-target"></span>
+			</div>
+			<div class="songs">
+				<img src="icons/icon__lastfm.svg" alt="Song Play Count" />
+				<span class="songs-replace"></span>
+			</div>
+			<div class="counter">
+				<img src="icons/icon__eye.svg" alt="Pageview Count" />
+				<span class="counter-replace"></span>
+			</div>
+			<div class="wallet">
+				<img src="icons/icon__coin.svg" alt="Wallet Status" />
+				<span class="wallet-replace"></span>
+			</div>
+		</div>
+	</div>
+	<div id="audio-player" class="player hidden"></div>
+	<script src="jquery-3.6.3.min.js"></script>
+	<script>
+		function loadPlayerAPI() {
+			var tag = document.createElement('script');
+			tag.src = 'https://www.youtube.com/player_api';
+			var firstScriptTag = document.getElementsByTagName('script')[0];
+			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		}
+		window.onload = loadPlayerAPI;
+	</script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+
 </html>

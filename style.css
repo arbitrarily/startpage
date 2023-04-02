@@ -372,7 +372,7 @@ input[type="range"] {
 }
 
 .grid-container {
-    max-width: 90rem;
+    max-width: 80rem;
 }
 
 .container {
@@ -1173,6 +1173,14 @@ li {
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
+.container__links {
+    overflow: hidden;
+}
+
+.container__links--overflow {
+    position: relative;
+}
+
 /* Small screens */
 @media screen and (max-width: 30em) {
     .container__list span {
@@ -1254,7 +1262,6 @@ li {
     .feed-list,
     .video-links,
     .container__feed-list {
-        height: 373.5px;
         aspect-ratio: auto;
     }
 
@@ -1293,33 +1300,8 @@ li {
         width: 37.667%;
     }
 
-    .container__content {
-        width: calc(100% + calc(100% / 3) + calc(0.9375rem * 18));
-        transform: translate(calc(100% / -3));
-    }
-
-    .everything.fluid .container__content {
-        width: calc(100% + calc(100% / 3) + calc(0.9375rem * 26.75));
-        transform: translate(calc(100% / -3));
-    }
-
-    .container__overflow.shown .container__content {
-        transform: translate(0);
-    }
-
-    .container__overflow.fullscreen .containerf__content {
-        transform: none;
-    }
-
-    .container__overflow.shown {
-        -webkit-mask-image: linear-gradient(to right, transparent, black var(--foundation), black 87%, transparent 100%);
-        mask-image: linear-gradient(to right, transparent, black var(--foundation), black 87%, transparent 100%);
-    }
-
-    .container__overflow.fullscreen.shown {
-        -webkit-mask-image: none;
-        mask-image: none;
-        overflow: inherit;
+    .container__links {
+        height: 450px;
     }
 
     .menu-links__item.menu-links__toggle {
@@ -1335,5 +1317,11 @@ li {
 
     .cell.small-12.large-3.container__list--padding-override {
         padding: 0;
+    }
+
+    .container__links,
+    .container__links--section {
+        height: calc(100vh - 240px);
+        max-height: 450px;
     }
 }

@@ -13,6 +13,7 @@
     count: false, // Search Count
     d: {}, // Keyboard Variable
     fc: false, // Feed Count
+    fs: 0, // Feed Slide Count
     h: "hidden", // Shared Class Names
     nc: false, // NFT Collection
     pb: 0, // Progress Bar
@@ -22,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.38.1", // Version Number
+    v: "1.39.3", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -133,7 +134,9 @@
       () => start.github_news(),
       () => start.trakt_news(),
       () => start.twitch_news(),
-      () => start.play_vibes()
+      () => start.play_vibes(),
+      () => start.scroll_links(),
+      () => start.shortcuts()
     ],
 
     // Init
@@ -252,9 +255,6 @@
 
         } else {
 
-          // Menu: Toggle                                 (⏪ or ⏩)
-          if (start.d[39] || start.d[37]) start.slide_menu();
-
           // Close Fullscreen Video                       ("esc")
           if (start.d[27]) {
             if ($(".shortcuts").hasClass(start.s)) {
@@ -294,9 +294,6 @@
       });
     },
 
-    // Slide Menu Toggle
-    slide_menu: () => $(".container__overflow").toggleClass(start.s),
-
     // Feed Menu Click Events
     menu_clicks: function () {
       $(document).on(start.t, ".menu-links__toggle", function (e) {
@@ -307,9 +304,25 @@
       });
     },
 
+    // Scroll Feed Links
+    scroll_links: (slide) => {
+      const h = $(".container__links--section").height();
+      let l = $(".container__links--section").length - 1;
+      if (window.matchMedia("(min-width: 40em)").matches) {
+        l = $(".container__links--section").length - 3;
+      }
+      if (!slide && slide !== 0) {
+        start.fs++;
+        if (start.fs > l) start.fs = 0;
+      } else {
+        start.fs = slide;
+      }
+      $(".container__links--section").css("transform", `translateY(-${start.fs * h}px)`);
+    },
+
     // Toggle Help Menu
     help_toggle: () => {
-      $(document).on(start.t, event => {
+      $(document).on(start.t, ".shortcuts", event => {
         if (!$(event.target).closest(".shortcuts__inner").length && $(".shortcuts").hasClass(start.s)) {
           start.shortcuts();
         }
@@ -496,13 +509,11 @@
 
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
+      if (start.fs != 0) start.scroll_links(0);
       if (start.video === YT.PlayerState.PLAYING) start.media_stop();
       setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
       setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
-      if (source) {
-        start.notify(`<span>Feed Switched to</span> ${source}`);
-        if (!$(".container__overflow").hasClass(start.s)) start.slide_menu();
-      }
+      if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
     },
 
@@ -1204,6 +1215,7 @@
 
     // Help Shortcuts
     shortcuts: () => {
+      console.log("*");
       $(".shortcuts").toggleClass(start.s);
       $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
