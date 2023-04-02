@@ -20,9 +20,9 @@
     pll: 0, // Playlist Length
     pv: false, // Pageviews
     s: "shown", // Shared Class Names
-    t: "ontouchend" in document.documentElement || "click", // Touch Events
+    t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.37.6", // Version Number
+    v: "1.37.7", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
