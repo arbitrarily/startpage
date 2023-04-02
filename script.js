@@ -22,7 +22,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.37.3", // Version Number
+    v: "1.37.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -142,19 +142,19 @@
       start.an = this.random_numb(1, 243).toString().padStart(4, "0"); // Background Art Number
       this.pageview_counter(); // Pageview Counter
       this.key_listener(); // Key Listeners
+      this.menu_clicks(); // Menu Clicks
       this.background(); // Background Image
       this.wallet(); // Wallet Value
       this.init_fetch(); // Initial Feed
       this.lastfm(); // Get Last FM Now Playing
       this.focus_click(); // Search Focus
       this.change_search();  // Search Change
-      this.focus(); // Focus on Search
-      this.menu_clicks(); // Menu Clicks
       this.help_toggle(); // Help Toggle
       this.bye(); // Run Before Leaving Page
       this.timer_media_toggle(); // Add Event Listeners
       this.ip(); // IP
       this.log(); // Output into Console
+      this.focus(); // Focus on Search
       this.rerun_functions(); // Cron Functions
       this.marquee_title(); // Marquee Title
       this.steam_links(); // Launch Games on Windows
@@ -300,6 +300,7 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
+      console.log('asd');
       $(document).on(start.t, ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
