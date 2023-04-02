@@ -1330,7 +1330,7 @@ li {
 /* Small screens */
 @media screen and (max-width: 64em) {
     .container {
-        padding: calc(var(--padding) * 5) var(--padding);
+        padding: calc(var(--padding) * 3) var(--padding);
     }
 
     .cell.small-12.large-3.container__list--padding-override {
