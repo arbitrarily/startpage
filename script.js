@@ -14,7 +14,6 @@
     d: {}, // Keyboard Variable
     fc: false, // Feed Count
     h: "hidden", // Shared Class Names
-    mh: $(".menu-links-source").html(), // Menu HTML
     nc: false, // NFT Collection
     pb: 0, // Progress Bar
     pj: false, // Playlist Content
@@ -23,7 +22,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchend" in document.documentElement || "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.35.6", // Version Number
+    v: "1.37.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -144,7 +143,6 @@
       this.pageview_counter(); // Pageview Counter
       this.key_listener(); // Key Listeners
       this.background(); // Background Image
-      this.strip_menu(); // Remove Menu Source HTML
       this.wallet(); // Wallet Value
       this.init_fetch(); // Initial Feed
       this.lastfm(); // Get Last FM Now Playing
@@ -152,7 +150,6 @@
       this.change_search();  // Search Change
       this.focus(); // Focus on Search
       this.menu_clicks(); // Menu Clicks
-      this.menu_toggle(); // Menu Toggle
       this.help_toggle(); // Help Toggle
       this.bye(); // Run Before Leaving Page
       this.timer_media_toggle(); // Add Event Listeners
@@ -196,9 +193,6 @@
 
     // Focus Search
     focus: () => $(document).find("#search").focus().addClass("focus"),
-
-    // Remove Source HTML
-    strip_menu: () => $(".menu-links-source").remove(),
 
     // Function Triggers by Keyboard Combos
     key_listener: () => {
@@ -245,7 +239,6 @@
             122: start.play_playlist, // Randomized Playlist: shift + "f11"
             121: start.play_playlist_input, // Toggle Playlist Control Limit: shift + "f10"
             120: start.play_ambient_song, // Play the Ambient Song: shift + "f10"
-            90: start.menu, // Toggle Menu: shift + "z"
             88: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
             67: start.background, // Refresh Background Image: shift + "c"
             66: start.blur, // Blur: shift + "b"
@@ -305,26 +298,13 @@
     // Slide Menu Toggle
     slide_menu: () => $(".container__overflow").toggleClass(start.s),
 
-    // Menu
-    menu: () => {
-      $(".feed-links").removeClass(start.s);
-      start.feed_toggle(start.mh, "Menu Toggles");
-    },
-
-    // Menu Click Events
+    // Feed Menu Click Events
     menu_clicks: function () {
-      $(document).on(start.t, ".menu-links__item, .menu-links__toggle", function (e) {
+      $(document).on(start.t, ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
+        $(this).addClass(start.s).siblings().removeClass(start.s);
         if (Number.isInteger(start.fc)) start.mf[start.fc]();
-      });
-    },
-
-    // Trigger Menu on Hambuger Click
-    menu_toggle: () => {
-      $(document).on(start.t, ".menu-toggle", e => {
-        e.preventDefault();
-        start.menu();
       });
     },
 
@@ -1217,8 +1197,7 @@
       if (window.matchMedia("(min-width: 40em)").matches) {
         $(document).on(start.t, e => {
           if (e.target.tagName !== "A" &&
-            e.target.tagName !== "INPUT" &&
-            e.target.className !== "menu-toggle"
+            e.target.tagName !== "INPUT"
           ) start.focus();
         });
       }

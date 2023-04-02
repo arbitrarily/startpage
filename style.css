@@ -178,8 +178,7 @@ a:focus {
     opacity: var(--opacity-start);
 }
 
-a:active,
-.menu-links__item:active {
+a:active {
     transform: translate(0, 2px);
     opacity: var(--opacity-start);
     transition: all 0ms ease;
@@ -443,33 +442,6 @@ li {
     padding: var(--foundation);
 }
 
-.menu-toggle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    padding: var(--foundation-large);
-    margin: var(--foundation-large);
-    z-index: 2;
-    outline: none;
-    border: none;
-    background: transparent;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-}
-
-.menu-toggle:hover {
-    opacity: 1;
-}
-
-.menu-toggle:active {
-    transform: translate(0, 2px);
-    opacity: var(--opacity-start);
-    transition: all 0ms ease;
-}
-
 .menu-links-source.hidden {
     display: none;
     visibility: hidden;
@@ -530,12 +502,6 @@ li {
     justify-content: space-between;
 }
 
-.menu-links__toggle .menu-links__toggle--content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
-
 .menu-links__toggle--keys {
     display: inline-block;
     font-size: 0.65rem;
@@ -564,19 +530,54 @@ li {
     width: 100%;
     width: 60px;
     height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: contain;
     margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     filter: brightness(180%) saturate(0);
     background: rgba(255, 255, 255, 0.1);
     padding: 17px;
     border-radius: var(--border-radius);
 }
 
-.menu-links__item.menu-links__item-audio img {
-    background: rgba(255, 255, 255, 0.033);
+.menu-links__toggle--image-container {
+    width: 100%;
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: contain;
+    margin: 0;
+    filter: brightness(160%) saturate(0);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 17px;
+    border-radius: var(--border-radius);
+}
+
+.container__feed-list .menu-links__item span {
+    margin-top: 2px;
+    font-size: 0.75rem;
+    max-width: 60px;
+}
+
+.menu-links__toggle.shown.menu-links__item.menu-links__toggle .menu-links__toggle--image-container {
+    box-shadow: inset 0 0 25px 10px rgba(255, 255, 255, 0.25), 0 0 25px 10px rgba(255, 255, 255, 0.075);
+}
+
+.menu-links__item.menu-links__toggle img {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border-radius: 0;
+    object-fit: contain;
+}
+
+.menu-links__item.menu-links__toggle .container__list {
+    overflow: unset;
+}
+
+.menu-links__item.menu-links__toggle {
+    width: calc(100% / 4);
 }
 
 .container__list--item:hover {
@@ -597,10 +598,6 @@ li {
 
 .menu-links__item:hover {
     background: none;
-}
-
-.menu-links__item:hover img {
-    background: rgba(255, 255, 255, 0.3);
 }
 
 .container__list--item-title {
@@ -974,7 +971,7 @@ li {
     height: 100%;
     max-width: 100%;
     min-width: 100%;
-    aspect-ratio: 2/1;
+    aspect-ratio: 16/7.5;
     filter: none;
     opacity: 1;
     object-fit: cover;
@@ -984,9 +981,21 @@ li {
     border-radius: var(--border-radius);
 }
 
+.twitch-links .container__list--item--faded .container__list img {
+    aspect-ratio: 1/1;
+}
+
 .games-links .container__list .container__list--time {
     right: 0.25rem;
     bottom: 0.25rem;
+}
+
+.games-links .feed-list {
+    align-items: flex-start;
+}
+
+.games-links .container__list--media {
+    margin-bottom: var(--foundation);
 }
 
 .games-links .container__list span.container__list--description {
@@ -1169,10 +1178,6 @@ li {
     .container__list span {
         font-size: var(--foundation-large);
     }
-
-    .menu-toggle {
-        opacity: 1;
-    }
 }
 
 /* Medium screens */
@@ -1195,14 +1200,12 @@ li {
     }
 
     .reddit-links .container__list:not(.container__list--title),
-    .twitch-links .container__list:not(.container__list--title),
     .video-links .container__list:not(.container__list--title) {
         display: block;
         padding: var(--foundation-large) 0;
     }
 
     .video-links .container__list img,
-    .twitch-links .container__list--item--video .container__list img,
     .reddit-links .container__list img {
         margin-bottom: var(--foundation);
         margin-right: 0;
@@ -1238,7 +1241,6 @@ li {
     }
 
     .video-links .container__list img,
-    .twitch-links .container__list--item--video .container__list img,
     .reddit-links .container__list img,
     .video-links.podcast-links .container__list img {
         min-width: 160px;
@@ -1281,10 +1283,6 @@ li {
         padding-left: 0 !important;
     }
 
-    .container__feed-list {
-        flex-direction: column;
-    }
-
     #video-container.fluid,
     .video-links.fluid {
         height: auto;
@@ -1309,7 +1307,7 @@ li {
         transform: translate(0);
     }
 
-    .container__overflow.fullscreen .container__content {
+    .container__overflow.fullscreen .containerf__content {
         transform: none;
     }
 
@@ -1322,6 +1320,10 @@ li {
         -webkit-mask-image: none;
         mask-image: none;
         overflow: inherit;
+    }
+
+    .menu-links__item.menu-links__toggle {
+        width: calc(100% / 5);
     }
 }
 
