@@ -22,7 +22,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.37.7", // Version Number
+    v: "1.38.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -245,7 +245,6 @@
             78: start.log_wallet, // Wallet Status: shift + "n"
             188: start.overlay, // Toggle Background Overlay: shift + ","
             190: start.resize_feed_images, // Resize Feed Images: shift + "."
-            191: start.resize_container, // Resize Container: shift + "/"
             72: start.shortcuts, // Help Shortcuts: shift + "h"
             84: start.switch_audio_source // Toggle Audio Player: shift + "t"
           };
@@ -1225,12 +1224,6 @@
     resize_feed_images: () => {
       $(".container__content").toggleClass("large");
       start.notify(`<span>Feed Images</span> Resized`);
-    },
-
-    // Resize Container
-    resize_container: () => {
-      $(".everything, #video-container, .video-links").toggleClass("fluid");
-      start.notify(`<span>Container</span> Resized`);
     },
 
     // Marquee Title Animation
