@@ -1012,6 +1012,7 @@ li {
 
 .twitch-links .container__list--item--faded .container__list img {
     aspect-ratio: var(--one-one);
+    filter: saturate(0);
 }
 
 .games-links .container__list .container__list--time {
@@ -1254,7 +1255,7 @@ li {
 /* Medium screens */
 @media screen and (max-width: 40em) {
     .nowplaying__container {
-        margin-bottom: calc(var(--padding) * 2);
+        margin-bottom: var(--padding);
     }
 
     .nowplaying__url {
