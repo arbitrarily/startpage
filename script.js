@@ -227,9 +227,9 @@
             56: 7, // Path of Exile                       shift + 8️⃣
             57: 8, // Music                               shift + 9️⃣
             48: 23, // Dev News                           shift + 0️⃣
-            173: 9, // Steam Games                         shift + "-"
+            173: 9, // Steam Games                        shift + "-"
             61: 10, // NFTs                               shift + "="
-            8: 25, // Metal Music                        shift + Bakcspace
+            8: 25, // Metal Music                         shift + Bakcspace
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -239,26 +239,26 @@
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
-            39: start.audio_ff, // Fast Forward:          shift + ⏩
-            37: start.audio_rewind, // Rewind:            shift + ⏪
-            38: start.audio_more_speed, // Increase:      shift + ⏫
-            40: start.audio_less_speed, // Decrease:      shift + ⏬
-            32: start.media_toggle, // Play/Pause:        shift + "space"
-            77: start.audio_mute, // Mute:                shift + "m"
-            70: start.video_fullscreen, // Fullscreen:    shift + "f"
+            39: start.audio_ff, // Fast Forward:           shift + ⏩
+            37: start.audio_rewind, // Rewind:             shift + ⏪
+            38: start.audio_more_speed, // Increase:       shift + ⏫
+            40: start.audio_less_speed, // Decrease:       shift + ⏬
+            32: start.media_toggle, // Play/Pause:         shift + "space"
+            77: start.audio_mute, // Mute:                 shift + "m"
+            70: start.video_fullscreen, // Fullscreen:     shift + "f"
             123: start.play_single, // Random Song:        shift + "f12"
             122: start.play_playlist, // Random Playlist:  shift + "f11"
             121: start.play_playlist_input, //             shift + "f10"
             120: start.play_ambient_song, // Ambient Song: shift + "f10"
-            90: start.overlay, // Background Overlay:     shift + "z"
+            90: start.overlay, // Background Overlay:      shift + "z"
             67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
-            88: start.background, // Background Image:    shift + "c"
-            86: start.audio_volume, // Volume:            shift + "v"
-            66: start.blur, // Blur:                      shift + "b"
-            78: start.log_wallet, // Wallet Status:       shift + "n"
-            77: start.resize_feed_images, // Feed Images: shift + "m"
-            72: start.shortcuts, // Help Shortcuts:       shift + "h"
-            84: start.switch_audio_source // Audio Source shift + "t"
+            88: start.background, // Background Image:     shift + "c"
+            86: start.audio_volume, // Volume:             shift + "v"
+            66: start.blur, // Blur:                       shift + "b"
+            78: start.log_wallet, // Wallet Status:        shift + "n"
+            77: start.resize_feed_images, // Feed Images:  shift + "m"
+            72: start.shortcuts, // Help Shortcuts:        shift + "h"
+            84: start.switch_audio_source // Audio Source  shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
@@ -1226,12 +1226,33 @@
     },
 
     // Help Shortcuts
-    shortcuts: () => {
-      $(".shortcuts").toggleClass(start.s);
-      $(".everything, .details").toggleClass("blur");
-      $("body").toggleClass("lock");
-      if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
-      start.shortcuts_slider();
+    shortcuts: async () => {
+      const shortcuts_toggle = html => {
+        if ($(".shortcuts").hasClass(start.s)) html = "";
+        $(".shortcuts").html(html).toggleClass(start.s);
+        $(".everything, .details").toggleClass("blur");
+        $("body").toggleClass("lock");
+        if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
+        start.shortcuts_slider();
+      };
+      if (start.cache['shortcuts']) {
+        const sc = start.cache['shortcuts'];
+        shortcuts_toggle(sc.html);
+      } else {
+        try {
+          const response = await fetch(`${start.c.shortcutsURL}?t=${start.timestamp()}`);
+          const html = await response.text();
+          if (html) {
+            shortcuts_toggle(html);
+            start.cache['shortcuts'] = {
+              html,
+              time: new Date().getTime()
+            };
+          }
+        } catch (err) {
+          $(".shortcuts").html("").addClass(start.s);
+        }
+      }
     },
 
     // Shortcuts Slider
