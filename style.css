@@ -382,7 +382,7 @@ input[type="range"] {
 }
 
 ul {
-    margin: 0 0 calc(var(--padding) * 1.5);
+    margin: 0 0 calc(var(--padding));
     padding: 0;
 }
 
