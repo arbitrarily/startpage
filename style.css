@@ -560,7 +560,7 @@ li {
 }
 
 .menu-links__toggle.shown.menu-links__item.menu-links__toggle .menu-links__toggle--image-container {
-    box-shadow: inset 0 0 25px 10px rgba(255, 255, 255, 0.25), 0 0 25px 10px rgba(255, 255, 255, 0.075);
+    box-shadow: inset 0 0 25px 7px rgba(255, 255, 255, 0.3), 0 2px 20px 3px rgba(255, 255, 255, 0.1);
 }
 
 .menu-links__item.menu-links__toggle img {
