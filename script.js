@@ -32,7 +32,7 @@
     s: "shown", // Shared Class Names
     t: "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.40.4", // Version Number
+    v: "1.40.5", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 

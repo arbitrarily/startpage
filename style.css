@@ -912,6 +912,8 @@ li {
 }
 
 .stats div {
+    display: flex;
+    align-items: center;
     padding: calc(var(--padding) / 2) 0;
 }
 
