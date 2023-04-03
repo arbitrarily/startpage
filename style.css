@@ -5,7 +5,7 @@
     --large-padding: 10vh;
     --foundation: 0.625rem;
     --foundation-large: 0.9375rem;
-    --max-height: 444px;
+    --max-height: 436px;
 
     /* Border Radius */
     --border-radius: 10px;
@@ -1291,6 +1291,7 @@ li {
 
     .grid-padding-x > .cell.container__list--padding-override {
         padding-left: calc(var(--foundation-large) * 4);
+        max-height: var(--max-height);
     }
 
     #video-container.fluid,
@@ -1313,6 +1314,11 @@ li {
 
     .container__content {
         overflow: hidden;
+        max-height: var(--max-height);
+    }
+
+    .container__links--section {
+        height: var(--max-height);
         max-height: var(--max-height);
     }
 }

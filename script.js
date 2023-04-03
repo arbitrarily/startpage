@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.9", // Version Number
+    v: "1.39.11", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -306,7 +306,6 @@
 
     // Scroll Feed Links
     scroll_links: (slide) => {
-      const h = $(".container__links--section").height();
       let l = $(".container__links--section").length - 1;
       if (window.matchMedia("(min-width: 40em)").matches) {
         l = $(".container__links--section").length - 3;
@@ -317,7 +316,7 @@
       } else {
         start.fs = slide;
       }
-      $(".container__links--section").css("transform", `translateY(-${start.fs * h}px)`);
+      $(".container__links--overflow").css("transform", `translateY(-${start.fs * 436}px)`);
     },
 
     // Toggle Help Menu
@@ -1217,7 +1216,6 @@
 
     // Help Shortcuts
     shortcuts: () => {
-      console.log("*");
       $(".shortcuts").toggleClass(start.s);
       $(".everything").toggleClass("blur");
       $("body").toggleClass("lock");
