@@ -1121,6 +1121,7 @@ li {
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     border-radius: 6px;
     background-color: var(--grey);
+    text-transform: capitalize;
 }
 
 .shortcuts kbd {
