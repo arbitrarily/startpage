@@ -99,7 +99,7 @@ body {
 }
 
 [title] {
-  position: relative;
+    position: relative;
 }
 
 [title]:hover::before {
@@ -1050,7 +1050,7 @@ li {
 }
 
 .container__list--item--faded {
-  opacity: 0.25;
+    opacity: 0.25;
 }
 
 .shortcuts {
@@ -1220,6 +1220,7 @@ li {
     .shortcuts__menu li img {
         margin: 0;
     }
+
     .shortcuts__menu li span {
         display: none;
     }
@@ -1327,7 +1328,7 @@ li {
         justify-content: space-between;
     }
 
-    .grid-padding-x > .cell.container__list--padding-override {
+    .grid-padding-x>.cell.container__list--padding-override {
         padding-left: calc(var(--foundation-large) * 4);
         max-height: var(--max-height);
     }
