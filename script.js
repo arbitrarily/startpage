@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.12", // Version Number
+    v: "1.39.13", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -1217,7 +1217,7 @@
     // Help Shortcuts
     shortcuts: () => {
       $(".shortcuts").toggleClass(start.s);
-      $(".everything, .ip, .stats").toggleClass("blur");
+      $(".everything, .details").toggleClass("blur");
       $("body").toggleClass("lock");
       if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
       start.shortcuts_slider();

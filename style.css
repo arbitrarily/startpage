@@ -192,8 +192,7 @@ a:focus img {
 }
 
 .everything.blur,
-.stats.blur,
-.ip.blur {
+.details.blur {
     filter: blur(20px);
 }
 
@@ -1270,25 +1269,25 @@ li {
         aspect-ratio: 16/9;
     }
 
-    .stats {
-        display: flex;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        padding: var(--foundation);
-    }
-
     .stats div {
         padding: 0 !important;
         margin-left: var(--padding);
     }
 
-    .ip {
+    .ip,
+    .stats {
+        display: flex;
+    }
+
+    .details {
         display: flex;
         position: fixed;
         bottom: 0;
         left: 0;
         padding: var(--foundation);
+        right: 0;
+        width: 100%;
+        justify-content: space-between;
     }
 
     .grid-padding-x > .cell.container__list--padding-override {
@@ -1328,6 +1327,10 @@ li {
 /* Small screens */
 @media screen and (max-width: 64em) {
     .container {
+        padding: calc(var(--padding) * 3) var(--padding);
+    }
+
+    .details {
         padding: calc(var(--padding) * 3) var(--padding);
     }
 
