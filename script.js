@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.13", // Version Number
+    v: "1.39.14", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -174,7 +174,7 @@
           // Init
           start.init();
         })
-        .catch(() => $(".feed-links").addClass(start.s) );
+        .catch(() => $(".feed-links").addClass(start.s));
     },
 
     // Random Number in a Range
@@ -202,25 +202,25 @@
       $(document).keydown(e => {
         // Key Down
         start.d[e.keyCode] = true;
-        // Shift
-        if (start.d[16]) {
+
+        if (start.d[16]) { // Shift
           e.preventDefault();
 
           // Switch Feed Source
           const shift_keys_map = {
-            49:   0, // Instapaper                          (shift + 1️⃣)
-            50:   1, // News                                (shift + 2️⃣)
-            51:   2, // New York Times                      (shift + 3️⃣)
-            52:   3, // Reddit                              (shift + 4️⃣)
-            53:   4, // Podcasts                            (shift + 5️⃣)
-            54:   5, // NFT News                            (shift + 6️⃣)
-            55:   6, // YouTube                             (shift + 7️⃣)
-            56:   7, // Path of Exile                       (shift + 8️⃣)
-            57:   8, // Music                               (shift + 9️⃣)
-            48:   23, // Dev News                           (shift + 0️⃣)
-            173:  9, // Steam Games                         (shift + "-")
-            61:   10, // NFTs                               (shift + "=")
-            8:    25, // Metal Music                        (shift + Bakcspace)
+            49: 0, // Instapaper                          shift + 1️⃣
+            50: 1, // News                                shift + 2️⃣
+            51: 2, // New York Times                      shift + 3️⃣
+            52: 3, // Reddit                              shift + 4️⃣
+            53: 4, // Podcasts                            shift + 5️⃣
+            54: 5, // NFT News                            shift + 6️⃣
+            55: 6, // YouTube                             shift + 7️⃣
+            56: 7, // Path of Exile                       shift + 8️⃣
+            57: 8, // Music                               shift + 9️⃣
+            48: 23, // Dev News                           shift + 0️⃣
+            173: 9, // Steam Games                         shift + "-"
+            61: 10, // NFTs                               shift + "="
+            8: 25, // Metal Music                        shift + Bakcspace
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -230,33 +230,31 @@
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
-            39:   start.audio_ff, // Fast Forward: shift + ⏩
-            37:   start.audio_rewind, // Rewind: shift + ⏪
-            38:   start.audio_more_speed, // Increase Playback Speed: shift + ⏫
-            40:   start.audio_less_speed, // Decrease Playback Speed: shift + ⏬
-            32:   start.media_toggle, // Play/Pause: shift + "space"
-            77:   start.audio_mute, // Mute: shift + "m"
-            86:   start.audio_volume, // Volume: shift + "v"
-            70:   start.video_fullscreen, // Fullscreen Toggle: shift + "f"
-            123:  start.play_single, // Random Song: shift + "f12"
-            122:  start.play_playlist, // Randomized Playlist: shift + "f11"
-            121:  start.play_playlist_input, // Toggle Playlist Control Limit: shift + "f10"
-            120:  start.play_ambient_song, // Play the Ambient Song: shift + "f10"
-            88:   () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
-            67:   start.background, // Refresh Background Image: shift + "c"
-            66:   start.blur, // Blur: shift + "b"
-            78:   start.log_wallet, // Wallet Status: shift + "n"
-            188:  start.overlay, // Toggle Background Overlay: shift + ","
-            190:  start.resize_feed_images, // Resize Feed Images: shift + "."
-            72:   start.shortcuts, // Help Shortcuts: shift + "h"
-            84:   start.switch_audio_source // Toggle Audio Player: shift + "t"
+            39: start.audio_ff, // Fast Forward:          shift + ⏩
+            37: start.audio_rewind, // Rewind:            shift + ⏪
+            38: start.audio_more_speed, // Increase:      shift + ⏫
+            40: start.audio_less_speed, // Decrease:      shift + ⏬
+            32: start.media_toggle, // Play/Pause:        shift + "space"
+            77: start.audio_mute, // Mute:                shift + "m"
+            70: start.video_fullscreen, // Fullscreen:    shift + "f"
+            123: start.play_single, // Random Song:        shift + "f12"
+            122: start.play_playlist, // Random Playlist:  shift + "f11"
+            121: start.play_playlist_input, //             shift + "f10"
+            120: start.play_ambient_song, // Ambient Song: shift + "f10"
+            90: start.overlay, // Background Overlay:     shift + "z"
+            67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
+            88: start.background, // Background Image:    shift + "c"
+            86: start.audio_volume, // Volume:            shift + "v"
+            66: start.blur, // Blur:                      shift + "b"
+            78: start.log_wallet, // Wallet Status:       shift + "n"
+            77: start.resize_feed_images, // Feed Images: shift + "m"
+            72: start.shortcuts, // Help Shortcuts:       shift + "h"
+            84: start.switch_audio_source // Audio Source shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
         } else {
-
-          // Close Fullscreen Video                       ("esc")
-          if (start.d[27]) {
+          if (start.d[27]) { // Close Fullscreen Video:     "esc"
             if ($(".shortcuts").hasClass(start.s)) {
               start.shortcuts();
             } else {
@@ -265,22 +263,21 @@
           }
         }
 
-        // Alt / Option
-        if (start.d[18]) {
+        if (start.d[18]) { // Alt / Option
           e.preventDefault();
 
           // Switch Search Source
           const keys_mapped = {
-            49: 0, // Path of Exile                       (alt + 1️⃣)
-            50: 1, // YouTube                             (alt + 2️⃣)
-            51: 2, // DuckDuckGo                          (alt + 3️⃣)
-            52: 3, // Apple Music                         (alt + 4️⃣)
-            53: 4, // LastFM                              (alt + 5️⃣)
-            54: 5, // Twitter                             (alt + 6️⃣)
-            55: 6, // Google News                         (alt + 7️⃣)
-            56: 7, // Github                              (alt + 8️⃣)
-            57: 8, // MidJourney                          (alt + 9️⃣)
-            48: 9, // Google                              (alt + 0️⃣)
+            49: 0, // Path of Exile                         alt + 1️⃣
+            50: 1, // YouTube                               alt + 2️⃣
+            51: 2, // DuckDuckGo                            alt + 3️⃣
+            52: 3, // Apple Music                           alt + 4️⃣
+            53: 4, // LastFM                                alt + 5️⃣
+            54: 5, // Twitter                               alt + 6️⃣
+            55: 6, // Google News                           alt + 7️⃣
+            56: 7, // Github                                alt + 8️⃣
+            57: 8, // MidJourney                            alt + 9️⃣
+            48: 9, // Google                                alt + 0️⃣
           };
           const kc = Object.keys(keys_mapped).find(key => start.d[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
@@ -288,6 +285,7 @@
             if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           }
         }
+
       }).keyup(e => {
         // Reset Key on Key Up
         start.d[e.keyCode] = false;
@@ -324,7 +322,7 @@
       $(document).on(start.t, ".shortcuts", event => {
         if (!$(event.target).closest(".shortcuts__inner").length &&
           $(".shortcuts").hasClass(start.s)) {
-            start.shortcuts();
+          start.shortcuts();
         }
       });
     },
@@ -652,7 +650,7 @@
     },
 
     // Media Based Event Listeners
-    media_events: function () {
+    media_events: () => {
       // Audio Events
       start.audio.addEventListener("play", () => {
         if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
@@ -785,8 +783,8 @@
 
     // Start YouTube Video
     video_start: video_id => {
-     if (start.video) start.video.destroy();
-     if (start.vaa) start.vaa.destroy();
+      if (start.video) start.video.destroy();
+      if (start.vaa) start.vaa.destroy();
       start.video = new YT.Player('video-container', {
         height: '360',
         width: '640',
@@ -832,7 +830,7 @@
     },
 
     // Video: Fullscreen Toggle
-    video_fullscreen: function () {
+    video_fullscreen: () => {
       const v = $(".video-links .feed-list, .feed-container, .container__overflow"),
         vl = $(".video-links"),
         fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
@@ -1197,7 +1195,7 @@
 
     // Change Search on Click
     change_search: () => {
-      $("#searchform label").on(start.t, function () {
+      $("#searchform label").on(start.t, () => {
         start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
         start.search_switcher(start.searches[start.count]);
       });
@@ -1225,7 +1223,8 @@
 
     // Shortcuts Slider
     shortcuts_slider: () => {
-      $(document).on(start.t, ".shortcuts__menu li", function() {
+      $(document).on(start.t, ".shortcuts__menu li", function (e) {
+        e.preventDefault();
         const target = $(this);
         target.toggleClass("active").siblings().removeClass("active");
         $(".shortcuts__feed-container").css("transform", `translateX(-${target.data("id") * (100 / $(".shortcuts__feed").length)}%`);
@@ -1242,7 +1241,7 @@
     marquee_title: () => {
       var title = $("title");
       var text = "Startpage ".repeat(15);
-      setInterval(function () {
+      setInterval( () => {
         text = text.substring(1) + text.charAt(0);
         title.text("⭐ " + text.toUpperCase());
       }, start.at);
@@ -1250,7 +1249,7 @@
 
     // Launch Steam Games
     steam_links: () => {
-      $(document).on(start.t, ".feed-links a", function(e) {
+      $(document).on(start.t, ".feed-links a", function (e) {
         if (e.shiftKey && $(this).attr("data-launcher")) {
           e.preventDefault();
           const game_name = $(this).find(".container__list--item-title").html();
@@ -1266,9 +1265,9 @@
 
     // Animation on Leave & Alert Check if Media is Playing
     bye: () => {
-      $(window).on("beforeunload", function () {
+      $(window).on("beforeunload", () => {
         if (start.media_is_playing()) {
-          const result = window.confirm("Media is still playing, sure you want to leave?");
+          const result = window.confirm("Media is playing; sure you want to leave?");
           if (!result) return false;
         }
         $("body").css("opacity", 0);
