@@ -32,7 +32,7 @@
     s: "shown", // Shared Class Names
     t: "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.40.3", // Version Number
+    v: "1.40.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -317,10 +317,7 @@
 
     // Scroll Feed Links
     scroll_links: (slide) => {
-      let l = $(".container__links--section").length - 1;
-      if (window.matchMedia("(min-width: 40em)").matches) {
-        l = $(".container__links--section").length - 3;
-      }
+      let l = $(".container__links--section").length - 3;
       if (!slide && slide !== 0) {
         start.fs++;
         if (start.fs > l) start.fs = 0;

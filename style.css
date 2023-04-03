@@ -50,8 +50,13 @@
     /* Shortcut Feeds */
     --shortcut-feeds: 4;
 
+    /* Aspect Ratios */
+    --sixteen-nine: 16/9;
+    --one-one: 1/1;
+    --steam-aspect: 16/7.5;
+
     /* Cursor */
-    --cursor: url('icons/icon__cursor.png'), auto;
+    --cursor: url('icons/icon__cursor.png'), auto !important;
 }
 
 @keyframes fadein {
@@ -294,6 +299,7 @@ a:focus img {
 
 input[type="range"] {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     border-radius: 5px;
     outline: none;
@@ -561,7 +567,7 @@ li {
     min-width: 60px;
     height: auto;
     max-height: auto;
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
     object-fit: contain;
     margin: 0 auto;
     filter: brightness(160%) saturate(0);
@@ -668,7 +674,7 @@ li {
 .container__content.large .news-links .container__list img,
 .container__content.large .poe-links .container__list img {
     min-width: 220px;
-    aspect-ratio: 16/9;
+    aspect-ratio: var(--sixteen-nine);
 }
 
 .container__list span.container__list--full-item {
@@ -721,7 +727,7 @@ li {
     border-radius: calc(var(--border-radius) / 2);
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
     object-fit: cover;
     overflow: hidden;
 }
@@ -859,7 +865,7 @@ li {
     border-radius: var(--border-radius);
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
     object-fit: cover;
     overflow: hidden;
     box-shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
@@ -991,7 +997,7 @@ li {
     height: 100%;
     max-width: 100%;
     min-width: 100%;
-    aspect-ratio: 16/7.5;
+    aspect-ratio: var(--steam-aspect);
     filter: none;
     opacity: 1;
     object-fit: cover;
@@ -1002,7 +1008,7 @@ li {
 }
 
 .twitch-links .container__list--item--faded .container__list img {
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
 }
 
 .games-links .container__list .container__list--time {
@@ -1039,7 +1045,7 @@ li {
     height: 100%;
     max-width: 100%;
     min-width: 100%;
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
     filter: none;
     opacity: 1;
     object-fit: cover;
@@ -1182,7 +1188,7 @@ li {
     border-radius: calc(var(--border-radius) / 2);
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
-    aspect-ratio: 1/1;
+    aspect-ratio: var(--one-one);
     object-fit: cover;
     overflow: hidden;
 }
@@ -1273,7 +1279,7 @@ li {
         max-height: inherit;
         max-width: 100%;
         min-width: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: var(--sixteen-nine);
     }
 
     .shortcuts {
@@ -1305,7 +1311,7 @@ li {
     .reddit-links .container__list img,
     .video-links.podcast-links .container__list img {
         min-width: 160px;
-        aspect-ratio: 16/9;
+        aspect-ratio: var(--sixteen-nine);
     }
 }
 
@@ -1319,7 +1325,7 @@ li {
     }
 
     .video-links {
-        aspect-ratio: 16/9;
+        aspect-ratio: var(--sixteen-nine);
     }
 
     .stats div {
@@ -1351,7 +1357,7 @@ li {
     #video-container.fluid,
     .video-links.fluid {
         height: auto;
-        aspect-ratio: 16/9;
+        aspect-ratio: var(--sixteen-nine);
     }
 
     .grid-x>.large-5.feed-links {
@@ -1380,11 +1386,11 @@ li {
 /* Small screens */
 @media screen and (max-width: 64em) {
     .container {
-        padding: calc(var(--padding) * 3) var(--padding);
+        padding: calc(var(--padding) * 3) var(--padding) 0;
     }
 
     .details {
-        padding: calc(var(--padding) * 3) var(--padding);
+        padding: 0 var(--padding) calc(var(--padding) * 3) var(--padding);
     }
 
     .cell.small-12.large-3.container__list--padding-override {
@@ -1403,6 +1409,6 @@ li {
     }
 
     .menu-links__toggle--image-container {
-        aspect-ratio: 1/1;
+        aspect-ratio: var(--one-one);
     }
 }
