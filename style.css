@@ -912,13 +912,13 @@ li {
 }
 
 .stats div {
-    display: flex;
-    align-items: center;
     padding: calc(var(--padding) / 2) 0;
 }
 
 .ip div,
 .stats div {
+    display: flex;
+    align-items: center;
     opacity: 0;
 }
 
