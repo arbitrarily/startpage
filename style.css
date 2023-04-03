@@ -1,3 +1,19 @@
+/*
+
+         888                     888
+         888                     888
+         888                     888
+.d8888b  888888  8888b.  888d888 888888 88888b.   8888b.   .d88b.   .d88b.
+88K      888        "88b 888P"   888    888 "88b     "88b d88P"88b d8P  Y8b
+"Y8888b. 888    .d888888 888     888    888  888 .d888888 888  888 88888888
+     X88 Y88b.  888  888 888     Y88b.  888 d88P 888  888 Y88b 888 Y8b.
+ 88888P'  "Y888 "Y888888 888      "Y888 88888P"  "Y888888  "Y88888  "Y8888
+                                        888                    888
+                                        888               Y8b d88P
+                                        888                "Y88P"
+
+*/
+
 /* Variables */
 :root {
     /* Margins */
@@ -1105,7 +1121,6 @@ li {
     font-size: 11px;
     line-height: normal;
     line-height: 10px;
-    vertical-align: middle;
     border: solid 1px var(--gruy);
     box-shadow: inset 0 -1px 0 var(--gruy);
 }
