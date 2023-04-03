@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.3", // Version Number
+    v: "1.39.4", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
