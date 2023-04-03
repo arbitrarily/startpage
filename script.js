@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.7", // Version Number
+    v: "1.39.8", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -337,6 +337,7 @@
         if ($(".feed-container").hasClass("fullscreen")) {
           if (t.is(event.target) && t.has(event.target).length > 0) return;
           start.video_fullscreen();
+          $(".container__links--section").toggleClass(start.h);
         }
       });
     },

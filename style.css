@@ -1334,6 +1334,10 @@ li {
         overflow: hidden;
     }
 
+    .container__links--section.hidden {
+        transform: none;
+    }
+
     .menu-links__toggle--image-container {
         aspect-ratio: 1/1;
     }
