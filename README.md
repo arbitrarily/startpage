@@ -27,8 +27,8 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * View who's online on Twitch.
 * Listen to podcasts.
 * Listen to several different music playlists/libraries.
-* Listen to shuffled music playlist.
-* Listen to shuffled music playlist with a set limit.
+* Listen to shuffled background music playlist.
+* Listen to shuffled background  music playlist with a set length limit.
 * Watch subscribed YouTube Videos in line without leaving the site.
 * Fullscreen video toggle.
 * Media control (mute/unmute, volume control, play/pause, fast foward, rewind, faster/slower playback).
@@ -42,10 +42,10 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Resize images.
 * Mobile ready toggle menu.
 * Shortcuts help menu.
-* * Site
-* * Figma
-* * Visual Studio Code
-* * skhd
+  * Site
+  * Figma
+  * Visual Studio Code
+  * skhd
 
 ---
 
