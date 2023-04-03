@@ -1,12 +1,11 @@
-![preview](https://user-images.githubusercontent.com/899183/224763555-049e5f8f-50a1-4366-aab4-ddef66e2febe.png)
-
-### Live Preview
+![preview](https://user-images.githubusercontent.com/899183/229410766-ec30a022-234f-44a6-b3c1-baae79fda3ac.png)
 
 [Preview: Startpage & New Tab Page](https://s.marko.tech)
 
 This is the page I use on every new window/tab load in my browsers. It's personalized for me, but of course I invite forks and mods. Enjoy.
 
-Some of the features:
+### Features
+
 * Quick access links to my most used websites.
 * Background image is randomly chosen from a series of images I serve on my own website.
 * Background image is blurred to better view the content.
