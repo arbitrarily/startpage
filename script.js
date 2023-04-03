@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.5", // Version Number
+    v: "1.39.7", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -202,25 +202,25 @@
       $(document).keydown(e => {
         // Key Down
         start.d[e.keyCode] = true;
-        // Left Shift
+        // Shift
         if (start.d[16]) {
           e.preventDefault();
 
           // Switch Feed Source
           const shift_keys_map = {
-            49: 0, // Instapaper                          (shift + 1️⃣)
-            50: 1, // News                                (shift + 2️⃣)
-            51: 2, // New York Times                      (shift + 3️⃣)
-            52: 3, // Reddit                              (shift + 4️⃣)
-            53: 4, // Podcasts                            (shift + 5️⃣)
-            54: 5, // NFT News                            (shift + 6️⃣)
-            55: 6, // YouTube                             (shift + 7️⃣)
-            56: 7, // Path of Exile                       (shift + 8️⃣)
-            57: 8, // Music                               (shift + 9️⃣)
-            48: 23, // Dev News                           (shift + 0️⃣)
-            173: 9, // Steam Games                        (shift + "-")
-            61: 10, // NFTs                               (shift + "=")
-            8: 25, // Metal Music                         (shift + Bakcspace)
+            49:   0, // Instapaper                          (shift + 1️⃣)
+            50:   1, // News                                (shift + 2️⃣)
+            51:   2, // New York Times                      (shift + 3️⃣)
+            52:   3, // Reddit                              (shift + 4️⃣)
+            53:   4, // Podcasts                            (shift + 5️⃣)
+            54:   5, // NFT News                            (shift + 6️⃣)
+            55:   6, // YouTube                             (shift + 7️⃣)
+            56:   7, // Path of Exile                       (shift + 8️⃣)
+            57:   8, // Music                               (shift + 9️⃣)
+            48:   23, // Dev News                           (shift + 0️⃣)
+            173:  9, // Steam Games                         (shift + "-")
+            61:   10, // NFTs                               (shift + "=")
+            8:    25, // Metal Music                        (shift + Bakcspace)
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -230,26 +230,26 @@
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
-            39: start.audio_ff, // Fast Forward: shift + ⏩
-            37: start.audio_rewind, // Rewind: shift + ⏪
-            38: start.audio_more_speed, // Increase Playback Speed: shift + ⏫
-            40: start.audio_less_speed, // Decrease Playback Speed: shift + ⏬
-            32: start.media_toggle, // Play/Pause: shift + "space"
-            77: start.audio_mute, // Mute: shift + "m"
-            86: start.audio_volume, // Volume: shift + "v"
-            70: start.video_fullscreen, // Fullscreen Toggle: shift + "f"
-            123: start.play_single, // Random Song: shift + "f12"
-            122: start.play_playlist, // Randomized Playlist: shift + "f11"
-            121: start.play_playlist_input, // Toggle Playlist Control Limit: shift + "f10"
-            120: start.play_ambient_song, // Play the Ambient Song: shift + "f10"
-            88: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
-            67: start.background, // Refresh Background Image: shift + "c"
-            66: start.blur, // Blur: shift + "b"
-            78: start.log_wallet, // Wallet Status: shift + "n"
-            188: start.overlay, // Toggle Background Overlay: shift + ","
-            190: start.resize_feed_images, // Resize Feed Images: shift + "."
-            72: start.shortcuts, // Help Shortcuts: shift + "h"
-            84: start.switch_audio_source // Toggle Audio Player: shift + "t"
+            39:   start.audio_ff, // Fast Forward: shift + ⏩
+            37:   start.audio_rewind, // Rewind: shift + ⏪
+            38:   start.audio_more_speed, // Increase Playback Speed: shift + ⏫
+            40:   start.audio_less_speed, // Decrease Playback Speed: shift + ⏬
+            32:   start.media_toggle, // Play/Pause: shift + "space"
+            77:   start.audio_mute, // Mute: shift + "m"
+            86:   start.audio_volume, // Volume: shift + "v"
+            70:   start.video_fullscreen, // Fullscreen Toggle: shift + "f"
+            123:  start.play_single, // Random Song: shift + "f12"
+            122:  start.play_playlist, // Randomized Playlist: shift + "f11"
+            121:  start.play_playlist_input, // Toggle Playlist Control Limit: shift + "f10"
+            120:  start.play_ambient_song, // Play the Ambient Song: shift + "f10"
+            88:   () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
+            67:   start.background, // Refresh Background Image: shift + "c"
+            66:   start.blur, // Blur: shift + "b"
+            78:   start.log_wallet, // Wallet Status: shift + "n"
+            188:  start.overlay, // Toggle Background Overlay: shift + ","
+            190:  start.resize_feed_images, // Resize Feed Images: shift + "."
+            72:   start.shortcuts, // Help Shortcuts: shift + "h"
+            84:   start.switch_audio_source // Toggle Audio Player: shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
@@ -265,7 +265,7 @@
           }
         }
 
-        // Alt/Option
+        // Alt / Option
         if (start.d[18]) {
           e.preventDefault();
 
@@ -323,8 +323,9 @@
     // Toggle Help Menu
     help_toggle: () => {
       $(document).on(start.t, ".shortcuts", event => {
-        if (!$(event.target).closest(".shortcuts__inner").length && $(".shortcuts").hasClass(start.s)) {
-          start.shortcuts();
+        if (!$(event.target).closest(".shortcuts__inner").length &&
+          $(".shortcuts").hasClass(start.s)) {
+            start.shortcuts();
         }
       });
     },
@@ -614,7 +615,7 @@
 
     // Music Home Feed
     play_music: () => {
-      start.fetch_news(start.c.xPlaylistHTMLURL, "Music");
+      start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music");
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
     },
 

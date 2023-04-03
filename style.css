@@ -419,7 +419,6 @@ li {
     overflow: hidden;
     overflow-y: scroll;
     -ms-overflow-style: none;
-    /* IE and Edge */
     scrollbar-width: none;
     -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
@@ -840,12 +839,13 @@ li {
     width: 52px;
     min-width: 52px;
     margin-left: var(--padding);
-    border-radius: calc(var(--border-radius) / 2);
+    border-radius: var(--border-radius);
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
     aspect-ratio: 1/1;
     object-fit: cover;
     overflow: hidden;
+    box-shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
 }
 
 .nowplaying__song {
