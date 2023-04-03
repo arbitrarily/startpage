@@ -191,7 +191,9 @@ a:focus img {
     -webkit-filter: grayscale(0);
 }
 
-.everything.blur {
+.everything.blur,
+.stats.blur,
+.ip.blur {
     filter: blur(20px);
 }
 
