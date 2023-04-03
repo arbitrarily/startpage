@@ -23,7 +23,7 @@
     s: "shown", // Shared Class Names
     t: "ontouchstart" in window || navigator.msMaxTouchPoints ? "touchend" : "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.39.16", // Version Number
+    v: "1.40.1", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -253,14 +253,6 @@
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
-        } else {
-          if (start.d[27]) { // Close Fullscreen Video:     "esc"
-            if ($(".shortcuts").hasClass(start.s)) {
-              start.shortcuts();
-            } else {
-              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            }
-          }
         }
 
         if (start.d[18]) { // Alt / Option
@@ -285,6 +277,18 @@
             if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
           }
         }
+
+        if (start.d[27]) { // Close Fullscreen Video:       "esc"
+          if ($(".shortcuts").hasClass(start.s)) {
+            start.shortcuts();
+          } else {
+            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+          }
+        }
+
+        // Links Toggle                                     ⏫ or ⏬
+        if (start.d[40]) start.scroll_links();
+        if (start.d[38] && start.fs > 0) start.scroll_links(start.fs - 1);
 
       }).keyup(e => {
         // Reset Key on Key Up
