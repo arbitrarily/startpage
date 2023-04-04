@@ -1285,7 +1285,6 @@ li {
 
     .video-links .container__list img,
     .reddit-links .container__list img {
-        margin-bottom: var(--foundation);
         margin-right: 0;
         max-height: inherit;
         max-width: 100%;
@@ -1321,7 +1320,7 @@ li {
     .video-links .container__list img,
     .reddit-links .container__list img,
     .video-links.podcast-links .container__list img {
-        min-width: 160px;
+        min-width: 180px;
         aspect-ratio: var(--sixteen-nine);
     }
 
@@ -1373,10 +1372,6 @@ li {
     .video-links.fluid {
         height: auto;
         aspect-ratio: var(--sixteen-nine);
-    }
-
-    .grid-x>.large-5.feed-links {
-        width: 37.667%;
     }
 
     .container__links {
