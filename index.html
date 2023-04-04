@@ -369,8 +369,7 @@ MYMMMM9   YMMM9 `YMMM9'Yb_MM_      YMMM9 MMYMMM9  `YMMM9'Yb.YMMMMb. YMMMM9
 						<ul class="grid-x grid-padding-x container__list--title-list">
 							<li class="cell">
 								<span class="container__list container__list--title">
-									<span class="hide-for-small-only hide-for-medium-only">Feeds</span>
-									<span class="container__date"></span>
+									<span>Feeds</span>
 								</span>
 							</li>
 						</ul>
@@ -476,13 +475,20 @@ MYMMMM9   YMMM9 `YMMM9'Yb_MM_      YMMM9 MMYMMM9  `YMMM9'Yb.YMMMMb. YMMMM9
 										</div>
 									</a>
 								</li>
-								<li class="cell menu-links__item menu-links__toggle" data-id="1">
+								<li class="cell menu-links__item menu-links__toggle menu-links__toggle--clock" data-id="1">
 									<a href="#" class="container__list">
 										<div class="menu-links__toggle--content">
 											<div class="menu-links__toggle--image-container">
-												<img src="icons/icon__news.svg" alt="News" />
+												<!-- <img src="icons/icon__news.svg" alt="News" /> -->
+												<div class="clock">
+													<svg viewBox="0 0 100 100">
+														<line class="hour-hand" x1="50" y1="50" x2="50" y2="30" />
+														<line class="minute-hand" x1="50" y1="50" x2="50" y2="10" />
+														<line class="second-hand" x1="50" y1="50" x2="50" y2="5" />
+													</svg>
+												</div>
 											</div>
-											<span>News</span>
+											<span>Daily News</span>
 										</div>
 									</a>
 								</li>

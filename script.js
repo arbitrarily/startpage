@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.41.10",          // Version Number
+    v: "1.42.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1304,13 +1304,24 @@
     // Clock
     the_time: () => {
       const now = new Date();
-      const date_options = { weekday: "short", month: "short", day: "numeric" };
+      const date_options = { weekday: "long", month: "long", day: "numeric" };
       const time_options = { hour: "2-digit", minute: "2-digit" };
-      const is_morning = now.getHours() < 12;
-      const time = now.toLocaleTimeString([], { ...time_options, hour12: !is_morning }).replace(/^0| /g, "");
-      const date = now.toLocaleDateString("en-US", date_options).replace(/,/g, "");
+      const time = now.toLocaleTimeString([], { ...time_options }).replace(/^0| /g, "");
+      const date = now.toLocaleDateString("en-US", date_options);
       const datetime = `${date} ${time}`;
-      $(".container__date").html(datetime);
+      const hour_hand = $(".hour-hand"),
+            minute_hand = $(".minute-hand"),
+            second_hand = $(".second-hand");
+      const hours = now.getHours() % 12,
+            minutes = now.getMinutes(),
+            seconds = now.getSeconds();
+      const h_angle = (hours + minutes / 60) / 12 * 360,
+            m_angle = minutes / 60 * 360,
+            s_angle = seconds / 60 * 360;
+      hour_hand.attr('transform', 'rotate(' + h_angle + ', 50, 50)');
+      minute_hand.attr('transform', 'rotate(' + m_angle + ', 50, 50)');
+      second_hand.attr('transform', 'rotate(' + s_angle + ', 50, 50)');
+      $(".menu-links__toggle--clock").attr("title", datetime);
     },
 
     // "Cron" Functions
@@ -1319,8 +1330,8 @@
       setInterval(start.lastfm, 1000 * 60 * 3)
       // Change Background Every 5 Minutes
       setInterval(start.background, 1000 * 60 * 5);
-      // Update Clock Every 15 Seconds
-      setInterval(start.the_time, 1000 * 15);
+      // Update Clock Every 1 Seconds
+      setInterval(start.the_time, 1000);
     },
 
     // Console Log Attribution
