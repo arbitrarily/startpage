@@ -11,30 +11,30 @@
   "use strict";
 
   var start = {
-    an: false, // Art Number
-    as: false, // Audio Source
-    at: 333, // Animation Time
-    audio: new Audio(), // Audio
-    au: false, // Art URL
-    balance: false, // Wallet Balance
-    cache: {}, // Cached HTML
-    c: false, // Config
-    count: false, // Search Count
-    d: {}, // Keyboard Variable
-    fc: false, // Feed Count
-    fs: 0, // Feed Slide Count
-    h: "hidden", // Shared Class Names
-    nc: false, // NFT Collection
-    pb: 0, // Progress Bar
-    pj: false, // Playlist Content
-    pll: 0, // Playlist Length
-    pv: false, // Pageviews
-    s: "shown", // Shared Class Names
-    t: "click", // Touch Events
-    timer: {}, // Timer Count
-    v: "1.41.2", // Version Number
-    vaa: false, // Video as Audio
-    video: false, // Video
+    an: false,            // Art Number
+    as: false,            // Audio Source
+    at: 333,              // Animation Time
+    audio: new Audio(),   // Audio
+    au: false,            // Art URL
+    balance: false,       // Wallet Balance
+    cache: {},            // Cached HTML
+    c: false,             // Config
+    count: false,         // Search Count
+    d: {},                // Keyboard Variable
+    fc: false,            // Feed Count
+    fs: 0,                // Feed Slide Count
+    h: "hidden",          // Shared Class Names
+    nc: false,            // NFT Collection
+    pb: 0,                // Progress Bar
+    pj: false,            // Playlist Content
+    pll: 0,               // Playlist Length
+    pv: false,            // Pageviews
+    s: "shown",           // Shared Class Names
+    t: "click",           // Touch Events
+    timer: {},            // Timer Count
+    v: "1.41.3",          // Version Number
+    vaa: false,           // Video as Audio
+    video: false,         // Video
 
     // Search Inputs
     searches: [
@@ -150,27 +150,28 @@
 
     // Init
     init: function () {
-      start.version(); // Version Number
-      start.an = this.random_numb(1, 243).toString().padStart(4, "0"); // Background Art Number
-      this.pageview_counter(); // Pageview Counter
-      this.key_listener(); // Key Listeners
-      this.background(); // Background Image
-      this.wallet(); // Wallet Value
-      this.init_fetch(); // Initial Feed
-      this.lastfm(); // Get Last FM Now Playing
-      this.focus_click(); // Search Focus
-      this.change_search();  // Search Change
-      this.help_toggle(); // Help Toggle
-      this.timer_media_toggle(); // Add Event Listeners
-      this.ip(); // IP
-      this.log(); // Output into Console
-      this.focus(); // Focus on Search
-      this.marquee_title(); // Marquee Title
-      this.steam_links(); // Launch Games on Windows
-      this.menu_clicks(); // Menu Clicks
-      this.the_time(); // Time
-      this.rerun_functions(); // Cron Functions
-      this.bye(); // Run Before Leaving Page
+      start.version();            // Version Number
+      // Background Art Number
+      start.an = this.random_numb(1, 243).toString().padStart(4, "0");
+      this.pageview_counter();    // Pageview Counter
+      this.key_listener();        // Key Listeners
+      this.background();          // Background Image
+      this.wallet();              // Wallet Value
+      this.init_fetch();          // Initial Feed
+      this.lastfm();              // Get Last FM Now Playing
+      this.focus_click();         // Search Focus
+      this.change_search();       // Search Change
+      this.help_toggle();         // Help Toggle
+      this.timer_media_toggle();  // Add Event Listeners
+      this.ip();                  // IP
+      this.log();                 // Output into Console
+      this.focus();               // Focus on Search
+      this.marquee_title();       // Marquee Title
+      this.steam_links();         // Launch Games on Windows
+      this.menu_clicks();         // Menu Clicks
+      this.the_time();            // Time
+      this.rerun_functions();     // Cron Functions
+      this.bye();                 // Run Before Leaving Page
     },
 
     // Load Config, then Init
@@ -218,19 +219,19 @@
 
           // Switch Feed Source
           const shift_keys_map = {
-            49: 0, // Instapaper                          shift + 1️⃣
-            50: 1, // News                                shift + 2️⃣
-            51: 2, // New York Times                      shift + 3️⃣
-            52: 3, // Reddit                              shift + 4️⃣
-            53: 4, // Podcasts                            shift + 5️⃣
-            54: 5, // NFT News                            shift + 6️⃣
-            55: 6, // YouTube                             shift + 7️⃣
-            56: 7, // Path of Exile                       shift + 8️⃣
-            57: 8, // Music                               shift + 9️⃣
-            48: 23, // Dev News                           shift + 0️⃣
-            173: 9, // Steam Games                        shift + "-"
-            61: 10, // NFTs                               shift + "="
-            8: 25, // Metal Music                         shift + Bakcspace
+            49: 0, // Instapaper                           shift + 1️⃣
+            50: 1, // News                                 shift + 2️⃣
+            51: 2, // New York Times                       shift + 3️⃣
+            52: 3, // Reddit                               shift + 4️⃣
+            53: 4, // Podcasts                             shift + 5️⃣
+            54: 5, // NFT News                             shift + 6️⃣
+            55: 6, // YouTube                              shift + 7️⃣
+            56: 7, // Path of Exile                        shift + 8️⃣
+            57: 8, // Music                                shift + 9️⃣
+            48: 23, // Dev News                            shift + 0️⃣
+            173: 9, // Steam Games                         shift + "-"
+            61: 10, // NFTs                                shift + "="
+            8: 25, // Metal Music                          shift + Bakcspace
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -273,16 +274,16 @@
 
           // Switch Search Source
           const keys_mapped = {
-            49: 0, // Path of Exile                         alt + 1️⃣
-            50: 1, // YouTube                               alt + 2️⃣
-            51: 2, // DuckDuckGo                            alt + 3️⃣
-            52: 3, // Apple Music                           alt + 4️⃣
-            53: 4, // LastFM                                alt + 5️⃣
-            54: 5, // Twitter                               alt + 6️⃣
-            55: 6, // Google News                           alt + 7️⃣
-            56: 7, // Github                                alt + 8️⃣
-            57: 8, // MidJourney                            alt + 9️⃣
-            48: 9, // Google                                alt + 0️⃣
+            49: 0, // Path of Exile                        alt + 1️⃣
+            50: 1, // YouTube                              alt + 2️⃣
+            51: 2, // DuckDuckGo                           alt + 3️⃣
+            52: 3, // Apple Music                          alt + 4️⃣
+            53: 4, // LastFM                               alt + 5️⃣
+            54: 5, // Twitter                              alt + 6️⃣
+            55: 6, // Google News                          alt + 7️⃣
+            56: 7, // Github                               alt + 8️⃣
+            57: 8, // MidJourney                           alt + 9️⃣
+            48: 9, // Google                               alt + 0️⃣
           };
           const kc = Object.keys(keys_mapped).find(key => start.d[key]);
           start.count = kc ? keys_mapped[kc] : start.count;
@@ -291,7 +292,7 @@
           }
         }
 
-        if (start.d[27]) { // Close Fullscreen Video:       "esc"
+        if (start.d[27]) { // Close Fullscreen Video:       esc
           if ($(".shortcuts").hasClass(start.s)) {
             start.shortcuts();
           } else {
@@ -563,7 +564,7 @@
               time: new Date().getTime()
             };
           }
-        } catch (err) {
+        } catch {
           $(".feed-links").addClass(start.s);
         }
       }
