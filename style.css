@@ -119,11 +119,11 @@ body {
     font-size: var(--body-size);
 }
 
-[title] {
+.feed-links [title] {
     position: relative;
 }
 
-[title]:hover::before {
+.feed-links [title]:hover::before {
     content: attr(title);
     position: absolute;
     top: 50%;
