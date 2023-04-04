@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.41.3",          // Version Number
+    v: "1.41.5",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -165,7 +165,7 @@
       this.timer_media_toggle();  // Add Event Listeners
       this.ip();                  // IP
       this.log();                 // Output into Console
-      this.focus();               // Focus on Search
+      this.focus_search();        // Focus on Search
       this.marquee_title();       // Marquee Title
       this.steam_links();         // Launch Games on Windows
       this.menu_clicks();         // Menu Clicks
@@ -206,7 +206,10 @@
     },
 
     // Focus Search
-    focus: () => $("#search").focus().addClass("focus"),
+    focus_search: () => {
+      if ($("#search:focus").length > 0) return;
+      $("#search").focus().addClass("focus");
+    },
 
     // Function Triggers by Keyboard Combos
     key_listener: () => {
@@ -1210,7 +1213,7 @@
         $(document).on(start.t, e => {
           if (e.target.tagName !== "A" &&
             e.target.tagName !== "INPUT"
-          ) start.focus();
+          ) start.focus_search();
         });
       }
     },
@@ -1317,8 +1320,8 @@
       setInterval(start.lastfm, 1000 * 60 * 3)
       // Change Background Every 5 Minutes
       setInterval(start.background, 1000 * 60 * 5);
-      // Update Clock Every 30 Seconds
-      setInterval(start.the_time, 500);
+      // Update Clock Every 15 Seconds
+      setInterval(start.the_time, 1000 * 15);
     },
 
     // Console Log Attribution
