@@ -39,6 +39,9 @@
     --gray: rgba(255, 255, 255, 0.4);
     --grey: rgba(255, 255, 255, 0.2);
 
+    /* Shadow */
+    --shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
+
     /* Animation */
     --animation: all 0.366s ease-in-out;
     --animation-long: all 1.333s ease-in-out;
@@ -499,7 +502,7 @@ li {
 .video-links iframe.feed-list {
     width: 100%;
     background: black;
-    box-shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
+    box-shadow: var(--shadow);
     border-radius: var(--border-radius);
 }
 
@@ -645,7 +648,7 @@ li {
     align-items: center;
     padding: 8px 0;
     margin: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 100%;
 }
 
@@ -671,6 +674,7 @@ li {
     max-width: 100px;
     min-width: 100px;
     max-height: inherit;
+    box-shadow: var(--shadow);
 }
 
 .container__content.large .podcast-links .container__list img,
@@ -762,7 +766,7 @@ li {
     padding: var(--foundation-large) 0;
 }
 
-.container__list--title span:nth-of-type(2) {
+.feed-links .container__list--title span:nth-of-type(2) {
     overflow: unset;
 }
 
@@ -893,7 +897,7 @@ li {
     aspect-ratio: var(--one-one);
     object-fit: cover;
     overflow: hidden;
-    box-shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
+    box-shadow: var(--shadow);
 }
 
 .nowplaying__song {
@@ -1022,6 +1026,7 @@ li {
 .music-links .container__list img,
 .twitch-links .container__list img {
     aspect-ratio: var(--sixteen-nine);
+    box-shadow: var(--shadow);
 }
 
 .music-links .container__list img,
@@ -1041,6 +1046,7 @@ li {
     border: none;
     outline: none;
     border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
 }
 
 .music-links .container__list--description strong {
@@ -1049,6 +1055,7 @@ li {
 
 .twitch-links .container__list--item--faded .container__list img {
     aspect-ratio: var(--one-one);
+    box-shadow: var(--shadow);
     filter: saturate(0);
 }
 
