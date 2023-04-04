@@ -632,6 +632,10 @@ li {
     margin-bottom: 2px;
 }
 
+.music-links .container__list--item-title {
+    -webkit-line-clamp: 2;
+}
+
 .container__list--item:hover .container__list--full-item.container__list--current:before {
     filter: grayscale(0);
 }
