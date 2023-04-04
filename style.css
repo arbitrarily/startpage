@@ -732,6 +732,12 @@ li {
     overflow: hidden;
 }
 
+.container__links--section--links .container__list img {
+    object-fit: contain;
+    filter: brightness(125%) saturate(0);
+    border-radius: 0;
+}
+
 .container__list--item.menu-links__toggle .container__list img {
     object-fit: contain;
     filter: brightness(180%) saturate(0);
@@ -1404,7 +1410,6 @@ li {
 
     .container__links,
     .container__links--section {
-        height: calc(100vh - 240px);
         max-height: var(--max-height);
         overflow: hidden;
     }
