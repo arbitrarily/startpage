@@ -206,7 +206,7 @@
     },
 
     // Focus Search
-    focus: () => $(document).find("#search").focus().addClass("focus"),
+    focus: () => $("#search").focus().addClass("focus"),
 
     // Function Triggers by Keyboard Combos
     key_listener: () => {
