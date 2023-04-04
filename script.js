@@ -32,7 +32,7 @@
     s: "shown", // Shared Class Names
     t: "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.40.13", // Version Number
+    v: "1.40.14", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -255,8 +255,7 @@
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
-            78: start.log_wallet, // Wallet Status:        shift + "n"
-            77: start.resize_feed_images, // Feed Images:  shift + "m"
+            78: start.resize_feed_images, // Feed Images:  shift + "n"
             72: start.shortcuts, // Help Shortcuts:        shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
@@ -1305,11 +1304,6 @@
       });
     },
 
-    // Console Log Wallet Status
-    log_wallet: () => {
-      console.log(start.nc)
-      start.notify("Console.log <span>Wallet</span> Stats");
-    },
 
     // Console Log Attribution
     log: () => {
