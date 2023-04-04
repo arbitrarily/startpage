@@ -32,7 +32,7 @@
     s: "shown", // Shared Class Names
     t: "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.40.18", // Version Number
+    v: "1.41.2", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -168,6 +168,7 @@
       this.marquee_title(); // Marquee Title
       this.steam_links(); // Launch Games on Windows
       this.menu_clicks(); // Menu Clicks
+      this.the_time(); // Time
       this.rerun_functions(); // Cron Functions
       this.bye(); // Run Before Leaving Page
     },
@@ -1194,14 +1195,6 @@
         });
     },
 
-    // "Cron" Functions
-    rerun_functions: () => {
-      // Update Every 3 Minutes
-      setInterval(start.lastfm, 1000 * 60 * 3)
-      // Change Background Every 5 Minutes
-      setInterval(start.background, 1000 * 60 * 5);
-    },
-
     // Change Search on Click
     change_search: () => {
       $("#searchform label").on(start.t, () => {
@@ -1304,6 +1297,28 @@
       });
     },
 
+    // Clock
+    the_time: () => {
+      const now = new Date();
+      const date_options = { weekday: "short", month: "short", day: "numeric" };
+      const time_options = { hour: "2-digit", minute: "2-digit" };
+      const is_morning = now.getHours() < 12;
+      const time = now.toLocaleTimeString([], { ...time_options, hour12: !is_morning }).replace(/^0/, "");
+      const date = now.toLocaleDateString("en-US", date_options).replace(/,/g, "");
+      const datetime = `${date} ${time}`;
+      const time12hr = is_morning ? time + "AM" : time + "PM";
+      $(".container__date").html(datetime).attr("title", time12hr);
+    },
+
+    // "Cron" Functions
+    rerun_functions: () => {
+      // Update LastFM Now Playing Every 3 Minutes
+      setInterval(start.lastfm, 1000 * 60 * 3)
+      // Change Background Every 5 Minutes
+      setInterval(start.background, 1000 * 60 * 5);
+      // Update Clock Every 30 Seconds
+      setInterval(start.the_time, 500);
+    },
 
     // Console Log Attribution
     log: () => {
