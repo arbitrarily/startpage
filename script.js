@@ -32,7 +32,7 @@
     s: "shown", // Shared Class Names
     t: "click", // Touch Events
     timer: {}, // Timer Count
-    v: "1.40.14", // Version Number
+    v: "1.40.15", // Version Number
     vaa: false, // Video as Audio
     video: false, // Video
 
@@ -261,6 +261,10 @@
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
 
+        } else {
+          // Links Toggle                                  ⏫ or ⏬
+          if (start.d[40]) start.scroll_links();
+          if (start.d[38] && start.fs > 0) start.scroll_links(start.fs - 1);
         }
 
         if (start.d[18]) { // Alt / Option
@@ -293,10 +297,6 @@
             if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
           }
         }
-
-        // Links Toggle                                     ⏫ or ⏬
-        if (start.d[40]) start.scroll_links();
-        if (start.d[38] && start.fs > 0) start.scroll_links(start.fs - 1);
 
       }).keyup(e => {
         // Reset Key on Key Up
