@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.41.5",          // Version Number
+    v: "1.41.6",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1307,11 +1307,10 @@
       const date_options = { weekday: "short", month: "short", day: "numeric" };
       const time_options = { hour: "2-digit", minute: "2-digit" };
       const is_morning = now.getHours() < 12;
-      const time = now.toLocaleTimeString([], { ...time_options, hour12: !is_morning }).replace(/^0/, "");
+      const time = now.toLocaleTimeString([], { ...time_options, hour12: !is_morning }).replace(/^0| /g, "");
       const date = now.toLocaleDateString("en-US", date_options).replace(/,/g, "");
       const datetime = `${date} ${time}`;
-      const time12hr = is_morning ? time + "AM" : time + "PM";
-      $(".container__date").html(datetime).attr("title", time12hr);
+      $(".container__date").html(datetime);
     },
 
     // "Cron" Functions

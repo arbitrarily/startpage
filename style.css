@@ -248,7 +248,8 @@ a:focus img {
     mix-blend-mode: overlay;
 }
 
-.player.hidden {
+.player.hidden,
+.container__list--time.hidden {
     display: none;
     visibility: hidden;
     height: 0;
@@ -999,12 +1000,23 @@ li {
 }
 
 .nft-links .container__list:not(.container__list--title),
+.music-links .container__list:not(.container__list--title),
 .games-links .container__list:not(.container__list--title) {
     display: grid;
     height: 100%;
     margin-bottom: var(--foundation-large);
 }
 
+.games-links .container__list img {
+    aspect-ratio: var(--steam-aspect);
+}
+
+.music-links .container__list img,
+.twitch-links .container__list img {
+    aspect-ratio: var(--sixteen-nine);
+}
+
+.music-links .container__list img,
 .games-links .container__list img {
     background-image: url(fallback.png);
     background-position: center;
@@ -1014,7 +1026,6 @@ li {
     height: 100%;
     max-width: 100%;
     min-width: 100%;
-    aspect-ratio: var(--steam-aspect);
     filter: none;
     opacity: 1;
     object-fit: cover;
@@ -1024,24 +1035,32 @@ li {
     border-radius: var(--border-radius);
 }
 
+.music-links .container__list--description strong {
+    display: none;
+}
+
 .twitch-links .container__list--item--faded .container__list img {
     aspect-ratio: var(--one-one);
     filter: saturate(0);
 }
 
-.games-links .container__list .container__list--time {
+.games-links .container__list .container__list--time,
+.music-links .container__list .container__list--time {
     right: 0.25rem;
     bottom: 0.25rem;
 }
 
-.games-links .feed-list {
+.games-links .feed-list,
+.music-links .feed-list {
     align-items: flex-start;
 }
 
-.games-links .container__list--media {
+.games-links .container__list--media,
+.music-links .container__list--media {
     margin-bottom: var(--foundation);
 }
 
+.music-links .container__list span.container__list--description,
 .games-links .container__list span.container__list--description {
     font-size: 0.8rem;
     color: var(--gruy);
@@ -1049,6 +1068,10 @@ li {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+.music-links .container__list span.container__list--description {
+    -webkit-line-clamp: 1;
 }
 
 .nft-links .container__list img,
@@ -1074,12 +1097,14 @@ li {
 }
 
 .nft-links .container__list--item:hover,
+.music-links .container__list--item:hover,
 .games-links .container__list--item:hover {
     background: transparent;
     padding: 0 var(--foundation-large);
 }
 
 .nft-links .grid-container.feed-container,
+.music-links .grid-container.feed-container,
 .games-links .grid-container.feed-container {
     padding: 0;
 }
