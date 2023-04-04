@@ -677,8 +677,12 @@ li {
 .container__content.large .news-list .container__list img,
 .container__content.large .news-links .container__list img,
 .container__content.large .poe-links .container__list img {
-    min-width: 220px;
+    min-width: 240px;
     aspect-ratio: var(--sixteen-nine);
+}
+
+.container__content.large .music-links .container__list img {
+    min-width: 100%;
 }
 
 .container__list span.container__list--full-item {
