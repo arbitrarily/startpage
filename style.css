@@ -315,7 +315,6 @@ input[type="range"] {
     border: none;
     border-radius: 50%;
     background: var(--gruy);
-    cursor: pointer;
     -moz-transition: background 0.15s ease-in-out;
     -webkit-transition: background 0.15s ease-in-out;
     transition: background 0.15s ease-in-out;
@@ -386,8 +385,8 @@ input[type="range"] {
 }
 
 .podcasts img {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     margin-right: 6px;
 }
 
@@ -799,6 +798,11 @@ li {
     width: 100%;
     min-width: 36px;
     padding-right: 5px;
+    opacity: var(--opacity-start);
+}
+
+.container img.search:hover {
+    opacity: 1;
 }
 
 .container label {
@@ -810,7 +814,7 @@ li {
 
 .container input {
     position: relative;
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(255, 255, 255, 0.05);
     box-shadow: none;
     border: none;
     padding: 0 14px;
@@ -951,7 +955,6 @@ li {
 .feed-links.shown,
 .menu-links.shown {
     opacity: var(--opacity-end);
-    cursor: default;
 }
 
 .notifications {
