@@ -1324,6 +1324,10 @@ li {
         min-width: 160px;
         aspect-ratio: var(--sixteen-nine);
     }
+
+    .menu-links__item.menu-links__toggle {
+        width: calc(100% / 5);
+    }
 }
 
 /* Extra large screens */
@@ -1377,10 +1381,6 @@ li {
 
     .container__links {
         height: var(--max-height);
-    }
-
-    .menu-links__item.menu-links__toggle {
-        width: calc(100% / 5);
     }
 
     .container__content {
