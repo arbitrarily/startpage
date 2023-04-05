@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.42.3",          // Version Number
+    v: "1.43.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -261,6 +261,7 @@
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
             78: start.resize_feed_images, // Feed Images:  shift + "n"
+            77: start.now_pass, // Feed Images:            shift + "m"
             72: start.shortcuts, // Help Shortcuts:        shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
@@ -353,12 +354,27 @@
       });
     },
 
+    // Toggle Now Pass
+    now_pass: () => {
+      const num = start.random_numb(1, 2750).toString();
+      const iframe = `<iframe class="nowpass hidden" src="https://viewer.nowpass.xyz/${num}.html" autoplay="" loop="" muted="" controls="false"></iframe>`;
+      if ($(".nowpass").length) {
+        $(".nowpass").addClass(start.h)
+        setTimeout(() => {
+          $(".nowpass").remove();
+        }, start.at * 2);
+      } else {
+        $("body").append(iframe);
+        setTimeout(() => { $(".nowpass").removeClass(start.h) }, start.at * 2);
+      }
+    },
+
     // Notifications
     notify: text => {
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
           $(".notifications__inner").html(text);
-          $(".notifications").removeClass(start.h);
+          $(".notifications").addClass(start.h);
         },
         last = async () => {
           await wait(start.at * 5);
