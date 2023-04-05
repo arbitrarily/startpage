@@ -614,7 +614,7 @@ li {
     border: none;
     outline: none;
     color: var(--white);
-    border-radius: 8px;
+    border-radius: calc(var(--border-radius) * 2);
     padding: 0 var(--foundation);
     opacity: var(--opacity-end);
 }
