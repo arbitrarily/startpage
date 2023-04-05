@@ -749,6 +749,7 @@ li {
     object-fit: contain;
     filter: brightness(125%) saturate(0);
     border-radius: 0;
+    margin-right: var(--foundation);
 }
 
 .container__list--item.menu-links__toggle .container__list img {
