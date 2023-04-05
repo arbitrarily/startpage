@@ -57,6 +57,7 @@
     --sixteen-nine: 16/9;
     --one-one: 1/1;
     --steam-aspect: 16/7.5;
+    --trakt-aspect: 6/9;
 
     /* Cursor */
     --cursor: url('icons/icon__cursor.png'), auto !important;
@@ -733,15 +734,15 @@ li {
 
 .container__list img {
     width: 100%;
-    margin-right: 0.5rem;
     max-width: 20px;
     max-height: 20px;
-    border-radius: calc(var(--border-radius) / 2);
+    border-radius: var(--border-radius);
     filter: grayscale(0.75);
     -webkit-filter: grayscale(0.75);
     aspect-ratio: var(--one-one);
     object-fit: cover;
     overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .container__links--section--links .container__list img {
@@ -773,16 +774,17 @@ li {
 .container__list--media {
     display: flex;
     position: relative;
+    margin-right: 0.5rem;
 }
 
 .container__list--time {
     position: absolute;
-    right: 0.5rem;
-    bottom: 0;
+    right: calc(var(--foundation) / 6);
+    bottom: calc(var(--foundation) / 6);
     margin: 3px;
     line-height: 1;
     background: rgba(0, 0, 0, 0.85);
-    border-radius: calc(var(--border-radius) / 4);
+    border-radius: calc(var(--border-radius) / 2);
     padding: 3px 5px 1px;
     color: var(--white);
     font-size: 11px;
@@ -1013,6 +1015,7 @@ li {
 
 .nft-links .container__list:not(.container__list--title),
 .music-links .container__list:not(.container__list--title),
+.trakt-links .container__list:not(.container__list--title),
 .games-links .container__list:not(.container__list--title) {
     display: grid;
     height: 100%;
@@ -1023,6 +1026,10 @@ li {
     aspect-ratio: var(--steam-aspect);
 }
 
+.trakt-links .container__list img {
+    aspect-ratio: var(--trakt-aspect);
+}
+
 .music-links .container__list img,
 .twitch-links .container__list img {
     aspect-ratio: var(--sixteen-nine);
@@ -1030,6 +1037,7 @@ li {
 }
 
 .music-links .container__list img,
+.trakt-links .container__list img,
 .games-links .container__list img {
     background-image: url(fallback.png);
     background-position: center;
@@ -1059,22 +1067,19 @@ li {
     filter: saturate(0);
 }
 
-.games-links .container__list .container__list--time,
-.music-links .container__list .container__list--time {
-    right: 0.25rem;
-    bottom: 0.25rem;
-}
-
 .games-links .feed-list,
+.trakt-links .feed-list,
 .music-links .feed-list {
     align-items: flex-start;
 }
 
 .games-links .container__list--media,
+.trakt-links .container__list--media,
 .music-links .container__list--media {
     margin-bottom: var(--foundation);
 }
 
+.trakt-links .container__list span.container__list--description,
 .music-links .container__list span.container__list--description,
 .games-links .container__list span.container__list--description {
     font-size: 0.8rem;
@@ -1087,6 +1092,10 @@ li {
 
 .music-links .container__list span.container__list--description {
     -webkit-line-clamp: 1;
+}
+
+.trakt-links .container__list span.container__list--description {
+    -webkit-line-clamp: 5;
 }
 
 .nft-links .container__list img,
@@ -1112,6 +1121,7 @@ li {
 }
 
 .nft-links .container__list--item:hover,
+.trakt-links .container__list--item:hover,
 .music-links .container__list--item:hover,
 .games-links .container__list--item:hover {
     background: transparent;
@@ -1119,6 +1129,7 @@ li {
 }
 
 .nft-links .grid-container.feed-container,
+.trakt-links .grid-container.feed-container,
 .music-links .grid-container.feed-container,
 .games-links .grid-container.feed-container {
     padding: 0;
@@ -1338,6 +1349,8 @@ li {
     height: 100%;
     z-index: -2;
     background: #000;
+    border: none;
+    outline: none;
     pointer-events: none;
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
