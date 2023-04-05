@@ -649,7 +649,6 @@ li {
     align-items: center;
     padding: 8px 0;
     margin: auto;
-    /* overflow: hidden; */
     width: 100%;
 }
 
@@ -663,7 +662,6 @@ li {
 .podcast-links .container__list img,
 .news-list .container__list img,
 .news-links .container__list img {
-    background: var(--grey);
     min-width: 80px;
     max-width: 80px;
     width: 80px;
