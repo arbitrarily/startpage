@@ -733,7 +733,7 @@ li {
 }
 
 .container__list img {
-    width: 100%;
+    width: 20px;
     max-width: 20px;
     max-height: 20px;
     border-radius: var(--border-radius);
@@ -1046,6 +1046,7 @@ li {
     margin: 0;
     max-height: inherit;
     height: 100%;
+    width: 100%;
     max-width: 100%;
     min-width: 100%;
     filter: none;
@@ -1109,6 +1110,7 @@ li {
     margin-right: 0;
     max-height: inherit;
     height: 100%;
+    width: 100%;
     max-width: 100%;
     min-width: 100%;
     aspect-ratio: var(--one-one);
