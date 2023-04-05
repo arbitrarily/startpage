@@ -1339,10 +1339,18 @@ li {
     z-index: -2;
     background: #000;
     pointer-events: none;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
 }
 
 .nowpass.hidden {
     opacity: 0;
+}
+
+.nowpass.color-dodge {
+    mix-blend-mode: color-dodge;
 }
 
 /* Small screens */

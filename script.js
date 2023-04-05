@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.1",          // Version Number
+    v: "1.43.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -261,7 +261,8 @@
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
             78: start.resize_feed_images, // Feed Images:  shift + "n"
-            77: start.now_pass, // Feed Images:            shift + "m"
+            77: start.now_pass, // Load Now Pass:          shift + "m"
+            188: start.now_pass_color_dodge, //            shift + ","
             72: start.shortcuts, // Help Shortcuts:        shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
@@ -358,6 +359,7 @@
     now_pass: () => {
       const num = start.random_numb(1, 2750).toString();
       const iframe = `<iframe class="nowpass hidden" src="https://viewer.nowpass.xyz/${num}.html" autoplay="" loop="" muted="" controls="false"></iframe>`;
+      const status = !$(".nowpass").length ? " On" : " Off";
       if ($(".nowpass").length) {
         $(".nowpass").addClass(start.h)
         setTimeout(() => {
@@ -367,6 +369,16 @@
         $("body").append(iframe);
         setTimeout(() => { $(".nowpass").removeClass(start.h) }, start.at * 2);
       }
+      start.notify(`Now Pass <span>Toggled</span> ${status}`);
+    },
+
+    // Apply Color Dodge to Now Pass
+    now_pass_color_dodge: () => {
+      if ($(".nowpass").length) {
+        $(".nowpass").toggleClass("color-dodge");
+        const status = $(".nowpass.color-dodge").length ? " On" : " Off";
+        start.notify(`Now Pass <span>Overlay</span> ${status}`);
+      }
     },
 
     // Notifications
@@ -374,7 +386,7 @@
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
           $(".notifications__inner").html(text);
-          $(".notifications").addClass(start.h);
+          $(".notifications").removeClass(start.h);
         },
         last = async () => {
           await wait(start.at * 5);
