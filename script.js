@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.42.2",          // Version Number
+    v: "1.42.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -677,44 +677,52 @@
       // Video Events
       if (start.video) {
         start.video.addEventListener('onStateChange', event => {
-          if (event.data === YT.PlayerState.ENDED) {
-            start.play_video();
-            start.media_stop();
-            start.notify("<span>Finished</span> Playing");
-            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-            if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
-          }
-          if (event.data === YT.PlayerState.PAUSED) {
-            start.notify("Paused");
-            $(".podcasts img").attr("src", "icons/icon__pause.svg");
-            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-            if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
-          }
-          if (event.data === YT.PlayerState.PLAYING) {
-            start.notify("<span>Now</span> Playing");
-            $(".podcasts img").attr("src", "icons/icon__play.svg");
-            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+          switch (event.data) {
+            case YT.PlayerState.ENDED:
+              start.play_video();
+              start.media_stop();
+              start.notify("<span>Finished</span> Playing");
+              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+              if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
+              break;
+            case YT.PlayerState.PAUSED:
+              start.notify("Paused");
+              $(".podcasts img").attr("src", "icons/icon__pause.svg");
+              $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+              if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
+              break;
+            case YT.PlayerState.PLAYING:
+              start.notify("<span>Now</span> Playing");
+              $(".podcasts img").attr("src", "icons/icon__play.svg");
+              $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+              break;
+            default:
+              break;
           }
         });
       }
       // Video as Audio
       if (start.vaa) {
         start.vaa.addEventListener('onStateChange', event => {
-          if (event.data === YT.PlayerState.ENDED) {
-            start.media_stop();
-            start.notify("<span>Finished</span> Playing");
-            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
-          }
-          if (event.data === YT.PlayerState.PAUSED) {
-            start.notify("Paused");
-            $(".podcasts img").attr("src", "icons/icon__pause.svg");
-            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-            // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa.pauseVideo();
-          }
-          if (event.data === YT.PlayerState.PLAYING) {
-            start.notify("<span>Now</span> Playing");
-            $(".podcasts img").attr("src", "icons/icon__play.svg");
-            $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+          switch (event.data) {
+            case YT.PlayerState.ENDED:
+              stopMedia();
+              start.notify("<span>Finished</span> Playing");
+              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+              break;
+            case YT.PlayerState.PAUSED:
+              start.notify("Paused");
+              $(".podcasts img").attr("src", "icons/icon__pause.svg");
+              $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
+              // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa.pauseVideo();
+              break;
+            case YT.PlayerState.PLAYING:
+              start.notify("<span>Now</span> Playing");
+              $(".podcasts img").attr("src", "icons/icon__play.svg");
+              $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
+              break;
+            default:
+              break;
           }
         });
       }
