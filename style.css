@@ -1077,6 +1077,7 @@ li {
 .trakt-links .container__list--media,
 .music-links .container__list--media {
     margin-bottom: var(--foundation);
+    margin-right: 0;
 }
 
 .trakt-links .container__list span.container__list--description,
