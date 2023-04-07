@@ -21,7 +21,7 @@
     --large-padding: 10vh;
     --foundation: 0.625rem;
     --foundation-large: 0.9375rem;
-    --max-height: 436px;
+    --max-height: 456.1px;
 
     /* Border Radius */
     --border-radius: 10px;
@@ -455,7 +455,7 @@ li {
 
 .feed-list {
     height: calc(80vh - 204px);
-    max-height: 373.5px;
+    max-height: 397.1px;
 }
 
 .container__feed-list ul,
