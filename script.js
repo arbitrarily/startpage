@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.15",         // Version Number
+    v: "1.43.16",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -680,6 +680,13 @@
         start.vaa && start.vaa.getPlayerState() === 1;
     },
 
+    // Finished Playing with Song Title
+    media_finished_text: () => {
+      let title = $(".nowplaying__song").text();
+      if (title.length > 45) title = title.substring(0, 42) + "...";
+      start.notify(`${title} <span>Finished</span>`);
+    },
+
     // Media Based Event Listeners
     media_events: () => {
       // Audio Events
@@ -687,7 +694,10 @@
         if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
         if (start.vaa && start.vaa.pauseVideo && start.vaa === YT.PlayerState.PLAYING) start.vaa.pauseVideo();
       });
-      start.audio.addEventListener("ended", () => start.notify("<span>Finished</span> Playing") );
+      start.audio.addEventListener("ended", () => {
+        start.media_finished_text();
+        start.media_ended();
+      } );
       // Video Events
       if (start.video) {
         start.video.addEventListener('onStateChange', event => {
@@ -695,7 +705,7 @@
             case YT.PlayerState.ENDED:
               start.play_video();
               start.media_stop();
-              start.notify("<span>Finished</span> Playing");
+              start.media_finished_text();
               if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
               if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
               break;
@@ -720,9 +730,9 @@
         start.vaa.addEventListener('onStateChange', event => {
           switch (event.data) {
             case YT.PlayerState.ENDED:
-              stopMedia();
-              start.notify("<span>Finished</span> Playing");
-              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+              start.stop_media();
+              start.media_finished_text();
+              // if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
@@ -760,12 +770,13 @@
         first = () => {
           clearInterval(start.timer.interval);
           $(".podcasts").removeClass(start.s);
-          $(".progress").css('width', '0%');
+          $(".progress").addClass(start.h);
           $("#search").removeClass("full");
         },
         last = async () => {
           await wait(start.at * 2);
           $(".podcasts-replace").text('0:00');
+          $(".progress").css('width', '0%');
         };
       first();
       last();
@@ -819,6 +830,7 @@
               if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0 && $(".podcasts-replace").text() !== "0:00") $(".podcasts").addClass(start.s);
               $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
               start.pb = Math.min(Math.max((start.pb * 100).toFixed(3), 1), 100);
+              if ($(".progress").hasClass(start.h)) $(".progress").removeClass(start.h);
               $(".progress").css('width', start.pb + '%');
               last_second = start.timer.seconds;
             } else {
@@ -911,7 +923,7 @@
       start.now_playing(song_data, false);
       start.media_stop();
       start.video_as_audio_start(song_data.id);
-      start.notify(`Now Playing <span>${song_data.name}</span>`);
+      start.notify(`<span>Now Playing</span> ${song_data.name}`);
     },
 
     // Audio: Play Single Track
@@ -951,7 +963,7 @@
       start.audio.play();
       start.media_timer();
       start.now_playing(song_data, false);
-      start.notify(`Now Playing <span>${song_data.name}</span>`);
+      start.notify(`<span>Now Playing</span> ${song_data.name}`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
