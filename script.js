@@ -25,6 +25,7 @@
     fs: 0,                // Feed Slide Count
     h: "hidden",          // Shared Class Names
     nc: false,            // NFT Collection
+    nl: 60,               // Notification String Limit
     pb: 0,                // Progress Bar
     pj: false,            // Playlist Content
     pll: 0,               // Playlist Length
@@ -32,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.16",         // Version Number
+    v: "1.43.17",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -529,7 +530,7 @@
         container.show();
         container.removeClass(start.h)
       }, start.at * 2);
-      if (source) start.notify(`Now Playing <span>${source}</span>`);
+      if (source) start.notify(`<span>Now Playing</span> ${source}`);
     },
 
     // Search Switcher
@@ -683,7 +684,7 @@
     // Finished Playing with Song Title
     media_finished_text: () => {
       let title = $(".nowplaying__song").text();
-      if (title.length > 45) title = title.substring(0, 42) + "...";
+      if (title.length > (start.nl + 3)) title = title.trim().slice(0, start.nl) + "...";
       start.notify(`${title} <span>Finished</span>`);
     },
 
@@ -963,7 +964,7 @@
       start.audio.play();
       start.media_timer();
       start.now_playing(song_data, false);
-      start.notify(`<span>Now Playing</span> ${song_data.name}`);
+      start.notify(`<span>Now Playing</span> ${song_data.name.slice(0, start.nl)}`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
     },
 
@@ -1036,6 +1037,7 @@
           image: that.find("img").attr("src"),
           link: that.attr("href")
         };
+        if (vid_data.name.length > start.nl) vid_data.name = vid_data.name.slice(0, start.nl) + "...";
         start.now_playing(vid_data, vid_data.name);
       });
     },
@@ -1055,7 +1057,8 @@
           image: a.find("img").attr('src'),
           link: a.attr('href')
         }
-        start.now_playing(song_data, `${a.text().trim().slice(0, 45) + "..."}`);
+        const sn = song_data.name.length > start.nl ? song_data.name.trim().slice(0, start.nl) + "..." : song_data.name;
+        start.now_playing(song_data, `${sn}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
@@ -1079,8 +1082,9 @@
           artist: a.data('feed'),
           image: a.find("img").attr('src'),
           link: a.attr('href')
-        }
-        start.now_playing(song_data, `${a.find(".container__list--item-title").text().trim().slice(0, 45) + "..."}`);
+        };
+        const sn = song_data.name.length > start.nl ? song_data.name.trim().slice(0, start.nl) + "..." : song_data.name;
+        start.now_playing(song_data, `${sn}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
       });
     },
