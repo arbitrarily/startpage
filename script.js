@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.14",         // Version Number
+    v: "1.43.15",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -333,7 +333,7 @@
       } else {
         start.fs = slide;
       }
-      $(".container__links--overflow").css("transform", `translateY(-${start.fs * 456.1}px)`);
+      $(".container__links--overflow").css("transform", `translateY(-${start.fs * 463.1}px)`);
     },
 
     // Toggle Help Menu

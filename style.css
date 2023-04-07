@@ -21,7 +21,7 @@
     --large-padding: 10vh;
     --foundation: 0.625rem;
     --foundation-large: 0.9375rem;
-    --max-height: 456.1px;
+    --max-height: 463.1px;
 
     /* Border Radius */
     --border-radius: 10px;
@@ -603,7 +603,7 @@ li {
     display: grid;
     overflow: unset;
     padding-top: 0;
-    padding-bottom: var(--foundation-large);
+    padding-bottom: 0;
 }
 
 .menu-links__item.menu-links__toggle {
@@ -1456,6 +1456,7 @@ li {
 
     .menu-links__item.menu-links__toggle {
         width: calc(100% / 5);
+        height: 107.1px;
     }
 }
 
