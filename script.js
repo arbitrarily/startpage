@@ -32,7 +32,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.10",          // Version Number
+    v: "1.43.13",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -169,6 +169,9 @@
       this.marquee_title();       // Marquee Title
       this.steam_links();         // Launch Games on Windows
       this.menu_clicks();         // Menu Clicks
+      // Audio or Video on Click
+      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+      this.video_click();
       this.the_time();            // Time
       this.rerun_functions();     // Cron Functions
       this.bye();                 // Run Before Leaving Page
@@ -551,7 +554,11 @@
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
       if (start.fs != 0) start.scroll_links(0);
-      if (start.video === YT.PlayerState.PLAYING) start.media_stop();
+      if (start.video && start.video.getPlayerState() > 0) {
+        start.video.destroy();
+        start.video = false;
+        start.media_ended();
+      }
       setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
       setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
@@ -600,9 +607,6 @@
         }
       }
       start.fc = false;
-      if (!$(".feed-links").hasClass("video-links") && start.video) {
-        start.media_stop();
-      }
     },
 
     // Instapaper Home Feed
@@ -648,34 +652,19 @@
     summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
 
     // Podcasts Home Feed
-    podcasts: () => {
-      start.fetch_news(start.c.podURL, "Podcasts");
-      start.play_audio_on_click();
-    },
+    podcasts: () => start.fetch_news(start.c.podURL, "Podcasts"),
 
     // Music Home Feed
-    play_music: () => {
-      start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music");
-      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
-    },
+    play_music: () => start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music"),
 
     // Metal Music Home Feed
-    play_metal: () => {
-      start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music");
-      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
-    },
+    play_metal: () => start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music"),
 
     // Vibes Music Home Feed
-    play_vibes: () => {
-      start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music");
-      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
-    },
+    play_vibes: () => start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music"),
 
     // YouTube Home Feed
-    play_video: () => {
-      start.fetch_news(start.c.youTubeURL, "YouTube");
-      start.video_click();
-    },
+    play_video: () => start.fetch_news(start.c.youTubeURL, "YouTube"),
 
     // Audio: Toggle Player Used
     switch_audio_source: () => {
@@ -698,10 +687,7 @@
         if (start.video && start.video.pauseVideo && start.video === YT.PlayerState.PLAYING) start.video.pauseVideo();
         if (start.vaa && start.vaa.pauseVideo && start.vaa === YT.PlayerState.PLAYING) start.vaa.pauseVideo();
       });
-      start.audio.addEventListener("ended", () => {
-        start.media_stop();
-        start.notify("<span>Finished</span> Playing");
-      });
+      start.audio.addEventListener("ended", () => start.notify("<span>Finished</span> Playing") );
       // Video Events
       if (start.video) {
         start.video.addEventListener('onStateChange', event => {
@@ -758,71 +744,91 @@
 
     // Media: Stop
     media_stop: () => {
-      if (!start.audio.paused) {
-        start.audio.src = "";
-        start.audio = new Audio();
+      start.media_ended();
+      if (start.audio) {
+        start.audio.pause();
+        start.audio.src = '';
+        start.audio.load();
       }
       if (start.vaa) start.vaa.destroy();
       if (start.video) start.video.destroy();
-      start.media_ended();
     },
 
     // Media: Reset Timer & Progress Bar
     media_ended: () => {
-      $(".podcasts").removeClass(start.s);
-      $(".progress").css('width', '0%');
-      $("#search").removeClass("full");
-      setTimeout(() => {
-        $(".podcasts-replace").text('0:00');
-      }, start.at * 2);
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
+        first = () => {
+          clearInterval(start.timer.interval);
+          $(".podcasts").removeClass(start.s);
+          $(".progress").css('width', '0%');
+          $("#search").removeClass("full");
+        },
+        last = async () => {
+          await wait(start.at * 2);
+          $(".podcasts-replace").text('0:00');
+        };
+      first();
+      last();
+    },
+
+    // Media: Determine Timer & Progress Bar
+    media_timer_determine: () => {
+      let elapsed = 0;
+      let tr = 0;
+      try {
+        if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
+          elapsed = start.video.getDuration() - start.video.getCurrentTime();
+          tr = elapsed > 0 ? elapsed : 0;
+          start.pb = (start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
+        }
+        if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.PLAYING) {
+          elapsed = start.vaa.getDuration() - start.vaa.getCurrentTime();
+          tr = elapsed > 0 ? elapsed : 0;
+          start.pb = (start.vaa.getCurrentTime() / start.vaa.getDuration()).toFixed(3);
+        }
+        if (!start.audio.paused) {
+          elapsed = start.audio.duration - start.audio.currentTime;
+          tr = elapsed > 0 ? elapsed : 0;
+          start.pb = (start.audio.currentTime / start.audio.duration).toFixed(3);
+        }
+      } catch {
+        tr = 0;
+        start.pb = 1;
+      };
+      start.timer = {
+        minutes: Math.floor(tr / 60),
+        seconds: Math.floor(tr % 60),
+        padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60),
+        interval: start.timer.interval
+      };
     },
 
     // Media: Timer
     media_timer: () => {
       // Start Events
       start.media_events();
-      // Timer
-      let elapsed = 0;
-      let tr = 0;
-      setInterval(() => {
+      // Set Timer
+      start.media_timer_determine();
+      // Update Timer Every 1/4 Second
+      start.timer.interval = setInterval(() => {
         let last_second = start.timer.seconds;
         try {
-          if (start.video && start.video.getPlayerState() === YT.PlayerState.PLAYING) {
-            elapsed = start.video.getDuration() - start.video.getCurrentTime();
-            tr = elapsed > 0 ? elapsed : 0;
-            start.pb = (start.video.getCurrentTime() / start.video.getDuration()).toFixed(3);
-          }
-          if (start.vaa && start.vaa.getPlayerState() === YT.PlayerState.PLAYING) {
-            elapsed = start.vaa.getDuration() - start.vaa.getCurrentTime();
-            tr = elapsed > 0 ? elapsed : 0;
-            start.pb = (start.vaa.getCurrentTime() / start.vaa.getDuration()).toFixed(3);
-          }
-          if (!start.audio.paused) {
-            elapsed = start.audio.duration - start.audio.currentTime;
-            tr = elapsed > 0 ? elapsed : 0;
-            start.pb = (start.audio.currentTime / start.audio.duration).toFixed(3);
-          }
-          // Update Time
-          start.timer = {
-            minutes: Math.floor(tr / 60),
-            seconds: Math.floor(tr % 60),
-            padded_time: Math.floor(tr % 60) < 10 ? '0' + Math.floor(tr % 60).toString() : Math.floor(tr % 60)
-          }
+          start.media_timer_determine();
           if (start.timer.seconds && last_second > start.timer.seconds) {
-            if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0) $(".podcasts").addClass(start.s);
-            $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
-            start.pb = Math.min(Math.max((start.pb * 100).toFixed(3), 1), 100);
-            $(".progress").css('width', start.pb + '%');
-            last_second = start.timer.seconds;
+            if (start.media_is_playing()) {
+              if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0 && $(".podcasts-replace").text() !== "0:00") $(".podcasts").addClass(start.s);
+              $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
+              start.pb = Math.min(Math.max((start.pb * 100).toFixed(3), 1), 100);
+              $(".progress").css('width', start.pb + '%');
+              last_second = start.timer.seconds;
+            } else {
+              start.media_ended();
+            }
           }
         } catch (e) {
-          clearInterval();
+          clearInterval(start.timer.interval);
         }
-        if (start.video && $(".feed-links iframe").length === 0) {
-          start.media_stop();
-          clearInterval();
-        }
-      }, 500);
+      }, 250);
     },
 
     // Media: Play / Pause
@@ -947,7 +953,6 @@
       start.now_playing(song_data, false);
       start.notify(`Now Playing <span>${song_data.name}</span>`);
       if (!$("#search").hasClass("full")) $("#search").addClass("full");
-
     },
 
     // Audio: Play Playlist
@@ -1001,7 +1006,7 @@
       start.play_playlist(parseInt(num));
     },
 
-    // Open Youtube Video in Modal
+    // Video: Play Youtube Video in Modal
     video_click: function () {
       $(document).on(start.t, ".video-links a", function (e) {
         e.preventDefault();
@@ -1023,12 +1028,11 @@
       });
     },
 
-    // Audio: Play Music on Click
+    // Audio: Play Music on Click using YT Player
     play_music_on_click: function () {
       $(document).on(start.t, ".music-links li a", function (e) {
         e.preventDefault();
         const a = $(this);
-        $(".podcasts").addClass(start.s);
         start.media_stop();
         start.video_as_audio_start(a.data('id'));
         const song_data = {
@@ -1045,13 +1049,14 @@
     },
 
     // Audio: Play
-    play_audio_on_click: function () {
-      $(document).on(start.t, ".podcast-links li a", function (e) {
+    play_audio_on_click: async function () {
+      $(document).on(start.t, ".podcast-links li a", async function (e) {
         e.preventDefault();
+        if ($(".podcast-links").hasClass("video-links")) return;
         const a = $(this);
         start.media_stop();
-        $(".podcasts").addClass(start.s);
         start.audio.src = a.attr("href");
+        await start.audio.load();
         if (!$(".podcast-links").hasClass("music-links")) start.audio.playbackRate = 1.3;
         start.audio.play();
         start.media_timer();

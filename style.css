@@ -268,6 +268,8 @@ a:focus img {
 .search__input--container {
     position: relative;
     width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
 }
 
 .search__input--container-volume {
@@ -784,7 +786,10 @@ li {
     line-height: 1;
     background: rgba(0, 0, 0, 0.85);
     border-radius: calc(var(--border-radius) / 2);
-    padding: 3px 5px 1px;
+    display: inline;
+    vertical-align: middle;
+    font-variant-numeric: tabular-nums;
+    padding: 3px 5px;
     color: var(--white);
     font-size: 11px;
     font-weight: 900;
@@ -1444,7 +1449,7 @@ li {
 
     .video-links .container__list img,
     .reddit-links .container__list img,
-    .video-links.podcast-links .container__list img {
+    .video-links .container__list img {
         min-width: 180px;
         aspect-ratio: var(--sixteen-nine);
     }
