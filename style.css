@@ -1551,4 +1551,8 @@ li {
     .menu-links__toggle--image-container {
         aspect-ratio: var(--one-one);
     }
+
+    .container__feed-list {
+        min-height: var(--max-height);
+    }
 }
