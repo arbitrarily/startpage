@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.43.19",         // Version Number
+    v: "1.44.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -242,9 +242,7 @@
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
-          if (!$(".feed-container").hasClass("fullscreen")) {
-            if (Number.isInteger(start.fc)) start.mf[start.fc]();
-          }
+          if (Number.isInteger(start.fc)) start.mf[start.fc]();
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
@@ -254,7 +252,7 @@
             40: start.audio_less_speed, // Decrease:       shift + ⏬
             32: start.media_toggle, // Play/Pause:         shift + "space"
             77: start.audio_mute, // Mute:                 shift + "m"
-            70: start.video_fullscreen, // Fullscreen:     shift + "f"
+            70: start.fullscreen, // Fullscreen:           shift + "f"
             123: start.play_single, // Random Song:        shift + "f12"
             122: start.play_playlist, // Random Playlist:  shift + "f11"
             121: start.play_playlist_input, //             shift + "f10"
@@ -305,7 +303,7 @@
           if ($(".shortcuts").hasClass(start.s)) {
             start.shortcuts();
           } else {
-            if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+            if ($(".feed-container").hasClass("fullscreen")) start.fullscreen();
           }
         }
 
@@ -350,10 +348,10 @@
     // Toggle Video Fullscreen on Click
     fullscreen_toggle: () => {
       $(document).on(start.t, event => {
-        const t = $(".video-links .feed-container.fullscreen .feed-list");
+        const t = $(".feed-links .feed-container.fullscreen .feed-list");
         if ($(".feed-container").hasClass("fullscreen")) {
           if (t.is(event.target) && t.has(event.target).length > 0) return;
-          start.video_fullscreen();
+          start.fullscreen();
           $(".container__links--section").toggleClass(start.h);
         }
       });
@@ -707,7 +705,7 @@
               start.play_video();
               start.media_stop();
               start.media_finished_text();
-              if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+              if ($(".feed-container").hasClass("fullscreen")) start.fullscreen();
               if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
               break;
             case YT.PlayerState.PAUSED:
@@ -733,7 +731,7 @@
             case YT.PlayerState.ENDED:
               start.stop_media();
               start.media_finished_text();
-              // if ($(".feed-container").hasClass("fullscreen")) start.video_fullscreen();
+              // if ($(".feed-container").hasClass("fullscreen")) start.fullscreen();
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
@@ -898,17 +896,17 @@
       });
     },
 
-    // Video: Fullscreen Toggle
-    video_fullscreen: () => {
-      const v = $(".video-links .feed-list, .feed-container, .container__overflow"),
-        vl = $(".video-links"),
+    // Fullscreen Toggle
+    fullscreen: () => {
+      const v = $(".feed-links .feed-list, .feed-container, .container__overflow"),
+        vl = $(".feed-links"),
         fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
       setTimeout(() => { v.toggleClass("fullscreen") }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
       $("body").toggleClass("lock");
-      start.notify(`Video <span>${fs}</span>`);
+      start.notify(`<span>${fs}</span>`);
     },
 
     // Play The 5 Hour Ambient Song I Made
