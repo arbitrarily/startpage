@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.1",          // Version Number
+    v: "1.44.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -902,7 +902,11 @@
         vl = $(".feed-links"),
         fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
       vl.removeClass(start.s);
-      setTimeout(() => { v.toggleClass("fullscreen") }, 600);
+      setTimeout(() => {
+        v.toggleClass("fullscreen");
+        $(".blur-target").toggleClass("blur");
+        start.resize_feed_images();
+      }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
       $("body").toggleClass("lock");
@@ -1315,8 +1319,14 @@
 
     // Resize Feed Images
     resize_feed_images: () => {
-      $(".container__content").toggleClass("large");
-      start.notify(`<span>Feed Images</span> Resized`);
+      if (!$(".feed-links").hasClass("trakt-links") &&
+          !$(".feed-links").hasClass("twitch-links") &&
+          !$(".feed-links").hasClass("games-links") &&
+          !$(".feed-links").hasClass("music-links")
+      ) {
+        $(".container__content").toggleClass("large").find(".feed-list.grid-x").toggleClass("grid-padding-x");
+        start.notify(`<span>Feed Images</span> Resized`);
+      }
     },
 
     // Marquee Title Animation

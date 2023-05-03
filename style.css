@@ -216,8 +216,7 @@ a:focus img {
     -webkit-filter: grayscale(0);
 }
 
-.everything.blur,
-.details.blur {
+.blur {
     filter: blur(20px);
 }
 
@@ -686,8 +685,15 @@ li {
 .container__content.large .news-list .container__list img,
 .container__content.large .news-links .container__list img,
 .container__content.large .poe-links .container__list img {
-    min-width: 240px;
+    min-width: 20vw;
     aspect-ratio: var(--sixteen-nine);
+}
+
+.container__content.large .podcast-links .container__list--item,
+.container__content.large .news-list .container__list--item,
+.container__content.large .news-links .container__list--item,
+.container__content.large .poe-links .container__list--item {
+    width: 50%;
 }
 
 .container__content.large .music-links .container__list img {
