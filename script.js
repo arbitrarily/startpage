@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.2",          // Version Number
+    v: "1.44.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1322,6 +1322,7 @@
       if (!$(".feed-links").hasClass("trakt-links") &&
           !$(".feed-links").hasClass("twitch-links") &&
           !$(".feed-links").hasClass("games-links") &&
+          !$(".feed-links").hasClass("nft-links") &&
           !$(".feed-links").hasClass("music-links")
       ) {
         $(".container__content").toggleClass("large").find(".feed-list.grid-x").toggleClass("grid-padding-x");

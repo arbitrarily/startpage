@@ -1152,6 +1152,10 @@ li {
     padding: 0;
 }
 
+.nft-links .grid-container.fullscreen.feed-container {
+    padding: calc(var(--padding) * 3);
+}
+
 .summary-links .container__list img {
     border-radius: 0;
     object-fit: contain;
