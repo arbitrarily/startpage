@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.3",          // Version Number
+    v: "1.44.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -905,6 +905,7 @@
       setTimeout(() => {
         v.toggleClass("fullscreen");
         $(".blur-target").toggleClass("blur");
+        $(".feed-links .container__list.container__list--title").toggleClass(start.h);
         start.resize_feed_images();
       }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
