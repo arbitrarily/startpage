@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.5",          // Version Number
+    v: "1.44.6",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -551,7 +551,7 @@
 
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
-      if (start.fs != 0) start.scroll_links(0);
+      start.scroll_links(0);
       if (start.video && start.video.getPlayerState() > 0) {
         start.video.destroy();
         start.video = false;
@@ -561,6 +561,7 @@
       setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
+      $(".container__links--overflow").css("transform", "none");
     },
 
     // Init Fetch
