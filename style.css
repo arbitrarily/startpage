@@ -1327,6 +1327,18 @@ li {
     position: relative;
 }
 
+.container__links--overflow.link__0 {
+    transform: none;
+}
+
+.container__links--overflow.link__1 {
+    transform: translateY(-463.1px);
+}
+
+.container__links--overflow.link__2 {
+    transform: translateY(calc(-463.1px * 2));
+}
+
 .menu-links__toggle--clock * {
     cursor: alias;
 }

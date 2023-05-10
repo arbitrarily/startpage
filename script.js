@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.6",          // Version Number
+    v: "1.44.7",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -326,13 +326,15 @@
     // Scroll Feed Links
     scroll_links: (slide) => {
       let l = $(".container__links--section").length - 3;
+      const the_old_class = "link__" + start.fs;
       if (!slide && slide !== 0) {
         start.fs++;
         if (start.fs > l) start.fs = 0;
       } else {
         start.fs = slide;
       }
-      $(".container__links--overflow").css("transform", `translateY(-${start.fs * 463.1}px)`);
+      const the_class = "link__" + start.fs;
+      $(".container__links--overflow").removeClass(the_old_class).addClass(the_class);
     },
 
     // Toggle Help Menu
@@ -561,7 +563,7 @@
       setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
-      $(".container__links--overflow").css("transform", "none");
+      if (!$(".container__links--overflow").hasClass("link__0")) $(".container__links--overflow").addClass("link__0");
     },
 
     // Init Fetch
@@ -910,6 +912,10 @@
       }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
+      if (!$(".container__links--overflow").hasClass("link__0")) {
+        $(".container__links--overflow").addClass("link__0");
+      }
+      $(".container__links--overflow").removeClass("link__1 link__2");
       $("body").toggleClass("lock");
       start.notify(`<span>${fs}</span>`);
     },
