@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.3",          // Version Number
+    v: "1.46.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1238,14 +1238,14 @@
     // Read Summaries with Speech Synthesis
     read_summaries: () => {
       $(document).on(start.t, ".feed-list li p", function (e) {
-        var message = new SpeechSynthesisUtterance();
-        message.text = $(this).text();
-        window.speechSynthesis.speak(message);
         // Stop on Repeat Click
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
           start.notify("Speaking Paragraph <span>Stopped</span>");
         } else {
+          var message = new SpeechSynthesisUtterance();
+          message.text = $(this).text();
+          window.speechSynthesis.speak(message);
           start.notify("Speaking Paragraph <span>Started</span>");
         }
       });
