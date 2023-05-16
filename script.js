@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.1",          // Version Number
+    v: "1.46.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1237,9 +1237,7 @@
 
     // Read Summaries with Speech Synthesis
     read_summaries: () => {
-      console.log('e');
       $(document).on(start.t, ".feed-list li p", function (e) {
-        console.log(e);
         var message = new SpeechSynthesisUtterance();
         message.text = $(this).text();
         window.speechSynthesis.speak(message);
