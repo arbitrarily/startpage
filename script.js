@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.10",         // Version Number
+    v: "1.45.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -146,7 +146,7 @@
       () => start.twitch_news(),
       () => start.play_vibes(),
       () => start.scroll_links(),
-      () => start.shortcuts()
+      () => start.summaries()
     ],
 
     // Init
@@ -615,6 +615,9 @@
 
     // News Home Feed
     news: () => start.fetch_news(start.c.techmemeURL, "All News"),
+
+    // Summaries
+    summaries: () => start.fetch_news(start.c.summariesURL, "Summaries"),
 
     // NYT Home Feed
     nyt: () => start.fetch_news(start.c.nytURL, "New York Times"),
