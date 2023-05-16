@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.45.2",          // Version Number
+    v: "1.46.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -173,6 +173,7 @@
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
       this.video_click();
+      this.read_summaries();      // Read Summaries
       this.the_time();            // Time
       this.rerun_functions();     // Cron Functions
       this.bye();                 // Run Before Leaving Page
@@ -653,7 +654,9 @@
     twitch_news: () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
 
     // Summaries
-    summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
+    summaries_news: () => {
+      start.fetch_news(start.c.summaryURL, "News, Summarized");
+    },
 
     // Podcasts Home Feed
     podcasts: () => start.fetch_news(start.c.podURL, "Podcasts"),
@@ -1230,6 +1233,21 @@
       } catch (e) {
         return;
       }
+    },
+
+    // Read Summaries with Speech Synthesis
+    read_summaries: () => {
+      console.log('e');
+      $(document).on(start.t, ".feed-list li p", function (e) {
+        console.log(e);
+        var message = new SpeechSynthesisUtterance();
+        message.text = $(this).text();
+        window.speechSynthesis.speak(message);
+        // Stop on Repeat Click
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+        }
+      });
     },
 
     // Page View Counter
