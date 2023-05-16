@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.44.8",          // Version Number
+    v: "1.44.9",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -257,13 +257,13 @@
             122: start.play_playlist, // Random Playlist:  shift + "f11"
             121: start.play_playlist_input, //             shift + "f10"
             120: start.play_ambient_song, // Ambient Song: shift + "f10"
+            65: start.now_pass, // Load Now Pass:          shift + "a"
             90: start.overlay, // Background Overlay:      shift + "z"
             67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
             78: start.resize_feed_images, // Feed Images:  shift + "n"
-            77: start.now_pass, // Load Now Pass:          shift + "m"
             188: start.now_pass_color_dodge, //            shift + ","
             72: start.shortcuts, // Help Shortcuts:        shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
