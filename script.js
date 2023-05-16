@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.2",          // Version Number
+    v: "1.46.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1244,6 +1244,9 @@
         // Stop on Repeat Click
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
+          start.notify("Speaking Paragraph <span>Stopped</span>");
+        } else {
+          start.notify("Speaking Paragraph <span>Started</span>");
         }
       });
     },
