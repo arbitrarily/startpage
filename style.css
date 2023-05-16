@@ -1403,6 +1403,19 @@ li {
     mix-blend-mode: color-dodge;
 }
 
+.highlight {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: calc(var(--border-radius) / 2);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    padding: 0 3px;
+}
+
+.highlight:hover,
+.highlight:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
 /* Small screens */
 @media screen and (max-width: 30em) {
     .container__list span {
