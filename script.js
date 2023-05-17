@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.4",          // Version Number
+    v: "1.46.5",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -654,9 +654,7 @@
     twitch_news: () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
 
     // Summaries
-    summaries_news: () => {
-      start.fetch_news(start.c.summaryURL, "News, Summarized");
-    },
+    summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
 
     // Podcasts Home Feed
     podcasts: () => start.fetch_news(start.c.podURL, "Podcasts"),

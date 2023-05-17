@@ -1,17 +1,10 @@
 /*
-
-         888                     888
-         888                     888
-         888                     888
-.d8888b  888888  8888b.  888d888 888888 88888b.   8888b.   .d88b.   .d88b.
-88K      888        "88b 888P"   888    888 "88b     "88b d88P"88b d8P  Y8b
-"Y8888b. 888    .d888888 888     888    888  888 .d888888 888  888 88888888
-     X88 Y88b.  888  888 888     Y88b.  888 d88P 888  888 Y88b 888 Y8b.
- 88888P'  "Y888 "Y888888 888      "Y888 88888P"  "Y888888  "Y88888  "Y8888
-                                        888                    888
-                                        888               Y8b d88P
-                                        888                "Y88P"
-
+███████╗████████╗ █████╗ ██████╗ ████████╗██████╗  █████╗  ██████╗ ███████╗
+██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔════╝ ██╔════╝
+███████╗   ██║   ███████║██████╔╝   ██║   ██████╔╝███████║██║  ███╗█████╗
+╚════██║   ██║   ██╔══██║██╔══██╗   ██║   ██╔═══╝ ██╔══██║██║   ██║██╔══╝
+███████║   ██║   ██║  ██║██║  ██║   ██║   ██║     ██║  ██║╚██████╔╝███████╗
+╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
 */
 
 /* Variables */
@@ -35,9 +28,9 @@
     /* Colors */
     --white: #fff;
     --black: #11110e;
-    --gruy: rgba(255, 255, 255, 0.5);
-    --gray: rgba(255, 255, 255, 0.4);
-    --grey: rgba(255, 255, 255, 0.2);
+    --gruy: rgba(255, 255, 255, 0.6);
+    --gray: rgba(255, 255, 255, 0.5);
+    --grey: rgba(255, 255, 255, 0.25);
 
     /* Shadow */
     --shadow: 0.5rem 0 2rem -0.5rem rgba(0, 0, 0, 0.33);
@@ -575,9 +568,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 80px;
-    min-width: 60px;
+    width: 60px;
     height: auto;
     max-height: auto;
     aspect-ratio: var(--one-one);
@@ -949,8 +940,7 @@ li {
 
 .stats,
 .ip {
-    display: inherit;
-    align-items: center;
+    display: flex;
     padding: calc(var(--foundation) / 2) var(--foundation);
     line-height: 1;
     color: var(--white);
@@ -1505,7 +1495,6 @@ li {
 
 /* Extra large screens */
 @media screen and (min-width: 64em) {
-
     .feed-list,
     .video-links,
     .container__feed-list {
@@ -1521,11 +1510,6 @@ li {
         margin-left: var(--padding);
     }
 
-    .ip,
-    .stats {
-        display: flex;
-    }
-
     .details {
         display: flex;
         position: fixed;
@@ -1538,7 +1522,7 @@ li {
     }
 
     .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 4);
+        padding-left: calc(var(--foundation-large) * 6);
         max-height: var(--max-height);
     }
 
@@ -1593,5 +1577,11 @@ li {
 
     .container__feed-list {
         min-height: var(--max-height);
+    }
+
+    .stats,
+    .ip {
+        flex-direction: column-reverse;
+        align-items: flex-start;
     }
 }
