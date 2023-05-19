@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.8",          // Version Number
+    v: "1.46.9",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -873,6 +873,7 @@
           'onReady': start.media_timer,
         }
       });
+      $("#video-container").toggleClass("grid-padding-x");
     },
 
     // Start YouTube Video as Audio
