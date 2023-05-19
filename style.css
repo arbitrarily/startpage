@@ -640,6 +640,10 @@ li {
     -webkit-line-clamp: 2;
 }
 
+.video-links .container__list--item-title {
+    -webkit-line-clamp: 3;
+}
+
 .container__list--item:hover .container__list--full-item.container__list--current:before {
     filter: grayscale(0);
 }
@@ -659,16 +663,16 @@ li {
     overflow: hidden;
 }
 
-.podcast-links .container__list img,
-.news-list .container__list img,
-.news-links .container__list img {
-    min-width: 80px;
-    max-width: 80px;
-    width: 80px;
+.podcast-links .container__list img {
+    min-width: 72px;
+    max-width: 72px;
+    width: 72px;
     max-height: inherit;
 }
 
-.poe-links .container__list img {
+.poe-links .container__list img,
+.news-list .container__list img,
+.news-links .container__list img {
     aspect-ratio: 4/3;
     max-width: 100px;
     min-width: 100px;
@@ -676,23 +680,35 @@ li {
     box-shadow: var(--shadow);
 }
 
-.container__content.large .podcast-links .container__list img,
-.container__content.large .news-list .container__list img,
-.container__content.large .news-links .container__list img,
-.container__content.large .poe-links .container__list img {
+.twitter-list .container__list img,
+.github-list .container__list img {
+    min-width: 52px;
+    max-width: 52px;
+    width: 52px;
+    height: 52px;
+    max-height: inherit;
+    border-radius: 26px;
+    border: 3px solid var(--grey);
+}
+
+.podcast-links .feed-container.fullscreen .container__list img,
+.news-list .feed-container.fullscreen .container__list img,
+.news-links .feed-container.fullscreen .container__list img,
+.poe-links .feed-container.fullscreen .container__list img {
     min-width: 20vw;
     aspect-ratio: var(--sixteen-nine);
 }
 
-.container__content.large .podcast-links .container__list--item,
-.container__content.large .news-list .container__list--item,
-.container__content.large .news-links .container__list--item,
-.container__content.large .poe-links .container__list--item {
+.podcast-links .feed-container.fullscreen .container__list--item,
+.news-list .feed-container.fullscreen .container__list--item,
+.news-links .feed-container.fullscreen .container__list--item,
+.poe-links .feed-container.fullscreen .container__list--item {
     width: 50%;
 }
 
-.container__content.large .music-links .container__list img {
-    min-width: 100%;
+.music-links .feed-container.fullscreen .container__list--item,
+.video-links .feed-container.fullscreen .container__list--item {
+    width: calc(100% / 3);
 }
 
 .container__list span.container__list--full-item {
@@ -1023,6 +1039,7 @@ li {
 
 .nft-links .container__list:not(.container__list--title),
 .music-links .container__list:not(.container__list--title),
+.video-links .container__list:not(.container__list--title),
 .trakt-links .container__list:not(.container__list--title),
 .games-links .container__list:not(.container__list--title) {
     display: grid;
@@ -1038,12 +1055,14 @@ li {
     aspect-ratio: var(--trakt-aspect);
 }
 
+.video-links .container__list img,
 .music-links .container__list img,
 .twitch-links .container__list img {
     aspect-ratio: var(--sixteen-nine);
     box-shadow: var(--shadow);
 }
 
+.video-links .container__list img,
 .music-links .container__list img,
 .trakt-links .container__list img,
 .games-links .container__list img {
@@ -1078,19 +1097,22 @@ li {
 
 .games-links .feed-list,
 .trakt-links .feed-list,
+.video-links .feed-list,
 .music-links .feed-list {
     align-items: flex-start;
 }
 
 .games-links .container__list--media,
 .trakt-links .container__list--media,
-.music-links .container__list--media {
+.music-links .container__list--media,
+.video-links .container__list--media {
     margin-bottom: var(--foundation);
     margin-right: 0;
 }
 
 .trakt-links .container__list span.container__list--description,
 .music-links .container__list span.container__list--description,
+.video-links .container__list span.container__list--description,
 .games-links .container__list span.container__list--description {
     font-size: 0.8rem;
     color: var(--gruy);
@@ -1102,6 +1124,10 @@ li {
 
 .music-links .container__list span.container__list--description {
     -webkit-line-clamp: 1;
+}
+
+.video-links .container__list span.container__list--description {
+    -webkit-line-clamp: 4;
 }
 
 .trakt-links .container__list span.container__list--description {
@@ -1133,6 +1159,7 @@ li {
 
 .nft-links .container__list--item:hover,
 .trakt-links .container__list--item:hover,
+.video-links .container__list--item:hover,
 .music-links .container__list--item:hover,
 .games-links .container__list--item:hover {
     background: transparent;
@@ -1141,6 +1168,7 @@ li {
 
 .nft-links .grid-container.feed-container,
 .trakt-links .grid-container.feed-container,
+.video-links .grid-container.feed-container,
 .music-links .grid-container.feed-container,
 .games-links .grid-container.feed-container {
     padding: 0;
@@ -1154,6 +1182,41 @@ li {
     border-radius: 0;
     object-fit: contain;
 }
+
+.summary-links p {
+    position: relative;
+    padding-top: calc(var(--padding) * 2);
+}
+
+.summary-links p:before {
+    content: '';
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 0;
+}
+
+.summary-links p:nth-of-type(1):before,
+.summary-links p:nth-of-type(18):before { background-image: url(icons/icon__summaries.svg); }
+.summary-links p:nth-of-type(2):before,
+.summary-links p:nth-of-type(19):before { background-image: url(icons/icon__book.svg); }
+.summary-links p:nth-of-type(3):before,
+.summary-links p:nth-of-type(20):before { background-image: url(icons/icon__clipboard.svg); }
+.summary-links p:nth-of-type(4):before { background-image: url(icons/icon__quote.svg); }
+.summary-links p:nth-of-type(5):before { background-image: url(icons/icon__todaynews.svg); }
+.summary-links p:nth-of-type(6):before { background-image: url(icons/icon__open-book.svg); }
+.summary-links p:nth-of-type(7):before { background-image: url(icons/icon__book-sparkles.svg); }
+.summary-links p:nth-of-type(8):before { background-image: url(icons/icon__binary.svg); }
+.summary-links p:nth-of-type(9):before { background-image: url(icons/icon__laptop-code.svg); }
+.summary-links p:nth-of-type(10):before { background-image: url(icons/icon__ninja.svg); }
+.summary-links p:nth-of-type(11):before { background-image: url(icons/icon__lamp.svg); }
+.summary-links p:nth-of-type(12):before { background-image: url(icons/icon__memo.svg); }
+.summary-links p:nth-of-type(13):before { background-image: url(icons/icon__caption.svg); }
+.summary-links p:nth-of-type(15):before { background-image: url(icons/icon__news.svg); }
+.summary-links p:nth-of-type(16):before { background-image: url(icons/icon__planet.svg); }
+.summary-links p:nth-of-type(17):before { background-image: url(icons/icon__scroll.svg); }
 
 .container__list--item--faded {
     opacity: 0.25;

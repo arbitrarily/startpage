@@ -33,7 +33,7 @@
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
     timer: {},            // Timer Count
-    v: "1.46.5",          // Version Number
+    v: "1.46.8",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -137,7 +137,7 @@
       () => start.audio_volume(),
       () => start.lastfm(),
       () => start.dev_news(),
-      () => start.resize_feed_images(),
+      () => {},
       () => start.play_metal(),
       () => start.twitter_news(),
       () => start.summaries_news(),
@@ -264,7 +264,6 @@
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
-            78: start.resize_feed_images, // Feed Images:  shift + "n"
             188: start.now_pass_color_dodge, //            shift + ","
             72: start.shortcuts, // Help Shortcuts:        shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
@@ -912,7 +911,6 @@
         v.toggleClass("fullscreen");
         $(".blur-target").toggleClass("blur");
         $(".container__list.container__list--title").toggleClass(start.h);
-        start.resize_feed_images();
       }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
@@ -1342,19 +1340,6 @@
         target.toggleClass("active").siblings().removeClass("active");
         $(".shortcuts__feed-container").css("transform", `translateX(-${target.data("id") * (100 / $(".shortcuts__feed").length)}%`);
       });
-    },
-
-    // Resize Feed Images
-    resize_feed_images: () => {
-      if (!$(".feed-links").hasClass("trakt-links") &&
-          !$(".feed-links").hasClass("twitch-links") &&
-          !$(".feed-links").hasClass("games-links") &&
-          !$(".feed-links").hasClass("nft-links") &&
-          !$(".feed-links").hasClass("music-links")
-      ) {
-        $(".container__content").toggleClass("large").find(".feed-list.grid-x").toggleClass("grid-padding-x");
-        start.notify(`<span>Feed Images</span> Resized`);
-      }
     },
 
     // Marquee Title Animation
