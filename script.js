@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.47.2",          // Version Number
+    v: "1.47.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1251,9 +1251,13 @@
           window.speechSynthesis.cancel();
           start.notify("Speaking Paragraph <span>Stopped</span>");
         } else {
+          const fl = $(".feed-list");
           var message = new SpeechSynthesisUtterance();
           message.text = $(this).text();
           window.speechSynthesis.speak(message);
+          fl.animate({
+            scrollTop: $(this).offset().top - fl.offset().top +  fl.scrollTop()
+          }, start.at * 3);
           start.notify("Speaking Paragraph <span>Started</span>");
           message.onend = () => $(".feed-list li p.shown").removeClass(start.s);
         }
