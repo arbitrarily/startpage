@@ -1186,6 +1186,7 @@ li {
 .summary-links p {
     position: relative;
     padding-top: calc(var(--padding) * 2);
+    border-radius: var(--border-radius);
 }
 
 .summary-links p:before {
@@ -1196,6 +1197,20 @@ li {
     height: 32px;
     position: absolute;
     top: 0;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+}
+
+.summary-links p.shown {
+    padding: var(--foundation-large);
+    padding-top: calc(var(--padding) * 3.5);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.summary-links p.shown:before {
+    top: var(--padding);
 }
 
 .summary-links p:nth-of-type(1):before,

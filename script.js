@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.47.1",          // Version Number
+    v: "1.47.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1245,6 +1245,7 @@
     // Read Summaries with Speech Synthesis
     read_summaries: () => {
       $(document).on(start.t, ".feed-list li p", function (e) {
+        $(this).toggleClass(start.s);
         // Stop on Repeat Click
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
@@ -1254,8 +1255,10 @@
           message.text = $(this).text();
           window.speechSynthesis.speak(message);
           start.notify("Speaking Paragraph <span>Started</span>");
+          message.onend = () => $(".feed-list li p.shown").removeClass(start.s);
         }
       });
+
     },
 
     // Page View Counter
