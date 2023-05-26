@@ -32,8 +32,10 @@
     pv: false,            // Pageviews
     s: "shown",           // Shared Class Names
     t: "click",           // Touch Events
+    title: 'Startpage',   // Page Title
+    ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.46.9",          // Version Number
+    v: "1.47.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -151,32 +153,32 @@
 
     // Init
     init: function () {
-      start.version();            // Version Number
+      start.version();                // Version Number
       // Background Art Number
       start.an = this.random_numb(1, 243).toString().padStart(4, "0");
-      this.pageview_counter();    // Pageview Counter
-      this.key_listener();        // Key Listeners
-      this.background();          // Background Image
-      this.wallet();              // Wallet Value
-      this.init_fetch();          // Initial Feed
-      this.lastfm();              // Get Last FM Now Playing
-      this.focus_click();         // Search Focus
-      this.change_search();       // Search Change
-      this.help_toggle();         // Help Toggle
-      this.timer_media_toggle();  // Add Event Listeners
-      this.ip();                  // IP
-      this.log();                 // Output into Console
-      this.focus_search();        // Focus on Search
-      this.marquee_title();       // Marquee Title
-      this.steam_links();         // Launch Games on Windows
-      this.menu_clicks();         // Menu Clicks
+      this.pageview_counter();        // Pageview Counter
+      this.key_listener();            // Key Listeners
+      this.background();              // Background Image
+      this.wallet();                  // Wallet Value
+      this.init_fetch();              // Initial Feed
+      this.lastfm();                  // Get Last FM Now Playing
+      this.focus_click();             // Search Focus
+      this.change_search();           // Search Change
+      this.help_toggle();             // Help Toggle
+      this.timer_media_toggle();      // Add Event Listeners
+      this.ip();                      // IP
+      this.log();                     // Output into Console
+      this.focus_search();            // Focus on Search
+      this.marquee_title(self.title); // Marquee Title
+      this.steam_links();             // Launch Games on Windows
+      this.menu_clicks();             // Menu Clicks
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
       this.video_click();
-      this.read_summaries();      // Read Summaries
-      this.the_time();            // Time
-      this.rerun_functions();     // Cron Functions
-      this.bye();                 // Run Before Leaving Page
+      this.read_summaries();          // Read Summaries
+      this.the_time();                // Time
+      this.rerun_functions();         // Cron Functions
+      this.bye();                     // Run Before Leaving Page
     },
 
     // Load Config, then Init
@@ -519,7 +521,7 @@
         image = $(".nowplaying__image"),
         container = $(".nowplaying__container"),
         url = $(".nowplaying__url");
-      container.addClass(start.h)
+      container.addClass(start.h);
       setTimeout(() => {
         artist.text(data.artist).attr("title", `Artist: ${data.artist}`);
         song.text(data.name).attr("title", `Song: ${data.name}`);
@@ -770,6 +772,8 @@
 
     // Media: Reset Timer & Progress Bar
     media_ended: () => {
+      start.title = "Startpage ".repeat(15);
+      start.marquee_title(start.title);
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
           clearInterval(start.timer.interval);
@@ -1049,6 +1053,8 @@
           image: that.find("img").attr("src"),
           link: that.attr("href")
         };
+        start.title = vid_data.artist + ": " + vid_data.name + ", " + vid_data.album;
+        start.marquee_title(start.title);
         if (vid_data.name.length > start.nl) vid_data.name = vid_data.name.slice(0, start.nl) + "...";
         start.now_playing(vid_data, vid_data.name);
       });
@@ -1068,7 +1074,9 @@
           artist: a.data('feed'),
           image: a.find("img").attr('src'),
           link: a.attr('href')
-        }
+        };
+        start.title = song_data.artist + ": " + song_data.name + ", " + song_data.album;
+        start.marquee_title(start.title);
         const sn = song_data.name.length > start.nl ? song_data.name.trim().slice(0, start.nl) + "..." : song_data.name;
         start.now_playing(song_data, `${sn}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
@@ -1095,6 +1103,8 @@
           image: a.find("img").attr('src'),
           link: a.attr('href')
         };
+        start.title = song_data.artist + ": " + song_data.name + ", " + song_data.album;
+        start.marquee_title(start.title);
         const sn = song_data.name.length > start.nl ? song_data.name.trim().slice(0, start.nl) + "..." : song_data.name;
         start.now_playing(song_data, `${sn}`);
         if (!$("#search").hasClass("full")) $("#search").addClass("full");
@@ -1344,10 +1354,11 @@
     },
 
     // Marquee Title Animation
-    marquee_title: () => {
-      var title = $("title");
-      var text = "Startpage ".repeat(15);
-      setInterval( () => {
+    marquee_title: (string) => {
+      let title = $("title");
+      let text = string ? string : "Startpage ".repeat(15);
+      clearInterval(start.ti);
+      start.ti = setInterval( () => {
         text = text.substring(1) + text.charAt(0);
         title.text("⭐ " + text.toUpperCase());
       }, start.at);
