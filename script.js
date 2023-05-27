@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.47.3",          // Version Number
+    v: "1.47.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1256,7 +1256,7 @@
           message.text = $(this).text();
           window.speechSynthesis.speak(message);
           fl.animate({
-            scrollTop: $(this).offset().top - fl.offset().top +  fl.scrollTop()
+            scrollTop: $(this).offset().top - fl.offset().top + fl.scrollTop() + (parseFloat($("body").css("font-size")) * 3.25)
           }, start.at * 3);
           start.notify("Speaking Paragraph <span>Started</span>");
           message.onend = () => $(".feed-list li p.shown").removeClass(start.s);
