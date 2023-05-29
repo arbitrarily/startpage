@@ -113,14 +113,13 @@ Most of these feed URLs listed above output HTML look like:
     <ul class="grid-x">
         <li class="cell">
             <span class="container__list container__list--title">
-                <span>Steam Library</span>
-                <span title="12:54AM">468</span>
+                <span>Feed Title</span>
+                <span title="Last Updated String">#</span>
             </span>
         </li>
     </ul>
     <div class="feed-container">
         <ul class="grid-x grid-padding-x feed-list">
-
             <li class="cell small-12 medium-6 large-8 container__list--item">
                 <a class="container__list" href="#" target="_blank">
                     <div class="container__list--media">
@@ -141,7 +140,7 @@ Most of these feed URLs listed above output HTML look like:
 </div>
 ```
 
-that is injected into the page.
+That is injected into the page when a feed is selected.
 
 ---
 
