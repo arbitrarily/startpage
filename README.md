@@ -1,4 +1,4 @@
-![preview](https://github.com/arbitrarily/startpage/assets/899183/8dce809d-90cc-46b3-8ced-46b155eeca52)
+![preview](https://github.com/arbitrarily/startpage/assets/899183/d7a6d683-f47f-4656-98d6-5c4830108cc0)
 
 [Preview: Startpage & New Tab Page](https://s.marko.tech)
 
