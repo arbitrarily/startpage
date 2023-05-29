@@ -14,7 +14,8 @@
     --large-padding: 10vh;
     --foundation: 0.625rem;
     --foundation-large: 0.9375rem;
-    --max-height: 463.1px;
+    --max-height: 582.1px;
+    --max-height--header: 46.6px;
 
     /* Border Radius */
     --border-radius: 10px;
@@ -398,7 +399,7 @@ input[type="range"] {
 }
 
 .grid-container {
-    max-width: 80rem;
+    max-width: 82rem;
 }
 
 .container {
@@ -453,11 +454,11 @@ li {
     mask-image: linear-gradient(to bottom, black calc(100% - 0.625rem), transparent 100%);
 }
 
-.feed-list {
-    height: calc(80vh - 204px);
-    max-height: 397.1px;
+.container__feed-list-container .container__feed-list {
+    height: calc(var(--max-height) - var(--max-height--header) + 2rem);
 }
 
+.container__feed-list,
 .container__feed-list ul,
 .container__list--title-list {
     margin: 0;
@@ -589,6 +590,10 @@ li {
     box-shadow: inset 0 0 25px 7px rgba(255, 255, 255, 0.3), 0 2px 20px 3px rgba(255, 255, 255, 0.1);
 }
 
+.menu-links__item.menu-links__toggle {
+    width: calc(100% / 4);
+}
+
 .menu-links__item.menu-links__toggle img {
     padding: 0;
     margin: 0;
@@ -599,13 +604,11 @@ li {
 
 .menu-links__item.menu-links__toggle .container__list {
     display: grid;
+    align-items: flex-start;
     overflow: unset;
+    margin: 0;
     padding-top: 0;
     padding-bottom: 0;
-}
-
-.menu-links__item.menu-links__toggle {
-    width: calc(100% / 4);
 }
 
 .container__list--item:hover {
@@ -699,16 +702,17 @@ li {
     aspect-ratio: var(--sixteen-nine);
 }
 
+.news-links .feed-container.fullscreen .github-list .container__list img,
+.news-links .feed-container.fullscreen .twitter-list .container__list img {
+    min-width: 52px;
+    max-width: 52px;
+}
+
 .podcast-links .feed-container.fullscreen .container__list--item,
 .news-list .feed-container.fullscreen .container__list--item,
 .news-links .feed-container.fullscreen .container__list--item,
 .poe-links .feed-container.fullscreen .container__list--item {
     width: 50%;
-}
-
-.music-links .feed-container.fullscreen .container__list--item,
-.video-links .feed-container.fullscreen .container__list--item {
-    width: calc(100% / 3);
 }
 
 .container__list span.container__list--full-item {
@@ -764,6 +768,10 @@ li {
     object-fit: cover;
     overflow: hidden;
     box-shadow: var(--shadow);
+}
+
+.container__links {
+    height: var(--max-height);
 }
 
 .container__links--section--links .container__list img {
@@ -960,8 +968,8 @@ li {
     padding: calc(var(--foundation) / 2) var(--foundation);
     line-height: 1;
     color: var(--white);
-    font-size: 0.55rem;
-    letter-spacing: 0.05rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.08rem;
     text-transform: uppercase;
     font-weight: var(--bold);
 }
@@ -1044,7 +1052,8 @@ li {
 .games-links .container__list:not(.container__list--title) {
     display: grid;
     height: 100%;
-    margin-bottom: var(--foundation-large);
+    margin-bottom: calc(var(--foundation-large) * 2);
+    padding: 0;
 }
 
 .games-links .container__list img {
@@ -1400,11 +1409,11 @@ li {
 }
 
 .container__links--overflow.link__1 {
-    transform: translateY(-463.1px);
+    transform: translateY(calc(var(--max-height) * -1));
 }
 
 .container__links--overflow.link__2 {
-    transform: translateY(calc(-463.1px * 2));
+    transform: translateY(calc(var(--max-height) * -2));
 }
 
 .menu-links__toggle--clock * {
@@ -1541,6 +1550,10 @@ li {
     .menu-links__toggle--keys {
         display: none;
     }
+
+    .feed-list {
+        height: calc(var(--max-height) - var(--max-height--header) - 1rem);
+    }
 }
 
 /* Large screens */
@@ -1556,6 +1569,12 @@ li {
 
     .nowplaying__container {
         padding-left: var(--padding);
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .nowplaying__inner-container {
+        max-width: 360px;
     }
 
     .video-links .container__list img,
@@ -1566,18 +1585,18 @@ li {
     }
 
     .menu-links__item.menu-links__toggle {
-        width: calc(100% / 5);
-        height: 107.1px;
+        width: calc(100% / 6);
+        height: calc(100% / 5);
+    }
+
+    .music-links .feed-container.fullscreen .container__list--item,
+    .video-links .feed-container.fullscreen .container__list--item {
+        width: calc(100% / 4);
     }
 }
 
 /* Extra large screens */
 @media screen and (min-width: 64em) {
-    .feed-list,
-    .video-links,
-    .container__feed-list {
-        margin-bottom: var(--foundation-large);
-    }
 
     .video-links {
         aspect-ratio: var(--sixteen-nine);
@@ -1600,7 +1619,7 @@ li {
     }
 
     .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 6);
+        padding-left: calc(var(--foundation-large) * 3);
         max-height: var(--max-height);
     }
 
@@ -1608,10 +1627,6 @@ li {
     .video-links.fluid {
         height: auto;
         aspect-ratio: var(--sixteen-nine);
-    }
-
-    .container__links {
-        height: var(--max-height);
     }
 
     .container__content {
@@ -1622,6 +1637,21 @@ li {
     .container__links--section {
         height: var(--max-height);
         max-height: var(--max-height);
+    }
+
+    .feed-list,
+    .container__feed-list {
+        height: calc(var(--max-height) - var(--max-height--header));
+    }
+
+    .menu-links__item.menu-links__toggle {
+        width: calc(100% / 4);
+    }
+}
+
+@media screen and (min-width: 72em) {
+    .grid-padding-x>.cell.container__list--padding-override {
+        padding-left: calc(var(--foundation-large) * 6);
     }
 }
 
@@ -1641,8 +1671,12 @@ li {
 
     .container__links,
     .container__links--section {
-        max-height: var(--max-height);
+        height: var(--max-height);
         overflow: hidden;
+    }
+
+    .container__links {
+        margin-bottom: var(--padding);
     }
 
     .container__links--section.hidden {
@@ -1653,13 +1687,15 @@ li {
         aspect-ratio: var(--one-one);
     }
 
-    .container__feed-list {
-        min-height: var(--max-height);
-    }
-
     .stats,
     .ip {
         flex-direction: column-reverse;
         align-items: flex-start;
+    }
+
+    .feed-list,
+    .video-links,
+    .container__feed-list {
+        margin-bottom: var(--foundation-large);
     }
 }

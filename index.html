@@ -32,7 +32,7 @@
 		<div class="grid-x align-middle container__inner">
 			<div class="cell">
 				<div class="grid-x grid-padding-x blur-target">
-					<div class="cell medium-7">
+					<div class="cell medium-8">
 						<form id="searchform" action="https://www.google.com/search" method="get">
 							<label for="search">
 								<img class="search" src="icons/icon__search.svg" alt="Search" />
@@ -53,8 +53,8 @@
 							</div>
 						</form>
 					</div>
-					<div class="cell medium-auto large-offset-1 nowplaying__container">
-						<div>
+					<div class="cell medium-auto nowplaying__container">
+						<div class="nowplaying__inner-container">
 							<a href="" class="nowplaying__url" target="_blank" rel="noopener noreferrer">
 								<div class="nowplaying__song-name">
 									<span class="nowplaying__song" title=""></span>
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<div class="grid-x grid-padding-x container__content">
-					<div class="cell small-12 large-7 container__links">
+					<div class="cell small-12 large-8 container__links">
 						<div class="grid-x grid-padding-x container__links--overflow">
 							<div class="cell container__links--section">
 								<div class="feed-links"></div>
@@ -84,6 +84,12 @@
 											rel="noopener noreferrer">
 											<img src="https://www.google.com/s2/favicons?domain=https://monday.com&sz=128" alt="Monday" />
 											<span>Monday</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
+										<a class="container__list" href="https://www.notion.so/nftnow" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__notion.svg" alt="Notion" />
+											<span>Notion</span>
 										</a>
 									</li>
 									<li class="cell container__list--item">
@@ -143,6 +149,12 @@
 											<span>Name.com</span>
 										</a>
 									</li>
+									<li class="cell container__list--item">
+										<a class="container__list" href="https://app.rippling.com/dashboard" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__rippling.svg" alt="Rippling" />
+											<span>Rippling</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 							<div class="cell small-6 container__links--section container__links--section--links">
@@ -177,6 +189,18 @@
 											target="_blank" rel="noopener noreferrer">
                       <img src="icons/icon__studio.svg" alt="Studio" />
 											<span>Studio</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
+										<a class="container__list" href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__discord.svg" alt="Discord" />
+											<span>Discord</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
+										<a class="container__list" href="https://overcast.fm" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__overcast.svg" alt="Overcast" />
+											<span>Overcast</span>
 										</a>
 									</li>
 									<li class="cell container__list--item">
@@ -234,6 +258,12 @@
 										</a>
 									</li>
 									<li class="cell container__list--item">
+										<a class="container__list" href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__reddit.svg" alt="Reddit" />
+											<span>Reddit</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
 										<a class="container__list" href="https://twitter.com/desmosthenes" target="_blank" rel="noopener noreferrer">
 											<img src="icons/icon__twitter.svg" alt="Twitter" />
 											<span>Twitter</span>
@@ -271,6 +301,12 @@
 										</a>
 									</li>
 									<li class="cell container__list--item">
+										<a class="container__list" href="https://www.reddit.com/r/Berserk/" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__berserk.svg" alt="Berserk" />
+											<span>Berserk</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
 										<a class="container__list" href="https://twitter.com/opmreddit" target="_blank" rel="noopener noreferrer">
 											<img src="icons/icon__book.svg" alt="One Punch Man" />
 											<span>One Punch Man</span>
@@ -305,6 +341,13 @@
 										</a>
 									</li>
 									<li class="cell container__list--item">
+										<a class="container__list" href="https://www.pathofexile.com/account/view-profile/desmosthenes2" target="_blank"
+											rel="noopener noreferrer">
+											<img src="icons/icon__exalt.png" alt="My Profile" />
+											<span>Profile</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
 										<a class="container__list"
 											href="https://poestack.com/poe/stash-view" target="_blank"
 											rel="noopener noreferrer">
@@ -330,6 +373,12 @@
 										<a class="container__list" href="https://poe.re" target="_blank" rel="noopener noreferrer">
 											<img src="icons/icon__regex.svg" alt="poe.re" />
 											<span>poe.re</span>
+										</a>
+									</li>
+									<li class="cell container__list--item">
+										<a class="container__list" href="https://github.com/arbitrarily/poe-regex#readme" target="_blank" rel="noopener noreferrer">
+											<img src="icons/icon__code-block.svg" alt="PoE Regex" />
+											<span>PoE Regex</span>
 										</a>
 									</li>
 									<li class="cell container__list--item">
@@ -377,16 +426,6 @@
 												<img src="icons/icon__link.svg" alt="Links" />
 											</div>
 											<span>Links</span>
-										</div>
-									</a>
-								</li>
-								<li class="cell menu-links__item menu-links__toggle" data-id="9">
-									<a href="#" class="container__list">
-										<div class="menu-links__toggle--content">
-											<div class="menu-links__toggle--image-container">
-												<img src="icons/icon__steam.svg" alt="Steam Games" />
-											</div>
-											<span>Steam</span>
 										</div>
 									</a>
 								</li>
@@ -460,11 +499,20 @@
 										</div>
 									</a>
 								</li>
+								<li class="cell menu-links__item menu-links__toggle" data-id="6">
+									<a href="#" class="container__list">
+										<div class="menu-links__toggle--content">
+											<div class="menu-links__toggle--image-container">
+												<img src="icons/icon__youtube.svg" alt="YouTube" />
+											</div>
+											<span>YouTube</span>
+										</div>
+									</a>
+								</li>
 								<li class="cell menu-links__item menu-links__toggle menu-links__toggle--clock" data-id="1">
 									<a href="#" class="container__list">
 										<div class="menu-links__toggle--content">
 											<div class="menu-links__toggle--image-container">
-												<!-- <img src="icons/icon__news.svg" alt="News" /> -->
 												<div class="clock">
 													<svg viewBox="0 0 100 100">
 														<line class="hour-hand" x1="50" y1="50" x2="50" y2="30" />
@@ -537,6 +585,16 @@
 										</div>
 									</a>
 								</li>
+								<li class="cell menu-links__item menu-links__toggle" data-id="9">
+									<a href="#" class="container__list">
+										<div class="menu-links__toggle--content">
+											<div class="menu-links__toggle--image-container">
+												<img src="icons/icon__steam.svg" alt="Steam Games" />
+											</div>
+											<span>Steam</span>
+										</div>
+									</a>
+								</li>
 								<li class="cell menu-links__item menu-links__toggle" data-id="30">
 									<a href="#" class="container__list">
 										<div class="menu-links__toggle--content">
@@ -544,16 +602,6 @@
 												<img src="icons/icon__twitch.svg" alt="Twitch" />
 											</div>
 											<span>Twitch</span>
-										</div>
-									</a>
-								</li>
-								<li class="cell menu-links__item menu-links__toggle" data-id="6">
-									<a href="#" class="container__list">
-										<div class="menu-links__toggle--content">
-											<div class="menu-links__toggle--image-container">
-												<img src="icons/icon__youtube.svg" alt="YouTube" />
-											</div>
-											<span>YouTube</span>
 										</div>
 									</a>
 								</li>
