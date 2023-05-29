@@ -1,4 +1,4 @@
-![preview](https://user-images.githubusercontent.com/899183/229410766-ec30a022-234f-44a6-b3c1-baae79fda3ac.png)
+![preview](https://github.com/arbitrarily/startpage/assets/899183/8dce809d-90cc-46b3-8ced-46b155eeca52)
 
 [Preview: Startpage & New Tab Page](https://s.marko.tech)
 
@@ -10,13 +10,12 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Background image is randomly chosen from a series of images I serve on my own website.
 * Background image is blurred to better view the content.
 * Background image resolution can be changed.
-* Background animation with CSS/SVG.
 * Background image can be refreshed.
+* Load NowPass WebGL as Background.
 * Click anywhere on page (except links) to focus search.
 * Rapidly search the web with a search bar.
 * Search bar can be toggled to different search engines.
 * News feed can be toggled to different up-to-date feeds.
-* News feed can be resized.
 * View my roster of Path of Exile characters sorted by League.
 * View Twitter (list) feed.
 * View starred Github activity feed.
@@ -31,15 +30,25 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Listen to shuffled background  music playlist with a set length limit.
 * Watch subscribed YouTube Videos in line without leaving the site.
 * Fullscreen video toggle.
-* Media control (mute/unmute, volume control, play/pause, fast foward, rewind, faster/slower playback).
+* Fullscreen alternative views for every feed (shift + f).
+* Media control
+  * mute/unmute
+  * volume control
+  * play/pause
+  * fast foward
+  * rewind
+  * faster/slower playback speed control
 * See what music I'm currently listening to.
 * See how my MetaMask wallet is doing.
 * See current public IP address and city.
+* See nowplaying in tabbed title of page.
+* View generated summaries of daily headlines.
+* Have summaries read via window.speechSynthesis.
 * See current total play count on LastFM.
+* See latest Steam screenshots.
 * See pageviews.
 * See version number & commit count for this repo.
 * Responsive design.
-* Resize images.
 * Mobile ready toggle menu.
 * Shortcuts help menu.
   * Site
@@ -51,7 +60,7 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 
 ### Notes
 
-There's a file JSON file named `conf.json` in the root of the project.
+There's a config file JSON that gets loaded into script of the file.
 
 It should look like this or similar, keeping what you want and removing what you don't:
 
@@ -96,6 +105,43 @@ The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, 
 `counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
 
 The background images are randomly chosen from a series of images I serve on my own website.
+
+Most of these feed URLs listed above output HTML look like:
+
+```html
+<div class="feed-links games-links">
+    <ul class="grid-x">
+        <li class="cell">
+            <span class="container__list container__list--title">
+                <span>Steam Library</span>
+                <span title="12:54AM">468</span>
+            </span>
+        </li>
+    </ul>
+    <div class="feed-container">
+        <ul class="grid-x grid-padding-x feed-list">
+
+            <li class="cell small-12 medium-6 large-8 container__list--item">
+                <a class="container__list" href="#" target="_blank">
+                    <div class="container__list--media">
+                        <img src="#" loading="lazy" />
+                    </div>
+                    <span class="container__list--full-item">
+                        <div class="container__list--item-title">#</div>
+                        <span class="container__list--description">
+                            <strong>2w ago</strong>
+                            <em>Publisher</em>
+                            - Description
+                        </span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+```
+
+that is injected into the page.
 
 ---
 
