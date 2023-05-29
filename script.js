@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.49.3",          // Version Number
+    v: "1.49.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -126,8 +126,8 @@
       () => start.industry_news(),
       () => start.steam_games(),
       () => start.nfts(),
-      () => start.play_single(),
-      () => start.play_playlist(),
+      () => {},
+      () => {},
       () => start.audio_rewind(),
       () => start.media_toggle(),
       () => start.audio_ff(),
@@ -135,7 +135,7 @@
       () => start.background(),
       () => start.blur(),
       () => start.art_source(),
-      () => start.play_playlist_input(),
+      () => {},
       () => start.audio_volume(),
       () => start.lastfm(),
       () => start.dev_news(),
@@ -256,10 +256,7 @@
             32: start.media_toggle, // Play/Pause:         shift + "space"
             77: start.audio_mute, // Mute:                 shift + "m"
             70: start.fullscreen, // Fullscreen:           shift + "f"
-            123: start.play_single, // Random Song:        shift + "f12"
-            122: start.play_playlist, // Random Playlist:  shift + "f11"
-            121: start.play_playlist_input, //             shift + "f10"
-            120: start.play_ambient_song, // Ambient Song: shift + "f10"
+            123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
             68: start.steam_ss, // Steam Screenshots:      shift + "d"
             90: start.overlay, // Background Overlay:      shift + "z"
@@ -945,98 +942,6 @@
       start.media_stop();
       start.video_as_audio_start(song_data.id);
       start.notify(`<span>Now Playing</span> ${song_data.name}`);
-    },
-
-    // Audio: Play Single Track
-    play_single: (song = false, songs_left = false) => {
-      let song_data = {};
-      let song_title = song ? song.title : "Playlist";
-      let song_artist = song ? song.channel : "YouTube";
-      let song_image = song ? (song.image ? song.image : "icons/icon__lofi-girl.jpg") : "icons/icon__lofi-girl.jpg";
-      let song_link = song ? song.url : "";
-      let song_album = "";
-      if (!song) {
-        const number = start.random_numb(1, 13);
-        song_data = {
-          id: "",
-          name: "Song #" + number,
-          album: "",
-          artist: "Lofi Girl",
-          image: "icons/icon__lofi-girl.jpg",
-          link: "https://www.youtube.com/@LofiGirl"
-        };
-        start.audio.src = start.c.xURL + number + ".mp3";
-      } else {
-        song_data = {
-          id: song.id ? song.id : "",
-          name: song_title,
-          album: song_album,
-          artist: song_artist,
-          image: song_image,
-          link: song_link
-        }
-        start.audio.src = song.media;
-        song_data.album = songs_left ? (songs_left === 1 ? "Last song" : `${songs_left} songs left`) : "";
-      }
-      // Play audio and display information
-      start.media_stop();
-      start.audio.playbackRate = 1;
-      start.audio.play();
-      start.media_timer();
-      start.now_playing(song_data, false);
-      start.notify(`<span>Now Playing</span> ${song_data.name.slice(0, start.nl)}`);
-      if (!$("#search").hasClass("full")) $("#search").addClass("full");
-    },
-
-    // Audio: Play Playlist
-    play_playlist: (limit = 10) => {
-      // Stop current media
-      start.media_stop();
-      // Play playlist
-      const play_playlist = async (playlist, limit) => {
-        for (let i = 0; i < limit; i++) {
-          const song = playlist[i];
-          const songs_left = limit - i > 0 ? limit - i : false;
-          start.play_single(song, songs_left);
-          await new Promise(resolve => {
-            start.audio.addEventListener('ended', resolve, { once: true });
-            $(document).on("keydown", e => {
-              // Skip (Shift + S)
-              if (e.shiftKey && e.which === 83) {
-                if (start.audio) resolve();
-              }
-            });
-          });
-        }
-        $(".nowplaying__album").text("");
-      };
-      // Fetch playlist if not available
-      if (!start.pj) {
-        fetch(start.c.xPlaylistJSONURL + '?t=' + start.timestamp())
-          .then(res => res.json())
-          .then(playlist => {
-            start.pj = playlist;
-            start.pll = playlist.length;
-            start.shuffle_array(start.pj);
-            play_playlist(start.pj, limit);
-          })
-          .catch(err => start.media_stop());
-      } else {
-        // Otherwise shuffle and play
-        start.shuffle_array(start.pj);
-        play_playlist(start.pj, limit);
-      }
-    },
-
-    // Audio: Play Playlist via Prompt
-    play_playlist_input: () => {
-      let num;
-      do {
-        num = prompt('How many songs?:', '');
-      } while (num !== null && (isNaN(parseInt(num)) || parseInt(num) != num));
-      start.d[[16]] = false;
-      start.d[[121]] = false;
-      start.play_playlist(parseInt(num));
     },
 
     // Video: Play Youtube Video in Modal
