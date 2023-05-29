@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.48.3",          // Version Number
+    v: "1.49.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -261,6 +261,7 @@
             121: start.play_playlist_input, //             shift + "f10"
             120: start.play_ambient_song, // Ambient Song: shift + "f10"
             65: start.now_pass, // Load Now Pass:          shift + "a"
+            68: start.steam_ss, // Steam Screenshots:      shift + "d"
             90: start.overlay, // Background Overlay:      shift + "z"
             67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
             88: start.background, // Background Image:     shift + "c"
@@ -615,61 +616,64 @@
     // Instapaper Home Feed
     instapaper: () => start.fetch_news(start.c.instapaperURL, "Instapaper"),
 
-    // News Home Feed
+    // News Feed
     news: () => start.fetch_news(start.c.techmemeURL, "All News"),
 
     // Summaries
     summaries: () => start.fetch_news(start.c.summariesURL, "Summaries"),
 
-    // NYT Home Feed
+    // NYT Feed
     nyt: () => start.fetch_news(start.c.nytURL, "New York Times"),
 
-    // Reddit Home Feed
+    // Reddit Feed
     reddit: () => start.fetch_news(start.c.redditURL, "Reddit"),
 
-    // NFTs Home Feed
+    // NFTs Feed
     nfts: () => start.fetch_news(start.c.alchemyURL, "NFTs"),
 
-    // Steam Games Home Feed
+    // Steam Games Feed
     steam_games: () => start.fetch_news(start.c.steamURL, "Steam Games"),
+
+    // Steam Screenshots Feed
+    steam_ss: () => start.fetch_news(start.c.steamSSURL, "Steam Screenshots"),
 
     // NFT News Summaries
     industry_news: () => start.fetch_news(start.c.nftNewsURL, "Industry News"),
 
-    // Path of Exile Home Feed
+    // Path of Exile Feed
     poe: () => start.fetch_news(start.c.poeURL, "Path of Exile"),
 
-    // Path of Exile Home Feed
+    // Path of Exile Feed
     dev_news: () => start.fetch_news(start.c.devURL, "Developer News"),
 
-    // Twitter
+    // Twitter Feed
     twitter_news: () => start.fetch_news(start.c.twitterURL, "Twitter"),
 
-    // Github
+    // Github Feed
     github_news: () => start.fetch_news(start.c.githubFeedURL, "Github"),
 
-    // Trakt
+    // Trakt Feed
     trakt_news: () => start.fetch_news(start.c.traktURL, "Trakt"),
 
-    // Twitch
+    // Twitch Feed
     twitch_news: () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
 
-    // Summaries
+    // Summaries Feed
     summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
 
-    // Podcasts Home Feed
+    // Podcasts Feed
     podcasts: () => start.fetch_news(start.c.podURL, "Podcasts"),
 
-    // Music Home Feed
+    // Music Feed
     play_music: () => start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music"),
 
-    // Metal Music Home Feed
+    // Metal Music Feed
     play_metal: () => start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music"),
 
-    // Vibes Music Home Feed
+    // Vibes Music Feed
     play_vibes: () => start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music"),
 
-    // YouTube Home Feed
+    // YouTube Feed
     play_video: () => start.fetch_news(start.c.youTubeURL, "YouTube"),
 
     // Audio: Toggle Player Used
