@@ -399,7 +399,7 @@ input[type="range"] {
 }
 
 .grid-container {
-    max-width: 82rem;
+    max-width: 91rem;
 }
 
 .container {
@@ -1656,7 +1656,7 @@ li {
 
 @media screen and (min-width: 72em) {
     .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 6);
+        padding-left: calc(var(--foundation-large) * 7);
     }
 }
 
