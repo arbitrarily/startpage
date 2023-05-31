@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.50.1",          // Version Number
+    v: "1.50.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -240,8 +240,6 @@
             57: 8, // Music                                shift + 9️⃣
             48: 23, // Dev News                            shift + 0️⃣
             173: 9, // Steam Games                         shift + "-"
-            61: 10, // NFTs                                shift + "="
-            8: 25, // Metal Music                          shift + Bakcspace
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
