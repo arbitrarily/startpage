@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.50.4",          // Version Number
+    v: "1.51.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -256,6 +256,7 @@
             70: start.fullscreen, // Fullscreen:           shift + "f"
             123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
+            83: start.art_feed, // Art Gallery:            shift + "s"
             68: start.steam_ss, // Steam Screenshots:      shift + "d"
             87: start.lastfm_stats, // LastFM Stats:       shift + "w"
             90: start.overlay, // Background Overlay:      shift + "z"
@@ -632,6 +633,9 @@
 
     // Steam Screenshots Feed
     steam_ss: () => start.fetch_news(start.c.steamSSURL, "Steam Screenshots"),
+
+    // Art Feed
+    art_feed: () => start.fetch_news(start.c.artGalleryURL, "Art Gallery"),
 
     // LastFM Stats Feed
     lastfm_stats: () => start.fetch_news(start.c.lastFMStatsURL, "LastFM Stats"),
