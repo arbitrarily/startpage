@@ -17,9 +17,10 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Search bar can be toggled to different search engines.
 * News feed can be toggled to different up-to-date feeds.
 * View my roster of Path of Exile characters sorted by League.
-* View Twitter (list) feed.
+* View Twitter [list](https://twitter.com/i/lists/198737614) feed.
 * View starred Github activity feed.
 * View owned NFTs.
+* View top played songs of the last week.
 * View Steam game library.
 * Launch Steam games.
 * View upcoming TV show calendar.
@@ -46,6 +47,7 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Have summaries read via window.speechSynthesis.
 * See current total play count on LastFM.
 * See latest Steam screenshots.
+* See art gallery.
 * See pageviews.
 * See version number & commit count for this repo.
 * Responsive design.
