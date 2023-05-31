@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.49.4",          // Version Number
+    v: "1.50.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -259,6 +259,7 @@
             123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
             68: start.steam_ss, // Steam Screenshots:      shift + "d"
+            87: start.lastfm_stats, // LastFM Stats:       shift + "w"
             90: start.overlay, // Background Overlay:      shift + "z"
             67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
             88: start.background, // Background Image:     shift + "c"
@@ -633,6 +634,9 @@
 
     // Steam Screenshots Feed
     steam_ss: () => start.fetch_news(start.c.steamSSURL, "Steam Screenshots"),
+
+    // LastFM Stats Feed
+    lastfm_stats: () => start.fetch_news(start.c.lastFMStatsURL, "LastFM Stats"),
 
     // NFT News Summaries
     industry_news: () => start.fetch_news(start.c.nftNewsURL, "Industry News"),

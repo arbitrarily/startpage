@@ -688,6 +688,7 @@ li {
     box-shadow: var(--shadow);
 }
 
+.lastfm-list .container__list img,
 .twitter-list .container__list img,
 .github-list .container__list img {
     min-width: 52px;
@@ -707,6 +708,7 @@ li {
     aspect-ratio: var(--sixteen-nine);
 }
 
+.news-links .feed-container.fullscreen .lastfm-list .container__list img,
 .news-links .feed-container.fullscreen .github-list .container__list img,
 .news-links .feed-container.fullscreen .twitter-list .container__list img {
     min-width: 52px;
