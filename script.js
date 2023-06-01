@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.51.2",          // Version Number
+    v: "1.52.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -126,8 +126,8 @@
       () => start.industry_news(),
       () => start.steam_games(),
       () => start.nfts(),
-      () => {},
-      () => {},
+      () => start.steam_ss(),
+      () => start.lastfm_stats(),
       () => start.audio_rewind(),
       () => start.media_toggle(),
       () => start.audio_ff(),
@@ -135,11 +135,11 @@
       () => start.background(),
       () => start.blur(),
       () => start.art_source(),
-      () => {},
+      () => start.art_feed(),
       () => start.audio_volume(),
       () => start.lastfm(),
       () => start.dev_news(),
-      () => {},
+      () => start.shortcuts(),
       () => start.play_metal(),
       () => start.twitter_news(),
       () => start.summaries_news(),
