@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.52.1",          // Version Number
+    v: "1.52.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -256,16 +256,13 @@
             70: start.fullscreen, // Fullscreen:           shift + "f"
             123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
-            83: start.art_feed, // Art Gallery:            shift + "s"
-            68: start.steam_ss, // Steam Screenshots:      shift + "d"
-            87: start.lastfm_stats, // LastFM Stats:       shift + "w"
             90: start.overlay, // Background Overlay:      shift + "z"
             67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
             188: start.now_pass_color_dodge, //            shift + ","
-            72: start.shortcuts, // Help Shortcuts:        shift + "h"
+            72: start.shortcuts, // Help Shortcuts         shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
