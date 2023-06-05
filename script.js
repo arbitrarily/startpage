@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.53.1",          // Version Number
+    v: "1.53.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -218,48 +218,59 @@
       $("#search").focus().addClass("focus");
     },
 
-    // Detect Section Hash Link in URL
-    detect_section_hash: () => {
+    _detect_section_hash: () => {
       const hash = window.location.pathname;
-      if (hash && hash !== "/") {
-        const section = hash.replace("/", "");
-        const km = {
-          'instapaper': 0,
-          'news': 1,
-          'nyt': 2,
-          'reddit': 3,
-          'pod': 4,
-          'podcasts': 4,
-          'lofi': 5,
-          'youtube': 6,
-          'poe': 7,
-          'web3': 8,
-          'steam': 9,
-          'nfts': 10,
-          'ss': 11,
-          'tracks': 12,
-          'art': 20,
-          'dev': 23,
-          'info': 24,
-          'metal': 25,
-          'twitter': 26,
-          'github': 28,
-          'trakt': 29,
-          'twitch': 30,
-          'vibes': 31,
-          'music': 31,
-          'links': 32,
-          'summaries': 33,
-          'summary': 33,
-        };
+      const section = hash.replace("/", "");
+      const km = {
+        'instapaper': 0,
+        'news': 1,
+        'nyt': 2,
+        'reddit': 3,
+        'pod': 4,
+        'podcasts': 4,
+        'lofi': 5,
+        'youtube': 6,
+        'poe': 7,
+        'web3': 8,
+        'steam': 9,
+        'games': 9,
+        'nfts': 10,
+        'ss': 11,
+        'tracks': 12,
+        'songs': 12,
+        'art': 20,
+        'dev': 23,
+        'info': 24,
+        'metal': 25,
+        'twitter': 26,
+        'github': 28,
+        'trakt': 29,
+        'twitch': 30,
+        'vibes': 31,
+        'music': 31,
+        'links': 32,
+        'summaries': 33,
+        'summary': 33,
+      };
+      if (section in km) {
         // Switch Feed Source
         const k = Object.keys(km).find(key => key === section);
         start.fc = k ? km[k] : start.fc;
-        if (Number.isInteger(start.fc)) start.mf[start.fc]();
+        if (Number.isInteger(start.fc)) {
+          start.mf[start.fc]();
+          $('[data-id="' + km[k] + '"]').addClass(start.s);
+        }
       } else {
         // Initial Feed
         start.init_fetch();
       }
+
+    },
+    get detect_section_hash() {
+      return this._detect_section_hash;
+    },
+    set detect_section_hash(value) {
+      this._detect_section_hash = value;
     },
 
     // Function Triggers by Keyboard Combos
@@ -609,6 +620,9 @@
 
     // Init Fetch
     init_fetch: () => {
+      // Reset URL
+      window.history.replaceState({}, document.title, "/");
+      // Fetch Instapaper (Default Feed)
       fetch(start.c.instapaperURL + '?t=' + start.timestamp())
         .then(response => response.text())
         .then(html => {
@@ -619,6 +633,7 @@
               time: new Date().getTime()
             };
             $(".feed-links").addClass(start.s);
+            $(".menu-links__toggle:first-of-type()").addClass(start.s);
           }
         })
         .catch(err => $(".feed-links").addClass(start.s));
