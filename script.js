@@ -269,9 +269,11 @@
       }
 
     },
+
     get detect_section_hash() {
       return this._detect_section_hash;
     },
+
     set detect_section_hash(value) {
       this._detect_section_hash = value;
     },
