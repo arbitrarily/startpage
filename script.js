@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.53.2",          // Version Number
+    v: "1.53.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -229,13 +229,16 @@
         'pod': 4,
         'podcasts': 4,
         'lofi': 5,
+        'yt': 6,
         'youtube': 6,
+        'video': 6,
         'poe': 7,
         'web3': 8,
         'steam': 9,
         'games': 9,
         'nfts': 10,
         'ss': 11,
+        'screenshots': 11,
         'tracks': 12,
         'songs': 12,
         'art': 20,
