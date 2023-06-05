@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.52.2",          // Version Number
+    v: "1.53.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -154,13 +154,13 @@
     // Init
     init: function () {
       start.version();                // Version Number
+      start.detect_section_hash();    // Detect Page
       // Background Art Number
       start.an = this.random_numb(1, 243).toString().padStart(4, "0");
       this.pageview_counter();        // Pageview Counter
       this.key_listener();            // Key Listeners
       this.background();              // Background Image
       this.wallet();                  // Wallet Value
-      this.init_fetch();              // Initial Feed
       this.lastfm();                  // Get Last FM Now Playing
       this.focus_click();             // Search Focus
       this.change_search();           // Search Change
@@ -216,6 +216,50 @@
     focus_search: () => {
       if ($("#search:focus").length > 0) return;
       $("#search").focus().addClass("focus");
+    },
+
+    // Detect Section Hash Link in URL
+    detect_section_hash: () => {
+      const hash = window.location.pathname;
+      if (hash && hash !== "/") {
+        const section = hash.replace("/", "");
+        const km = {
+          'instapaper': 0,
+          'news': 1,
+          'nyt': 2,
+          'reddit': 3,
+          'pod': 4,
+          'podcasts': 4,
+          'lofi': 5,
+          'youtube': 6,
+          'poe': 7,
+          'web3': 8,
+          'steam': 9,
+          'nfts': 10,
+          'ss': 11,
+          'tracks': 12,
+          'art': 20,
+          'dev': 23,
+          'info': 24,
+          'metal': 25,
+          'twitter': 26,
+          'github': 28,
+          'trakt': 29,
+          'twitch': 30,
+          'vibes': 31,
+          'music': 31,
+          'links': 32,
+          'summaries': 33,
+          'summary': 33,
+        };
+        // Switch Feed Source
+        const k = Object.keys(km).find(key => key === section);
+        start.fc = k ? km[k] : start.fc;
+        if (Number.isInteger(start.fc)) start.mf[start.fc]();
+      } else {
+        // Initial Feed
+        start.init_fetch();
+      }
     },
 
     // Function Triggers by Keyboard Combos
