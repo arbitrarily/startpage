@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.53.3",          // Version Number
+    v: "1.53.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -626,7 +626,10 @@
     // Init Fetch
     init_fetch: () => {
       // Reset URL
-      window.history.replaceState({}, document.title, "/");
+      if (window.location.pathname !== "/" &&
+        window.location.pathname !== start.c.ignoreLocal) {
+        window.history.replaceState({}, document.title, "/");
+      }
       // Fetch Instapaper (Default Feed)
       fetch(start.c.instapaperURL + '?t=' + start.timestamp())
         .then(response => response.text())
