@@ -159,13 +159,6 @@ body.lock {
     overflow: hidden;
 }
 
-* {
-    -webkit-transition: var(--animation);
-    -moz-transition: var(--animation);
-    -o-transition: var(--animation);
-    transition: var(--animation);
-}
-
 body,
 a,
 p,
@@ -183,9 +176,25 @@ p {
     color: var(--white);
 }
 
+a,
+p,
+li,
+.feed-container,
+.feed-links,
+.stats div,
+.ip div,
+.shortcuts,
+.shortcuts__feed-container,
+.container__links--overflow {
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+}
+
 a {
-    color: var(--white);
     opacity: var(--opacity-start);
+    color: var(--white);
 }
 
 a:hover {
