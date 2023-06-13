@@ -185,7 +185,8 @@ li,
 .ip div,
 .shortcuts,
 .shortcuts__feed-container,
-.container__links--overflow {
+.container__links--overflow,
+.container__list--time {
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
     -o-transition: var(--animation);
