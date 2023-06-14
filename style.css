@@ -1496,7 +1496,8 @@ li {
         margin: 0;
     }
 
-    .shortcuts__menu li span {
+    .shortcuts__menu li span,
+    .background-image {
         display: none;
     }
 }
