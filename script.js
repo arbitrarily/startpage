@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.54.1",          // Version Number
+    v: "1.54.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1035,6 +1035,7 @@
         start.title = vid_data.artist + ": " + vid_data.name + ", " + vid_data.album;
         start.marquee_title(start.title);
         if (vid_data.name.length > start.nl) vid_data.name = vid_data.name.slice(0, start.nl) + "...";
+        if (e.shiftKey) start.fullscreen();
         start.now_playing(vid_data, vid_data.name);
       });
     },
