@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.53.9",          // Version Number
+    v: "1.54.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -177,6 +177,7 @@
       this.video_click();
       this.read_summaries();          // Read Summaries
       this.the_time();                // Time
+      this.scroll_top_on_click();     // Scroll to Top of Feed on Click
       this.rerun_functions();         // Cron Functions
       this.bye();                     // Run Before Leaving Page
     },
@@ -1240,7 +1241,15 @@
           message.onend = () => $(".feed-list li p.shown").removeClass(start.s);
         }
       });
+    },
 
+    scroll_top_on_click: () => {
+      $(document).on(start.t, ".feed-links .container__list--title", (e) => {
+        e.preventDefault();
+        $(".feed-list").animate({
+          scrollTop: 0
+        }, start.at * 3);
+      });
     },
 
     // Page View Counter
