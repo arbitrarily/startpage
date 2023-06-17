@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.54.3",          // Version Number
+    v: "1.54.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -153,8 +153,8 @@
 
     // Init
     init: function () {
-      start.version();                // Version Number
-      start.detect_section_hash();    // Detect Page
+      this.detect_section_hash();    // Detect Page
+      this.version();                // Version Number
       // Background Art Number
       start.an = this.random_numb(1, 243).toString().padStart(4, "0");
       this.pageview_counter();        // Pageview Counter
@@ -318,7 +318,10 @@
             123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
             90: start.overlay, // Background Overlay:      shift + "z"
-            67: () => { start.lastfm(); start.notify("Fetched <span>Last.fm</span>"); }, // Update LastFM: shift + "x"
+            67: () => {
+              start.lastfm();
+              start.notify("Fetched <span>Last.fm</span>");
+            }, // Update LastFM:                           shift + "x"
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
@@ -810,13 +813,11 @@
             case YT.PlayerState.ENDED:
               start.stop_media();
               start.media_finished_text();
-              // if ($(".feed-container").hasClass("fullscreen")) start.fullscreen();
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
               $(".podcasts img").attr("src", "icons/icon__pause.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-              // if ($("#audio-player").contents().find("body").children().length === 0) start.vaa.pauseVideo();
               break;
             case YT.PlayerState.PLAYING:
               start.notify("<span>Now</span> Playing");
@@ -987,7 +988,7 @@
       setTimeout(() => {
         v.toggleClass("fullscreen");
         $(".container__list.container__list--title").toggleClass(start.h);
-      }, 600);
+      }, start.at * 2);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
       start.fullscreen_toggle();
       if (!$(".container__links--overflow").hasClass("link__0")) {
