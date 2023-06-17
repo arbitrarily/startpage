@@ -228,10 +228,10 @@ a:focus img {
 
 .everywhere {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: -5%;
+    left: -5%;
+    right: -5%;
+    bottom: -5%;
     width: 100%;
     height: 100%;
 }
@@ -486,16 +486,15 @@ li {
 .feed-links .feed-container.fullscreen {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: calc(var(--padding) * -1);
+    left: calc(var(--padding) * -1);
+    right: calc(var(--padding) * -1);
+    bottom: calc(var(--padding) * -1);
     z-index: 3;
-    height: 100%;
-    width: 100%;
-    max-height: 100%;
-    max-width: 100%;
-    padding: calc(var(--padding) * 3);
+    height: calc(100% + calc(var(--padding) * 2));
+    width: calc(100% + calc(var(--padding) * 2));
+    padding: calc(var(--padding) * 4);
+    backdrop-filter: blur(25px);
     box-shadow: inset 0 0 30rem 5rem rgba(0, 0, 0, 0.8);
 }
 
@@ -665,7 +664,6 @@ li {
 }
 
 .poe-links .container__list img,
-.news-list .container__list img,
 .news-links .container__list img {
     aspect-ratio: 4/3;
     max-width: 100px;
@@ -688,7 +686,6 @@ li {
 }
 
 .podcast-links .feed-container.fullscreen .container__list img,
-.news-list .feed-container.fullscreen .container__list img,
 .news-links .feed-container.fullscreen .container__list img,
 .poe-links .feed-container.fullscreen .container__list img {
     min-width: 20vw;
@@ -697,17 +694,9 @@ li {
 
 .news-links .feed-container.fullscreen .instapaper-list .container__list img,
 .news-links .feed-container.fullscreen .lastfm-list .container__list img,
-.news-links .feed-container.fullscreen .github-list .container__list img,
 .news-links .feed-container.fullscreen .twitter-list .container__list img {
     min-width: 52px;
     max-width: 52px;
-}
-
-.podcast-links .feed-container.fullscreen .container__list--item,
-.news-list .feed-container.fullscreen .container__list--item,
-.news-links .feed-container.fullscreen .container__list--item,
-.poe-links .feed-container.fullscreen .container__list--item {
-    width: 50%;
 }
 
 .container__list span.container__list--full-item {
@@ -1268,6 +1257,7 @@ li {
     z-index: 10;
     opacity: 1;
     visibility: visible;
+    backdrop-filter: blur(25px);
 }
 
 .shortcuts__inner {
@@ -1577,6 +1567,7 @@ li {
     .reddit-links .container__list img,
     .video-links .container__list img {
         min-width: 180px;
+        max-height: inherit;
         aspect-ratio: var(--sixteen-nine);
     }
 
@@ -1585,9 +1576,57 @@ li {
         height: calc(100% / 6);
     }
 
+    .poe-links .feed-container.fullscreen .container__list,
+    .podcast-links .feed-container.fullscreen .container__list,
+    .reddit-links .feed-container.fullscreen .container__list,
+    .news-links .feed-container.fullscreen .container__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .music-links .feed-container.fullscreen .container__list--item,
-    .video-links .feed-container.fullscreen .container__list--item {
+    .video-links .feed-container.fullscreen .container__list--item,
+    .poe-links .feed-container.fullscreen .container__list--item,
+    .podcast-links .feed-container.fullscreen .container__list--item,
+    .reddit-links .feed-container.fullscreen .container__list--item,
+    .news-links .feed-container.fullscreen .container__list--item {
         width: calc(100% / 4);
+        padding-right: var(--foundation-large);
+        padding-left: var(--foundation-large);
+    }
+
+    .poe-links .feed-container.fullscreen .container__list img,
+    .podcast-links .feed-container.fullscreen .container__list img,
+    .github-links .feed-container.fullscreen .github-list .container__list img,
+    .reddit-links .feed-container.fullscreen .container__list img,
+    .news-links .feed-container.fullscreen .container__list img {
+        margin-bottom: var(--foundation-large);
+        max-height: inherit;
+        height: inherit;
+        aspect-ratio: var(--one-one);
+    }
+
+    .video-links .feed-container.fullscreen .container__list img {
+        aspect-ratio: var(--sixteen-nine);
+    }
+
+    .podcast-links .feed-container.fullscreen .container__list .container__list--media,
+    .poe-links .feed-container.fullscreen .container__list .container__list--media,
+    .reddit-links .feed-container.fullscreen .container__list .container__list--media,
+    .news-links .feed-container.fullscreen .container__list .container__list--media,
+    .podcast-links .feed-container.fullscreen .container__list .container__list--media img,
+    .poe-links .feed-container.fullscreen .container__list .container__list--media img,
+    .reddit-links .feed-container.fullscreen .container__list .container__list--media img,
+    .news-links .feed-container.fullscreen .container__list .container__list--media img {
+        min-width: 100%;
+    }
+
+    .poe-links .feed-container.fullscreen .feed-list.fullscreen,
+    .podcast-links .feed-container.fullscreen .feed-list.fullscreen,
+    .reddit-links .feed-container.fullscreen .feed-list.fullscreen,
+    .news-links .feed-container.fullscreen .feed-list.fullscreen {
+        margin-right: calc(var(--foundation-large) * -1);
+        margin-left: calc(var(--foundation-large) * -1);
     }
 }
 
@@ -1652,6 +1691,16 @@ li {
 @media screen and (min-width: 72em) {
     .grid-padding-x>.cell.container__list--padding-override {
         padding-left: calc(var(--foundation-large) * 6);
+    }
+
+    .trakt-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
+    .news-links .feed-container.fullscreen .container__list--item,
+    .podcast-links .feed-container.fullscreen .container__list--item,
+    .poe-links .feed-container.fullscreen .container__list--item,
+    .reddit-links .feed-container.fullscreen .container__list--item,
+    .video-links .feed-container.fullscreen .container__list--item {
+        width: calc(100% / 5);
     }
 }
 

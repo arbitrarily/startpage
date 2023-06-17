@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.53.8",          // Version Number
+    v: "1.53.9",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -985,7 +985,6 @@
       vl.removeClass(start.s);
       setTimeout(() => {
         v.toggleClass("fullscreen");
-        $(".blur-target").toggleClass("blur");
         $(".container__list.container__list--title").toggleClass(start.h);
       }, 600);
       setTimeout(() => { vl.addClass(start.s) }, 1000);
@@ -1304,7 +1303,6 @@
       const shortcuts_toggle = html => {
         if ($(".shortcuts").hasClass(start.s)) html = "";
         $(".shortcuts").html(html).toggleClass(start.s);
-        $(".everything, .details").toggleClass("blur");
         $("body").toggleClass("lock");
         if ($(".shortcuts").hasClass(start.s)) start.notify("<span>Shortcuts</span> Menu");
         start.shortcuts_slider();
