@@ -701,6 +701,12 @@ li {
     border: 3px solid var(--grey);
 }
 
+@-moz-document url-prefix() {
+    .video-links.podcast-links .feed-container.fullscreen {
+        backdrop-filter: none;
+    }
+}
+
 .podcast-links .feed-container.fullscreen .container__list img,
 .news-links .feed-container.fullscreen .container__list img,
 .poe-links .feed-container.fullscreen .container__list img {
