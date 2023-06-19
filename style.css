@@ -764,9 +764,33 @@ li {
     transition: var(--animation);
 }
 
+.lastfm-list {
+    counter-reset: beforecount;
+}
+
+.lastfm-list .container__list--item .container__list {
+    position: relative;
+}
+
+.lastfm-list .container__list--item .container__list:before {
+    counter-increment: beforecount;
+    content: counter(beforecount);
+    position: absolute;
+    right: 0;
+    font-weight: var(--bold);
+    font-size: 1.8rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--grey);
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+}
+
 .container__list img {
     width: 20px;
     max-width: 20px;
+
     max-height: 20px;
     border-radius: var(--border-radius);
     filter: grayscale(0.75);
