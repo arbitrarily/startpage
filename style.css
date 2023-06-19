@@ -200,6 +200,7 @@ li,
 .feed-container,
 .shortcuts__feed-container,
 .container__links--overflow,
+.search__input--container-volume,
 .container__list--time {
     -webkit-transition: var(--animation);
     -moz-transition: var(--animation);
