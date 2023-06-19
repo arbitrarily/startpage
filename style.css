@@ -494,6 +494,10 @@ li {
     padding: var(--foundation);
 }
 
+.fullscreen a {
+    opacity: var(--opacity-end);
+}
+
 .feed-links .feed-container.fullscreen {
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
