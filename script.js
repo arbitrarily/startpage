@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.54.11",          // Version Number
+    v: "1.54.12",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -626,7 +626,14 @@
         start.media_ended();
       }
       setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
-      setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
+      if (start.d[16]) {
+        setTimeout(() => {
+          $(".feed-links").addClass(start.s);
+          start.fullscreen();
+        }, start.at * 2);
+      } else {
+        setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
+      }
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
       if (!$(".container__links--overflow").hasClass("link__0")) $(".container__links--overflow").addClass("link__0");
@@ -1041,7 +1048,7 @@
         start.title = vid_data.artist + ": " + vid_data.name + ", " + vid_data.album;
         start.marquee_title(start.title);
         if (vid_data.name.length > start.nl) vid_data.name = vid_data.name.slice(0, start.nl) + "...";
-        if (e.shiftKey) start.fullscreen();
+        if (start.d[16]) start.fullscreen();
         start.now_playing(vid_data, vid_data.name);
       });
     },
