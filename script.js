@@ -1399,7 +1399,6 @@
       hour_hand.attr('transform', 'rotate(' + h_angle + ', 50, 50)');
       minute_hand.attr('transform', 'rotate(' + m_angle + ', 50, 50)');
       second_hand.attr('transform', 'rotate(' + s_angle + ', 50, 50)');
-      console.log("asd");
       $(".menu-links__toggle--clock").attr("title", datetime);
     },
 
