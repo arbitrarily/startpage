@@ -269,11 +269,6 @@ a:focus img {
     opacity: 1;
 }
 
-.background-image.cloned {
-    z-index: -3;
-    mix-blend-mode: overlay;
-}
-
 .player.hidden,
 .container__list--time.hidden {
     display: none;
@@ -1509,10 +1504,6 @@ li {
 
 .nowpass.hidden {
     opacity: 0;
-}
-
-.nowpass.color-dodge {
-    mix-blend-mode: color-dodge;
 }
 
 .highlight {

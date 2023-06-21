@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.55.1",          // Version Number
+    v: "1.55.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -319,7 +319,6 @@
             70: start.fullscreen, // Fullscreen:           shift + "f"
             123: start.play_ambient_song, // Ambient Song: shift + "f12"
             65: start.now_pass, // Load Now Pass:          shift + "a"
-            90: start.overlay, // Background Overlay:      shift + "z"
             67: () => {
               start.lastfm();
               start.notify("Fetched <span>Last.fm</span>");
@@ -327,7 +326,6 @@
             88: start.background, // Background Image:     shift + "c"
             86: start.audio_volume, // Volume:             shift + "v"
             66: start.blur, // Blur:                       shift + "b"
-            188: start.now_pass_color_dodge, //            shift + ","
             72: start.shortcuts, // Help Shortcuts         shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
@@ -444,15 +442,6 @@
       start.notify(`Now Pass <span>Toggled</span> ${status}`);
     },
 
-    // Apply Color Dodge to Now Pass
-    now_pass_color_dodge: () => {
-      if ($(".nowpass").length) {
-        $(".nowpass").toggleClass("color-dodge");
-        const status = $(".nowpass.color-dodge").length ? " On" : " Off";
-        start.notify(`Now Pass <span>Overlay</span> ${status}`);
-      }
-    },
-
     // Notifications
     notify: text => {
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
@@ -482,33 +471,6 @@
           if (this.complete) $(this).trigger('load');
         });
       }, start.at * 6);
-    },
-
-    // Overlay Background Image
-    overlay: () => {
-      const bg = $(".background-image");
-      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-      if (!$(".cloned").length) {
-        const first = () => {
-          const clone = bg.clone().insertAfter(bg).addClass("hidden deblur cloned");
-          start.art_source(false);
-          return clone;
-        };
-        const last = async (clone) => {
-          if (clone.hasClass("cloned")) {
-            clone.toggleClass(start.h);
-            await wait(start.at * 5);
-            clone.toggleClass("hidden");
-          }
-        };
-        const clone = first();
-        last(clone);
-      } else {
-        const clone = $(".cloned");
-        clone.toggleClass("hidden");
-      }
-      const status = ($(".cloned").hasClass(start.h)) ? " Off" : " On";
-      start.notify(`Background <span>Overlay</span> ${status}`);
     },
 
     // Change Background Art Resolution
