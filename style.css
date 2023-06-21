@@ -670,7 +670,6 @@ li {
 
 .container__list img {
     transition: all 0.366s ease-in-out;
-    background-color: var(--gry);
 }
 
 .podcast-links .container__list img {
@@ -687,6 +686,7 @@ li {
     min-width: 100px;
     max-height: inherit;
     box-shadow: var(--shadow);
+    background-color: var(--gry);
 }
 
 .instapaper-list .container__list img,
