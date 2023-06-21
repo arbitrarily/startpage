@@ -1267,6 +1267,11 @@ li {
     opacity: 0.25;
 }
 
+.summary-links .feed-container.fullscreen li {
+    max-width: 38rem;
+    margin: auto;
+}
+
 .shortcuts {
     position: fixed;
     top: 0;
