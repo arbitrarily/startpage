@@ -43,11 +43,13 @@
                  background-color 0.366s ease-in-out,
                  transform 0.366s ease-in-out,
                  border-radius 0.366s ease-in-out,
+                 filter 0.366s ease-in-out,
                  padding 0.366s ease-in-out,
                  height 0.366s ease-in-out;
     --animation-long: opacity 1.3s ease-in-out,
                       color 1.3s ease-in-out,
                       background-color 1.3s ease-in-out,
+                      filter 1.3s ease-in-out,
                       transform 1.3s ease-in-out,
                       border-radius 1.3s ease-in-out,
                       padding 1.3s ease-in-out,
