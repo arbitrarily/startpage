@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.55.2",          // Version Number
+    v: "1.55.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -978,7 +978,6 @@
       vl.removeClass(start.s);
       setTimeout(() => {
         v.toggleClass("fullscreen");
-        $(".container__list.container__list--title").toggleClass(start.h);
       }, start.at * 2);
       setTimeout(() => {
         start.hide_background_elements();

@@ -1776,10 +1776,6 @@ li {
 }
 
 @media screen and (min-width: 96em) {
-    .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 6);
-    }
-
     .trakt-links .feed-container.fullscreen .container__list--item,
     .music-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
@@ -1788,6 +1784,18 @@ li {
     .reddit-links .feed-container.fullscreen .container__list--item,
     .video-links .feed-container.fullscreen .container__list--item {
         width: calc(100% / 6);
+    }
+}
+
+@media screen and (min-width: 118em) {
+    .trakt-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
+    .news-links .feed-container.fullscreen .container__list--item,
+    .podcast-links .feed-container.fullscreen .container__list--item,
+    .poe-links .feed-container.fullscreen .container__list--item,
+    .reddit-links .feed-container.fullscreen .container__list--item,
+    .video-links .feed-container.fullscreen .container__list--item {
+        width: calc(100% / 8);
     }
 }
 
