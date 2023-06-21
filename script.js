@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.55.6",          // Version Number
+    v: "1.55.7",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -179,7 +179,6 @@
       this.read_summaries();          // Read Summaries
       this.the_time();                // Time
       this.scroll_top_on_click();     // Scroll to Top of Feed on Click
-      this.check_if_scrolled_top();   // Determine if Scrolled to Top
       this.rerun_functions();         // Cron Functions
       this.bye();                     // Run Before Leaving Page
     },
@@ -1400,6 +1399,7 @@
       hour_hand.attr('transform', 'rotate(' + h_angle + ', 50, 50)');
       minute_hand.attr('transform', 'rotate(' + m_angle + ', 50, 50)');
       second_hand.attr('transform', 'rotate(' + s_angle + ', 50, 50)');
+      console.log("asd");
       $(".menu-links__toggle--clock").attr("title", datetime);
     },
 
