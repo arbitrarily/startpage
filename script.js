@@ -21,6 +21,7 @@
     c: false,             // Config
     count: false,         // Search Count
     d: {},                // Keyboard Variable
+    f: false,             // Fullscreen
     fc: false,            // Feed Count
     fs: 0,                // Feed Slide Count
     h: "hidden",          // Shared Class Names
@@ -35,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.54.18",         // Version Number
+    v: "1.55.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -377,10 +378,11 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
-      $(document).on(start.t, ".menu-links__toggle", function (e) {
+      $(document).on("click contextmenu", ".menu-links__toggle", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
         $(this).addClass(start.s).siblings().removeClass(start.s);
+        if (e.type === "contextmenu") start.f = true;
         if (Number.isInteger(start.fc)) start.mf[start.fc]();
         if ($(window).scrollTop() > $(".container__content").offset().top) {
           $("html, body").animate({
@@ -627,10 +629,11 @@
         start.media_ended();
       }
       setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
-      if (start.d[16]) {
+      if (start.f) {
         setTimeout(() => {
           $(".feed-links").addClass(start.s);
           start.fullscreen();
+          start.f = !start.f;
         }, start.at * 2);
       } else {
         setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
