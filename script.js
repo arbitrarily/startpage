@@ -35,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.54.15",         // Version Number
+    v: "1.54.17",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -178,6 +178,7 @@
       this.read_summaries();          // Read Summaries
       this.the_time();                // Time
       this.scroll_top_on_click();     // Scroll to Top of Feed on Click
+      this.check_if_scrolled_top();   // Determine if Scrolled to Top
       this.rerun_functions();         // Cron Functions
       this.bye();                     // Run Before Leaving Page
     },
@@ -991,6 +992,19 @@
       });
     },
 
+    // Hide Background Elements in Fullscreen Mode
+    hide_background_elements: () => {
+      const divs = [
+        $(".container__list--menu"),
+        $(".container__list--title"),
+        $(".search__wrapper"),
+        $(".details"),
+      ];
+      for (let div of divs) {
+        div.toggleClass(start.h);
+      }
+    },
+
     // Fullscreen Toggle
     fullscreen: () => {
       const v = $(".feed-links .feed-list, .feed-container, .container__overflow"),
@@ -1001,7 +1015,10 @@
         v.toggleClass("fullscreen");
         $(".container__list.container__list--title").toggleClass(start.h);
       }, start.at * 2);
-      setTimeout(() => { vl.addClass(start.s) }, 1000);
+      setTimeout(() => {
+        start.hide_background_elements();
+        vl.addClass(start.s);
+      }, 1000);
       start.fullscreen_toggle();
       if (!$(".container__links--overflow").hasClass("link__0")) {
         $(".container__links--overflow").addClass("link__0");
@@ -1257,6 +1274,7 @@
       });
     },
 
+    // Scroll to Top on Click
     scroll_top_on_click: () => {
       $(document).on(start.t, ".feed-links .container__list--title", (e) => {
         e.preventDefault();
