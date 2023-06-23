@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.56.3",          // Version Number
+    v: "1.57.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -196,6 +196,17 @@
           start.init();
         })
         .catch(() => $(".feed-links").addClass(start.s));
+      try {
+        fetch('./conf-openai.json')
+          .then(response => response.json())
+          .then(conf => {
+            // Store Config
+            start.c.openai = conf['key'];
+          })
+          .catch(() => $(".feed-links").addClass(start.s));
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     // Random Number in a Range
@@ -289,6 +300,9 @@
 
         if (start.d[16]) { // Shift
           e.preventDefault();
+
+          // Search GPT on Enter
+          if (start.d[13]) start.gpt();
 
           // Switch Feed Source
           const shift_keys_map = {
@@ -610,7 +624,10 @@
           start.f = !start.f;
         }, start.at * 2);
       } else {
-        setTimeout(() => { $(".feed-links").addClass(start.s) }, start.at * 2);
+        setTimeout(() => {
+          $(".feed-links").addClass(start.s);
+          if ($(".gpt-links".length)) Prism.highlightAll();
+        }, start.at * 2);
       }
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
@@ -1284,14 +1301,18 @@
       fetch(start.c.ethplorerURL + '?t=' + start.timestamp())
         .then(res => res.json())
         .then(res => {
-          start.balance = res["ETH"]["totalIn"].toString();
-          var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
-          var balance_diff = res["ETH"]["price"]["diff"];
-          var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
-          if (start.balance) {
-            $(".wallet-replace").text((balance_formatted + formatted).toString());
-            $(".wallet").addClass(start.s);
-            start.nc = res['ETH']['price'];
+          if (res["ETH"]["totalIn"] && res["ETH"]["price"]) {
+            start.balance = res["ETH"]["totalIn"].toString();
+            var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
+            var balance_diff = res["ETH"]["price"]["diff"];
+            var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
+            if (start.balance) {
+              $(".wallet-replace").text((balance_formatted + formatted).toString());
+              $(".wallet").addClass(start.s);
+              start.nc = res['ETH']['price'];
+            }
+          } else {
+            $(".wallet").remove();
           }
         });
     },
@@ -1379,6 +1400,44 @@
           start.notify(`<span>Launching</span> ${game_name}`);
         }
       });
+    },
+
+    // GPT
+    gpt: () => {
+      if (start.c.openai) {
+        $(".feed-links").addClass("loading").html('<span class="loader"></span>');
+        let data = {
+          "model": "gpt-3.5-turbo",
+          "messages": [{
+            "role": "user",
+            "content": $("#search").val() + " Format: Markdown with Syntax Highlighting Support"
+          }],
+          "temperature": 0.7
+        };
+        fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + start.c.openai,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data),
+        }).then(response => response.json())
+          .then(data => {
+            const d = marked.parse(data.choices[0].message.content);
+            let html = `<div class="feed-links gpt-links">
+                          <div class="feed-container">
+                            <div class="grid-x feed-list">
+                              <div class="cell">
+                                ${d}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        `;
+            start.feed_toggle(html, "Code");
+          })
+          .catch(error => console.error('Error:', error));
+      }
     },
 
     // Animation on Leave & Alert Check if Media is Playing
