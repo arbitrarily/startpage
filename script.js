@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.9",          // Version Number
+    v: "1.57.10",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1419,12 +1419,14 @@
           body: JSON.stringify(data),
         }).then(response => response.json())
           .then(data => {
+            const t = start.format_numb(data.usage.total_tokens);
             const d = marked.parse(data.choices[0].message.content);
             let html = `<div class="feed-links gpt-links">
                           <ul class="grid-x container__list--title-list">
                             <li class="cell">
                               <span class="container__list container__list--title">
                                 <span>OPENAI GPT</span>
+                                <span title="Tokens Used">${t}</span>
                               </span>
                             </li>
                           </ul>
