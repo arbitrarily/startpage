@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.13",         // Version Number
+    v: "1.57.14",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1412,7 +1412,7 @@
                           <ul class="grid-x container__list--title-list">
                             <li class="cell">
                               <span class="container__list container__list--title">
-                                <span>OPENAI GPT</span>
+                                <span>GPT</span>
                                 <span title="Tokens Used">${t}</span>
                               </span>
                             </li>
@@ -1420,6 +1420,16 @@
                           <div class="feed-container">
                             <div class="grid-x feed-list">
                               <div class="cell">
+                                <h2>${$("#search").val()}</h2>
+                              </div>
+                              <div class="cell">
+                                <div class="grid-x container__list--title-list">
+                                  <div class="cell">
+                                    <span class="container__list container__list--title">
+                                      <span>Response</span>
+                                    </span>
+                                  </div>
+                                </div>
                                 ${d}
                               </div>
                             </div>
@@ -1427,6 +1437,7 @@
                         </div>
                         `;
             start.feed_toggle(html, "Code");
+            $("#search").val("");
           })
           .catch(error => console.error('Error:', error));
       }
