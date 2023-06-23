@@ -1975,6 +1975,7 @@ code[class*="language-"] {
     hyphens: none;
     border-radius: var(--border-radius);
     margin-bottom: var(--padding);
+    white-space: break-spaces;
 }
 
 pre[class*="language-"]::selection,
