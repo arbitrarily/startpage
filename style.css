@@ -553,6 +553,7 @@ li {
 .feed-links.gpt-links .feed-container h2 {
     font-weight: var(--bold);
     font-size: 1.9375rem;
+    line-height: 1.1;
 }
 
 .feed-links.gpt-links .feed-container li {
