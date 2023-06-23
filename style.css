@@ -39,6 +39,7 @@
 
     /* Animation */
     --animation: opacity 0.366s ease-in-out,
+                 width 0.366s ease-in-out,
                  color 0.366s ease-in-out,
                  background-color 0.366s ease-in-out,
                  transform 0.366s ease-in-out,
