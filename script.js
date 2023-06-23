@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.7",          // Version Number
+    v: "1.57.8",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -196,17 +196,12 @@
           start.init();
         })
         .catch(() => $(".feed-links").addClass(start.s));
-      try {
-        fetch('./conf-openai.json')
-          .then(response => response.json())
-          .then(conf => {
-            // Store Config
-            start.c.openai = conf['key'];
-          })
-          .catch(() => $(".feed-links").addClass(start.s));
-      } catch (error) {
-        console.log(error);
-      }
+      fetch('./conf-openai.json')
+        .then(response => response.json())
+        .then(conf => {
+          // Store Config
+          start.c.openai = conf['key'];
+        });
     },
 
     // Random Number in a Range
