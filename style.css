@@ -549,6 +549,12 @@ li {
     margin-bottom: var(--padding);
 }
 
+.feed-links.gpt-links .feed-container h1,
+.feed-links.gpt-links .feed-container h2 {
+    font-weight: var(--bold);
+    font-size: 1.9375rem;
+}
+
 .feed-links.gpt-links .feed-container li {
     list-style: inherit;
 }
