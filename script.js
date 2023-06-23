@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.1",          // Version Number
+    v: "1.57.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1425,6 +1425,13 @@
           .then(data => {
             const d = marked.parse(data.choices[0].message.content);
             let html = `<div class="feed-links gpt-links">
+                          <ul class="grid-x container__list--title-list">
+                            <li class="cell">
+                              <span class="container__list container__list--title">
+                                <span>OPENAI GPT</span>
+                              </span>
+                            </li>
+                          </ul>
                           <div class="feed-container">
                             <div class="grid-x feed-list">
                               <div class="cell">

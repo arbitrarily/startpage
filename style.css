@@ -543,12 +543,12 @@ li {
     color: var(--white);
 }
 
-.feed-links.gpt-links ul {
+.feed-links.gpt-links .feed-container ul:not(.feed-list) {
     padding-left: var(--padding);
     margin-bottom: var(--padding);
 }
 
-.feed-links.gpt-links li {
+.feed-links.gpt-links .feed-container li {
     list-style: inherit;
 }
 
@@ -1988,7 +1988,8 @@ code[class*="language-"] *::selection {
 pre,
 pre[class*="language-"] {
     padding: var(--padding);
-    margin: var(--padding) 0;
+    margin-top: 0;
+    margin-bottom: var(--padding);
     overflow: auto;
     background: rgba(7, 7, 7, 0.55);
 }
