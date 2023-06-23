@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.10",         // Version Number
+    v: "1.57.12",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -163,7 +163,6 @@
       this.background();              // Background Image
       this.wallet();                  // Wallet Value
       this.lastfm();                  // Get Last FM Now Playing
-      this.focus_click();             // Search Focus
       this.change_search();           // Search Change
       this.help_toggle();             // Help Toggle
       this.timer_media_toggle();      // Add Event Listeners
@@ -1320,18 +1319,6 @@
       });
     },
 
-    // Focus Search if Clicking Anything Not a Link or Input
-    focus_click: () => {
-      if (window.matchMedia("(min-width: 40em)").matches) {
-        $(document).on(start.t, e => {
-          if (e.target.tagName !== "A" &&
-            e.target.tagName !== "INPUT" &&
-            e.target.tagName !== "PRE"
-          ) start.focus_search();
-        });
-      }
-    },
-
     // Help Shortcuts
     shortcuts: async () => {
       const shortcuts_toggle = html => {
@@ -1403,7 +1390,7 @@
       if (start.c.openai) {
         $(".feed-links").addClass("loading").html('<span class="loader"></span>');
         let data = {
-          "model": "gpt-3.5-turbo",
+          "model": "gpt-3.5-turbo-16k",
           "messages": [{
             "role": "user",
             "content": $("#search").val() + " Format: Markdown with Syntax Highlighting Support"

@@ -1999,6 +1999,7 @@ pre[class*="language-"] {
     margin-bottom: var(--padding);
     overflow: auto;
     background: rgba(7, 7, 7, 0.55);
+    box-shadow: var(--shadow);
 }
 
 :not(pre)>code,
@@ -2007,6 +2008,7 @@ pre[class*="language-"] {
     border-radius: .3em;
     color: var(--red);
     background: rgba(7, 7, 7, 0.55);
+    box-shadow: var(--shadow);
 }
 
 /*********************************************************
