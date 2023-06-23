@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.6",          // Version Number
+    v: "1.57.7",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1330,7 +1330,8 @@
       if (window.matchMedia("(min-width: 40em)").matches) {
         $(document).on(start.t, e => {
           if (e.target.tagName !== "A" &&
-            e.target.tagName !== "INPUT"
+            e.target.tagName !== "INPUT" &&
+            e.target.tagName !== "PRE"
           ) start.focus_search();
         });
       }
