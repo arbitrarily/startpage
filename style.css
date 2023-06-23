@@ -543,7 +543,8 @@ li {
     color: var(--white);
 }
 
-.feed-links.gpt-links .feed-container ul:not(.feed-list) {
+.feed-links.gpt-links .feed-container ul:not(.feed-list),
+.feed-links.gpt-links .feed-container ol:not(.feed-list) {
     padding-left: var(--padding);
     margin-bottom: var(--padding);
 }
