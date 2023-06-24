@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.17",         // Version Number
+    v: "1.58.3",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -161,13 +161,12 @@
       this.pageview_counter();        // Pageview Counter
       this.key_listener();            // Key Listeners
       this.background();              // Background Image
-      this.wallet();                  // Wallet Value
+      // this.wallet();               // Wallet Value; Disabled temporarily
       this.lastfm();                  // Get Last FM Now Playing
       this.change_search();           // Search Change
       this.help_toggle();             // Help Toggle
       this.timer_media_toggle();      // Add Event Listeners
       this.ip();                      // IP
-      this.log();                     // Output into Console
       this.focus_search();            // Focus on Search
       this.marquee_title(self.title); // Marquee Title
       this.steam_links();             // Launch Games on Windows
@@ -181,6 +180,7 @@
       this.scroll_links_on_scroll();  // Scroll Feed Links on Scroll
       this.rerun_functions();         // Cron Functions
       this.bye();                     // Run Before Leaving Page
+      this.log();                     // Output into Console
     },
 
     // Load Config, then Init
@@ -198,10 +198,18 @@
       fetch('./conf-openai.json')
         .then(response => response.json())
         .then(conf => {
-          // Store Config
-          start.c.openai = conf['key'];
+          if (conf) {
+            // Store Config
+            start.c.openai = conf;
+            // Load Scripts Conditionally
+            start.load_js("prism.js");
+            start.load_js("marked.js");
+          }
         });
     },
+
+    // Load Scripts Conditionally
+    load_js: (url) => $.getScript(url),
 
     // Random Number in a Range
     random_numb: (min, max) => Math.floor(Math.random() * (max - min + 1) + min),
@@ -993,7 +1001,7 @@
     hide_background_elements: () => {
       const divs = [
         $(".container__list--menu"),
-        $(".container__list--title"),
+        $(".container__list.container__list--title"),
         $(".search__wrapper"),
         $(".details"),
       ];
@@ -1402,14 +1410,14 @@
           "model": "gpt-3.5-turbo-16k",
           "messages": [{
             "role": "user",
-            "content": $("#search").val() + " Format: Markdown with Syntax Highlighting Support"
+            "content": `${start.c.openai.prompt}\n\n ${$("#search").val()}`
           }],
           "temperature": 0.7
         };
         fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer ' + start.c.openai,
+            'Authorization': 'Bearer ' + start.c.openai.key,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(data),
@@ -1429,12 +1437,10 @@
                           <div class="feed-container">
                             <div class="grid-x feed-list">
                               <div class="cell">
-                                <h2>${$("#search").val()}</h2>
-                              </div>
-                              <div class="cell">
+                                <h2 class="gpt-links__prompt">${$("#search").val()}</h2>
                                 <div class="grid-x container__list--title-list">
                                   <div class="cell">
-                                    <span class="container__list container__list--title">
+                                    <span class="container__list--title container__list--title-reponse">
                                       <span>Response</span>
                                     </span>
                                   </div>

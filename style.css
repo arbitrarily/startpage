@@ -510,8 +510,8 @@ li {
     transform: translate(-50%, -50%) rotateZ(45deg);
     perspective: 1000px;
     border-radius: 50%;
-    width: 90px;
-    height: 90px;
+    width: 72px;
+    height: 72px;
     color: #fff;
 }
 
@@ -562,6 +562,40 @@ li {
 
 .feed-links.gpt-links .feed-list {
     flex-flow: column;
+}
+
+.feed-links.gpt-links .feed-container.fullscreen .cell {
+    max-width: 52rem;
+    margin: auto;
+}
+
+.feed-links.gpt-links div.code-toolbar>.toolbar {
+    padding: var(--padding);
+    top: 0;
+    right: 0;
+}
+
+.feed-links.gpt-links div.code-toolbar>.toolbar>.toolbar-item {
+    margin-left: var(--foundation);
+}
+
+.feed-links.gpt-links div.code-toolbar>.toolbar>.toolbar-item>a,
+.feed-links.gpt-links div.code-toolbar>.toolbar>.toolbar-item>button,
+.feed-links.gpt-links div.code-toolbar>.toolbar>.toolbar-item>span {
+    background-color: var(--gry);
+    padding: 6px 9px 4px;
+    font-weight: var(--bold);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    -webkit-transition: var(--animation);
+    -moz-transition: var(--animation);
+    -o-transition: var(--animation);
+    transition: var(--animation);
+    box-shadow: none;
+}
+
+.gpt-links__prompt {
+    margin-bottom: var(--padding);
 }
 
 .feed-links iframe.feed-list#video-container {
@@ -1960,7 +1994,8 @@ li {
 pre,
 code,
 pre[class*="language-"],
-code[class*="language-"] {
+code[class*="language-"],
+.token.url-link {
     color: #d4d4d4;
     font-size: 13px;
     text-shadow: none;
@@ -2017,11 +2052,16 @@ pre[class*="language-"] {
     box-shadow: var(--shadow);
 }
 
+
 /*********************************************************
 * Tokens
 */
 .namespace {
     opacity: .7;
+}
+
+.token.url-link {
+    color: var(--red);
 }
 
 .token.doctype .token.doctype-tag {
@@ -2030,6 +2070,10 @@ pre[class*="language-"] {
 
 .token.doctype .token.name {
     color: #9cdcfe;
+}
+
+.feed-links.gpt-links div.code-toolbar > .toolbar > .toolbar-item > button.copy-to-clipboard-button {
+    background-color: var(--grey);
 }
 
 .token.comment,
