@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.58.3",          // Version Number
+    v: "1.58.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -154,33 +154,38 @@
 
     // Init
     init: function () {
-      this.detect_section_hash();    // Detect Page
-      this.version();                // Version Number
-      // Background Art Number
-      start.an = this.random_numb(1, 243).toString().padStart(4, "0");
-      this.pageview_counter();        // Pageview Counter
+      this.detect_section_hash();     // Detect Page (Routing)
       this.key_listener();            // Key Listeners
-      this.background();              // Background Image
-      // this.wallet();               // Wallet Value; Disabled temporarily
-      this.lastfm();                  // Get Last FM Now Playing
-      this.change_search();           // Search Change
-      this.help_toggle();             // Help Toggle
+      this.change_search();           // Search Change Handler
       this.timer_media_toggle();      // Add Event Listeners
-      this.ip();                      // IP
       this.focus_search();            // Focus on Search
       this.marquee_title(self.title); // Marquee Title
-      this.steam_links();             // Launch Games on Windows
-      this.menu_clicks();             // Menu Clicks
-      // Audio or Video on Click
-      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
-      this.video_click();
+      this.steam_links();             // Launch Games on Windows Handler
+      this.menu_clicks();             // Menu Click Handler
+      this.video_click();             // Video Click Handler
       this.read_summaries();          // Read Summaries
-      this.the_time();                // Time
       this.scroll_top_on_click();     // Scroll to Top of Feed on Click
       this.scroll_links_on_scroll();  // Scroll Feed Links on Scroll
       this.rerun_functions();         // Cron Functions
+      this.the_time();                // Clock
       this.bye();                     // Run Before Leaving Page
       this.log();                     // Output into Console
+      // Background Art Number
+      start.an = this.random_numb(1, 243).toString().padStart(4, "0");
+      // Audio or Video on Click
+      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+      // External Request Based Functions
+      this.external_requests(this);
+    },
+
+    // Function That Call Outside APIs
+    external_requests: function () {
+      this.version();                 // Version Number
+      this.pageview_counter();        // Pageview Counter
+      this.background();              // Background Image
+      this.lastfm();                  // Get Last FM Now Playing
+      this.ip();                      // IP
+      this.help_toggle();             // Help Toggle
     },
 
     // Load Config, then Init
@@ -1304,27 +1309,6 @@
         .catch(err => {
           $(".counter").remove();
           start.pv = true;
-        });
-    },
-
-    // Primary Wallet Status
-    wallet: () => {
-      fetch(start.c.ethplorerURL + '?t=' + start.timestamp())
-        .then(res => res.json())
-        .then(res => {
-          if (res["ETH"]["totalIn"] && res["ETH"]["price"]) {
-            start.balance = res["ETH"]["totalIn"].toString();
-            var balance_formatted = (res["ETH"]["totalIn"]).toFixed(3);
-            var balance_diff = res["ETH"]["price"]["diff"];
-            var formatted = (balance_diff > 0 ? " (+" + balance_diff + "%)" : " (" + balance_diff + "%)");
-            if (start.balance) {
-              $(".wallet-replace").text((balance_formatted + formatted).toString());
-              $(".wallet").addClass(start.s);
-              start.nc = res['ETH']['price'];
-            }
-          } else {
-            $(".wallet").remove();
-          }
         });
     },
 

@@ -570,7 +570,7 @@ li {
 }
 
 .feed-links.gpt-links div.code-toolbar>.toolbar {
-    padding: var(--padding);
+    padding: var(--foundation);
     top: 0;
     right: 0;
 }
