@@ -510,8 +510,8 @@ li {
     transform: translate(-50%, -50%) rotateZ(45deg);
     perspective: 1000px;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     color: #fff;
 }
 
