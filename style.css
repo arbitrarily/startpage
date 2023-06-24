@@ -560,6 +560,10 @@ li {
     list-style: inherit;
 }
 
+.feed-links.gpt-links .feed-list {
+    flex-flow: column;
+}
+
 .feed-links iframe.feed-list#video-container {
     height: calc(var(--max-height) - var(--max-height--header) - 16px);
 }

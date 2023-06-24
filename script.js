@@ -36,7 +36,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.57.15",         // Version Number
+    v: "1.57.16",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -293,10 +293,12 @@
         start.d[e.keyCode] = true;
 
         if (start.d[16]) { // Shift
-          e.preventDefault();
 
           // Search GPT on Enter
-          if (start.d[13]) start.gpt();
+          if (start.d[13]) {
+            e.preventDefault();
+            start.gpt();
+          }
 
           // Switch Feed Source
           const shift_keys_map = {
@@ -314,7 +316,10 @@
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
-          if (Number.isInteger(start.fc)) start.mf[start.fc]();
+          if (Number.isInteger(start.fc)) {
+            e.preventDefault();
+            start.mf[start.fc]();
+          }
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
@@ -337,7 +342,10 @@
             72: start.shortcuts, // Help Shortcuts         shift + "h"
             84: start.switch_audio_source // Audio Source  shift + "t"
           };
-          if (shift_functions_mapped[e.keyCode]) shift_functions_mapped[e.keyCode]();
+          if (shift_functions_mapped[e.keyCode]) {
+            e.preventDefault();
+            shift_functions_mapped[e.keyCode]();
+          }
 
         } else {
           // Links Toggle                                  ⏫ or ⏬
@@ -416,6 +424,7 @@
     scroll_links_on_scroll: () => {
       $(document).on("wheel", function (e) {
         if ($(e.target).closest(".container__links").length) return;
+        if ($(e.target).closest(".shortcuts__inner").length) return;
         if (e.originalEvent.deltaY < 0) {
           if (start.fs > 0) start.scroll_links(start.fs - 1);
         } else {
