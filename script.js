@@ -16,7 +16,6 @@
     at: 333,              // Animation Time
     audio: new Audio(),   // Audio
     au: false,            // Art URL
-    balance: false,       // Wallet Balance
     cache: {},            // Cached HTML
     c: false,             // Config
     count: false,         // Search Count
@@ -36,7 +35,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.58.4",          // Version Number
+    v: "1.58.5",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -152,6 +151,31 @@
       () => start.summaries()
     ],
 
+    // Load Config, then Init
+    config: () => {
+      fetch('./conf.json')
+        .then(response => response.json())
+        .then(conf => {
+          // Store Config
+          start.c = conf;
+          start.au = conf.artThumbURL;
+          // Init
+          start.init();
+        })
+        .catch(() => $(".feed-links").addClass(start.s));
+      fetch('./conf-openai.json')
+        .then(response => response.json())
+        .then(conf => {
+          if (conf) {
+            // Store Config
+            start.c.openai = conf;
+            // Load Scripts Conditionally
+            start.load_js("prism.js");
+            start.load_js("marked.js");
+          }
+        });
+    },
+
     // Init
     init: function () {
       this.detect_section_hash();     // Detect Page (Routing)
@@ -186,31 +210,6 @@
       this.lastfm();                  // Get Last FM Now Playing
       this.ip();                      // IP
       this.help_toggle();             // Help Toggle
-    },
-
-    // Load Config, then Init
-    config: () => {
-      fetch('./conf.json')
-        .then(response => response.json())
-        .then(conf => {
-          // Store Config
-          start.c = conf;
-          start.au = conf.artThumbURL;
-          // Init
-          start.init();
-        })
-        .catch(() => $(".feed-links").addClass(start.s));
-      fetch('./conf-openai.json')
-        .then(response => response.json())
-        .then(conf => {
-          if (conf) {
-            // Store Config
-            start.c.openai = conf;
-            // Load Scripts Conditionally
-            start.load_js("prism.js");
-            start.load_js("marked.js");
-          }
-        });
     },
 
     // Load Scripts Conditionally
@@ -288,7 +287,6 @@
         // Initial Feed
         start.init_fetch();
       }
-
     },
 
     get detect_section_hash() {
@@ -305,7 +303,8 @@
         // Key Down
         start.d[e.keyCode] = true;
 
-        if (start.d[16]) { // Shift
+        // Shift
+        if (start.d[16]) {
 
           // Search GPT on Enter
           if (start.d[13]) {
@@ -366,7 +365,8 @@
           if (start.d[38] && start.fs > 0) start.scroll_links(start.fs - 1);
         }
 
-        if (start.d[18]) { // Alt / Option
+        // Alt / Option
+        if (start.d[18]) {
           e.preventDefault();
 
           // Switch Search Source
