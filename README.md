@@ -25,6 +25,7 @@ This is the page I use on every new window/tab load in my browsers. It's persona
 * Launch Steam games.
 * View upcoming TV show calendar.
 * View who's online on Twitch.
+* GPT integration.
 * Listen to podcasts.
 * Listen to several different music playlists/libraries.
 * Listen to shuffled background music playlist.
@@ -40,7 +41,6 @@ This is the page I use on every new window/tab load in my browsers. It's persona
   * rewind
   * faster/slower playback speed control
 * See what music I'm currently listening to.
-* See how my MetaMask wallet is doing.
 * See current public IP address and city.
 * See nowplaying in tabbed title of page.
 * View generated summaries of daily headlines.
@@ -105,6 +105,16 @@ It should look like this or similar, keeping what you want and removing what you
 The params `instapaperURL`, `techmemeURL`, `nytURL`, `redditURL`, `alchemyURL`, `lexiURL`, `poeURL`, `podURL` are websites where I render the html/rss into an HTML column. There are others not mentioned above.
 
 `counterURL` is an endpoint I use to track pageviews. `ethplorerURL` gives wallet stats. `etherscanURL` is unused currently. `lastFMURL` gives my last played song and total count of scrobbles. `ipKey` is a free key you get for IP checks from [https://ipinfo.io](https://ipinfo.io).
+
+There's another config file for GPT integration (optional). The file sholud be named `conf-openai.json` and look like:
+
+```
+{
+  "key": "sk-X",
+  "prompt": "Y",
+  "model": "Z"
+}
+```
 
 The background images are randomly chosen from a series of images I serve on my own website.
 

@@ -510,8 +510,8 @@ li {
     transform: translate(-50%, -50%) rotateZ(45deg);
     perspective: 1000px;
     border-radius: 50%;
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
     color: #fff;
 }
 
@@ -1315,10 +1315,6 @@ li {
     -webkit-line-clamp: 1;
 }
 
-.video-links .container__list span.container__list--description {
-    -webkit-line-clamp: 4;
-}
-
 .trakt-links .container__list span.container__list--description {
     -webkit-line-clamp: 5;
 }
@@ -1766,6 +1762,7 @@ li {
     .poe-links .feed-container.fullscreen .container__list,
     .podcast-links .feed-container.fullscreen .container__list,
     .reddit-links .feed-container.fullscreen .container__list,
+    .video-links .feed-container.fullscreen .container__list,
     .news-links .feed-container.fullscreen .container__list {
         display: flex;
         flex-wrap: wrap;
@@ -1799,6 +1796,7 @@ li {
     .podcast-links .feed-container.fullscreen .container__list .container__list--media,
     .poe-links .feed-container.fullscreen .container__list .container__list--media,
     .reddit-links .feed-container.fullscreen .container__list .container__list--media,
+    .video-links .feed-container.fullscreen .container__list .container__list--media,
     .news-links .feed-container.fullscreen .container__list .container__list--media {
         margin-bottom: var(--foundation);
     }
@@ -1807,6 +1805,7 @@ li {
     .poe-links .feed-container.fullscreen .container__list .container__list--media,
     .reddit-links .feed-container.fullscreen .container__list .container__list--media,
     .news-links .feed-container.fullscreen .container__list .container__list--media,
+    .video-links .feed-container.fullscreen .container__list .container__list--media,
     .podcast-links .feed-container.fullscreen .container__list .container__list--media img,
     .poe-links .feed-container.fullscreen .container__list .container__list--media img,
     .reddit-links .feed-container.fullscreen .container__list .container__list--media img,
@@ -1819,14 +1818,10 @@ li {
     .poe-links .feed-container.fullscreen .feed-list.fullscreen,
     .podcast-links .feed-container.fullscreen .feed-list.fullscreen,
     .reddit-links .feed-container.fullscreen .feed-list.fullscreen,
+    .video-links .feed-container.fullscreen .feed-list.fullscreen,
     .news-links .feed-container.fullscreen .feed-list.fullscreen {
         margin-right: calc(var(--foundation-large) * -1);
         margin-left: calc(var(--foundation-large) * -1);
-    }
-
-    .video-links.podcast-links .feed-container.fullscreen .feed-list.fullscreen {
-        margin-right: 0;
-        margin-left: 0;
     }
 }
 
@@ -2241,51 +2236,4 @@ pre[class*="language-"] {
 
 .token.namespace {
     color: #4ec9b0;
-}
-
-/*********************************************************
-* Language Specific
-*/
-
-pre[class*="language-javascript"],
-code[class*="language-javascript"],
-pre[class*="language-jsx"],
-code[class*="language-jsx"],
-pre[class*="language-typescript"],
-code[class*="language-typescript"],
-pre[class*="language-tsx"],
-code[class*="language-tsx"] {
-    color: #9cdcfe;
-}
-
-pre[class*="language-css"],
-code[class*="language-css"] {
-    color: #ce9178;
-}
-
-pre[class*="language-html"],
-code[class*="language-html"] {
-    color: #d4d4d4;
-}
-
-.language-regex .token.anchor {
-    color: #dcdcaa;
-}
-
-.language-html .token.punctuation {
-    color: #808080;
-}
-
-/*********************************************************
-* Line highlighting
-*/
-pre[class*="language-"]>code[class*="language-"] {
-    position: relative;
-    z-index: 1;
-}
-
-.line-highlight.line-highlight {
-    background: #f7ebc6;
-    box-shadow: inset 5px 0 0 #f7d87c;
-    z-index: 0;
 }

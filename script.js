@@ -18,24 +18,21 @@
     au: false,            // Art URL
     cache: {},            // Cached HTML
     c: false,             // Config
-    count: false,         // Search Count
     d: {},                // Keyboard Variable
     f: false,             // Fullscreen
     fc: false,            // Feed Count
     fs: 0,                // Feed Slide Count
     h: "hidden",          // Shared Class Names
-    nc: false,            // NFT Collection
     nl: 60,               // Notification String Limit
     pb: 0,                // Progress Bar
-    pj: false,            // Playlist Content
-    pll: 0,               // Playlist Length
     pv: false,            // Pageviews
     s: "shown",           // Shared Class Names
+    sc: false,            // Search Count
     t: "click",           // Touch Events
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.58.5",          // Version Number
+    v: "1.59.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -115,19 +112,19 @@
 
     // Mapped Functions
     mf: [
-      () => start.instapaper(),
-      () => start.news(),
-      () => start.nyt(),
-      () => start.reddit(),
-      () => start.podcasts(),
-      () => start.play_music(),
-      () => start.play_video(),
-      () => start.poe(),
-      () => start.industry_news(),
-      () => start.steam_games(),
-      () => start.nfts(),
-      () => start.steam_ss(),
-      () => start.lastfm_stats(),
+      () => start.fetch_news(start.c.instapaperURL, "Instapaper"),
+      () => start.fetch_news(start.c.techmemeURL, "All News"),
+      () => start.fetch_news(start.c.nytURL, "New York Times"),
+      () => start.fetch_news(start.c.redditURL, "Reddit"),
+      () => start.fetch_news(start.c.podURL, "Podcasts"),
+      () => start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music"),
+      () => start.fetch_news(start.c.youTubeURL, "YouTube"),
+      () => start.fetch_news(start.c.poeURL, "Path of Exile"),
+      () => start.fetch_news(start.c.nftNewsURL, "Industry News"),
+      () => start.fetch_news(start.c.steamURL, "Steam Games"),
+      () => start.fetch_news(start.c.alchemyURL, "NFTs"),
+      () => start.fetch_news(start.c.steamSSURL, "Steam Screenshots"),
+      () => start.fetch_news(start.c.lastFMStatsURL, "LastFM Stats"),
       () => start.audio_rewind(),
       () => start.media_toggle(),
       () => start.audio_ff(),
@@ -135,20 +132,20 @@
       () => start.background(),
       () => start.blur(),
       () => start.art_source(),
-      () => start.art_feed(),
+      () => start.fetch_news(start.c.artGalleryURL, "Art Gallery"),
       () => start.audio_volume(),
       () => start.lastfm(),
-      () => start.dev_news(),
+      () => start.fetch_news(start.c.devURL, "Developer News"),
       () => start.shortcuts(),
-      () => start.play_metal(),
-      () => start.twitter_news(),
-      () => start.summaries_news(),
-      () => start.github_news(),
-      () => start.trakt_news(),
-      () => start.twitch_news(),
-      () => start.play_vibes(),
+      () => start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music"),
+      () => start.fetch_news(start.c.twitterURL, "Twitter"),
+      () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
+      () => start.fetch_news(start.c.githubFeedURL, "Github"),
+      () => start.fetch_news(start.c.traktURL, "Trakt"),
+      () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
+      () => start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music"),
       () => start.scroll_links(),
-      () => start.summaries()
+      () => start.fetch_news(start.c.summariesURL, "Summaries")
     ],
 
     // Load Config, then Init
@@ -199,7 +196,7 @@
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
       // External Request Based Functions
-      this.external_requests(this);
+      this.external_requests();
     },
 
     // Function That Call Outside APIs
@@ -383,9 +380,9 @@
             48: 9, // Google                               alt + 0️⃣
           };
           const kc = Object.keys(keys_mapped).find(key => start.d[key]);
-          start.count = kc ? keys_mapped[kc] : start.count;
+          start.sc = kc ? keys_mapped[kc] : start.sc;
           if (!$(".feed-container").hasClass("fullscreen")) {
-            if (Number.isInteger(start.count)) start.search_switcher(start.searches[start.count]);
+            if (Number.isInteger(start.sc)) start.search_switcher(start.searches[start.sc]);
           }
         }
 
@@ -700,75 +697,6 @@
       }
       start.fc = false;
     },
-
-    // Instapaper Home Feed
-    instapaper: () => start.fetch_news(start.c.instapaperURL, "Instapaper"),
-
-    // News Feed
-    news: () => start.fetch_news(start.c.techmemeURL, "All News"),
-
-    // Summaries
-    summaries: () => start.fetch_news(start.c.summariesURL, "Summaries"),
-
-    // NYT Feed
-    nyt: () => start.fetch_news(start.c.nytURL, "New York Times"),
-
-    // Reddit Feed
-    reddit: () => start.fetch_news(start.c.redditURL, "Reddit"),
-
-    // NFTs Feed
-    nfts: () => start.fetch_news(start.c.alchemyURL, "NFTs"),
-
-    // Steam Games Feed
-    steam_games: () => start.fetch_news(start.c.steamURL, "Steam Games"),
-
-    // Steam Screenshots Feed
-    steam_ss: () => start.fetch_news(start.c.steamSSURL, "Steam Screenshots"),
-
-    // Art Feed
-    art_feed: () => start.fetch_news(start.c.artGalleryURL, "Art Gallery"),
-
-    // LastFM Stats Feed
-    lastfm_stats: () => start.fetch_news(start.c.lastFMStatsURL, "LastFM Stats"),
-
-    // NFT News Summaries
-    industry_news: () => start.fetch_news(start.c.nftNewsURL, "Industry News"),
-
-    // Path of Exile Feed
-    poe: () => start.fetch_news(start.c.poeURL, "Path of Exile"),
-
-    // Path of Exile Feed
-    dev_news: () => start.fetch_news(start.c.devURL, "Developer News"),
-
-    // Twitter Feed
-    twitter_news: () => start.fetch_news(start.c.twitterURL, "Twitter"),
-
-    // Github Feed
-    github_news: () => start.fetch_news(start.c.githubFeedURL, "Github"),
-
-    // Trakt Feed
-    trakt_news: () => start.fetch_news(start.c.traktURL, "Trakt"),
-
-    // Twitch Feed
-    twitch_news: () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
-
-    // Summaries Feed
-    summaries_news: () => start.fetch_news(start.c.summaryURL, "News, Summarized"),
-
-    // Podcasts Feed
-    podcasts: () => start.fetch_news(start.c.podURL, "Podcasts"),
-
-    // Music Feed
-    play_music: () => start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music"),
-
-    // Metal Music Feed
-    play_metal: () => start.fetch_news(start.c.xPlaylistMetalHTMLURL, "Metal Music"),
-
-    // Vibes Music Feed
-    play_vibes: () => start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music"),
-
-    // YouTube Feed
-    play_video: () => start.fetch_news(start.c.youTubeURL, "YouTube"),
 
     // Audio: Toggle Player Used
     switch_audio_source: () => {
@@ -1315,8 +1243,8 @@
     // Change Search on Click
     change_search: () => {
       $("#searchform label").on(start.t, () => {
-        start.count = start.count < start.searches.length - 1 ? start.count + 1 : 0;
-        start.search_switcher(start.searches[start.count]);
+        start.sc = start.sc < start.searches.length - 1 ? start.sc + 1 : 0;
+        start.search_switcher(start.searches[start.sc]);
       });
     },
 
@@ -1391,7 +1319,7 @@
       if (start.c.openai) {
         $(".feed-links").addClass("loading").html('<span class="loader"></span>');
         let data = {
-          "model": "gpt-3.5-turbo-16k",
+          "model": start.c.openai.model,
           "messages": [{
             "role": "user",
             "content": `${start.c.openai.prompt}\n\n ${$("#search").val()}`
