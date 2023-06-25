@@ -32,7 +32,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.59.4",          // Version Number
+    v: "1.59.5",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -1376,7 +1376,7 @@
           const result = window.confirm("Media is playing; sure you want to leave?");
           if (!result) return false;
         }
-        $("body").css("opacity", 0);
+        $("body").addClass(start.h);
       });
     },
 
