@@ -32,7 +32,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.59.5",          // Version Number
+    v: "1.59.6",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -576,7 +576,7 @@
               }
               start.now_playing(song_data, false);
             }
-          }).catch(error => $(".nowplaying__container").hide());
+          });
       });
     },
 
@@ -595,7 +595,7 @@
         album.text(data.album ? `${data.album}` : "").attr("title", data.album ? `Album: ${data.album}` : "");
         image.attr("src", data.image ? data.image : "fallback.png");
         url.attr("href", data.link ? data.link : "#").addClass(start.s);
-        container.show();
+        // container.show();
         container.removeClass(start.h)
       }, start.at * 2);
       if (source) start.notify(`<span>Now Playing</span> ${source}`);
@@ -742,13 +742,13 @@
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
-              $(".podcasts img").attr("src", "icons/icon__pause.svg");
+              $(".media-toggle img").attr("src", "icons/icon__pause.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
               if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
               break;
             case YT.PlayerState.PLAYING:
               start.notify("<span>Now</span> Playing");
-              $(".podcasts img").attr("src", "icons/icon__play.svg");
+              $(".media-toggle img").attr("src", "icons/icon__play.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
               break;
             default:
@@ -766,12 +766,12 @@
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
-              $(".podcasts img").attr("src", "icons/icon__pause.svg");
+              $(".media-toggle img").attr("src", "icons/icon__pause.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
               break;
             case YT.PlayerState.PLAYING:
               start.notify("<span>Now</span> Playing");
-              $(".podcasts img").attr("src", "icons/icon__play.svg");
+              $(".media-toggle img").attr("src", "icons/icon__play.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
               break;
             default:
@@ -800,13 +800,13 @@
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
           clearInterval(start.timer.interval);
-          $(".podcasts").removeClass(start.s);
+          $(".media-toggle").removeClass(start.s);
           $(".progress").addClass(start.h);
           $("#search").removeClass("full");
         },
         last = async () => {
           await wait(start.at * 2);
-          $(".podcasts-replace").text('0:00');
+          $(".media-toggle-replace").text('0:00');
           $(".progress").css('width', '0%');
         };
       first();
@@ -858,8 +858,8 @@
           start.media_timer_determine();
           if (start.timer.seconds && last_second > start.timer.seconds) {
             if (start.media_is_playing()) {
-              if (!$(".podcasts").hasClass(start.s) && start.timer.seconds > 0 && $(".podcasts-replace").text() !== "0:00") $(".podcasts").addClass(start.s);
-              $(".podcasts-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
+              if (!$(".media-toggle").hasClass(start.s) && start.timer.seconds > 0 && $(".media-toggle-replace").text() !== "0:00") $(".media-toggle").addClass(start.s);
+              $(".media-toggle-replace").text(start.timer.minutes + ':' + start.timer.padded_time);
               start.pb = Math.min(Math.max((start.pb * 100).toFixed(3), 1), 100);
               if ($(".progress").hasClass(start.h)) $(".progress").removeClass(start.h);
               $(".progress").css('width', start.pb + '%');
@@ -1059,7 +1059,7 @@
 
     // Audio: Pause on Click of Timer
     timer_media_toggle: () => {
-      $(document).on(start.t, ".podcasts", e => {
+      $(document).on(start.t, ".media-toggle", e => {
         e.preventDefault();
         start.media_toggle();
       });
@@ -1150,13 +1150,13 @@
     audio_toggle: () => {
       if (start.audio.paused) {
         start.audio.currentTime = start.audio.currentTime - 3;
-        $(".podcasts img").attr("src", "icons/icon__play.svg");
+        $(".media-toggle img").attr("src", "icons/icon__play.svg");
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__pause.svg");
         start.notify("<span>Now</span> Playing");
         start.audio.play();
       } else {
         start.audio.pause();
-        $(".podcasts img").attr("src", "icons/icon__pause.svg");
+        $(".media-toggle img").attr("src", "icons/icon__pause.svg");
         $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
         start.notify("<span>Now</span> Paused");
       }
