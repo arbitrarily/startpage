@@ -1332,7 +1332,14 @@ li {
     font-size: 90%;
     overflow-y: scroll;
     opacity: 0;
-    visibility: none;
+}
+
+.shortcuts,
+.shortcuts__inner {
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 
 .shortcuts.shown {
