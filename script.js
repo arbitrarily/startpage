@@ -32,7 +32,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.59.3",          // Version Number
+    v: "1.59.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -457,7 +457,9 @@
     fullscreen_toggle: () => {
       $(document).on(start.t, e => {
         const t = $(".feed-container.fullscreen .feed-list.fullscreen");
-        if (!t.is(e.target) && t.has(e.target).length === 0) start.fullscreen();
+        if (t.length) {
+          if (!t.is(e.target) && t.has(e.target).length === 0) start.fullscreen();
+        }
       });
     },
 
@@ -983,7 +985,7 @@
       $(document).on(start.t, ".video-links a", function (e) {
         e.preventDefault();
         const that = $(this),
-          targets = $(".feed-container, .feed-list");
+              targets = $(".feed-container, .feed-list");
         if (!targets.hasClass(start.s)) targets.addClass(start.s);
         start.media_stop();
         start.video_start(that.data("id"));
