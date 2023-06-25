@@ -1913,7 +1913,6 @@ pre[class*="language-"] {
     .poe-links .feed-container.fullscreen .feed-list.fullscreen,
     .podcast-links .feed-container.fullscreen .feed-list.fullscreen,
     .reddit-links .feed-container.fullscreen .feed-list.fullscreen,
-    .video-links .feed-container.fullscreen .feed-list.fullscreen,
     .news-links .feed-container.fullscreen .feed-list.fullscreen {
         margin-right: calc(var(--foundation-large) * -1);
         margin-left: calc(var(--foundation-large) * -1);
