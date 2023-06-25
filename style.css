@@ -1095,7 +1095,6 @@ li {
     right: 0;
     color: var(--white);
     pointer-events: none;
-    opacity: 1;
     display: inherit;
     padding: var(--padding);
     align-items: center;
