@@ -19,6 +19,7 @@
     cache: {},            // Cached HTML
     c: false,             // Config
     d: {},                // Keyboard Variable
+    ding: new Audio("ding.mp3"), // Ding
     f: false,             // Fullscreen
     fc: false,            // Feed Count
     fs: 0,                // Feed Slide Count
@@ -32,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.59.12",         // Version Number
+    v: "1.60.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -195,6 +196,8 @@
       start.an = this.random_numb(1, 243).toString().padStart(4, "0");
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+      // Set Ding Volume
+      start.ding.volume = 0.33;
       // External Request Based Functions
       this.external_requests();
     },
@@ -1364,6 +1367,7 @@
                         `;
             start.feed_toggle(html, "Code");
             $("#search").val("");
+            start.ding.play();
           })
           .catch(error => console.error('Error:', error));
       }
