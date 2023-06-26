@@ -513,7 +513,15 @@ li {
 }
 
 .gpt-links__prompt {
+    display: -webkit-box;
     margin-bottom: var(--padding);
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.gpt-links__prompt.shown {
+    -webkit-line-clamp: unset;
 }
 
 .feed-links iframe.feed-list#video-container {
