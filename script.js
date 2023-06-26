@@ -1319,12 +1319,16 @@
     // GPT
     gpt: () => {
       if (start.c.openai) {
+        const sv = $("#search").val();
+        let artprompt = sv.charAt(0) === "?";
+        artprompt = artprompt ? sv.replace('?', '') : false;
+        const prompt = artprompt ? start.c.openai.artprompt + artprompt : start.c.openai.prompt + sv;
         $(".feed-links").addClass("loading").html('<span class="loader"></span>');
         let data = {
           "model": start.c.openai.model,
           "messages": [{
             "role": "user",
-            "content": `${start.c.openai.prompt}\n\n ${$("#search").val()}`
+            "content": `${prompt}\n\n ${sv}`
           }],
           "temperature": 0.7
         };
@@ -1338,7 +1342,10 @@
         }).then(response => response.json())
           .then(data => {
             const t = start.format_numb(data.usage.total_tokens);
-            const d = marked.parse(data.choices[0].message.content);
+            let d = marked.parse(data.choices[0].message.content);
+            if (artprompt) {
+              d = `<pre class="language-markdown"><code class="language-markdown">` + d + `</code></pre>`;
+            }
             let html = `<div class="feed-links gpt-links">
                           <ul class="grid-x container__list--title-list">
                             <li class="cell">
@@ -1351,7 +1358,7 @@
                           <div class="feed-container">
                             <div class="grid-x feed-list">
                               <div class="cell">
-                                <h2 class="gpt-links__prompt">${$("#search").val()}</h2>
+                                <h2 class="gpt-links__prompt">${prompt}</h2>
                                 <div class="grid-x container__list--title-list">
                                   <div class="cell">
                                     <span class="container__list--title container__list--title-reponse">
