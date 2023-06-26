@@ -1344,7 +1344,9 @@
             const t = start.format_numb(data.usage.total_tokens);
             let d = marked.parse(data.choices[0].message.content);
             if (artprompt) {
-              d = `<pre class="language-markdown"><code class="language-markdown">` + d + `</code></pre>`;
+              d = `<pre class="language-markdown">
+                    <code class="language-markdown">${d}</code>
+                   </pre>`;
             }
             let html = `<div class="feed-links gpt-links">
                           <ul class="grid-x container__list--title-list">
