@@ -515,7 +515,7 @@ li {
 .gpt-links__prompt {
     display: -webkit-box;
     margin-bottom: var(--padding);
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
