@@ -556,6 +556,11 @@ li {
     margin: 0;
 }
 
+.container__list:hover .menu-links__toggle--image-container,
+.container__list:focus .menu-links__toggle--image-container {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 .feed-list--padded {
     padding: var(--foundation);
 }
@@ -634,7 +639,6 @@ li {
     justify-content: center;
     width: 60px;
     height: auto;
-    max-height: auto;
     aspect-ratio: var(--one-one);
     object-fit: contain;
     margin: 0 auto;
@@ -685,7 +689,7 @@ li {
 }
 
 .container__list--item:hover .menu-links__toggle--keys {
-    opacity: 1;
+    opacity: var(--opacity-end);
     max-width: 68px;
 }
 
