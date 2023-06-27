@@ -33,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.60.3",          // Version Number
+    v: "1.60.4",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -626,23 +626,18 @@
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
       start.scroll_links(0);
-      if (start.video && start.video.getPlayerState() > 0) {
-        start.video.destroy();
-        start.video = false;
-        start.media_ended();
-      }
       setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
       if (start.f) {
         setTimeout(() => {
           $(".feed-links").addClass(start.s);
           start.fullscreen();
           start.f = !start.f;
-        }, start.at * 2);
+        }, start.at * 3);
       } else {
         setTimeout(() => {
           $(".feed-links").addClass(start.s);
           if ($(".gpt-links".length)) Prism.highlightAll();
-        }, start.at * 2);
+        }, start.at * 3);
       }
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
@@ -737,17 +732,13 @@
         start.video.addEventListener('onStateChange', event => {
           switch (event.data) {
             case YT.PlayerState.ENDED:
-              start.play_video();
               start.media_stop();
               start.media_finished_text();
-              if ($(".feed-container").hasClass("fullscreen")) start.fullscreen();
-              if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
               break;
             case YT.PlayerState.PAUSED:
               start.notify("Paused");
               $(".media-toggle img").attr("src", "icons/icon__pause.svg");
               $(".feed-links .menu-links__item-pause img").attr("src", "icons/icon__play.svg");
-              if (!$(".feed-links").hasClass("video-links")) start.video.pauseVideo();
               break;
             case YT.PlayerState.PLAYING:
               start.notify("<span>Now</span> Playing");
@@ -764,7 +755,7 @@
         start.vaa.addEventListener('onStateChange', event => {
           switch (event.data) {
             case YT.PlayerState.ENDED:
-              start.stop_media();
+              start.media_stop();
               start.media_finished_text();
               break;
             case YT.PlayerState.PAUSED:
