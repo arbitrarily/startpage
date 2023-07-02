@@ -33,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.60.4",          // Version Number
+    v: "1.61.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -146,7 +146,8 @@
       () => start.fetch_news(start.c.twitchURL, "Twitch.tv"),
       () => start.fetch_news(start.c.xPlaylistVibesHTMLURL, "Good Vibes Music"),
       () => start.scroll_links(),
-      () => start.fetch_news(start.c.summariesURL, "Summaries")
+      () => start.fetch_news(start.c.summariesURL, "Summaries"),
+      () => start.fetch_news(start.c.youTubeWLURL, "Youtube Watch Later"),
     ],
 
     // Load Config, then Init
@@ -274,6 +275,8 @@
         'links': 32,
         'summaries': 33,
         'summary': 33,
+        'watchlater': 34,
+        'wl': 34,
       };
       if (section in km) {
         // Switch Feed Source
@@ -314,17 +317,17 @@
 
           // Switch Feed Source
           const shift_keys_map = {
-            49: 0, // Instapaper                           shift + 1️⃣
-            50: 1, // News                                 shift + 2️⃣
-            51: 2, // New York Times                       shift + 3️⃣
-            52: 3, // Reddit                               shift + 4️⃣
-            53: 4, // Podcasts                             shift + 5️⃣
-            54: 5, // NFT News                             shift + 6️⃣
-            55: 6, // YouTube                              shift + 7️⃣
-            56: 7, // Path of Exile                        shift + 8️⃣
-            57: 8, // Music                                shift + 9️⃣
-            48: 23, // Dev News                            shift + 0️⃣
-            173: 9, // Steam Games                         shift + "-"
+            49: 0,  // Instapaper                           shift + 1️⃣
+            50: 1,  // News                                 shift + 2️⃣
+            51: 2,  // New York Times                       shift + 3️⃣
+            52: 3,  // Reddit                               shift + 4️⃣
+            53: 4,  // Podcasts                             shift + 5️⃣
+            54: 5,  // NFT News                             shift + 6️⃣
+            55: 6,  // YouTube                              shift + 7️⃣
+            56: 34, // Youtube Watch Later                  shift + 8️⃣
+            57: 8,  // Music                                shift + 9️⃣
+            48: 23, // Dev News                             shift + 0️⃣
+            173: 9, // Steam Games                          shift + "-"
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -335,24 +338,24 @@
 
           // Functions Mapped to Keys
           const shift_functions_mapped = {
-            39: start.audio_ff, // Fast Forward:           shift + ⏩
-            37: start.audio_rewind, // Rewind:             shift + ⏪
-            38: start.audio_more_speed, // Increase:       shift + ⏫
-            40: start.audio_less_speed, // Decrease:       shift + ⏬
-            32: start.media_toggle, // Play/Pause:         shift + "space"
-            77: start.audio_mute, // Mute:                 shift + "m"
-            70: start.fullscreen, // Fullscreen:           shift + "f"
-            123: start.play_ambient_song, // Ambient Song: shift + "f12"
-            65: start.now_pass, // Load Now Pass:          shift + "a"
+            39: start.audio_ff, // Fast Forward:            shift + ⏩
+            37: start.audio_rewind, // Rewind:              shift + ⏪
+            38: start.audio_more_speed, // Increase:        shift + ⏫
+            40: start.audio_less_speed, // Decrease:        shift + ⏬
+            32: start.media_toggle, // Play/Pause:          shift + "space"
+            77: start.audio_mute, // Mute:                  shift + "m"
+            70: start.fullscreen, // Fullscreen:            shift + "f"
+            123: start.play_ambient_song, // Ambient Song:  shift + "f12"
+            65: start.now_pass, // Load Now Pass:           shift + "a"
             67: () => {
               start.lastfm();
               start.notify("Fetched <span>Last.fm</span>");
-            }, // Update LastFM:                           shift + "x"
-            88: start.background, // Background Image:     shift + "c"
-            86: start.audio_volume, // Volume:             shift + "v"
-            66: start.blur, // Blur:                       shift + "b"
-            72: start.shortcuts, // Help Shortcuts         shift + "h"
-            84: start.switch_audio_source // Audio Source  shift + "t"
+            }, // Update LastFM:                            shift + "x"
+            88: start.background, // Background Image:      shift + "c"
+            86: start.audio_volume, // Volume:              shift + "v"
+            66: start.blur, // Blur:                        shift + "b"
+            72: start.shortcuts, // Help Shortcuts          shift + "h"
+            84: start.switch_audio_source // Audio Source   shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) {
             e.preventDefault();
@@ -360,7 +363,7 @@
           }
 
         } else {
-          // Links Toggle                                  ⏫ or ⏬
+          // Links Toggle                                   ⏫ or ⏬
           if (start.d[40]) start.scroll_links();
           if (start.d[38] && start.fs > 0) start.scroll_links(start.fs - 1);
         }
@@ -371,16 +374,16 @@
 
           // Switch Search Source
           const keys_mapped = {
-            49: 0, // Path of Exile                        alt + 1️⃣
-            50: 1, // YouTube                              alt + 2️⃣
-            51: 2, // DuckDuckGo                           alt + 3️⃣
-            52: 3, // Apple Music                          alt + 4️⃣
-            53: 4, // LastFM                               alt + 5️⃣
-            54: 5, // Twitter                              alt + 6️⃣
-            55: 6, // Google News                          alt + 7️⃣
-            56: 7, // Github                               alt + 8️⃣
-            57: 8, // MidJourney                           alt + 9️⃣
-            48: 9, // Google                               alt + 0️⃣
+            49: 0, // Path of Exile                         alt + 1️⃣
+            50: 1, // YouTube                               alt + 2️⃣
+            51: 2, // DuckDuckGo                            alt + 3️⃣
+            52: 3, // Apple Music                           alt + 4️⃣
+            53: 4, // LastFM                                alt + 5️⃣
+            54: 5, // Twitter                               alt + 6️⃣
+            55: 6, // Google News                           alt + 7️⃣
+            56: 7, // Github                                alt + 8️⃣
+            57: 8, // MidJourney                            alt + 9️⃣
+            48: 9, // Google                                alt + 0️⃣
           };
           const kc = Object.keys(keys_mapped).find(key => start.d[key]);
           start.sc = kc ? keys_mapped[kc] : start.sc;
