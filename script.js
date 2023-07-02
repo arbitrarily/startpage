@@ -33,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.61.1",          // Version Number
+    v: "1.61.2",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -318,16 +318,9 @@
           // Switch Feed Source
           const shift_keys_map = {
             49: 0,  // Instapaper                           shift + 1️⃣
-            50: 1,  // News                                 shift + 2️⃣
-            51: 2,  // New York Times                       shift + 3️⃣
-            52: 3,  // Reddit                               shift + 4️⃣
-            53: 4,  // Podcasts                             shift + 5️⃣
-            54: 5,  // NFT News                             shift + 6️⃣
-            55: 6,  // YouTube                              shift + 7️⃣
-            56: 34, // Youtube Watch Later                  shift + 8️⃣
-            57: 8,  // Music                                shift + 9️⃣
-            48: 23, // Dev News                             shift + 0️⃣
-            173: 9, // Steam Games                          shift + "-"
+            50: 34, // Youtube Watch Later                  shift + 2️⃣
+            51: 4,  // Podcasts                             shift + 3️⃣
+            52: 6,  // YouTube                              shift + 4️⃣
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
