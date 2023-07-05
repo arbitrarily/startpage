@@ -33,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.61.3",          // Version Number
+    v: "1.61.5",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -169,8 +169,8 @@
             // Store Config
             start.c.openai = conf;
             // Load Scripts Conditionally
-            start.load_js("prism.js");
-            start.load_js("marked.js");
+            start.load_js("js/prism.js");
+            start.load_js("js/marked.js");
           }
         });
     },
