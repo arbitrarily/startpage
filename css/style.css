@@ -1105,11 +1105,11 @@ li {
     color: var(--gray);
 }
 
-.nft-links .container__list:not(.container__list--title),
-.music-links .container__list:not(.container__list--title),
-.video-links .container__list:not(.container__list--title),
-.trakt-links .container__list:not(.container__list--title),
-.games-links .container__list:not(.container__list--title) {
+.nft-links .feed-container:not(.fullscreen) .container__list:not(.container__list--title),
+.music-links .feed-container:not(.fullscreen) .container__list:not(.container__list--title),
+.video-links .feed-container:not(.fullscreen) .container__list:not(.container__list--title),
+.trakt-links .feed-container:not(.fullscreen) .container__list:not(.container__list--title),
+.games-links .feed-container:not(.fullscreen) .container__list:not(.container__list--title) {
     display: grid;
     height: 100%;
     margin-bottom: calc(var(--foundation-large) * 2);
@@ -1171,6 +1171,13 @@ li {
     align-items: flex-start;
 }
 
+.games-links .feed-container.fullscreen .feed-list,
+.trakt-links .feed-container.fullscreen .feed-list,
+.video-links .feed-container.fullscreen .feed-list,
+.music-links .feed-container.fullscreen .feed-list {
+    align-items: stretch;
+}
+
 .games-links .container__list--media,
 .trakt-links .container__list--media,
 .music-links .container__list--media,
@@ -1222,20 +1229,20 @@ li {
     border-radius: var(--border-radius);
 }
 
-.nft-links .container__list--item:hover,
-.trakt-links .container__list--item:hover,
-.video-links .container__list--item:hover,
-.music-links .container__list--item:hover,
-.games-links .container__list--item:hover {
+.nft-links .feed-container:not(.fullscreen) .container__list--item:hover,
+.trakt-links .feed-container:not(.fullscreen) .container__list--item:hover,
+.video-links .feed-container:not(.fullscreen) .container__list--item:hover,
+.music-links .feed-container:not(.fullscreen) .container__list--item:hover,
+.games-links .feed-container:not(.fullscreen) .container__list--item:hover {
     background: transparent;
     padding: 0 var(--foundation-large);
 }
 
-.nft-links .grid-container.feed-container,
-.trakt-links .grid-container.feed-container,
-.video-links .grid-container.feed-container,
-.music-links .grid-container.feed-container,
-.games-links .grid-container.feed-container {
+.nft-links .grid-container.feed-container:not(.fullscreen),
+.trakt-links .grid-container.feed-container:not(.fullscreen),
+.video-links .grid-container.feed-container:not(.fullscreen),
+.music-links .grid-container.feed-container:not(.fullscreen),
+.games-links .grid-container.feed-container:not(.fullscreen) {
     padding: 0;
 }
 
@@ -1840,7 +1847,6 @@ pre[class*="language-"] {
         flex-wrap: wrap;
     }
 
-    .music-links .feed-container.fullscreen .container__list--item,
     .video-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
@@ -1893,7 +1899,6 @@ pre[class*="language-"] {
 }
 
 @media screen and (min-width: 54em) {
-    .music-links .feed-container.fullscreen .container__list--item,
     .video-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
@@ -1977,7 +1982,6 @@ pre[class*="language-"] {
     }
 
     .trakt-links .feed-container.fullscreen .container__list--item,
-    .music-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
@@ -1989,7 +1993,6 @@ pre[class*="language-"] {
 
 @media screen and (min-width: 96em) {
     .trakt-links .feed-container.fullscreen .container__list--item,
-    .music-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
@@ -2001,7 +2004,6 @@ pre[class*="language-"] {
 
 @media screen and (min-width: 118em) {
     .trakt-links .feed-container.fullscreen .container__list--item,
-    .music-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
