@@ -33,7 +33,7 @@
     title: 'Startpage',   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.61.8",          // Version Number
+    v: "1.62.1",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -148,6 +148,7 @@
       () => start.scroll_links(),
       () => start.fetch_news(start.c.summariesURL, "Summaries"),
       () => start.fetch_news(start.c.youTubeWLURL, "Youtube Watch Later"),
+      () => start.fetch_news(start.c.lemmyURL, "Lemmy Inbox"),
     ],
 
     // Load Config, then Init
@@ -319,8 +320,9 @@
           const shift_keys_map = {
             49: 0,  // Instapaper                           shift + 1️⃣
             50: 34, // Youtube Watch Later                  shift + 2️⃣
-            51: 4,  // Podcasts                             shift + 3️⃣
-            52: 6,  // YouTube                              shift + 4️⃣
+            51: 6,  // YouTube                              shift + 3️⃣
+            52: 4,  // Podcasts                             shift + 4️⃣
+            53: 35, // Lemmy Inbox                          shift + 5️⃣
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
