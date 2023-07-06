@@ -1823,7 +1823,6 @@ pre[class*="language-"] {
 
     .nowplaying__container {
         padding-left: var(--padding);
-        padding-right: calc(var(--foundation-large) - 5px);
         display: flex;
         justify-content: flex-end;
     }
