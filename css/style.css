@@ -1167,6 +1167,7 @@ li {
     aspect-ratio: var(--one-one);
     box-shadow: var(--shadow);
     filter: saturate(0);
+    min-width: 100%;
 }
 
 .games-links .feed-list,
