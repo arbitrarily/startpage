@@ -648,6 +648,7 @@ li {
 
 .menu-links__item.menu-links__toggle {
     width: calc(100% / 4);
+    padding: 0;
 }
 
 .menu-links__item.menu-links__toggle img {
@@ -1992,7 +1993,7 @@ pre[class*="language-"] {
 
 @media screen and (min-width: 72em) {
     .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 6);
+        padding-left: calc(var(--foundation-large) * 7);
     }
 
     .trakt-links .feed-container.fullscreen .container__list--item,
