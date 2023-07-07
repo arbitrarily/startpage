@@ -30,10 +30,10 @@
     s: "shown",           // Shared Class Names
     sc: false,            // Search Count
     t: "click",           // Touch Events
-    title: 'Startpage',   // Page Title
+    title: "Startpage",  // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.62.7",          // Version Number
+    v: "1.62.8",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -183,7 +183,7 @@
       this.change_search();           // Search Change Handler
       this.timer_media_toggle();      // Add Event Listeners
       this.focus_search();            // Focus on Search
-      this.marquee_title(self.title); // Marquee Title
+      this.marquee_title(this.title); // Marquee Title
       this.steam_links();             // Launch Games on Windows Handler
       this.menu_clicks();             // Menu Click Handler
       this.video_click();             // Video Click Handler
@@ -1281,7 +1281,7 @@
     // Marquee Title Animation
     marquee_title: (string) => {
       let title = $("title");
-      let text = string ? string : "Startpage ".repeat(15);
+      let text = string ? string + " " : "Startpage ";
       clearInterval(start.ti);
       start.ti = setInterval( () => {
         text = text.substring(1) + text.charAt(0);
