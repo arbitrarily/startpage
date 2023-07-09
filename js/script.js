@@ -33,7 +33,7 @@
     title: "Startpage",   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.62.9",          // Version Number
+    v: "1.62.10",         // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -403,10 +403,10 @@
 
     // Feed Menu Click Events
     menu_clicks: function () {
-      $(document).on("click contextmenu", ".menu-links__toggle", function (e) {
+      $(document).on("click contextmenu", ".menu-links__toggle a.container__list", function (e) {
         e.preventDefault();
         start.fc = $(this).data("id");
-        $(this).addClass(start.s).siblings().removeClass(start.s);
+        $(this).parent().addClass(start.s).siblings().removeClass(start.s);
         if (e.type === "contextmenu") start.f = true;
         if (Number.isInteger(start.fc)) start.mf[start.fc]();
         if ($(window).scrollTop() > $(".container__content").offset().top) {
@@ -1273,7 +1273,7 @@
       $(document).on(start.t, ".shortcuts__menu li", function (e) {
         e.preventDefault();
         const target = $(this);
-        target.toggleClass("active").siblings().removeClass("active");
+        target.addClass(start.s).siblings().removeClass(start.s);
         $(".shortcuts__feed-container").css("transform", `translateX(-${target.data("id") * (100 / $(".shortcuts__feed").length)}%`);
       });
     },

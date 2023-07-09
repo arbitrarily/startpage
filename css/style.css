@@ -1928,6 +1928,14 @@ pre[class*="language-"] {
 /* Extra large screens */
 @media screen and (min-width: 64em) {
 
+    .menu-links__item.menu-links__toggle {
+        justify-content: flex-end;
+    }
+
+    .menu-links__item.menu-links__toggle .container__list {
+        width: auto;
+    }
+
     .video-links {
         aspect-ratio: var(--sixteen-nine);
     }
@@ -1993,7 +2001,7 @@ pre[class*="language-"] {
 
 @media screen and (min-width: 72em) {
     .grid-padding-x>.cell.container__list--padding-override {
-        padding-left: calc(var(--foundation-large) * 7);
+        padding-left: calc(var(--foundation-large) * 5);
     }
 
     .trakt-links .feed-container.fullscreen .container__list--item,
