@@ -11,31 +11,31 @@
   "use strict";
 
   var start = {
-    an: false,            // Art Number
-    as: false,            // Audio Source
-    at: 333,              // Animation Time
-    audio: new Audio(),   // Audio
-    au: false,            // Art URL
-    cache: {},            // Cached HTML
-    c: false,             // Config
-    d: {},                // Keyboard Variable
+    an: false,                   // Art Number
+    as: false,                   // Audio Source
+    at: 333,                     // Animation Time
+    audio: new Audio(),          // Audio
+    au: false,                   // Art URL
+    cache: {},                   // Cached HTML
+    c: false,                    // Config
+    d: {},                       // Keyboard Variable
     ding: new Audio("ding.mp3"), // Ding
-    f: false,             // Fullscreen
-    fc: false,            // Feed Count
-    fs: 0,                // Feed Slide Count
-    h: "hidden",          // Shared Class Names
-    nl: 60,               // Notification String Limit
-    pb: 0,                // Progress Bar
-    pv: false,            // Pageviews
-    s: "shown",           // Shared Class Names
-    sc: false,            // Search Count
-    t: "click",           // Touch Events
-    title: "Startpage",   // Page Title
-    ti: false,            // Page Title Interval
-    timer: {},            // Timer Count
-    v: "1.62.10",         // Version Number
-    vaa: false,           // Video as Audio
-    video: false,         // Video
+    f: false,                    // Fullscreen
+    fc: false,                   // Feed Count
+    fs: 0,                       // Feed Slide Count
+    h: "hidden",                 // Shared Class Names
+    nl: 60,                      // Notification String Limit
+    pb: 0,                       // Progress Bar
+    pv: false,                   // Pageviews
+    s: "shown",                  // Shared Class Names
+    sc: false,                   // Search Count
+    t: "click",                  // Touch Events
+    title: "Startpage",          // Page Title
+    ti: false,                   // Page Title Interval
+    timer: {},                   // Timer Count
+    v: "1.62.11",                // Version Number
+    vaa: false,                  // Video as Audio
+    video: false,                // Video
 
     // Search Inputs
     searches: [
@@ -278,6 +278,7 @@
         'summary': 33,
         'watchlater': 34,
         'wl': 34,
+        'lemmy': 35
       };
       if (section in km) {
         // Switch Feed Source
