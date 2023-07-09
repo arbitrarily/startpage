@@ -30,10 +30,10 @@
     s: "shown",           // Shared Class Names
     sc: false,            // Search Count
     t: "click",           // Touch Events
-    title: "Startpage",  // Page Title
+    title: "Startpage",   // Page Title
     ti: false,            // Page Title Interval
     timer: {},            // Timer Count
-    v: "1.62.8",          // Version Number
+    v: "1.62.9",          // Version Number
     vaa: false,           // Video as Audio
     video: false,         // Video
 
@@ -787,7 +787,7 @@
 
     // Media: Reset Timer & Progress Bar
     media_ended: () => {
-      start.title = "Startpage ".repeat(15);
+      start.title = "Startpage";
       start.marquee_title(start.title);
       const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms)),
         first = () => {
