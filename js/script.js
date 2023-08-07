@@ -33,7 +33,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.11",                // Version Number
+    v: "1.62.12",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -195,7 +195,7 @@
       this.bye();                     // Run Before Leaving Page
       this.log();                     // Output into Console
       // Background Art Number
-      start.an = this.random_numb(1, 243).toString().padStart(4, "0");
+      start.an = this.random_numb(1, 284).toString().padStart(4, "0");
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
       // Set Ding Volume
