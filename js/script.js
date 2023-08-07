@@ -33,7 +33,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.12",                // Version Number
+    v: "1.62.13",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -501,7 +501,7 @@
     background: function (num = false) {
       const bg = $(".background-image");
       if (!num) {
-        start.an = start.random_numb(1, 243).toString().padStart(4, "0").toString();
+        start.an = start.random_numb(1, 284).toString().padStart(4, "0").toString();
         start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
       }
       bg.addClass(start.h);
