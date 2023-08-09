@@ -11,6 +11,7 @@
   "use strict";
 
   var start = {
+    ac: 284,                     // Art Count
     an: false,                   // Art Number
     as: false,                   // Audio Source
     at: 333,                     // Animation Time
@@ -33,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.14",                // Version Number
+    v: "1.62.15",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -195,7 +196,7 @@
       this.bye();                     // Run Before Leaving Page
       this.log();                     // Output into Console
       // Background Art Number
-      start.an = this.random_numb(1, 284).toString().padStart(4, "0");
+      start.an = this.random_numb(1, start.ac).toString().padStart(4, "0");
       // Audio or Video on Click
       start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
       // Set Ding Volume
@@ -319,11 +320,8 @@
 
           // Switch Feed Source
           const shift_keys_map = {
-            49: 0,  // Instapaper                           shift + 1️⃣
-            50: 34, // Youtube Watch Later                  shift + 2️⃣
-            51: 6,  // YouTube                              shift + 3️⃣
-            52: 4,  // Podcasts                             shift + 4️⃣
-            53: 35, // Lemmy Inbox                          shift + 5️⃣
+            49: 26, // Twitter                              shift + 1️⃣
+            50: 35, // Lemmy Inbox                          shift + 2️⃣
           };
           const kcc = Object.keys(shift_keys_map).find(key => start.d[key]);
           start.fc = shift_keys_map ? shift_keys_map[kcc] : start.fc;
@@ -501,7 +499,7 @@
     background: function (num = false) {
       const bg = $(".background-image");
       if (!num) {
-        start.an = start.random_numb(1, 284).toString().padStart(4, "0").toString();
+        start.an = start.random_numb(1, start.ac).toString().padStart(4, "0").toString();
         start.notify(`<span>New Background</span> #${start.an} <span>Loaded</span>`);
       }
       bg.addClass(start.h);
