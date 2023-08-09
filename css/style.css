@@ -1844,6 +1844,9 @@ pre[class*="language-"] {
         /* height: calc(100% / 3); */
     }
 
+    .feed-container.fullscreen .container__list span.container__list--description {
+        -webkit-line-clamp: 4;
+    }
     .poe-links .feed-container.fullscreen .container__list,
     .podcast-links .feed-container.fullscreen .container__list,
     .games-links .feed-container.fullscreen .container__list,
@@ -1869,14 +1872,14 @@ pre[class*="language-"] {
     .poe-links .feed-container.fullscreen .container__list img,
     .podcast-links .feed-container.fullscreen .container__list img,
     .github-links .feed-container.fullscreen .github-list .container__list img,
-    .reddit-links .feed-container.fullscreen .container__list img,
-    .news-links .feed-container.fullscreen .container__list img {
+    .reddit-links .feed-container.fullscreen .container__list img {
         max-height: inherit;
         height: inherit;
         aspect-ratio: var(--one-one);
     }
 
-    .video-links .feed-container.fullscreen .container__list img {
+    .video-links .feed-container.fullscreen .container__list img,
+    .news-links .feed-container.fullscreen .container__list img {
         aspect-ratio: var(--sixteen-nine);
     }
 
