@@ -34,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.15",                // Version Number
+    v: "1.62.16",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -633,7 +633,10 @@
       } else {
         setTimeout(() => {
           $(".feed-links").addClass(start.s);
-          if ($(".gpt-links".length)) Prism.highlightAll();
+          if ($(".gpt-links".length)) {
+            Prism.highlightAll();
+            start.fullscreen();
+          }
         }, start.at * 3);
       }
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
