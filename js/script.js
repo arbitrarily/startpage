@@ -562,7 +562,7 @@
               setTimeout(() => {
                 $(".songs-replace").text(start.format_numb(count).trim().toString());
                 $(".songs").addClass(start.s);
-              }, start.at * 3);
+              }, start.at * 2);
             });
             const s = song["recenttracks"]["track"].map(start.remap_song_data)[0];
             if (!start.media_is_playing()) {
@@ -629,15 +629,15 @@
           $(".feed-links").addClass(start.s);
           start.fullscreen();
           start.f = !start.f;
-        }, start.at * 3);
+        }, start.at * 2);
       } else {
         setTimeout(() => {
           $(".feed-links").addClass(start.s);
-          if ($(".gpt-links".length)) {
+          if ($(".gpt-links").length) {
             Prism.highlightAll();
             start.fullscreen();
           }
-        }, start.at * 3);
+        }, start.at * 2);
       }
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
@@ -1197,7 +1197,7 @@
           window.speechSynthesis.speak(message);
           fl.animate({
             scrollTop: $(this).offset().top - fl.offset().top + fl.scrollTop()
-          }, start.at * 3);
+          }, start.at * 2);
           start.notify("Speaking Paragraph <span>Started</span>");
           message.onend = () => $(".feed-list li p.shown").removeClass(start.s);
         }
@@ -1210,7 +1210,7 @@
         e.preventDefault();
         $(".feed-list").animate({
           scrollTop: 0
-        }, start.at * 3);
+        }, start.at * 2);
       });
     },
 
@@ -1392,7 +1392,7 @@
     the_time: () => {
       const now = new Date();
       const date_options = { weekday: "long", month: "long", day: "numeric" };
-      const time_options = { hour: "2-digit", minute: "2-digit" };
+      const time_options = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
       const time = now.toLocaleTimeString([], { ...time_options }).replace(/^0| /g, "");
       const date = now.toLocaleDateString("en-US", date_options);
       const datetime = `${date} ${time}`;

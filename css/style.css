@@ -496,7 +496,7 @@ li {
 .gpt-links__prompt {
     display: -webkit-box;
     margin-bottom: var(--padding);
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1847,6 +1847,7 @@ pre[class*="language-"] {
     .feed-container.fullscreen .container__list span.container__list--description {
         -webkit-line-clamp: 4;
     }
+
     .poe-links .feed-container.fullscreen .container__list,
     .podcast-links .feed-container.fullscreen .container__list,
     .games-links .feed-container.fullscreen .container__list,
@@ -1871,8 +1872,7 @@ pre[class*="language-"] {
 
     .poe-links .feed-container.fullscreen .container__list img,
     .podcast-links .feed-container.fullscreen .container__list img,
-    .github-links .feed-container.fullscreen .github-list .container__list img,
-    .reddit-links .feed-container.fullscreen .container__list img {
+    .github-links .feed-container.fullscreen .github-list .container__list img {
         max-height: inherit;
         height: inherit;
         aspect-ratio: var(--one-one);
@@ -1906,6 +1906,7 @@ pre[class*="language-"] {
     .news-links .feed-container.fullscreen .container__list .container__list--media img {
         border: none;
         min-width: 100%;
+        height: auto;
         border-radius: var(--border-radius);
     }
 
