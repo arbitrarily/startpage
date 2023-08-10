@@ -34,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.16",                // Version Number
+    v: "1.62.17",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -939,8 +939,7 @@
     // Fullscreen Toggle
     fullscreen: () => {
       const v = $(".feed-links .feed-list, .feed-container, .container__overflow"),
-        vl = $(".feed-links"),
-        fs = v.hasClass("fullscreen") ? "Fullscreen Off" : "Fullscreen";
+        vl = $(".feed-links");
       vl.removeClass(start.s);
       setTimeout(() => {
         v.toggleClass("fullscreen");
@@ -955,7 +954,6 @@
       }
       $(".container__links--overflow").removeClass("link__1 link__2");
       $("body").toggleClass("lock");
-      start.notify(`<span>${fs}</span>`);
     },
 
     // Play The 5 Hour Ambient Song I Made
