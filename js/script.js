@@ -34,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.17",                // Version Number
+    v: "1.62.18",                // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -623,25 +623,22 @@
     // Feed Toggle Animation
     feed_toggle: (html, source) => {
       start.scroll_links(0);
-      setTimeout(() => { $(".feed-links").replaceWith(html) }, start.at);
-      if (start.f) {
-        setTimeout(() => {
-          $(".feed-links").addClass(start.s);
+      $(".feed-links").replaceWith(html);
+      setTimeout(() => {
+        $(".feed-links").addClass(start.s);
+        if (start.f) {
           start.fullscreen();
           start.f = !start.f;
-        }, start.at * 2);
-      } else {
-        setTimeout(() => {
-          $(".feed-links").addClass(start.s);
-          if ($(".gpt-links").length) {
-            Prism.highlightAll();
-            start.fullscreen();
-          }
-        }, start.at * 2);
-      }
+        } else if ($(".gpt-links").length) {
+          Prism.highlightAll();
+          start.fullscreen();
+        }
+      }, start.at * 2);
       if (source) start.notify(`<span>Feed Switched to</span> ${source}`);
       $("body").removeClass("lock");
-      if (!$(".container__links--overflow").hasClass("link__0")) $(".container__links--overflow").addClass("link__0");
+      if (!$(".container__links--overflow").hasClass("link__0")) {
+        $(".container__links--overflow").addClass("link__0");
+      }
     },
 
     // Init Fetch
@@ -947,7 +944,7 @@
       setTimeout(() => {
         start.hide_background_elements();
         vl.addClass(start.s);
-      }, 1000);
+      }, start.at * 3);
       start.fullscreen_toggle();
       if (!$(".container__links--overflow").hasClass("link__0")) {
         $(".container__links--overflow").addClass("link__0");
