@@ -34,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.62.18",                // Version Number
+    v: "1.63.1",                 // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -117,7 +117,7 @@
       () => start.fetch_news(start.c.instapaperURL, "Instapaper"),
       () => start.fetch_news(start.c.techmemeURL, "All News"),
       () => start.fetch_news(start.c.nytURL, "New York Times"),
-      () => start.fetch_news(start.c.redditURL, "Reddit"),
+      () => start.fetch_news(start.c.redditURL, "Lemmy"),
       () => start.fetch_news(start.c.podURL, "Podcasts"),
       () => start.fetch_news(start.c.xPlaylistHTMLURL, "LoFi Music"),
       () => start.fetch_news(start.c.youTubeURL, "YouTube"),
@@ -248,7 +248,7 @@
         'instapaper': 0,
         'news': 1,
         'nyt': 2,
-        'reddit': 3,
+        'lemmy': 3,
         'pod': 4,
         'podcasts': 4,
         'lofi': 5,
