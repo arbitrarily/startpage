@@ -873,6 +873,7 @@ li {
 }
 
 .feed-links .container__list--title span:nth-of-type(2) {
+    cursor: default;
     overflow: unset;
 }
 
@@ -903,7 +904,6 @@ li {
 
 .container form {
     position: relative;
-    display: flex;
     width: 100%;
     overflow: hidden;
     border-radius: var(--border-radius);
@@ -916,9 +916,8 @@ li {
 
 .container img.search {
     width: 100%;
-    min-width: 36px;
-    padding-right: 5px;
     opacity: var(--opacity-start);
+    cursor: pointer;
 }
 
 .container img.search:hover {
@@ -926,10 +925,13 @@ li {
 }
 
 .container label {
-    width: 36px;
-    margin-right: 10px;
+    position: absolute;
     display: flex;
+    height: 52px;
+    width: 52px;
     align-items: center;
+    z-index: 3;
+    padding: calc(var(--foundation) * 1.25);
 }
 
 .container input {
@@ -937,7 +939,7 @@ li {
     background: rgba(255, 255, 255, 0.05);
     box-shadow: none;
     border: none;
-    padding: 0 14px;
+    padding: 0 14px 0 50px;
     margin: 0;
     height: auto;
     width: 100%;
