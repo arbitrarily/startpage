@@ -13,7 +13,6 @@
   var start = {
     ac: 284,                     // Art Count
     an: false,                   // Art Number
-    as: true,                    // Audio Source
     at: 333,                     // Animation Time
     audio: new Audio(),          // Audio
     au: false,                   // Art URL
@@ -34,7 +33,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.64.1",                 // Version Number
+    v: "1.64.2",                 // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -195,11 +194,11 @@
       this.the_time();                // Clock
       this.bye();                     // Run Before Leaving Page
       this.log();                     // Output into Console
-      // Background Art Number
-      start.an = this.random_numb(1, start.ac).toString().padStart(4, "0");
       // Play Audio
       this.play_music_on_click();
       this.play_audio_on_click();
+      // Background Art Number
+      start.an = this.random_numb(1, start.ac).toString().padStart(4, "0");
       // Set Ding Volume
       start.ding.volume = 0.33;
       // External Request Based Functions
@@ -1058,15 +1057,15 @@
         slider.addClass(start.s);
         search.attr("placeholder", vol.val());
         vol.on("input", () => {
-          if (!start.audio.paused) {
-            start.audio.volume = vol.val() / 100;
-            vol.value = start.audio.volume * 100;
+          if (start.vaa && start.vaa.getPlayerState() === 1) {
+            start.vaa.setVolume(vol.val());
+            vol.value = start.vaa.getVolume();
           } else if (start.video && start.video.getPlayerState() === 1) {
             start.video.setVolume(vol.val());
             vol.value = start.video.getVolume();
-          } else if (start.vaa && start.vaa.getPlayerState() === 1) {
-            start.vaa.setVolume(vol.val());
-            vol.value = start.vaa.getVolume();
+          } else if (!start.audio.paused) {
+            start.audio.volume = vol.val() / 100;
+            vol.value = start.audio.volume * 100;
           }
           search.attr("placeholder", vol.val());
           vol.on("mouseup", () => {
