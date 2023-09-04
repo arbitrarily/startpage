@@ -13,7 +13,7 @@
   var start = {
     ac: 284,                     // Art Count
     an: false,                   // Art Number
-    as: false,                   // Audio Source
+    as: true,                    // Audio Source
     at: 333,                     // Animation Time
     audio: new Audio(),          // Audio
     au: false,                   // Art URL
@@ -34,7 +34,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.63.2",                 // Version Number
+    v: "1.64.1",                 // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 
@@ -197,8 +197,9 @@
       this.log();                     // Output into Console
       // Background Art Number
       start.an = this.random_numb(1, start.ac).toString().padStart(4, "0");
-      // Audio or Video on Click
-      start[start.as ? 'play_music_on_click' : 'play_audio_on_click']();
+      // Play Audio
+      this.play_music_on_click();
+      this.play_audio_on_click();
       // Set Ding Volume
       start.ding.volume = 0.33;
       // External Request Based Functions
@@ -349,7 +350,6 @@
             86: start.audio_volume, // Volume:              shift + "v"
             66: start.blur, // Blur:                        shift + "b"
             72: start.shortcuts, // Help Shortcuts          shift + "h"
-            84: start.switch_audio_source // Audio Source   shift + "t"
           };
           if (shift_functions_mapped[e.keyCode]) {
             e.preventDefault();
@@ -692,13 +692,6 @@
       start.fc = false;
     },
 
-    // Audio: Toggle Player Used
-    switch_audio_source: () => {
-      start.as = start.as === false ? true : false;
-      const msg = start.as ? "Switched to <span>YouTube</span> Player" : "Switched to <span>HTML5</span> Player";
-      start.notify(`${msg}`);
-    },
-
     // Media: Is Any Media Playing?
     media_is_playing: () => {
       return !start.audio.paused ||
@@ -1001,14 +994,14 @@
         e.preventDefault();
         const a = $(this);
         start.media_stop();
-        start.video_as_audio_start(a.data('id'));
+        start.video_as_audio_start(a.data("id"));
         const song_data = {
-          id: a.data('id'),
-          name: a.data('title'),
-          album: '',
-          artist: a.data('feed'),
-          image: a.find("img").attr('src'),
-          link: a.attr('href')
+          id: a.data("id"),
+          name: a.data("title"),
+          album: "",
+          artist: a.data("feed"),
+          image: a.find("img").attr("src"),
+          link: a.attr("href")
         };
         start.title = song_data.artist + ": " + song_data.name + ", " + song_data.album;
         start.marquee_title(start.title);
@@ -1031,12 +1024,12 @@
         start.audio.play();
         start.media_timer();
         const song_data = {
-          id: '',
-          name: a.data('title'),
-          album: '',
-          artist: a.data('feed'),
-          image: a.find("img").attr('src'),
-          link: a.attr('href')
+          id: "",
+          name: a.data("title"),
+          album: "",
+          artist: a.data("feed"),
+          image: a.find("img").attr("src"),
+          link: a.attr("href")
         };
         start.title = song_data.artist + ": " + song_data.name + ", " + song_data.album;
         start.marquee_title(start.title);
