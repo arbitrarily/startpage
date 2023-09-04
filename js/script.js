@@ -33,7 +33,7 @@
     title: "Startpage",          // Page Title
     ti: false,                   // Page Title Interval
     timer: {},                   // Timer Count
-    v: "1.64.2",                 // Version Number
+    v: "1.64.3",                 // Version Number
     vaa: false,                  // Video as Audio
     video: false,                // Video
 

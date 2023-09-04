@@ -1853,6 +1853,7 @@ pre[class*="language-"] {
 
     .poe-links .feed-container.fullscreen .container__list,
     .podcast-links .feed-container.fullscreen .container__list,
+    .music-links .feed-container.fullscreen .container__list,
     .games-links .feed-container.fullscreen .container__list,
     .reddit-links .feed-container.fullscreen .container__list,
     .video-links .feed-container.fullscreen .container__list,
@@ -1864,6 +1865,7 @@ pre[class*="language-"] {
     .video-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
     .games-links .feed-container.fullscreen .container__list--item,
     .trakt-links .feed-container.fullscreen .container__list--item,
     .reddit-links .feed-container.fullscreen .container__list--item,
@@ -1875,6 +1877,7 @@ pre[class*="language-"] {
 
     .poe-links .feed-container.fullscreen .container__list img,
     .podcast-links .feed-container.fullscreen .container__list img,
+    .music-links .feed-container.fullscreen .container__list img,
     .github-links .feed-container.fullscreen .github-list .container__list img {
         max-height: inherit;
         height: inherit;
@@ -1887,6 +1890,7 @@ pre[class*="language-"] {
     }
 
     .podcast-links .feed-container.fullscreen .container__list .container__list--media,
+    .music-links .feed-container.fullscreen .container__list .container__list--media,
     .poe-links .feed-container.fullscreen .container__list .container__list--media,
     .games-links .feed-container.fullscreen .container__list .container__list--media,
     .trakt-links .feed-container.fullscreen .container__list .container__list--media,
@@ -1897,6 +1901,7 @@ pre[class*="language-"] {
     }
 
     .podcast-links .feed-container.fullscreen .container__list .container__list--media,
+    .music-links .feed-container.fullscreen .container__list .container__list--media,
     .poe-links .feed-container.fullscreen .container__list .container__list--media,
     .reddit-links .feed-container.fullscreen .container__list .container__list--media,
     .news-links .feed-container.fullscreen .container__list .container__list--media,
@@ -1922,6 +1927,7 @@ pre[class*="language-"] {
     .video-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
     .games-links .feed-container.fullscreen .container__list--item,
     .reddit-links .feed-container.fullscreen .container__list--item,
     .trakt-links .feed-container.fullscreen .container__list--item,
@@ -2014,6 +2020,7 @@ pre[class*="language-"] {
     .trakt-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
     .games-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .reddit-links .feed-container.fullscreen .container__list--item,
@@ -2026,6 +2033,7 @@ pre[class*="language-"] {
     .trakt-links .feed-container.fullscreen .container__list--item,
     .news-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .games-links .feed-container.fullscreen .container__list--item,
     .reddit-links .feed-container.fullscreen .container__list--item,
@@ -2037,6 +2045,7 @@ pre[class*="language-"] {
 @media screen and (min-width: 120em) {
     .trakt-links .feed-container.fullscreen .container__list--item,
     .podcast-links .feed-container.fullscreen .container__list--item,
+    .music-links .feed-container.fullscreen .container__list--item,
     .poe-links .feed-container.fullscreen .container__list--item,
     .games-links .feed-container.fullscreen .container__list--item,
     .reddit-links .feed-container.fullscreen .container__list--item,
