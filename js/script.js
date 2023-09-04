@@ -1020,7 +1020,7 @@
         start.media_stop();
         start.audio.src = a.attr("href");
         await start.audio.load();
-        if (!$(".podcast-links").hasClass("music-links")) start.audio.playbackRate = 1.3;
+        start.audio.playbackRate = 1.3;
         start.audio.play();
         start.media_timer();
         const song_data = {
